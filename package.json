@@ -1,0 +1,34 @@
+{
+  "name": "caucus-central-frontend",
+  "version": "1.0.0",
+  "description": "Frontend for the Caucus Central application.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bernie-2016/CaucusCentralFrontend.git"
+  },
+  "author": "",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Bernie-2016/CaucusCentralFrontend/issues"
+  },
+  "homepage": "https://github.com/Bernie-2016/CaucusCentralFrontend#readme",
+  "devDependencies": {
+    "babel-core": "^6.2.1",
+    "babel-loader": "^6.2.0",
+    "babel-preset-react": "^6.1.18",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-minify-css": "^1.2.2",
+    "gulp-sass": "^2.1.0",
+    "gulp-uglify": "^1.5.1",
+    "gulp-webpack": "^1.5.0"
+  },
+  "dependencies": {
+    "backbone": "^1.2.3",
+    "react": "^0.14.3"
+  }
+}
