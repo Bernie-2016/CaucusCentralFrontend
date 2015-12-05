@@ -1,7 +1,7 @@
 {
-  "name": "react-redux-starter-kit",
-  "version": "0.18.0",
-  "description": "Get started with React, Redux, and React-Router!",
+  "name": "CaucusCentralFrontend",
+  "version": "0.0.1",
+  "description": "Front end for Caucus Central — An organizing tool for the Iowa Caucuses",
   "main": "index.js",
   "scripts": {
     "clean": "rm -rf dist",
@@ -18,14 +18,16 @@
     "validate": "npm ls"
   },
   "pre-commit": [
-    "lint",
-    "lint:tests"
+    "lint"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/davezuko/react-redux-starter-kit.git"
+    "url": "git+https://github.com/Bernie-2016/CaucusCentralFrontend.git"
   },
-  "author": "David Zukowski <david@zuko.me> (http://zuko.me)",
+  "contributors": [
+    "Ryan Carey <me@ryancarey.ca> (http://ryancarey.ca)",
+    "todo: add yourselves"
+  ],
   "license": "MIT",
   "dependencies": {
     "babel": "^5.8.23",
@@ -86,10 +88,5 @@
     "webpack": "^1.11.0",
     "webpack-dev-middleware": "^1.4.0",
     "webpack-hot-middleware": "^2.5.0"
-  },
-  "pre-commit": [
-    "lint",
-    "validate",
-    "test"
-  ]
+  }
 }
