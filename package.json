@@ -17,9 +17,9 @@
     "deploy": "npm run lint && npm run test && npm run compile",
     "validate": "npm ls"
   },
-  "precommit": [
+  "pre-commit": [
     "lint"
-  ]
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/davezuko/react-redux-starter-kit.git"
