@@ -6,8 +6,11 @@ export class AdminDashboardView extends React.Component {
   render () {
     return (
       <div className='container admin-dashboard-view'>
-        <h2>Dashboard</h2>
-        <Link to='/'>Home</Link>
+        <h1>Dashboard</h1>
+        <ul className='list-inline'>
+          <li><Link to='/'>Home</Link></li>
+          <li><Link to='/admin/user'>User Administration</Link></li>
+        </ul>
       </div>
     );
   }

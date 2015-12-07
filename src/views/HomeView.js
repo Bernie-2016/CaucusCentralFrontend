@@ -32,7 +32,7 @@ export class HomeView extends React.Component {
           Increment
         </button>
         <hr />
-        <ul className='nav nav-pills nav-stacked'>
+        <ul className='list-inline'>
           <li><Link to='/about'>Go To About View</Link></li>
           <li><Link to='/admin'>Go To Admin Dashboard</Link></li>
         </ul>
