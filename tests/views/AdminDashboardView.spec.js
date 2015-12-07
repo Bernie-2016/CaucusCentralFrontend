@@ -18,7 +18,7 @@ function shallowRenderWithProps (props = {}) {
   return shallowRender(<AdminDashboardView {...props} />);
 }
 
-describe('(View) Home', function () {
+describe('(View) AdminDashboard', function () {
   let _component, _rendered, _props, _spies;
 
   beforeEach(function () {
