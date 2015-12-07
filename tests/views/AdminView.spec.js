@@ -37,11 +37,4 @@ describe('(View) Home', function () {
     expect(_component.type).to.equal('div');
   });
 
-  it('Should include an <h1> with welcome text.', function () {
-    const h1 = TestUtils.findRenderedDOMComponentWithTag(_rendered, 'h1');
-
-    expect(h1).to.exist;
-    expect(h1.textContent).to.match(/Welcome to the Admin View/);
-  });
-
 });
