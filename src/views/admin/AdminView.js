@@ -6,7 +6,7 @@ export class AdminView extends React.Component {
   render () {
     return (
       <div className='containr admin-view'>
-        <h2>This is the Admin View</h2>
+        <h1>Welcome to the Admin View</h1>
         <Link to='/'>Home</Link>
       </div>
     );
