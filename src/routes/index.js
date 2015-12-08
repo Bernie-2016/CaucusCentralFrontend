@@ -8,5 +8,12 @@ export default (
   <Route        component={CoreLayout} path='/'>
     <IndexRoute component={HomeView} />
     <Route      component={AboutView}  path='/about' />
+    <Route      component={undefined} path='captain'>
+        <Route      component={undefined} path='/login' />
+        <Route      component={undefined} path='/verify/:key' />
+        <Route      component={undefined} path='/prepare' />
+        <Route      component={undefined} path='/how-to-use' />
+        <Route      component={undefined} path='/dashboard' />
+    </Route>
   </Route>
 );
