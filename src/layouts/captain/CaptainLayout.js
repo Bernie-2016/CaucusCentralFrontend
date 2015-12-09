@@ -9,13 +9,17 @@ export default class CaptainLayout extends React.Component {
 
     render() {
         return (
-            // We'll want to hide this nav when no
-            // user has logged in yet once we
-            // include user auth in the state.
-            <CaptainTopNav />
+            <div>
+              {/*}
+              // We'll want to hide this nav when no
+              // user has logged in yet once we
+              // include user auth in the state.
+              */}
+              <CaptainTopNav />
 
-            <div className="container-fluid">
-            { this.props.children }
+              <div className="container-fluid">
+              { this.props.children }
+              </div>
             </div>
         );
     }

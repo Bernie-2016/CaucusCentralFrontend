@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class CaptainTopNav extends React.component {
+export default class CaptainTopNav extends React.Component {
 
     render() {
         return (
@@ -19,12 +19,14 @@ export default class CaptainTopNav extends React.component {
                             <span className="icon-bar"></span>
                             <span className="icon-bar"></span>
                         </button>
-                        <h2>Caucus Central</h2>
+                        <span>Caucus Central</span>
                     </div>
                     <div className="collapse navbar-collapse"
                          id="nav-collapse">
                         <ul className="nav navbar-nav">
-                            <li>/* Link */</li>
+                            <li>Text</li>
+                            <li>Text</li>
+                            <li>Text</li>
                         </ul>
                     </div>
                 </div>

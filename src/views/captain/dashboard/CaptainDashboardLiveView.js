@@ -5,59 +5,59 @@ import captainActions         from 'actions/captain_actions';
 import CaptainDashboardLiveCounter from 'components/captain/dashboard/CaptainDashboardLiveCounter';
 
 const mapStateToProps = (state) => ({
-  person_counter: state.person_counter,
-  routerState: state.router
+  person_counter: state.liveCounter,
+  routerState: state.router,
+  attendee_count: 47,
+  precinct_name: 'Altoona 4'
 });
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(captainActions, dispatch)
 });
-class CaptainDashboardLiveView extends React.Component {
 
-  getInitialState() {
-    return {
-      attendee_count: 47,
-      precinct_name: 'Altoona 4'
-    }
-  }
+var CaptainDashboardLiveView = React.createClass({
 
-  render () {
+  render: function() {
     return (
       <div className="container text-center">
 
-        // Viability status header
+        {/* Viability status header */}
         <div className="row">
           <div className="col-xs-12">
-          // Viablility Status Component Goes Here
+          {/* Viablility Status Component Goes Here */}
           </div>
         </div>
 
-        // Precinct and amount of attendees
+        {/* Precinct and amount of attendees */}
         <div className="row">
 
           <div className="col-xs-6 text-left">
-            <h3>{ this.state.precinct_name }</h3>
+            <span>{this.props.precinct_name}</span>
           </div>
 
           <div className="col-xs-6 text-right">
-            <h3>{ this.state.attendee_count } attendees</h3>
+            <span>{this.props.attendee_count} attendees</span>
           </div>
 
         </div>
 
-        // Person counter and calculation results
-        // components go here
+        {/*}
+          Person counter and calculation results
+          components go here
+        */}
         <div className="row">
           <CaptainDashboardLiveCounter
-            counter_value={ this.props.person_counter }
-            actions={
+            counterValue={ this.props.person_counter }
+            actions={{
               increment: this.props.actions.increment_person_counter,
               decrement: this.props.actions.decrement_person_counter
-            }
-          // "here"
+            }}
+          />
         </div>
         
       </div>
     );
   }
 
-}
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CaptainDashboardLiveView);
