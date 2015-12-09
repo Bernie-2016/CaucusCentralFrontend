@@ -1,18 +1,14 @@
-import { createReducer } from '../utils';
-import {
-  INCREMENT_PERSON_COUNTER,
-  DECREMENT_PERSON_COUNTER
-} from 'constants/captain_constants';
+import { createReducer } from '../../utils';
 
 const initialState = 0;
 
-export default createReducer(initialState, {
-  [INCREMENT_PERSON_COUNTER] : (state) => state + 1,
-  [DECREMENT_PERSON_COUNTER] : (state) => {
-    if (state == 0) {
+export default function liveCounter(state = initialState, action) {
+  switch (action.type) {
+    case 'INCREMENT_PERSON_COUNTER':
+      return state + 1;
+    case 'DECREMENT_PERSON_COUNTER':
+      return (state > 0 ? state - 1 : state);
+    default:
       return state;
-    } else {
-      return state - 1;
-    }
   }
-});
+}
