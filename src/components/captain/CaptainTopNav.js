@@ -24,7 +24,6 @@ export default class CaptainTopNav extends React.component {
                     <div class="collapse navbar-collapse"
                          id="nav-collapse">
                         <ul class="nav navbar-nav">
-                        // Links go here.
                             <li>/* Link */</li>
                         </ul>
                     </div>
