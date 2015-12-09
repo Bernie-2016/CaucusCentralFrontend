@@ -1,0 +1,35 @@
+$font-stack: Helvetica, sans-serif;
+$counter-color: #333;
+
+.counter-button {
+    font-size: 4em;
+    color: $counter-color;
+    background-color: #eee;
+    width: 100%;
+    padding: 0;
+    margin: 30px 0 30px 0;
+}
+
+.counter-button:active {
+    background-color: #666;
+}
+
+.counter-button span {
+    padding: 0.2em 0em 0em 0em;
+}
+
+.counter-button .glyphicon {
+    padding: 0;
+    margin: 0;
+}
+
+.counter-text {
+    font-family: $font-stack;
+    font-size: 4em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
