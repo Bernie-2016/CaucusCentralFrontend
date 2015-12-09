@@ -2,6 +2,7 @@ import React                  from 'react';
 import { bindActionCreators } from 'redux';
 import { connect }            from 'react-redux';
 import captainActions         from 'actions/captain_actions';
+import CaptainDashboardLiveCounter from 'components/captain/dashboard/CaptainDashboardLiveCounter';
 
 const mapStateToProps = (state) => ({
   person_counter: state.person_counter,
@@ -46,6 +47,12 @@ class CaptainDashboardLiveView extends React.Component {
         // Person counter and calculation results
         // components go here
         <div className="row">
+          <CaptainDashboardLiveCounter
+            counter_value={ this.props.person_counter }
+            actions={
+              increment: this.props.actions.increment_person_counter,
+              decrement: this.props.actions.decrement_person_counter
+            }
           // "here"
         </div>
         
