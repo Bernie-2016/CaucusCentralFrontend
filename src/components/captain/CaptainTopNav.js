@@ -4,26 +4,26 @@ export default class CaptainTopNav extends React.component {
 
     render() {
         return (
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                    <div class="navbar-header">
+            <nav className="navbar navbar-default">
+                <div className="container-fluid">
+                    <div className="navbar-header">
                         <button type="button"
-                                class="navbar-toggle collapsed"
+                                className="navbar-toggle collapsed"
                                 data-toggle="collapse"
                                 data-target="#nav-collapse"
                                 aria-expanded="false">
-                            <span class="sr-only">
+                            <span className="sr-only">
                                 Toggle navigation
                             </span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
+                            <span className="icon-bar"></span>
+                            <span className="icon-bar"></span>
+                            <span className="icon-bar"></span>
                         </button>
                         <h2>Caucus Central</h2>
                     </div>
-                    <div class="collapse navbar-collapse"
+                    <div className="collapse navbar-collapse"
                          id="nav-collapse">
-                        <ul class="nav navbar-nav">
+                        <ul className="nav navbar-nav">
                             <li>/* Link */</li>
                         </ul>
                     </div>
