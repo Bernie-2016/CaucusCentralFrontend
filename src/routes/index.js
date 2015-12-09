@@ -13,7 +13,9 @@ export default (
         <Route      component={undefined} path='/verify/:key' />
         <Route      component={undefined} path='/prepare' />
         <Route      component={undefined} path='/how-to-use' />
-        <Route      component={undefined} path='/dashboard' />
+        <Route      component={undefined} path='/dashboard'>
+            <Route      component={undefined} path='/live'/>
+        </Route>
     </Route>
   </Route>
 );
