@@ -7,7 +7,6 @@ export class AdminUserAdministrationView extends React.Component {
     return (
       <div className='container admin-user-administration-view'>
         <h1>User Administration</h1>
-        <Link to='/admin'>Dashboard</Link>
       </div>
     );
   }
