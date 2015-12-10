@@ -2,8 +2,10 @@ import React from 'react';
 import ResultsTable from './ResultsTable';
 
 export class ResultsTableContainer extends React.Component {
-  componentDidMount() {
-    this.setState({
+
+  constructor(props) {
+    super(props);
+    this.state = {
       counties:[
         {
           name:'Pike',
@@ -18,11 +20,11 @@ export class ResultsTableContainer extends React.Component {
           precincts:['7','8']
         }
       ]
-    });
+    };
   }
 
   render() {
-    return <ResultsTable pieces={this.state.counties} />;
+    return <ResultsTable data={this.state.counties} />;
   }
 }
 

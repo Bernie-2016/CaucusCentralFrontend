@@ -2,8 +2,9 @@ import React from 'react';
 import SVGMap from 'components/SVGMap/SVGMap';
 
 export class SVGMapContainer extends React.Component {
-  componentDidMount() {
-    this.setState({
+  constructor(props) {
+    super(props);
+    this.state = {
       counties:[
         {
           name:'Pike',
@@ -18,9 +19,8 @@ export class SVGMapContainer extends React.Component {
           precincts:['7','8']
         }
       ]
-    });
+    };
   }
-
   render() {
     return <SVGMap pieces={this.state.counties} />;
   }
