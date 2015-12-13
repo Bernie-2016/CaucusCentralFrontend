@@ -1,5 +1,5 @@
 import React from 'react';
-import {Table, Column, ColumnGroup, Cell} from 'fixed-data-table';
+import {Table, Column, Cell} from 'fixed-data-table';
 require('fixed-data-table/dist/fixed-data-table.min.css');
 
 export class ResultsTable extends React.Component {
@@ -8,63 +8,74 @@ export class ResultsTable extends React.Component {
     super(props);
   }
 
-  renderCountyTable(county) {
-    console.log('COUNTY', county);
+  render() {
+
+    let precincts = this.props.precincts;
+    let headerHeight = 30;
+    let rowHeight = 30;
+    let tableWidth = 1200;
+    let tableHeight = (precincts.length * rowHeight)+(headerHeight+3);
+    let columnWidth = 200;
+
     return <Table
-      rowsCount={county.precincts.length}
-      rowHeight={50}
-      headerHeight={50}
-      groupHeaderHeight={50}
-      width={1200}
-      height={(county.precincts.length * 50)+102}>
-      <ColumnGroup
-          fixed={true}
-          header={<Cell>{county.name}</Cell>}>
+      rowsCount={precincts.length}
+      rowHeight={rowHeight}
+      headerHeight={headerHeight}
+      width={tableWidth}
+      height={tableHeight}>
         <Column
-          fixed={true}
+          header={<Cell>County</Cell>}
+          cell={props => (
+            <Cell {...props}>{precincts[props.rowIndex].county}</Cell>
+          )}
+          width={columnWidth}
+        />
+        <Column
           header={<Cell>Precinct</Cell>}
           cell={props => (
             <Cell {...props}>
-              {county.precincts[props.rowIndex].name}
+              {precincts[props.rowIndex].name}
             </Cell>
           )}
-          width={300}
+          width={columnWidth}
         />
         <Column
-          header={<Cell>Total Delegates</Cell>}
+          header={<Cell>Attendees</Cell>}
           cell={props => (
             <Cell {...props}>
-              {county.precincts[props.rowIndex].total_delegates}
+              {precincts[props.rowIndex].total_attendance}
             </Cell>
           )}
-          width={300}
+          width={columnWidth}
         />
         <Column
-          header={<Cell>Sanders Totals</Cell>}
+          header={<Cell>Attendees for Bernie</Cell>}
           cell={props => (
             <Cell {...props}>
-              Attendance: <strong>{county.precincts[props.rowIndex].campaigns.sanders.total_attendance}</strong><br />
-              Won: <strong>{county.precincts[props.rowIndex].campaigns.sanders.total_delegates_won}</strong>
+              {precincts[props.rowIndex].sanders_attendance}
             </Cell>
           )}
-          width={300}
+          width={columnWidth}
         />
         <Column
-          header={<Cell>Clinton Totals</Cell>}
+          header={<Cell>Precinct Delegates</Cell>}
           cell={props => (
             <Cell {...props}>
-              Attendance: <strong>{county.precincts[props.rowIndex].campaigns.clinton.total_attendance}</strong><br />
-              Won: <strong>{county.precincts[props.rowIndex].campaigns.clinton.total_delegates_won}</strong>
+              {precincts[props.rowIndex].total_delegates}
             </Cell>
           )}
-          width={300}
+          width={columnWidth}
         />
-      </ColumnGroup>
-    </Table>;
-  }
-
-  render() {
-    return <div>{this.props.counties.map(this.renderCountyTable)}</div>;
+        <Column
+          header={<Cell>Delegates Awarded</Cell>}
+          cell={props => (
+            <Cell {...props}>
+              {precincts[props.rowIndex].sanders_delegates_won}
+            </Cell>
+          )}
+          width={columnWidth}
+        />
+      </Table>;
   }
 }
 

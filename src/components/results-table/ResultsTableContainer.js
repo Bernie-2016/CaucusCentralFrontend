@@ -6,154 +6,109 @@ export class ResultsTableContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      counties:[
+      precincts:[
         {
-          name:'Pike',
-          precincts:[
-            {
-              name:'Precinct 4',
-              total_delegates:200,
-              campaigns:{
-                'sanders':{
-                  total_delegates_won:120,
-                  total_attendance:200
-                },
-                'clinton':{
-                  total_delegates_won:80,
-                  total_attendance:150
-                }
-              }
-            },
-            {
-              name:'Precinct 5',
-              total_delegates:200,
-              campaigns:{
-                'sanders':{
-                  total_delegates_won:120,
-                  total_attendance:200
-                },
-                'clinton':{
-                  total_delegates_won:80,
-                  total_attendance:150
-                }
-              }
-            },
-            {
-              name:'Precinct 6',
-              total_delegates:200,
-              campaigns:{
-                'sanders':{
-                  total_delegates_won:120,
-                  total_attendance:200
-                },
-                'clinton':{
-                  total_delegates_won:80,
-                  total_attendance:150
-                }
-              }
-            }
-          ]
+          name:'Precinct 1',
+          county:'Pike',
+          total_delegates:200,
+          total_attendance:500,
+          sanders_delegates_won: 120,
+          sanders_attendance: 220,
         },
         {
-          name:'Polk',
-          precincts:[
-            {
-              name:'Precinct 7',
-              total_delegates:200,
-              campaigns:{
-                'sanders':{
-                  total_delegates_won:120,
-                  total_attendance:200
-                },
-                'clinton':{
-                  total_delegates_won:80,
-                  total_attendance:150
-                }
-              }
-            },
-            {
-              name:'Precinct 8',
-              total_delegates:200,
-              campaigns:{
-                'sanders':{
-                  total_delegates_won:120,
-                  total_attendance:200
-                },
-                'clinton':{
-                  total_delegates_won:80,
-                  total_attendance:150
-                }
-              }
-            },
-            {
-              name:'Precinct 9',
-              total_delegates:200,
-              campaigns:{
-                'sanders':{
-                  total_delegates_won:120,
-                  total_attendance:200
-                },
-                'clinton':{
-                  total_delegates_won:80,
-                  total_attendance:150
-                }
-              }
-            }
-          ]
+          name:'Precinct 2',
+          county:'Pike',
+          total_delegates:200,
+          total_attendance:500,
+          sanders_delegates_won: 120,
+          sanders_attendance: 220,
         },
         {
-          name:'Pulaski',
-          precincts:[
-            {
-              name:'Precinct 10',
-              total_delegates:200,
-              campaigns:{
-                'sanders':{
-                  total_delegates_won:120,
-                  total_attendance:200
-                },
-                'clinton':{
-                  total_delegates_won:80,
-                  total_attendance:150
-                }
-              }
-            },
-            {
-              name:'Precinct 11',
-              total_delegates:200,
-              campaigns:{
-                'sanders':{
-                  total_delegates_won:120,
-                  total_attendance:200
-                },
-                'clinton':{
-                  total_delegates_won:80,
-                  total_attendance:150
-                }
-              }
-            },
-            {
-              name:'Precinct 12',
-              total_delegates:200,
-              campaigns:{
-                'sanders':{
-                  total_delegates_won:120,
-                  total_attendance:200
-                },
-                'clinton':{
-                  total_delegates_won:80,
-                  total_attendance:150
-                }
-              }
-            }
-          ]
+          name:'Precinct 3',
+          county:'Pike',
+          total_delegates:200,
+          total_attendance:500,
+          sanders_delegates_won: 120,
+          sanders_attendance: 220,
+        },
+        {
+          name:'Precinct 4',
+          county:'Pike',
+          total_delegates:200,
+          total_attendance:500,
+          sanders_delegates_won: 120,
+          sanders_attendance: 220,
+        },
+        {
+          name:'Precinct 5',
+          county:'Pike',
+          total_delegates:200,
+          total_attendance:500,
+          sanders_delegates_won: 120,
+          sanders_attendance: 220,
+        },
+        {
+          name:'Precinct 6',
+          county:'Pike',
+          total_delegates:200,
+          total_attendance:500,
+          sanders_delegates_won: 120,
+          sanders_attendance: 220,
+        },
+        {
+          name:'Precinct 7',
+          county:'Polk',
+          total_delegates:200,
+          total_attendance:500,
+          sanders_delegates_won: 120,
+          sanders_attendance: 220,
+        },
+        {
+          name:'Precinct 8',
+          county:'Polk',
+          total_delegates:200,
+          total_attendance:500,
+          sanders_delegates_won: 120,
+          sanders_attendance: 220,
+        },
+        {
+          name:'Precinct 9',
+          county:'Polk',
+          total_delegates:200,
+          total_attendance:500,
+          sanders_delegates_won: 120,
+          sanders_attendance: 220,
+        },
+        {
+          name:'Precinct 10',
+          county:'Polk',
+          total_delegates:200,
+          total_attendance:500,
+          sanders_delegates_won: 120,
+          sanders_attendance: 220,
+        },
+        {
+          name:'Precinct 11',
+          county:'Polk',
+          total_delegates:200,
+          total_attendance:500,
+          sanders_delegates_won: 120,
+          sanders_attendance: 220,
+        },
+        {
+          name:'Precinct 12',
+          county:'Polk',
+          total_delegates:200,
+          total_attendance:500,
+          sanders_delegates_won: 120,
+          sanders_attendance: 220,
         }
       ]
     };
   }
 
   render() {
-    return <ResultsTable counties={this.state.counties} />;
+    return <ResultsTable precincts={this.state.precincts} />;
   }
 }
 
