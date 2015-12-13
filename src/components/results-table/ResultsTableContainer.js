@@ -9,22 +9,61 @@ export class ResultsTableContainer extends React.Component {
       counties:[
         {
           name:'Pike',
-          precincts:['4','5','6']
+          precincts:[
+            {
+              name:'Precinct 4',
+              otherData:'Other 4 Data'
+            },
+            {
+              name:'Precinct 5',
+              otherData:'Other 5 Data'
+            },
+            {
+              name:'Precinct 6',
+              otherData:'Other 6 Data'
+            }
+          ]
         },
         {
           name:'Polk',
-          precincts:['1','2','3']
+          precincts:[
+            {
+              name:'Precinct 7',
+              otherData:'Other 7 Data'
+            },
+            {
+              name:'Precinct 8',
+              otherData:'Other 8 Data'
+            },
+            {
+              name:'Precinct 9',
+              otherData:'Other 9 Data'
+            }
+          ]
         },
         {
           name:'Pulaski',
-          precincts:['7','8']
+          precincts:[
+            {
+              name:'Precinct 10',
+              otherData:'Other 10 Data'
+            },
+            {
+              name:'Precinct 11',
+              otherData:'Other 11 Data'
+            },
+            {
+              name:'Precinct 12',
+              otherData:'Other 12 Data'
+            }
+          ]
         }
       ]
     };
   }
 
   render() {
-    return <ResultsTable data={this.state.counties} />;
+    return <ResultsTable counties={this.state.counties} />;
   }
 }
 

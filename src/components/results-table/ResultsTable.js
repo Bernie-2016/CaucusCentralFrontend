@@ -1,5 +1,5 @@
 import React from 'react';
-import {Table, Column, Cell} from 'fixed-data-table';
+import {Table, Column, ColumnGroup, Cell} from 'fixed-data-table';
 require('fixed-data-table/dist/fixed-data-table.min.css');
 
 export class ResultsTable extends React.Component {
@@ -8,35 +8,43 @@ export class ResultsTable extends React.Component {
     super(props);
   }
 
-  render() {
-    return (
-      <Table
-        rowsCount={this.props.data.length}
-        rowHeight={50}
-        headerHeight={50}
-        width={800}
-        height={(this.props.data.length * 50)+50}>
+  renderCountyTable(county) {
+    console.log('COUNTY', county);
+    return <Table
+      rowsCount={county.precincts.length}
+      rowHeight={50}
+      headerHeight={50}
+      groupHeaderHeight={50}
+      width={800}
+      height={(county.precincts.length * 50)+100}>
+      <ColumnGroup
+          fixed={true}
+          header={<Cell>{county.name}</Cell>}>
         <Column
-          header={<Cell>County</Cell>}
+          fixed={true}
+          header={<Cell>Precinct</Cell>}
           cell={props => (
             <Cell {...props}>
-              {this.props.data[props.rowIndex].name}
+              {county.precincts[props.rowIndex].name}
             </Cell>
           )}
           width={400}
         />
         <Column
-          header={<Cell>Total Precincts</Cell>}
+          header={<Cell>Other Precinct Info</Cell>}
           cell={props => (
             <Cell {...props}>
-              {this.props.data[props.rowIndex].precincts.length}
+              {county.precincts[props.rowIndex].otherData}
             </Cell>
           )}
           width={400}
         />
+      </ColumnGroup>
+    </Table>;
+  }
 
-      </Table>
-    );
+  render() {
+    return <div>{this.props.counties.map(this.renderCountyTable)}</div>;
   }
 }
 
