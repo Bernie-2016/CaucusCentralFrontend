@@ -15,8 +15,8 @@ export class ResultsTable extends React.Component {
       rowHeight={50}
       headerHeight={50}
       groupHeaderHeight={50}
-      width={800}
-      height={(county.precincts.length * 50)+100}>
+      width={1200}
+      height={(county.precincts.length * 50)+102}>
       <ColumnGroup
           fixed={true}
           header={<Cell>{county.name}</Cell>}>
@@ -28,16 +28,36 @@ export class ResultsTable extends React.Component {
               {county.precincts[props.rowIndex].name}
             </Cell>
           )}
-          width={400}
+          width={300}
         />
         <Column
-          header={<Cell>Other Precinct Info</Cell>}
+          header={<Cell>Total Delegates</Cell>}
           cell={props => (
             <Cell {...props}>
-              {county.precincts[props.rowIndex].otherData}
+              {county.precincts[props.rowIndex].total_delegates}
             </Cell>
           )}
-          width={400}
+          width={300}
+        />
+        <Column
+          header={<Cell>Sanders Totals</Cell>}
+          cell={props => (
+            <Cell {...props}>
+              Attendance: <strong>{county.precincts[props.rowIndex].campaigns.sanders.total_attendance}</strong><br />
+              Won: <strong>{county.precincts[props.rowIndex].campaigns.sanders.total_delegates_won}</strong>
+            </Cell>
+          )}
+          width={300}
+        />
+        <Column
+          header={<Cell>Clinton Totals</Cell>}
+          cell={props => (
+            <Cell {...props}>
+              Attendance: <strong>{county.precincts[props.rowIndex].campaigns.clinton.total_attendance}</strong><br />
+              Won: <strong>{county.precincts[props.rowIndex].campaigns.clinton.total_delegates_won}</strong>
+            </Cell>
+          )}
+          width={300}
         />
       </ColumnGroup>
     </Table>;

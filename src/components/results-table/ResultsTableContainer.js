@@ -12,15 +12,45 @@ export class ResultsTableContainer extends React.Component {
           precincts:[
             {
               name:'Precinct 4',
-              otherData:'Other 4 Data'
+              total_delegates:200,
+              campaigns:{
+                'sanders':{
+                  total_delegates_won:120,
+                  total_attendance:200
+                },
+                'clinton':{
+                  total_delegates_won:80,
+                  total_attendance:150
+                }
+              }
             },
             {
               name:'Precinct 5',
-              otherData:'Other 5 Data'
+              total_delegates:200,
+              campaigns:{
+                'sanders':{
+                  total_delegates_won:120,
+                  total_attendance:200
+                },
+                'clinton':{
+                  total_delegates_won:80,
+                  total_attendance:150
+                }
+              }
             },
             {
               name:'Precinct 6',
-              otherData:'Other 6 Data'
+              total_delegates:200,
+              campaigns:{
+                'sanders':{
+                  total_delegates_won:120,
+                  total_attendance:200
+                },
+                'clinton':{
+                  total_delegates_won:80,
+                  total_attendance:150
+                }
+              }
             }
           ]
         },
@@ -29,15 +59,45 @@ export class ResultsTableContainer extends React.Component {
           precincts:[
             {
               name:'Precinct 7',
-              otherData:'Other 7 Data'
+              total_delegates:200,
+              campaigns:{
+                'sanders':{
+                  total_delegates_won:120,
+                  total_attendance:200
+                },
+                'clinton':{
+                  total_delegates_won:80,
+                  total_attendance:150
+                }
+              }
             },
             {
               name:'Precinct 8',
-              otherData:'Other 8 Data'
+              total_delegates:200,
+              campaigns:{
+                'sanders':{
+                  total_delegates_won:120,
+                  total_attendance:200
+                },
+                'clinton':{
+                  total_delegates_won:80,
+                  total_attendance:150
+                }
+              }
             },
             {
               name:'Precinct 9',
-              otherData:'Other 9 Data'
+              total_delegates:200,
+              campaigns:{
+                'sanders':{
+                  total_delegates_won:120,
+                  total_attendance:200
+                },
+                'clinton':{
+                  total_delegates_won:80,
+                  total_attendance:150
+                }
+              }
             }
           ]
         },
@@ -46,15 +106,45 @@ export class ResultsTableContainer extends React.Component {
           precincts:[
             {
               name:'Precinct 10',
-              otherData:'Other 10 Data'
+              total_delegates:200,
+              campaigns:{
+                'sanders':{
+                  total_delegates_won:120,
+                  total_attendance:200
+                },
+                'clinton':{
+                  total_delegates_won:80,
+                  total_attendance:150
+                }
+              }
             },
             {
               name:'Precinct 11',
-              otherData:'Other 11 Data'
+              total_delegates:200,
+              campaigns:{
+                'sanders':{
+                  total_delegates_won:120,
+                  total_attendance:200
+                },
+                'clinton':{
+                  total_delegates_won:80,
+                  total_attendance:150
+                }
+              }
             },
             {
               name:'Precinct 12',
-              otherData:'Other 12 Data'
+              total_delegates:200,
+              campaigns:{
+                'sanders':{
+                  total_delegates_won:120,
+                  total_attendance:200
+                },
+                'clinton':{
+                  total_delegates_won:80,
+                  total_attendance:150
+                }
+              }
             }
           ]
         }
