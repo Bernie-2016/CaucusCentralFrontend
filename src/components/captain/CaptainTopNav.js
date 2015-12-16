@@ -4,30 +4,26 @@ export default class CaptainTopNav extends React.Component {
 
     render() {
         return (
-            <nav className="navbar navbar-default">
+            <nav className="navbar navbar-default navbar-fixed-top">
                 <div className="container-fluid">
-                    <div className="navbar-header">
-                        <button type="button"
-                                className="navbar-toggle collapsed"
-                                data-toggle="collapse"
-                                data-target="#nav-collapse"
-                                aria-expanded="false">
-                            <span className="sr-only">
-                                Toggle navigation
-                            </span>
-                            <span className="icon-bar"></span>
-                            <span className="icon-bar"></span>
-                            <span className="icon-bar"></span>
-                        </button>
-                        <span>Caucus Central</span>
-                    </div>
-                    <div className="collapse navbar-collapse"
-                         id="nav-collapse">
-                        <ul className="nav navbar-nav">
-                            <li>Text</li>
-                            <li>Text</li>
-                            <li>Text</li>
-                        </ul>
+                    <div className="row">
+
+                        <div className="col-xs-4 text-left">
+                        Caucus Central
+                        </div>
+
+                        <div className="col-xs-4 text-center">
+                        Logo Here
+                        </div>
+
+                        <div className="col-xs-4 text-right">
+                            <a className="btn btn-default"
+                               href="#"
+                               role="button">
+                            Sign Out
+                            </a>
+                        </div>
+
                     </div>
                 </div>
             </nav>
