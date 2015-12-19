@@ -13,7 +13,7 @@ export default (
     <Route      component={AboutView}  path='/about' />
     <Route      component={AdminView}  path='/admin'>
       <IndexRoute component={AdminDashboardView} />
-      <Route component={AdminUserAdministrationView} path='/admin/user' />
+      <Route component={AdminUserAdministrationView} path='/admin/users' />
     </Route>
   </Route>
 );

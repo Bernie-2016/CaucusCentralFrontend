@@ -1,0 +1,11 @@
+.admin-nav-container {
+  overflow: hidden;
+
+  .admin-nav {
+    display: inline-block;
+    max-width: 40%;
+  }
+  .admin-nav-downloads {
+    text-align: right;
+  }
+}
