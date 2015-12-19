@@ -6,7 +6,7 @@ export class AdminNav extends React.Component {
 
   render () {
     return (
-      <nav className='admin-nav-container'>
+      <nav className='container admin-nav-container'>
         <ul className='container admin-nav list-inline'>
           <li><Link to='/admin' className='btn btn-primary'>Precincts</Link></li>
           <li><Link to='/admin/users' className='btn btn-primary'>Users</Link></li>

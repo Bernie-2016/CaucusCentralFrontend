@@ -13,9 +13,9 @@ export class UserAdministrationTable extends React.Component {
     let users = this.props.users;
     let headerHeight = 30;
     let rowHeight = 30;
-    let tableWidth = 840;
-    let tableHeight = (users.length * rowHeight)+(headerHeight+3);
-    let columnWidth = 200;
+    let tableWidth = 680;
+    let tableHeight = (users.length * rowHeight)+(headerHeight+2);
+    let columnWidth = 160;
 
     return <Table
       rowsCount={users.length}
