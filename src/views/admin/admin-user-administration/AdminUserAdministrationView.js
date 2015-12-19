@@ -1,5 +1,6 @@
 import React                  from 'react';
 import { Link }               from 'react-router';
+import UserAdministrationTableContainer               from 'components/user-administration-table/UserAdministrationTableContainer';
 
 export class AdminUserAdministrationView extends React.Component {
 
@@ -7,6 +8,7 @@ export class AdminUserAdministrationView extends React.Component {
     return (
       <div className='container admin-user-administration-view'>
         <h1>User Administration</h1>
+        <UserAdministrationTableContainer />
       </div>
     );
   }
