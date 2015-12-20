@@ -1,6 +1,12 @@
 import { createConstants } from '../utils';
 
 export default createConstants(
+  'GET_USERS',
+  'GET_USERS_ERROR',
+  'GET_USERS_SUCCESS',
+  'GET_PRECINCTS',
+  'GET_PRECINCTS_ERROR',
+  'GET_PRECINCTS_SUCCESS',
   'DOWNLOAD_CSV',
   'DOWNLOAD_CSV_ERROR',
   'DOWNLOAD_CSV_SUCCESS',

@@ -1,6 +1,28 @@
 import * as c from 'constants/admin';
 
 export default {
+  get_users: () => ({ 
+    type : c.GET_USERS
+  }),
+  get_users_error: (error) => ({ 
+    type : c.GET_USERS_ERROR,
+    error
+  }),
+  get_users_success: (success) => ({ 
+    type : c.GET_USERS_SUCCESS,
+    success
+  }),
+  get_precincts: () => ({ 
+    type : c.GET_PRECINCTS
+  }),
+  get_precincts_error: (error) => ({ 
+    type : c.GET_PRECINCTS_ERROR,
+    error
+  }),
+  get_precincts_success: (success) => ({ 
+    type : c.GET_PRECINCTS_SUCCESS,
+    success
+  }),
   download_csv: (file) => ({ 
     type : c.DOWNLOAD_CSV,
     file
