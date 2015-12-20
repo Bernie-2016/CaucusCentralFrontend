@@ -5,11 +5,13 @@ import ResultsTableContainer        from 'components/results-table/ResultsTableC
 
 export class AdminDashboardView extends React.Component {
 
+  componentDidMount() {
+  }
+
   render () {
     return (
       <div className='container admin-dashboard-view'>
         <h1>Dashboard</h1>
-        <h2>MAP</h2>
         <SVGMapContainer />
         <h2>TABLE</h2>
         <ResultsTableContainer />
