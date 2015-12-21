@@ -1,11 +1,16 @@
 import React                  from 'react';
 import { Link }               from 'react-router';
+import { bindActionCreators } from 'redux';
+import { connect }            from 'react-redux';
+import adminActions         from 'actions/admin/';
 import SVGMapContainer        from 'components/SVGMap/SVGMapContainer';
 import ResultsTableContainer        from 'components/results-table/ResultsTableContainer';
+import admin_actions        from 'actions/admin/';
 
 export class AdminDashboardView extends React.Component {
 
-  componentDidMount() {
+  componentDidMount () {
+    this.props.actions.get_precincts();
   }
 
   render () {
@@ -20,4 +25,11 @@ export class AdminDashboardView extends React.Component {
   }
 }
 
-export default AdminDashboardView;
+const mapStateToProps = (state) => ({
+  admin_precincts : state.admin_precincts
+});
+const mapDispatchToProps = (dispatch) => ({
+  actions : bindActionCreators(adminActions, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AdminDashboardView);

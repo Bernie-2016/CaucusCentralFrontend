@@ -1,29 +1,23 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect }            from 'react-redux';
+import adminActions         from 'actions/admin/';
 import SVGMap from 'components/SVGMap/SVGMap';
 
 export class SVGMapContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      counties:[
-        {
-          name:'Pike',
-          precincts:['4','5','6']
-        },
-        {
-          name:'Polk',
-          precincts:['1','2','3']
-        },
-        {
-          name:'Pulaski',
-          precincts:['7','8']
-        }
-      ]
-    };
   }
   render() {
-    return <SVGMap pieces={this.state.counties} />;
+    return <SVGMap precincts={this.props.precincts} />;
   }
 }
 
-export default SVGMapContainer;
+const mapStateToProps = (state) => ({
+  precincts : state.admin_precincts.precincts
+});
+const mapDispatchToProps = (dispatch) => ({
+  actions : bindActionCreators(adminActions, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SVGMapContainer);
