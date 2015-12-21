@@ -12,10 +12,20 @@ export class AdminDashboardView extends React.Component {
     this.props.actions.get_precincts();
   }
 
+
+  renderMessage() {
+    var message = '';
+    if (this.props.adminPrecincts.getting_precincts) {
+      message = 'Retrieving Precincts';
+    }
+    return message;
+  }
+
   render () {
     return (
       <div className='container admin-dashboard-view'>
         <h1>Dashboard</h1>
+        <div className='message'>{this.renderMessage()}</div>
         <ResultsTableContainer />
         <SVGMapContainer />
       </div>

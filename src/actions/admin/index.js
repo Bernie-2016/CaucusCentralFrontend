@@ -144,6 +144,7 @@ const get_precincts_error = (error) => ({
   payload: error 
 })
 
+//ASYNC ACTION.  USING TIMEOUT AS A DUMMY TEST FOR NOW
 const get_precincts = () => { 
     return dispatch => {
       dispatch(get_precincts_request());
@@ -169,6 +170,7 @@ const get_users_error = (error) => ({
    error: error 
 })
 
+//ASYNC ACTION.  USING TIMEOUT AS A DUMMY TEST FOR NOW
 const get_users = () => {
   return dispatch => {
     dispatch(get_users_request());
@@ -195,6 +197,7 @@ const add_user_error = (error) => ({
    payload: error 
 })
 
+//ASYNC ACTION.  USING TIMEOUT AS A DUMMY TEST FOR NOW
 const add_user = (user_info) => {
   return dispatch => {
     dispatch(add_user_request());
@@ -220,6 +223,7 @@ const remove_user_error = (error) => ({
    error: error 
 })
 
+//ASYNC ACTION.  USING TIMEOUT AS A DUMMY TEST FOR NOW
 const remove_user = (user_id) => {
   return dispatch => {
     dispatch(remove_user_request());
@@ -245,6 +249,7 @@ const download_csv_error = (error) => ({
    error: error 
 })
 
+//ASYNC ACTION.  USING TIMEOUT AS A DUMMY TEST FOR NOW
 const download_csv = (file) => {
   return dispatch => {
     dispatch(download_csv_request());
@@ -270,6 +275,7 @@ const upload_csv_error = (error) => ({
    payload: error 
 })
 
+//ASYNC ACTION.  USING TIMEOUT AS A DUMMY TEST FOR NOW
 const upload_csv = (file) => {
   return dispatch => {
     dispatch(upload_csv_request());
