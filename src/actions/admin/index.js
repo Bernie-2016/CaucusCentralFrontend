@@ -1,5 +1,32 @@
 import * as c from 'constants/admin';
 
+const dummyUsers = [
+        {
+          name:'Joseph Cotton',
+          email:'joeycotton@gmail.com',
+          type:'Admin',
+          precinct:'N/A'
+        },
+        {
+          name:'Orson Welles',
+          email:'foiegras4lyfe@msn.com',
+          type:'Precinct Captain',
+          precinct:'1'
+        },
+        {
+          name:'Dorothy Comingore',
+          email:'dorothy.c49@yahoo.com',
+          type:'Precinct Captain',
+          precinct:'2'
+        },
+        {
+          name:'Fats Waller',
+          email:'thomas@yahoo.com',
+          type:'Precinct Captain',
+          precinct:'3'
+        }
+      ];
+
 const dummyPrecincts = [
             {
               name:'Precinct 1',
@@ -148,7 +175,7 @@ const get_users = () => {
     setTimeout(function() {
 
       if (true) {
-        dispatch(get_users_success([]));
+        dispatch(get_users_success(dummyUsers));
       } else {
         dispatch(get_users_error('There was an error retrieving the users'));
       }

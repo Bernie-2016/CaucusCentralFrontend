@@ -16,9 +16,8 @@ export class AdminDashboardView extends React.Component {
     return (
       <div className='container admin-dashboard-view'>
         <h1>Dashboard</h1>
-        <SVGMapContainer />
-        <h2>TABLE</h2>
         <ResultsTableContainer />
+        <SVGMapContainer />
       </div>
     );
   }
