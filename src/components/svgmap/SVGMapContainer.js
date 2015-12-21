@@ -14,7 +14,7 @@ export class SVGMapContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  precincts : state.admin_precincts.precincts
+  precincts : state.adminPrecincts.precincts
 });
 const mapDispatchToProps = (dispatch) => ({
   actions : bindActionCreators(adminActions, dispatch)

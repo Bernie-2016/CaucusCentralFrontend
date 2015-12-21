@@ -5,7 +5,6 @@ import { connect }            from 'react-redux';
 import adminActions         from 'actions/admin/';
 import SVGMapContainer        from 'components/SVGMap/SVGMapContainer';
 import ResultsTableContainer        from 'components/results-table/ResultsTableContainer';
-import admin_actions        from 'actions/admin/';
 
 export class AdminDashboardView extends React.Component {
 
@@ -26,7 +25,7 @@ export class AdminDashboardView extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  admin_precincts : state.admin_precincts
+  adminPrecincts : state.adminPrecincts
 });
 const mapDispatchToProps = (dispatch) => ({
   actions : bindActionCreators(adminActions, dispatch)
