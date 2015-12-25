@@ -20,19 +20,32 @@
     width: 70%;
     height: 30px;
     margin-top: 8px;
-    font-size: 0.8em;
+    font-size: 1em;
+    padding: 0;
+    border-radius: 0;
 }
 
 .signout-btn p {
-    padding: 3px 0 0 0;
+    padding: 5px 0 0 0;
+    font-size: 0.7em;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 350px) {
+    .cc-logo {
+        margin-top: 7px;
+    }
+
     .navbar p {
         font-size: 0.6em;
+        padding-top: 18px;
     }
 
     .signout-btn {
-        font-size: 0.7em;
+        font-size: 8px;
+    }
+
+    .signout-btn p {
+        padding: 8px 0 0 0;
+        font-size: 8px;
     }
 }
