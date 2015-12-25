@@ -5,6 +5,7 @@ import captainActions         from 'actions/captain_actions';
 import CaptainAttendeeInputs  from 'components/captain/CaptainAttendeeInputs';
 
 const mapStateToProps = (state) => ({
+  routerState: state.router,
   precinct_name: 'Altoona 4',
   total_delegates: 4
 });

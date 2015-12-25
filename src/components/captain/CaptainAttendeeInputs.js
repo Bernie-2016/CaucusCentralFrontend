@@ -6,45 +6,45 @@ var CaptainAttendeeInputs = React.createClass({
         return (
             <div className="container-fluid">
 
-              <div className="row">
+              <div className="row input-row">
                 <div className="col-xs-3 col-xs-offset-2 text-center">
                   <div className="form-group">
                     <label>Caucus Attendees</label>
                     <input type="text"
                            className="form-control"
-                           id="numAttendees">
+                           id="numAttendees" />
                   </div>
                 </div>
                 <div className="col-xs-3 col-xs-offset-2 text-center">
                   <div className="form-group">
-                    <label>Caucus Attendees For Bernie</label>
+                    <label>For Bernie</label>
                     <input type="text"
                            className="form-control"
-                           id="numForBernie">
+                           id="numForBernie" /> 
                   </div>
                 </div>
               </div>
 
-              <div className="row">
+              <div className="row input-row">
                 <div className="col-xs-3 col-xs-offset-2 text-center">
                   <div className="form-group">
-                    <label>Caucus Attendees For OMalley</label>
+                    <label>For Hillary</label>
                     <input type="text"
                            className="form-control"
-                           id="numForOMalley">
+                           id="numForOMalley" />
                   </div>
                 </div>
                 <div className="col-xs-3 col-xs-offset-2 text-center">
                   <div className="form-group">
-                    <label>Caucus Attendees For Clinton</label>
+                    <label>For OMalley</label>
                     <input type="text"
                            className="form-control"
-                           id="numForClinton">
+                           id="numForClinton" />
                   </div>
                 </div>
               </div>
 
-            </div
+            </div>
         );
     }
 
