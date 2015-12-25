@@ -20,14 +20,14 @@ var CaptainDashboardView = React.createClass({
 
     render: function() {
         return (
-          <div className="container-fluid">
+          <div className="container-fluid dashboard-body">
 
-            <div className="row">
+            <div className="row precinct-data-row">
               <div className="col-xs-6 text-left">
-                { this.props.precinct_name }
+                <span className="precinct-data-item">{ this.props.precinct_name }</span>
               </div>
               <div className="col-xs-6 text-right">
-                { this.props.total_delegates }
+                <span className="precinct-data-item">{ this.props.total_delegates } Delegates</span>
               </div>
             </div>
 

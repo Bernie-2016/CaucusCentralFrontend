@@ -1,6 +1,7 @@
 .navbar {
     color: white;
     background-color: #0c66d1;
+    margin-bottom: 0;
 }
 
 .navbar p {
@@ -24,4 +25,14 @@
 
 .signout-btn p {
     padding: 3px 0 0 0;
+}
+
+@media (max-width: 600px) {
+    .navbar p {
+        font-size: 0.6em;
+    }
+
+    .signout-btn {
+        font-size: 0.7em;
+    }
 }

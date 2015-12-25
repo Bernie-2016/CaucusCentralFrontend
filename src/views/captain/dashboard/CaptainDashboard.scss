@@ -1,3 +1,7 @@
+.dashboard-body nav {
+    margin-bottom: 0;
+}
+
 .input-row {
     padding: 5px 0 5px 0;
     font-size: 0.6em;
@@ -14,7 +18,7 @@
 }
 
 .input-row .form-group {
-    padding: 0 20px 0 20px;
+    padding: 0 10px 0 10px;
 }
 
 .input-row input {
@@ -22,4 +26,20 @@
     font-size: 3em;
     height: auto;
     padding: 0 0 2px 0;
+}
+
+.precinct-data-row {
+    background-color: #eee;
+    padding: 12px 0 12px 0;
+}
+
+.precinct-data-item {
+    font-weight: bold;
+    color: #666;
+}
+
+@media (max-width: 600px) {
+    .input-row label {
+        font-size: 9px;
+    }
 }
