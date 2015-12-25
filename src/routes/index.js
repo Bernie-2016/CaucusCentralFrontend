@@ -5,7 +5,7 @@ import HomeView              from 'views/HomeView';
 import AboutView             from 'views/AboutView';
 
 import CaptainLayout         from 'layouts/captain/CaptainLayout';
-import CaptainDashboardLiveView from 'views/captain/dashboard/CaptainDashboardLiveView';
+import CaptainDashboardView  from 'views/captain/dashboard/CaptainDashboardView';
 
 export default (
   <Route        component={CoreLayout} path='/'>
@@ -14,10 +14,7 @@ export default (
     <Route      component={CaptainLayout} path='captain'>
         <Route      component={undefined} path='/login' />
         <Route      component={undefined} path='/verify/:key' />
-        <Route      component={undefined} path='/prepare' />
-        <Route      component={undefined} path='/how-to-use' />
-        <Route      component={undefined} path='/dashboard' />
-        <Route      component={CaptainDashboardLiveView} path='live'/>
+        <Route      component={CaptainDashboardView} path='dashboard' />
     </Route>
   </Route>
 );

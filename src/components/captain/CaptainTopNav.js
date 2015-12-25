@@ -4,7 +4,7 @@ export default class CaptainTopNav extends React.Component {
 
     render() {
         return (
-            <nav className="navbar navbar-default navbar-fixed-top">
+            <nav className="navbar navbar-default">
                 <div className="container-fluid">
                     <div className="row">
 
