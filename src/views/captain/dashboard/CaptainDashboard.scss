@@ -1,0 +1,24 @@
+.input-row {
+    padding: 5px 0 5px 0;
+    font-size: 0.6em;
+    color: white;
+    background-color: #0c66d1;
+}
+
+.input-row:nth-child(2n) {
+    background-color: #11d39c;
+}
+
+.input-row label {
+    margin: 5px 0 5px 0;
+}
+
+.input-row .form-group {
+    padding: 0 20px 0 20px;
+}
+
+.input-row input {
+    text-align: center;
+    font-size: 4em;
+    padding: 10px 5px 10px 5px;
+}

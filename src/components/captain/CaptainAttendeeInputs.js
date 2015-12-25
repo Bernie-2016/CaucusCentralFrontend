@@ -7,7 +7,7 @@ var CaptainAttendeeInputs = React.createClass({
             <div className="container-fluid">
 
               <div className="row input-row">
-                <div className="col-xs-3 col-xs-offset-2 text-center">
+                <div className="col-xs-5 col-xs-offset-1 text-center">
                   <div className="form-group">
                     <label>Caucus Attendees</label>
                     <input type="text"
@@ -15,7 +15,7 @@ var CaptainAttendeeInputs = React.createClass({
                            id="numAttendees" />
                   </div>
                 </div>
-                <div className="col-xs-3 col-xs-offset-2 text-center">
+                <div className="col-xs-5 text-center">
                   <div className="form-group">
                     <label>For Bernie</label>
                     <input type="text"
@@ -26,7 +26,7 @@ var CaptainAttendeeInputs = React.createClass({
               </div>
 
               <div className="row input-row">
-                <div className="col-xs-3 col-xs-offset-2 text-center">
+                <div className="col-xs-5 col-xs-offset-1 text-center">
                   <div className="form-group">
                     <label>For Hillary</label>
                     <input type="text"
@@ -34,7 +34,7 @@ var CaptainAttendeeInputs = React.createClass({
                            id="numForOMalley" />
                   </div>
                 </div>
-                <div className="col-xs-3 col-xs-offset-2 text-center">
+                <div className="col-xs-5 text-center">
                   <div className="form-group">
                     <label>For OMalley</label>
                     <input type="text"

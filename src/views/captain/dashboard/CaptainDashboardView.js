@@ -4,6 +4,8 @@ import { connect }            from 'react-redux';
 import captainActions         from 'actions/captain_actions';
 import CaptainAttendeeInputs  from 'components/captain/CaptainAttendeeInputs';
 
+import './CaptainDashboard.scss';
+
 const mapStateToProps = (state) => ({
   routerState: state.router,
   precinct_name: 'Altoona 4',
