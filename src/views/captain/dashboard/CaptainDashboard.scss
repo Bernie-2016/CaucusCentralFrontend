@@ -14,7 +14,8 @@
 }
 
 .input-row label {
-    margin: 5px 0 5px 0;
+    margin: 5px 0 8px 0;
+    letter-spacing: 0.7px;
 }
 
 .input-row .form-group {
@@ -30,16 +31,32 @@
 
 .precinct-data-row {
     background-color: #eee;
-    padding: 12px 0 12px 0;
+    padding: 23px 0 23px 0;
 }
 
 .precinct-data-item {
     font-weight: bold;
-    color: #666;
+    color: #777;
+}
+
+.attendee-inputs {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
 }
 
 @media (max-width: 600px) {
     .input-row label {
         font-size: 9px;
+        letter-spacing: 0px;
+    }
+
+    .precinct-data-row {
+        padding: 16px 0 16px 0;
+    }
+
+    .precinct-data-item {
+        font-size: 0.8em;
     }
 }

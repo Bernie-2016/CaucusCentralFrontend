@@ -4,7 +4,7 @@ var CaptainAttendeeInputs = React.createClass({
 
     render: function() {
         return (
-            <div className="container-fluid">
+            <div className="container-fluid attendee-inputs">
 
               <div className="row input-row">
                 <div className="col-xs-5 col-xs-offset-1 text-center">
