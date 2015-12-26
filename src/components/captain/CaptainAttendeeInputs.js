@@ -13,7 +13,8 @@ var CaptainAttendeeInputs = React.createClass({
                     <input type="text"
                            className="form-control"
                            id="numAttendees"
-                           placeholder="0" />
+                           placeholder="0"
+                           type="number" />
                   </div>
                 </div>
                 <div className="col-xs-5 text-center">
@@ -22,7 +23,8 @@ var CaptainAttendeeInputs = React.createClass({
                     <input type="text"
                            className="form-control"
                            id="numForBernie"
-                           placeholder="0" /> 
+                           placeholder="0"
+                           type="number" /> 
                   </div>
                 </div>
               </div>
@@ -34,7 +36,8 @@ var CaptainAttendeeInputs = React.createClass({
                     <input type="text"
                            className="form-control"
                            id="numForOMalley"
-                           placeholder="0" />
+                           placeholder="0"
+                           type="number" />
                   </div>
                 </div>
                 <div className="col-xs-5 text-center">
@@ -43,7 +46,8 @@ var CaptainAttendeeInputs = React.createClass({
                     <input type="text"
                            className="form-control"
                            id="numForClinton"
-                           placeholder="0" />
+                           placeholder="0"
+                           type="number" />
                   </div>
                 </div>
               </div>

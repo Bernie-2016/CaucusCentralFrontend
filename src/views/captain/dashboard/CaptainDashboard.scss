@@ -46,6 +46,14 @@
     z-index: 2;
 }
 
+// Hide spinners on webkit number inputs
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
 @media (max-width: 600px) {
     .input-row label {
         font-size: 9px;
