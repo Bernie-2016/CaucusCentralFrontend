@@ -22,7 +22,7 @@ const addUserError = (state, error) => {
 };
 
 const addUserSuccess = (state, response) => {
-  return Object.assign({}, state, {error: false, adding_user: false, users: response});
+  return Object.assign({}, state, {error: false, adding_user: false, users: [...state.users, response]});
 };
 
 const removeUserRequest = (state, user_id) => {

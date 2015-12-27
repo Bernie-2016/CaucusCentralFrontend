@@ -203,7 +203,7 @@ const add_user = (user_info) => {
     dispatch(add_user_request());
     setTimeout(function() {
       if (true) {
-        dispatch(add_user_success([]));
+        dispatch(add_user_success(user_info));
       } else {
         dispatch(add_user_error('There was an error adding the user'));
       }

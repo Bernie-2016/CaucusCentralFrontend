@@ -7,7 +7,7 @@ export class UserAdministrationForm extends React.Component {
   }
 
   render() {
-    return <form>
+    return <form onSubmit={this.props.onSubmit}>
       <div className="form-group">
         <label htmlFor="name">Name</label>
         <input type="email" className="form-control" id="name" placeholder={this.props.user.name} />
