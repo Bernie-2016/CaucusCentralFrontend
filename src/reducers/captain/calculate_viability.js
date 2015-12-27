@@ -8,7 +8,7 @@ const initialState = {
 };
 
 var calculate_tally_payload = function(payload) {
-    console.log(payload);
+    // calculate viability / call API backend here
 };
 
 export default function calculateViability(state = initialState, action) {
