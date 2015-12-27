@@ -1,3 +1,6 @@
+$cc-blue: #0C66D1;
+$cc-teal: #11D39C;
+
 .dashboard-body nav {
     margin-bottom: 0;
 }
@@ -6,11 +9,11 @@
     padding: 5px 0 5px 0;
     font-size: 0.6em;
     color: white;
-    background-color: #0c66d1;
+    background-color: $cc-blue;
 }
 
 .input-row:nth-child(2n) {
-    background-color: #11d39c;
+    background-color: $cc-teal;
 }
 
 .input-row label {

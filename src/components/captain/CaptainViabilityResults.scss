@@ -1,0 +1,45 @@
+.viability-results {
+
+}
+
+.viability-results .row:nth-child(1) {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.viability-results .row:nth-child(2) {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.viability-text {
+    line-height: 150%;
+    font-size: 1.8em;
+    font-weight: normal;
+    letter-spacing: 0.1px;
+}
+
+.delegate-text {
+    font-size: 1em;
+    letter-spacing: 0.3px;
+}
+
+@media (max-width: 600px) {
+    .viability-results .row:nth-child(1) {
+        margin-top: 2.5px;
+        margin-bottom: 2.5px;
+    }
+
+    .viability-results .row:nth-child(2) {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    .viability-text {
+        font-size: 1.6em;
+    }
+
+    .delegate-text {
+        font-size: 0.8em;
+    }
+}

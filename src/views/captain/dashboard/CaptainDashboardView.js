@@ -2,7 +2,9 @@ import React                  from 'react';
 import { bindActionCreators } from 'redux';
 import { connect }            from 'react-redux';
 import captainActions         from 'actions/captain_actions';
+
 import CaptainAttendeeInputs  from 'components/captain/CaptainAttendeeInputs';
+import CaptainViabilityResults from 'components/captain/CaptainViabilityResults';
 
 import './CaptainDashboard.scss';
 
@@ -32,6 +34,9 @@ var CaptainDashboardView = React.createClass({
             </div>
 
             {/* Insert Viability Component Here */}
+            <div className="row">
+              <CaptainViabilityResults />
+            </div>
 
             <div className="row">
               <CaptainAttendeeInputs />
