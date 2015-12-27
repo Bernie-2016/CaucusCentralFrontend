@@ -9,10 +9,6 @@ var intIfValid = function(value) {
 };
 
 var CaptainAttendeeInputs = React.createClass({
-    componentDidMount: function() {
-      console.log(this.props);
-    },
-
     render: function() {
         return (
             <div className="container-fluid attendee-inputs">
