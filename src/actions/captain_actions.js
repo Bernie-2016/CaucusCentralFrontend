@@ -4,5 +4,9 @@ export default {
   }),
   decrement_person_counter: () => ({
     type: 'DECREMENT_PERSON_COUNTER'
+  }),
+  tally_attendees: (payload) => ({
+    type: 'TALLY_ATTENDEES',
+    payload: payload
   })
 };
