@@ -21,6 +21,7 @@ export class UserAdministrationFormContainer extends React.Component {
   onFormSubmit(e) {
     e.preventDefault();
     this.props.actions.add_user({
+      id:10,
       name:'Scott Joplin',
       email:'ragtimer@gmail.com',
       type:'Admin',

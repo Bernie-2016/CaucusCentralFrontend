@@ -2,24 +2,28 @@ import * as c from 'constants/admin';
 
 const dummyUsers = [
         {
+          id:0,
           name:'Joseph Cotton',
           email:'joeycotton@gmail.com',
           type:'Admin',
           precinct:'N/A'
         },
         {
+          id:1,
           name:'Orson Welles',
           email:'foiegras4lyfe@msn.com',
           type:'Precinct Captain',
           precinct:'1'
         },
         {
+          id:2,
           name:'Dorothy Comingore',
           email:'dorothy.c49@yahoo.com',
           type:'Precinct Captain',
           precinct:'2'
         },
         {
+          id:3,
           name:'Fats Waller',
           email:'thomas@yahoo.com',
           type:'Precinct Captain',
