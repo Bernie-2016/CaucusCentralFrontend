@@ -12,10 +12,11 @@ const mapStateToProps = (state) => ({
   routerState: state.router,
   precinct_name: 'Altoona 4',
   total_delegates: 4,
-  is_viable: true,
-  delegate_count: 2,
-  for_one_more: 20,
-  for_two_more: 45
+  is_viable: state.calculateViability.is_viable,
+  to_become_viable: state.calculateViability.to_become_viable,
+  delegate_count: state.calculateViability.delegate_count,
+  for_one_more: state.calculateViability.for_one_more,
+  for_two_more: state.calculateViability.for_two_more
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -41,6 +42,7 @@ var CaptainDashboardView = React.createClass({
             <div className="row">
               <CaptainViabilityResults 
                 viable={ this.props.is_viable }
+                toBecomeViable={ this.props.to_become_viable }
                 delegates={ this.props.delegate_count }
                 oneMore={ this.props.for_one_more }
                 twoMore={ this.props.for_two_more }

@@ -1,10 +1,10 @@
 import { combineReducers }    from 'redux';
 import { routeReducer }       from 'redux-simple-router';
 import counter                from './counter';
-import liveCounter          from './captain/live_counter';
+import calculateViability   from './captain/calculate_viability';
 
 export default combineReducers({
   counter,
-  liveCounter,
+  calculateViability,
   routing: routeReducer
 });
