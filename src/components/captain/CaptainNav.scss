@@ -1,0 +1,75 @@
+.navbar {
+    color: white;
+    background-color: #0c66d1;
+    margin-bottom: 0;
+    height: 65px;
+}
+
+.navbar p {
+    font-size: 0.7em;
+    font-weight: bold;
+    letter-spacing: 0em;
+    padding-top: 22px;
+}
+
+.cc-logo {
+    width: 100%;
+    margin-top: 8px;
+}
+
+.signout-btn {
+    width: 70%;
+    height: 35px;
+    margin-top: 12px;
+    font-size: 1em;
+    padding: 0;
+    border-radius: 0;
+}
+
+.signout-btn p {
+    padding: 8px 0 0 0;
+    font-size: 0.7em;
+    letter-spacing: -0.2px;
+}
+
+@media (max-width: 350px) {
+    .cc-logo {
+        margin-top: 7px;
+    }
+
+    .navbar {
+        height: 55px;
+    }
+
+    .navbar p {
+        font-size: 0.6em;
+        padding-top: 20px;
+    }
+
+    .signout-btn {
+        font-size: 8px;
+        height: 30px;
+        margin-top: 11px;
+    }
+
+    .signout-btn p {
+        padding: 8px 0 0 0;
+        font-size: 8px;
+        letter-spacing: -0.2px;
+    }
+}
+
+@media (max-width: 600px) and (max-height: 500px) {
+    .navbar {
+        height: 50px;
+    }
+
+    .cc-logo {
+        margin-top: 5px;
+    }
+
+    .signout-btn {
+        height: 30px;
+        margin-top: 8px;
+    }
+}

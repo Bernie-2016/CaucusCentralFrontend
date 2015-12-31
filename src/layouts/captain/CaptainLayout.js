@@ -1,6 +1,7 @@
 import React from 'react';
 import CaptainTopNav from 'components/captain/CaptainTopNav';
 // Import styles here.
+import './Captain.scss';
 
 export default class CaptainLayout extends React.Component {
     static propTypes = {
@@ -10,16 +11,8 @@ export default class CaptainLayout extends React.Component {
     render() {
         return (
             <div>
-              {/*}
-              // We'll want to hide this nav when no
-              // user has logged in yet once we
-              // include user auth in the state.
-              */}
               <CaptainTopNav />
-
-              <div className="container-fluid">
               { this.props.children }
-              </div>
             </div>
         );
     }

@@ -1,0 +1,73 @@
+$cc-blue: #0C66D1;
+$cc-teal: #11D39C;
+
+.dashboard-body nav {
+    margin-bottom: 0;
+}
+
+.input-row {
+    padding: 5px 0 5px 0;
+    font-size: 0.6em;
+    color: white;
+    background-color: $cc-blue;
+}
+
+.input-row:nth-child(2n) {
+    background-color: $cc-teal;
+}
+
+.input-row label {
+    margin: 5px 0 8px 0;
+    letter-spacing: 0.7px;
+}
+
+.input-row .form-group {
+    padding: 0 10px 0 10px;
+}
+
+.input-row input {
+    text-align: center;
+    font-size: 3em;
+    height: auto;
+    padding: 0 0 2px 0;
+}
+
+.precinct-data-row {
+    background-color: #eee;
+    padding: 23px 0 23px 0;
+}
+
+.precinct-data-item {
+    font-weight: bold;
+    color: #777;
+}
+
+.attendee-inputs {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+}
+
+// Hide spinners on webkit number inputs
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+@media (max-width: 600px) {
+    .input-row label {
+        font-size: 9px;
+        letter-spacing: 0px;
+    }
+
+    .precinct-data-row {
+        padding: 16px 0 16px 0;
+    }
+
+    .precinct-data-item {
+        font-size: 0.8em;
+    }
+}
