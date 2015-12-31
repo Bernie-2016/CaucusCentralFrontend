@@ -1,0 +1,14 @@
+.admin-nav-container {
+  overflow: hidden;
+
+  .admin-nav {
+    display: inline-block;
+    max-width: 40%;
+    .btn {
+      background-color: rgb(70, 124, 214);
+    }
+  }
+  .admin-nav-downloads {
+    text-align: right;
+  }
+}
