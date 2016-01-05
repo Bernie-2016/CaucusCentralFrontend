@@ -43,7 +43,7 @@ export class ResultsTable extends React.Component {
           header={<Cell>Attendees</Cell>}
           cell={props => (
             <Cell {...props}>
-              {precincts[props.rowIndex].total_attendance}
+              {precincts[props.rowIndex].total_attendees}
             </Cell>
           )}
           width={columnWidth}
@@ -52,7 +52,7 @@ export class ResultsTable extends React.Component {
           header={<Cell>Attendees for Bernie</Cell>}
           cell={props => (
             <Cell {...props}>
-              {precincts[props.rowIndex].sanders_attendance}
+              {precincts[props.rowIndex].supporting_attendees}
             </Cell>
           )}
           width={columnWidth}
@@ -61,7 +61,7 @@ export class ResultsTable extends React.Component {
           header={<Cell>Precinct Delegates</Cell>}
           cell={props => (
             <Cell {...props}>
-              {precincts[props.rowIndex].total_delegates}
+              {precincts[props.rowIndex].supporting_attendees}
             </Cell>
           )}
           width={columnWidth}
@@ -70,7 +70,7 @@ export class ResultsTable extends React.Component {
           header={<Cell>Delegates Awarded</Cell>}
           cell={props => (
             <Cell {...props}>
-              {precincts[props.rowIndex].sanders_delegates_won}
+              {precincts[props.rowIndex].supporting_attendees}
             </Cell>
           )}
           width={columnWidth}

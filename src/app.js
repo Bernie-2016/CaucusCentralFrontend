@@ -4,6 +4,9 @@ import createBrowserHistory   from 'history/lib/createBrowserHistory';
 import { syncReduxAndRouter } from 'redux-simple-router';
 import Root                   from './containers/Root';
 import configureStore         from './store/configureStore';
+import es6promise            from 'es6-promise';
+
+es6promise.polyfill();
 
 const target  = document.getElementById('root');
 const history = createBrowserHistory();

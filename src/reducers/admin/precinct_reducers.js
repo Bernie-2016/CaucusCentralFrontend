@@ -12,7 +12,7 @@ const getPrecinctsError = (state, error) => {
 };
 
 const getPrecinctsSuccess = (state, response) => {
-  return Object.assign({}, state, {error: false, getting_precincts: false, precincts: response});
+  return Object.assign({}, state, {error: false, getting_precincts: false, precincts: response.precincts});
 };
 
 const initialState = {

@@ -1,4 +1,5 @@
 import * as c from 'constants/admin';
+import fetch from 'isomorphic-fetch';
 
 const dummyUsers = [
         {
@@ -152,13 +153,26 @@ const get_precincts_error = (error) => ({
 const get_precincts = () => { 
     return dispatch => {
       dispatch(get_precincts_request());
-      setTimeout(function() {
-        if (true) {
-          dispatch(get_precincts_success(dummyPrecincts));
-        } else {
-          dispatch(get_precincts_error('Could not retrieve precinct data'));
-        }
-      }, 1000);
+      //http://private-anon-458efa517-caucuscentral.apiary-mock.com/api/v1/precincts
+      //require('es6-promise').polyfill();
+
+      fetch('http://private-anon-458efa517-caucuscentral.apiary-mock.com/api/v1/precincts')
+          .then(function(response) {
+              if (response.status >= 400) {
+                dispatch(get_precincts_error('Could not retrieve precinct data'));
+              }
+              return response.json();
+          })
+          .then(function(precincts) {
+              dispatch(get_precincts_success(precincts));
+          });
+      //OsetTimeout(function() {
+      //  if (true) {
+      //    dispatch(get_precincts_success(dummyPrecincts));
+      //  } else {
+      //    dispatch(get_precincts_error('Could not retrieve precinct data'));
+      //  }
+      //}, 1000);
     };
 }
 

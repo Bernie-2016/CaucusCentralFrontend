@@ -11,7 +11,7 @@ export class ResultsTableContainer extends React.Component {
   }
 
   render() {
-    return <ResultsTable precincts={this.props.precincts} />;
+    return <ResultsTable {...this.props} />;
   }
 }
 
