@@ -10,7 +10,7 @@ const getUsersError = (state, error) => {
 };
 
 const getUsersSuccess = (state, response) => {
-  return Object.assign({}, state, {error:false, getting_users: false, users: response});
+  return Object.assign({}, state, {error:false, getting_users: false, users: response.users});
 };
 
 const addUserRequest = (state, user_info) => {

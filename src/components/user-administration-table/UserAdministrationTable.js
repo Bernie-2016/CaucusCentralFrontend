@@ -12,10 +12,10 @@ export class UserAdministrationTable extends React.Component {
 
     let users = this.props.users;
     let headerHeight = 30;
-    let rowHeight = 30;
+    let rowHeight = 40;
     let tableWidth = 680;
     let tableHeight = (users.length * rowHeight)+(headerHeight+2);
-    let columnWidth = 160;
+    let columnWidth = 120;
 
     return <Table
       rowsCount={users.length}
@@ -24,9 +24,16 @@ export class UserAdministrationTable extends React.Component {
       width={tableWidth}
       height={tableHeight}>
         <Column
-          header={<Cell>Name</Cell>}
+          header={<Cell>First Name</Cell>}
           cell={props => (
-            <Cell {...props}>{users[props.rowIndex].name}</Cell>
+            <Cell {...props}>{users[props.rowIndex].first_name}</Cell>
+          )}
+          width={columnWidth}
+        />
+        <Column
+          header={<Cell>Last Name</Cell>}
+          cell={props => (
+            <Cell {...props}>{users[props.rowIndex].last_name}</Cell>
           )}
           width={columnWidth}
         />
@@ -37,13 +44,13 @@ export class UserAdministrationTable extends React.Component {
               {users[props.rowIndex].email}
             </Cell>
           )}
-          width={columnWidth}
+          width={200}
         />
         <Column
-          header={<Cell>Type</Cell>}
+          header={<Cell>Privilege</Cell>}
           cell={props => (
             <Cell {...props}>
-              {users[props.rowIndex].type}
+              {users[props.rowIndex].privilege}
             </Cell>
           )}
           width={columnWidth}
@@ -52,10 +59,10 @@ export class UserAdministrationTable extends React.Component {
           header={<Cell>Precinct</Cell>}
           cell={props => (
             <Cell {...props}>
-              {users[props.rowIndex].precinct}
+              N/A
             </Cell>
           )}
-          width={columnWidth}
+          width={80}
         />
         <Column
           cell={props => (

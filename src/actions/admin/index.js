@@ -149,12 +149,10 @@ const get_precincts_error = (error) => ({
   payload: error 
 })
 
-//ASYNC ACTION.  USING TIMEOUT AS A DUMMY TEST FOR NOW
+//ASYNC ACTION.
 const get_precincts = () => { 
     return dispatch => {
       dispatch(get_precincts_request());
-      //http://private-anon-458efa517-caucuscentral.apiary-mock.com/api/v1/precincts
-      //require('es6-promise').polyfill();
 
       fetch('http://private-anon-458efa517-caucuscentral.apiary-mock.com/api/v1/precincts')
           .then(function(response) {
@@ -166,13 +164,6 @@ const get_precincts = () => {
           .then(function(precincts) {
               dispatch(get_precincts_success(precincts));
           });
-      //OsetTimeout(function() {
-      //  if (true) {
-      //    dispatch(get_precincts_success(dummyPrecincts));
-      //  } else {
-      //    dispatch(get_precincts_error('Could not retrieve precinct data'));
-      //  }
-      //}, 1000);
     };
 }
 
@@ -188,18 +179,20 @@ const get_users_error = (error) => ({
    error: error 
 })
 
-//ASYNC ACTION.  USING TIMEOUT AS A DUMMY TEST FOR NOW
+//ASYNC ACTION.
 const get_users = () => {
   return dispatch => {
     dispatch(get_users_request());
-    setTimeout(function() {
-
-      if (true) {
-        dispatch(get_users_success(dummyUsers));
-      } else {
-        dispatch(get_users_error('There was an error retrieving the users'));
-      }
-    }, 1000);
+    fetch('http://private-anon-458efa517-caucuscentral.apiary-mock.com/api/v1/users')
+          .then(function(response) {
+              if (response.status >= 400) {
+                dispatch(get_users_error('There was an error retrieving the users'));
+              }
+              return response.json();
+          })
+          .then(function(users) {
+              dispatch(get_users_success(users));
+          });
   };
 }
 
