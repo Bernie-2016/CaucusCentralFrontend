@@ -1,6 +1,6 @@
 import React from 'react';
 
-var intIfValid = function(value) {
+const intIfValid = function(value) {
   if (value) {
     return parseInt(value);
   } else {
@@ -8,8 +8,9 @@ var intIfValid = function(value) {
   }
 };
 
-var CaptainAttendeeInputs = React.createClass({
+const CaptainAttendeeInputs = React.createClass({
     render: function() {
+        console.log(this.props);
         return (
             <div className="container-fluid attendee-inputs">
 
@@ -17,7 +18,7 @@ var CaptainAttendeeInputs = React.createClass({
                 <div className="col-xs-5 col-xs-offset-1 text-center">
                   <div className="form-group">
                     <label>Caucus Attendees</label>
-                    <input type="text"
+                    <input type="number"
                            className="form-control"
                            id="numAttendees"
                            ref="numAttendees"
@@ -29,13 +30,13 @@ var CaptainAttendeeInputs = React.createClass({
                 <div className="col-xs-5 text-center">
                   <div className="form-group">
                     <label>For Bernie</label>
-                    <input type="text"
+                    <input type="number"
                            className="form-control"
                            id="numForBernie"
                            ref="numForBernie"
                            placeholder="0"
                            type="number"
-                           onChange={evt => this.handleChange(evt)} /> 
+                           onChange={evt => this.handleChange(evt)} />
                   </div>
                 </div>
               </div>
@@ -44,7 +45,7 @@ var CaptainAttendeeInputs = React.createClass({
                 <div className="col-xs-5 col-xs-offset-1 text-center">
                   <div className="form-group">
                     <label>For Hillary</label>
-                    <input type="text"
+                    <input type="number"
                            className="form-control"
                            id="numForHillary"
                            ref="numForHillary"
@@ -56,7 +57,7 @@ var CaptainAttendeeInputs = React.createClass({
                 <div className="col-xs-5 text-center">
                   <div className="form-group">
                     <label>For OMalley</label>
-                    <input type="text"
+                    <input type="number"
                            className="form-control"
                            id="numForOMalley"
                            ref="numForOMalley"
@@ -71,22 +72,29 @@ var CaptainAttendeeInputs = React.createClass({
         );
     },
 
-    handleChange: function(evt) {
+    handleChange: function (evt) {
       const attendees = this.refs.numAttendees;
       const for_bernie = this.refs.numForBernie;
       const for_hillary = this.refs.numForHillary;
       const for_omalley = this.refs.numForOMalley;
 
-      var tally = {
+      const payload = {
+        precinct_id: this.props.precinct_id,
         attendees: intIfValid(attendees.value.trim()),
-        for_bernie: intIfValid(for_bernie.value.trim()),
-        for_hillary: intIfValid(for_hillary.value.trim()),
-        for_omalley: intIfValid(for_omalley.value.trim())
+        candidates: {
+            bernie: intIfValid(for_bernie.value.trim()),
+            hillary: intIfValid(for_hillary.value.trim()),
+            omalley: intIfValid(for_omalley.value.trim())
+        }
       };
 
-      console.log(tally);
+      if (__DEV__) {
+          console.log('From component');
+          console.log(evt);
+          console.log(payload);
+      }
 
-      this.props.actions.tally_attendees(tally);
+      this.props.actions.tally_attendees(payload);
     }
 
 });

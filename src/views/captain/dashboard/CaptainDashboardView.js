@@ -10,7 +10,8 @@ import './CaptainDashboard.scss';
 
 const mapStateToProps = (state) => ({
   routerState: state.router,
-  precinct_name: 'Altoona 4',
+  precinct_id: 4,
+  precinct_name: 'Altoona',
   total_delegates: 4,
   is_viable: state.calculateViability.is_viable,
   to_become_viable: state.calculateViability.to_become_viable,
@@ -31,7 +32,7 @@ var CaptainDashboardView = React.createClass({
 
             <div className="row precinct-data-row">
               <div className="col-xs-6 text-left">
-                <span className="precinct-data-item">{ this.props.precinct_name }</span>
+                <span className="precinct-data-item">{ this.props.precinct_id } { this.props.precinct_name }</span>
               </div>
               <div className="col-xs-6 text-right">
                 <span className="precinct-data-item">{ this.props.total_delegates } Delegates</span>
@@ -40,20 +41,11 @@ var CaptainDashboardView = React.createClass({
 
             {/* Insert Viability Component Here */}
             <div className="row">
-              <CaptainViabilityResults 
-                viable={ this.props.is_viable }
-                toBecomeViable={ this.props.to_become_viable }
-                delegates={ this.props.delegate_count }
-                oneMore={ this.props.for_one_more }
-                twoMore={ this.props.for_two_more }
-              />
+              <CaptainViabilityResults { ...this.props } />
             </div>
 
             <div className="row">
-              <CaptainAttendeeInputs
-                actions={{
-                  tally_attendees: this.props.actions.tally_attendees
-                }} />
+              <CaptainAttendeeInputs { ...this.props }/>
             </div>
 
           </div>
