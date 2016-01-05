@@ -7,10 +7,15 @@ import {
   createStore
 } from 'redux';
 
+import { apiMiddleware } from 'redux-api-middleware';
+
 export default function configureStore (initialState, debug = false) {
   let createStoreWithMiddleware;
 
-  const middleware = applyMiddleware(thunk);
+  const middleware = compose(
+                       applyMiddleware(thunk),
+                       applyMiddleware(apiMiddleware)
+                     );
 
   if (debug) {
     createStoreWithMiddleware = compose(
