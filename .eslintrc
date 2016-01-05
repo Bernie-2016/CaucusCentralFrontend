@@ -8,7 +8,8 @@
     "__DEV__"      : false,
     "__PROD__"     : false,
     "__DEBUG__"    : false,
-    "__DEBUG_NW__" : false
+    "__DEBUG_NW__" : false,
+    "__API_HOST__" : false
   },
   "rules": {
     "comma-dangle" : [1, "never"],
