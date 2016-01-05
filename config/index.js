@@ -58,6 +58,12 @@ Edit at Your Own Risk
 // ------------------------------------
 // Environment
 // ------------------------------------
+
+let apiSchema = 'https'
+if ( process.env.NODE_ENV === 'development' ) {
+  apiSchema = 'http'
+}
+
 config.set('env', process.env.NODE_ENV);
 config.set('globals', {
   'process.env'  : {
@@ -68,7 +74,7 @@ config.set('globals', {
   '__PROD__'     : config.get('env') === 'production',
   '__DEBUG__'    : config.get('env') === 'development' && !argv.no_debug,
   '__DEBUG_NW__' : !!argv.nw,
-  '__API_HOST__' : JSON.stringify('https://' + (process.env.API_HOST || 'localhost:3000'))
+  '__API_HOST__' : JSON.stringify(apiSchema + '://' + (process.env.API_HOST || 'localhost:3000'))
 });
 
 // ------------------------------------
