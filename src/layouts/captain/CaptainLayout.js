@@ -8,7 +8,7 @@ export default class CaptainLayout extends React.Component {
         children: React.PropTypes.element
     }
 
-    render() {
+    render () {
         return (
             <div>
               <CaptainTopNav />

@@ -1,30 +1,43 @@
 import { CALL_API } from 'redux-api-middleware';
 import { formatEndpoint } from 'utils/api';
+import * as c from 'constants/captain';
+import _ from 'lodash';
 
 export default {
-  increment_person_counter: () => ({
-    type: 'INCREMENT_PERSON_COUNTER'
-  }),
-  decrement_person_counter: () => ({
-    type: 'DECREMENT_PERSON_COUNTER'
-  }),
-  tally_attendees: (payload) => ({
+  getCurrentTotals: (payload) => ({
     [CALL_API]: {
-      types: ['REQUEST_TALLY_ATTENDEES',
-              'SUCCESS_TALLY_ATTENDEES',
-              'FAIL_TALLY_ATTENDEES'],
-      endpoint: formatEndpoint(`/precincts/${payload.precinct_id}`),
-      method: 'PATCH',
-      body: () => {
-        let body = {
-          authentication: `BASIC ${window.__AUTH_TOKEN__}`,
-          attendees: payload.attendees
-        };
-        payload.candidates.forEach((candidate) => {
-          body[candidate] = payload.candidates[candidate].count;
-        });
-        return body;
-      }
+      types: [c.CANDIDATE_TOTALS_REQUEST,
+              c.CANDIDATE_TOTALS_SUCCESS,
+              c.CANDIDATE_TOTALS_FAILURE],
+      endpoint: formatEndpoint(`/precincts/${payload.precinctId}`),
+      method: 'GET'
     }
-  })
+  }),
+  tallyAttendees: (payload) => {
+    let body = {
+      precinct: {
+        id: payload.precinctId,
+        total_attendees: payload.attendees,
+        delegate_counts: []
+      },
+      authentication: `BASIC ${window.__AUTH_TOKEN__}`,
+      attendees: payload.attendees
+    };
+    _.forEach(payload.candidates, (supporters, candidate) => {
+      body.precinct.delegate_counts.push({
+        key: candidate,
+        supporters: supporters
+      });
+    });
+    return {
+      [CALL_API]: {
+        types: [{ type: c.TALLY_ATTENDEES_REQUEST, payload: payload },
+                c.TALLY_ATTENDEES_SUCCESS,
+                c.TALLY_ATTENDEES_FAILURE],
+        endpoint: formatEndpoint(`/precincts/${payload.precinctId}`),
+        method: 'PATCH',
+        body: body
+      }
+    };
+  }
 };
