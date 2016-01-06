@@ -1,0 +1,10 @@
+import { createConstants } from '../utils';
+
+export default createConstants(
+  'CANDIDATE_TOTALS_REQUEST',
+  'CANDIDATE_TOTALS_SUCCESS',
+  'CANDIDATE_TOTALS_FAILURE',
+  'TALLY_ATTENDEES_REQUEST',
+  'TALLY_ATTENDEES_SUCCESS',
+  'TALLY_ATTENDEES_FAILURE',
+);

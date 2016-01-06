@@ -10,32 +10,36 @@ import './CaptainDashboard.scss';
 
 const mapStateToProps = (state) => ({
   routerState: state.router,
-  precinct_id: 4,
-  precinct_name: 'Altoona',
-  total_delegates: 4,
-  is_viable: state.calculateViability.is_viable,
-  to_become_viable: state.calculateViability.to_become_viable,
-  delegate_count: state.calculateViability.delegate_count,
-  for_one_more: state.calculateViability.for_one_more,
-  for_two_more: state.calculateViability.for_two_more
+  precinctId: state.captain.precinct.precinctId,
+  precinctName: state.captain.precinct.precinctName,
+  totalDelegates: state.captain.precinct.totalDelegates,
+  isViable: state.captain.viability.isViable,
+  toBecomeViable: state.captain.viability.toBecomeViable,
+  delegatesWon: state.captain.viability.delegatesWon,
+  forOneMoreDelegate: state.captain.viability.forOneMoreDelegate,
+  forTwoMoreDelegates: state.captain.viability.forTwoMoreDelegates
 });
 
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(captainActions, dispatch)
 });
 
-var CaptainDashboardView = React.createClass({
+const CaptainDashboardView = React.createClass({
 
-  render: function() {
+  componentWillMount: function () {
+    this.props.actions.getCurrentTotals(this.props.precinctId);
+  },
+
+  render: function () {
         return (
           <div className="container-fluid dashboard-body">
 
             <div className="row precinct-data-row">
               <div className="col-xs-6 text-left">
-                <span className="precinct-data-item">{ this.props.precinct_id } { this.props.precinct_name }</span>
+                <span className="precinct-data-item">{ this.props.precinctId } { this.props.precinctName }</span>
               </div>
               <div className="col-xs-6 text-right">
-                <span className="precinct-data-item">{ this.props.total_delegates } Delegates</span>
+                <span className="precinct-data-item">{ this.props.totalDelegates } Delegates</span>
               </div>
             </div>
 
