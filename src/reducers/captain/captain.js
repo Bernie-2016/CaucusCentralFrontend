@@ -14,7 +14,7 @@ const tallyAttendeesRequest = function (state, payload) {
   if (__DEV__) {
     console.log('sending calculate payload');
     console.log(payload);
-  };
+  }
   return Object.assign({}, state, {
     // viability: {
     //   isViable: calculateViability(state.viability.total_attendees, bernie.supporters),

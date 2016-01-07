@@ -12,6 +12,7 @@
     "__API_HOST__" : false
   },
   "rules": {
+    "no-console"   : 0,
     "comma-dangle" : [1, "never"],
     "func-names"   : 0,
     "key-spacing"  : 0,
