@@ -9,7 +9,6 @@ const intIfValid = function (value) {
 };
 
 const CaptainAttendeeInputs = React.createClass({
-
   handleChange: function (evt) {
     const attendees = this.refs.numAttendees;
     const forBernie = this.refs.numForBernie;

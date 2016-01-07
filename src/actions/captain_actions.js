@@ -27,7 +27,6 @@ export default {
       authentication: `BASIC ${window.__AUTH_TOKEN__}`,
       attendees: payload.attendees
     };
-    console.log('BODY', body);
     return {
       [CALL_API]: {
         types: [{ type: c.TALLY_ATTENDEES_REQUEST, payload: payload },
