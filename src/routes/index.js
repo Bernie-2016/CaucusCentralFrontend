@@ -1,8 +1,7 @@
 import React                 from 'react';
 import { Route, IndexRoute } from 'react-router';
 import CoreLayout            from 'layouts/CoreLayout';
-import HomeView              from 'views/HomeView';
-import AboutView             from 'views/AboutView';
+import SignIn              from 'views/sign-in';
 import AdminView             from 'views/admin/AdminView';
 import AdminDashboardView    from 'views/admin/admin-dashboard/AdminDashboardView';
 import AdminUserAdministrationView  from 'views/admin/admin-user-administration/AdminUserAdministrationView';
@@ -12,7 +11,7 @@ import CaptainDashboardView  from 'views/captain/dashboard/CaptainDashboardView'
 
 export default (
   <Route        component={CoreLayout} path='/'>
-    <IndexRoute component={HomeView} />
+    <IndexRoute component={SignIn} />
     <Route      component={AboutView}  path='/about' />
     <Route      component={CaptainLayout} path='captain'>
         <Route      component={undefined} path='/login' />

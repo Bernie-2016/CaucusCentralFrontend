@@ -1,4 +1,4 @@
-import { createReducer } from '../../utils';
+import { createReducer, reduceState } from 'utils';
 import * as c from 'constants/session';
 
 const initialState = {
@@ -14,13 +14,13 @@ const initialState = {
 const sign = {
   in: {
     request: function (state, payload) {
-      return Object.assign({}, state, {
+      return reduceState(state, {
         fetching: true,
         email: payload.email
       });
     },
     success: function (state, response) {
-      return Object.assign({}, state, {
+      return reduceState(state, {
         fetching: false,
         firstName: response.first_name,
         lastName: response.last_name,
@@ -29,18 +29,18 @@ const sign = {
       });
     },
     failure: function (state, error) {
-      return Object.assign({}, state, { error: error, fetching: false });
+      return reduceState(state, { error: error, fetching: false });
     }
   },
   out: {
     request: function (state) {
-      return Object.assign({}, state, { destroying: true });
+      return reduceState(state, { destroying: true });
     },
     success: function (state) {
-      return Object.assign({}, state, initialState);
+      return reduceState(state, initialState);
     },
     failure: function (state, error) {
-      return Object.assign({}, state, { error: error, destroying: false });
+      return reduceState(state, { error: error, destroying: false });
     }
   }
 };

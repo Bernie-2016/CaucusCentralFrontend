@@ -18,6 +18,10 @@ export function createReducer (initialState, fnMap) {
   };
 }
 
+export function reduceState (state, changes) {
+  return Object.assign({}, state, changes);
+}
+
 export function createDevToolsWindow (store) {
   const win = window.open(
     null,
