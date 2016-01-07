@@ -2,7 +2,7 @@ import React                  from 'react';
 import { bindActionCreators } from 'redux';
 import { connect }            from 'react-redux';
 import { Link }               from 'react-router';
-import { SignInForm }         from 'components/sign-in/SignInForm';
+import SignInFormContainer               from 'components/sign-in/SignInFormContainer';
 import counterActions         from 'actions/counter';
 
 const mapStateToProps = (state) => ({
@@ -18,7 +18,7 @@ const SignIn = React.createClass({
   render: function () {
     return (
       <div className='sign-in'>
-        <SignInForm {...this.props} />
+        <SignInFormContainer />
       </div>
     );
   }
