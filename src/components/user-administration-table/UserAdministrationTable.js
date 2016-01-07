@@ -67,7 +67,7 @@ export class UserAdministrationTable extends React.Component {
         <Column
           cell={props => (
             <Cell>
-             <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button> 
+             <button type="button" className="close" aria-label="Close"><span aria-hidden="true">&times;</span></button> 
             </Cell>
           )}
           width={40}
