@@ -57,7 +57,7 @@ input::-webkit-inner-spin-button {
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
-@media (max-width: 600px) {
+@media (max-width: 350px) {
     .input-row label {
         font-size: 9px;
         letter-spacing: 0px;
