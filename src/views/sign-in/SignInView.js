@@ -2,8 +2,8 @@ import React                  from 'react';
 import { bindActionCreators } from 'redux';
 import { connect }            from 'react-redux';
 import { Link }               from 'react-router';
-import { SignInForm }         from 'components/sign-in';
-import { signInActions }      from 'actions/sign-in';
+import SignInFormContainer               from 'components/sign-in/SignInFormContainer';
+import counterActions         from 'actions/counter';
 
 const mapStateToProps = (state) => ({
   routerState : state.router
@@ -13,18 +13,14 @@ const mapDispatchToProps = (dispatch) => ({
   actions : bindActionCreators(signInActions, dispatch)
 });
 
-export class SignIn extends React.Component {
-  static propTypes = {
-    actions  : React.PropTypes.object
-  };
-
-  render () {
+const SignIn = React.createClass({
+  render: function () {
     return (
       <div className='sign-in'>
-        <SignInForm {...this.props} />
+        <SignInFormContainer />
       </div>
     );
   }
-}
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
