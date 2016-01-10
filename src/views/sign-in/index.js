@@ -3,14 +3,14 @@ import { bindActionCreators } from 'redux';
 import { connect }            from 'react-redux';
 import { Link }               from 'react-router';
 import { SignInForm }         from 'components/sign-in';
+import { signInActions }      from 'actions/sign-in';
 
 const mapStateToProps = (state) => ({
-  counter : state.counter,
   routerState : state.router
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  actions : bindActionCreators(counterActions, dispatch)
+  actions : bindActionCreators(signInActions, dispatch)
 });
 
 export class SignIn extends React.Component {

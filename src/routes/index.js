@@ -12,7 +12,6 @@ import CaptainDashboardView  from 'views/captain/dashboard/CaptainDashboardView'
 export default (
   <Route        component={CoreLayout} path='/'>
     <IndexRoute component={SignIn} />
-    <Route      component={AboutView}  path='/about' />
     <Route      component={CaptainLayout} path='captain'>
         <Route      component={undefined} path='/login' />
         <Route      component={undefined} path='/verify/:key' />
