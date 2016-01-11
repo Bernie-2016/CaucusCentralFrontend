@@ -1,26 +1,23 @@
 import React                  from 'react';
 import { bindActionCreators } from 'redux';
 import { connect }            from 'react-redux';
-import { Link }               from 'react-router';
-import SignInFormContainer               from 'components/sign-in/SignInFormContainer';
-import counterActions         from 'actions/counter';
+import sessionActions         from 'actions/session';
+import SignInFormContainer    from 'components/sign-in/SignInFormContainer';
 
-const mapStateToProps = (state) => ({
-  routerState : state.router
-});
+const mapStateToProps = (state) => (state);
 
 const mapDispatchToProps = (dispatch) => ({
-  actions : bindActionCreators(signInActions, dispatch)
+  actions : bindActionCreators(sessionActions, dispatch)
 });
 
-const SignIn = React.createClass({
-  render: function () {
+class SignIn extends React.Component {
+  render () {
     return (
       <div className='sign-in'>
-        <SignInFormContainer />
+        <SignInFormContainer {...this.props}/>
       </div>
     );
   }
-});
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

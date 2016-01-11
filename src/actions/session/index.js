@@ -3,22 +3,25 @@ import { formatEndpoint } from 'utils/api';
 import * as c from 'constants/session';
 
 export default {
-  signIn: (payload) => ({
-    [CALL_API]: {
-      types: [c.SIGN_IN_REQUEST,
-              c.SIGN_IN_SUCCESS,
-              c.SIGN_IN_FAILURE],
-      endpoint: formatEndpoint(`/sessions`),
-      body: {
-        email: payload.email,
-        password: payload.password
-      },
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      method: 'POST'
-    }
-  }),
+  signIn: (payload) => {
+    const body = JSON.stringify({
+      email: payload.email,
+      password: payload.password
+    });
+    return {
+      [CALL_API]: {
+        types: [{ type: c.SIGN_IN_REQUEST, payload: payload },
+                c.SIGN_IN_SUCCESS,
+                c.SIGN_IN_FAILURE],
+        endpoint: formatEndpoint(`/sessions`),
+        body,
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        method: 'POST'
+      }
+    };
+  },
   signOut: (payload) => ({
     [CALL_API]: {
       types:  [c.SIGN_OUT_REQUEST,

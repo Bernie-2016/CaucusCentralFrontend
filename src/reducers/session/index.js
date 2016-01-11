@@ -2,6 +2,7 @@ import { createReducer, reduceState } from 'utils';
 import * as c from 'constants/session';
 
 const initialState = {
+  id: undefined,
   firstName: '',
   lastName: '',
   email: undefined,
@@ -14,21 +15,27 @@ const initialState = {
 const sign = {
   in: {
     request: function (state, payload) {
+      console.log('got to reducer', payload);
       return reduceState(state, {
         fetching: true,
         email: payload.email
       });
     },
     success: function (state, response) {
-      return reduceState(state, {
-        fetching: false,
-        firstName: response.first_name,
-        lastName: response.last_name,
-        privilege: response.privilege,
-        token: response.token
+      console.log('response', response);
+      const newState = reduceState(state, {
+        id: response.user.id,
+        firstName: response.user.first_name,
+        lastName: response.user.last_name,
+        privilege: response.user.privilege,
+        token: response.user.token,
+        fetching: false
       });
+      console.log('newState', newState);
+      return newState;
     },
     failure: function (state, error) {
+      console.log('failure!', state);
       return reduceState(state, { error: error, fetching: false });
     }
   },

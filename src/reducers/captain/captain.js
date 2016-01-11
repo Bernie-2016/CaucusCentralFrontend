@@ -1,5 +1,6 @@
 import { createReducer, reduceState } from '../../utils';
 import * as c from 'constants/captain';
+import { SIGN_IN_SUCCESS } from 'constants/session';
 import _ from 'lodash';
 
 const initialState = {
@@ -28,6 +29,16 @@ const calculateDelegates = function (attendees, supporters, availableDelegates) 
   return Math.floor((supporters / attendees) * availableDelegates);
 };
 
+const precinct = {
+  set: function (state, response) {
+    return reduceState(state, {
+      precinct: {
+        precinctId: response.user.precinct_id
+      }
+    });
+  }
+};
+
 const tallyAttendees = {
   request: function (state, payload) {
     if (__DEV__) {
@@ -43,12 +54,12 @@ const tallyAttendees = {
     });
   },
   response: function (state, response) {
-    const precinct = response.precinct;
-    const bernie = _.find(precinct.delegate_counts, {'key': 'sanders'});
+    const resPrecinct = response.precinct;
+    const bernie = _.find(resPrecinct.delegate_counts, {'key': 'sanders'});
     return reduceState(state, {
       viability: {
-        isViable: calculateViability(precinct.total_attendees, bernie.supporters),
-        delegatesWon: calculateDelegates(precinct.total_attendees, bernie.supporters, precinct.totalDelegates)
+        isViable: calculateViability(resPrecinct.total_attendees, bernie.supporters),
+        delegatesWon: calculateDelegates(resPrecinct.total_attendees, bernie.supporters, resPrecinct.totalDelegates)
       },
       fetchingTally: false
     });
@@ -62,6 +73,7 @@ const tallyAttendees = {
 };
 
 export default createReducer(initialState, {
+  [SIGN_IN_SUCCESS]           : precinct.set,
   [c.TALLY_ATTENDEES_REQUEST] : tallyAttendees.request,
   [c.TALLY_ATTENDEES_SUCCESS] : tallyAttendees.success,
   [c.TALLY_ATTENDEES_FAILURE] : tallyAttendees.failure

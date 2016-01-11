@@ -60,7 +60,7 @@ Edit at Your Own Risk
 // ------------------------------------
 
 let apiSchema = 'https'
-if ( process.env.NODE_ENV === 'development' ) {
+if ( process.env.NODE_ENV === 'development' && !process.env.USE_HTTPS ) {
   apiSchema = 'http'
 }
 
