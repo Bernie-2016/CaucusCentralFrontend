@@ -15,15 +15,13 @@ const initialState = {
 const sign = {
   in: {
     request: function (state, payload) {
-      console.log('got to reducer', payload);
       return reduceState(state, {
         fetching: true,
         email: payload.email
       });
     },
     success: function (state, response) {
-      console.log('response', response);
-      const newState = reduceState(state, {
+      return reduceState(state, {
         id: response.user.id,
         firstName: response.user.first_name,
         lastName: response.user.last_name,
@@ -31,11 +29,8 @@ const sign = {
         token: response.user.token,
         fetching: false
       });
-      console.log('newState', newState);
-      return newState;
     },
     failure: function (state, error) {
-      console.log('failure!', state);
       return reduceState(state, { error: error, fetching: false });
     }
   },

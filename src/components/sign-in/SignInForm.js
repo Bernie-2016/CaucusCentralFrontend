@@ -1,10 +1,6 @@
 import React from 'react';
 
 export class SignInForm extends React.Component {
-  constructor (props) {
-    super(props);
-  }
-
   render () {
     return (
       <form onSubmit={this.props.onSubmit}>
