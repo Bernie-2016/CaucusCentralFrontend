@@ -10,12 +10,12 @@ import CaptainLayout         from 'layouts/captain/CaptainLayout';
 import CaptainDashboardView  from 'views/captain/dashboard/CaptainDashboardView';
 
 export default (
-  <Route        component={CoreLayout} path='/'>
+  <Route component={CoreLayout} path='/'>
     <IndexRoute component={SignInView} />
-    <Route      component={CaptainLayout} path='captain'>
-        <Route      component={CaptainDashboardView} path='dashboard' />
+    <Route component={CaptainLayout} path='captain'>
+      <IndexRoute component={CaptainDashboardView} />
     </Route>
-    <Route      component={AdminView}  path='/admin'>
+    <Route component={AdminView}  path='/admin'>
       <IndexRoute component={AdminDashboardView} />
       <Route component={AdminUserAdministrationView} path='/admin/users' />
     </Route>
