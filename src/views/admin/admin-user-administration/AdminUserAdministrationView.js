@@ -10,7 +10,7 @@ import adminActions           from 'actions/admin/';
 export class AdminUserAdministrationView extends React.Component {
 
   componentDidMount() {
-    this.props.actions.get_users();
+    this.props.actions.getAllUsers(this.props.session.token);
   }
 
   renderMessage() {
@@ -39,9 +39,7 @@ export class AdminUserAdministrationView extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  adminUsers : state.adminUsers
-});
+const mapStateToProps = (state) => (state);
 const mapDispatchToProps = (dispatch) => ({
   actions : bindActionCreators(adminActions, dispatch)
 });

@@ -2,59 +2,84 @@ import * as c from 'constants/admin';
 import { CALL_API } from 'redux-api-middleware';
 import { formatEndpoint } from 'utils/api';
 
-const precincts = {
-  get: () => ({
+export default {
+  getAllPrecincts: (payload) => ({
     [CALL_API]: {
       types: [c.GET_PRECINCTS_REQUEST,
               c.GET_PRECINCTS_SUCCESS,
               c.GET_PRECINCTS_FAILURE],
       endpoint: formatEndpoint(`/precincts`),
-      method: 'GET'
+      method: 'GET',
+      headers: {
+        'Authorization': payload.token
+      }
     }
-  })
-};
-
-const users = {
-  get: () => ({
+  }),
+  getAllUsers: (payload) => ({
     [CALL_API]: {
       types: [c.GET_USERS_REQUEST,
               c.GET_USERS_SUCCESS,
               c.GET_USERS_FAILURE],
       endpoint: formatEndpoint(`/users`),
-      method: 'GET'
+      method: 'GET',
+      headers: {
+        'Authorization': payload.token
+      }
     }
   }),
-  add: () => ({
+  getUser: (payload) => ({
     [CALL_API]: {
-      types: [c.ADD_USER_REQUEST,
-              c.ADD_USER_SUCCESS,
-              c.ADD_USER_FAILURE],
-      endpoint: formatEndpoint(`/users`),
-      method: 'POST'
+      types: [c.GET_USER_REQUEST,
+              c.GET_USER_SUCCESS,
+              c.GET_USER_FAILURE],
+      endpoint: formatEndpoint(`/users/${payload.id}`),
+      method: 'GET',
+      headers: {
+        'Authorization': payload.token
+      }
     }
   }),
-  remove: () => ({
+  createUser: (payload) => ({
+    [CALL_API]: {
+      types: [c.CREATE_USER_REQUEST,
+              c.CREATE_USER_SUCCESS,
+              c.CREATE_USER_FAILURE],
+      endpoint: formatEndpoint(`/users`),
+      method: 'POST',
+      body: {},
+      headers: {
+        'Authorization': payload.token
+      }
+    }
+  }),
+  updateUser: (payload) => ({
+    [CALL_API]: {
+      types: [c.UPDATE_USER_REQUEST,
+              c.UPDATE_USER_SUCCESS,
+              c.UPDATE_USER_FAILURE],
+      endpoint: formatEndpoint(`/users/${payload.id}`),
+      method: 'PATCH',
+      headers: {
+        'Authorization': payload.token
+      }
+    }
+  }),
+  remove: (payload) => ({
     [CALL_API]: {
       types: [c.REMOVE_USER_REQUEST,
               c.REMOVE_USER_SUCCESS,
               c.REMOVE_USER_FAILURE],
-      endpoint: formatEndpoint(`/users`),
-      method: 'delete'
+      endpoint: formatEndpoint(`/users/${payload.id}`),
+      method: 'DELETE',
+      headers: {
+        'Authorization': payload.token
+      }
     }
-  })
-};
-
-const csv = {
-  download: () => ({
+  }),
+  downloadCsv: () => ({
     // todo: implement
   }),
-  upload: () => ({
+  uploadCsv: () => ({
     // todo: implement
   })
-};
-
-export default {
-  precincts,
-  users,
-  csv
 };

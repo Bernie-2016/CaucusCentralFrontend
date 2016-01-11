@@ -31,30 +31,30 @@ const CaptainDashboardView = React.createClass({
   },
 
   render: function () {
-        return (
-          <div className="container-fluid dashboard-body">
+    return (
+      <div className='container-fluid dashboard-body'>
 
-            <div className="row precinct-data-row">
-              <div className="col-xs-6 text-left">
-                <span className="precinct-data-item">{ this.props.precinctId } { this.props.precinctName }</span>
-              </div>
-              <div className="col-xs-6 text-right">
-                <span className="precinct-data-item">{ this.props.totalDelegates } Delegates</span>
-              </div>
-            </div>
-
-            {/* Insert Viability Component Here */}
-            <div className="row">
-              <CaptainViabilityResults { ...this.props } />
-            </div>
-
-            <div className="row">
-              <CaptainAttendeeInputs { ...this.props }/>
-            </div>
-
+        <div className='row precinct-data-row'>
+          <div className='col-xs-6 text-left'>
+            <span className='precinct-data-item'>{ this.props.precinctId } { this.props.precinctName }</span>
           </div>
-        );
-    }
+          <div className='col-xs-6 text-right'>
+            <span className='precinct-data-item'>{ this.props.totalDelegates } Delegates</span>
+          </div>
+        </div>
+
+        {/* Insert Viability Component Here */}
+        <div className='row'>
+          <CaptainViabilityResults { ...this.props } />
+        </div>
+
+        <div className='row'>
+          <CaptainAttendeeInputs { ...this.props }/>
+        </div>
+
+      </div>
+    );
+  }
 
 });
 

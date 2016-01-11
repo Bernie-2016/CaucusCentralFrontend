@@ -2,7 +2,7 @@ import { createReducer, reduceState } from 'utils';
 import * as c from 'constants/admin';
 
 const initialState = {
-  getting_precincts:false,
+  gettingPrecincts:false,
   error:false,
   precincts:[]
 };
@@ -10,13 +10,14 @@ const initialState = {
 const precincts = {
   get: {
     request: (state) => {
-      return reduceState(state, {error: false, getting_precincts:true});
+      return reduceState(state, {error: false, gettingPrecincts:true});
     },
-    successs: (state, response) => {
-      return reduceState(state, {error: false, getting_precincts: false, precincts: response.precincts});
+    success: (state, response) => {
+      console.log('response', response);
+      return reduceState(state, {error: false, gettingPrecincts: false, precincts: response.precincts});
     },
     failure: (state, error) => {
-      return reduceState(state, {error:error, getting_precincts: false});
+      return reduceState(state, {error:error, gettingPrecincts: false});
     }
   }
 };
@@ -26,5 +27,3 @@ export default createReducer(initialState, {
   [c.GET_PRECINCTS_SUCCESS] : precincts.get.success,
   [c.GET_PRECINCTS_ERROR] : precincts.get.failure
 });
-
-
