@@ -46,7 +46,7 @@ export default {
               c.CREATE_USER_FAILURE],
       endpoint: formatEndpoint(`/users`),
       method: 'POST',
-      body: {},
+      body: {}, // todo: add body
       headers: {
         'Authorization': payload.token
       }
@@ -59,6 +59,7 @@ export default {
               c.UPDATE_USER_FAILURE],
       endpoint: formatEndpoint(`/users/${payload.id}`),
       method: 'PATCH',
+      body: {}, // todo: add body
       headers: {
         'Authorization': payload.token
       }
