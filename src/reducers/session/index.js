@@ -1,15 +1,36 @@
 import { createReducer, reduceState } from 'utils';
 import * as c from 'constants/session';
 
-const initialState = {
-  id: undefined,
-  firstName: '',
-  lastName: '',
-  email: undefined,
-  privilege: undefined,
-  token: undefined,
-  fetching: false,
-  destroying: false
+const initialState = (function () {
+  const get = (key) => {
+    const item = window.sessionStorage.getItem(key);
+    if (!item) {
+      return undefined;
+    }
+    return item;
+  };
+
+  return {
+    id: get('id'),
+    firstName: get('firstName'),
+    lastName: get('lastName'),
+    email: get('email'),
+    privilege: get('privilege'),
+    token: get('token'),
+    fetching: false,
+    destroying: false
+  };
+})();
+
+const storeSession = function (session) {
+  const store = (key, val) => {
+    window.sessionStorage.setItem(key, val);
+  };
+  store('id', session.id);
+  store('firstName', session.firstName);
+  store('lastName', session.lastName);
+  store('privilege', session.privilege);
+  store('token', session.token);
 };
 
 const sign = {
@@ -21,14 +42,16 @@ const sign = {
       });
     },
     success: function (state, response) {
-      return reduceState(state, {
+      const session = {
         id: response.user.id,
         firstName: response.user.first_name,
         lastName: response.user.last_name,
         privilege: response.user.privilege,
         token: response.user.token,
         fetching: false
-      });
+      };
+      storeSession(session);
+      return reduceState(state, session);
     },
     failure: function (state, error) {
       return reduceState(state, { error: error, fetching: false });
@@ -39,6 +62,7 @@ const sign = {
       return reduceState(state, { destroying: true });
     },
     success: function (state) {
+      window.sessionStorage.setItem('authToken', response.user.token);
       return reduceState(state, initialState);
     },
     failure: function (state, error) {
