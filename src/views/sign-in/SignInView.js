@@ -10,7 +10,7 @@ const mapDispatchToProps = (dispatch) => ({
   actions : bindActionCreators(sessionActions, dispatch)
 });
 
-class SignIn extends React.Component {
+class SignInView extends React.Component {
 
   render () {
     return (
@@ -21,4 +21,4 @@ class SignIn extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
+export default connect(mapStateToProps, mapDispatchToProps)(SignInView);

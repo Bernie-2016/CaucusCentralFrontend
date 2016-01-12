@@ -22,20 +22,17 @@ export default {
       }
     };
   },
-  signOut: (payload) => {
-    console.log('called signout', payload);
-    return {
-      [CALL_API]: {
-        types:  [c.SIGN_OUT_REQUEST,
-                c.SIGN_OUT_SUCCESS,
-                c.SIGN_OUT_FAILURE],
-        endpoint: formatEndpoint(`/sessions`),
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': payload.token
-        },
-        method: 'DELETE'
-      }
-    };
-  }
+  signOut: (payload) => ({
+    [CALL_API]: {
+      types:  [c.SIGN_OUT_REQUEST,
+              c.SIGN_OUT_SUCCESS,
+              c.SIGN_OUT_FAILURE],
+      endpoint: formatEndpoint(`/sessions`),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': payload.token
+      },
+      method: 'DELETE'
+    }
+  })
 };

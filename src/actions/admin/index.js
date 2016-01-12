@@ -39,32 +39,43 @@ export default {
       }
     }
   }),
-  createUser: (payload) => ({
-    [CALL_API]: {
-      types: [c.CREATE_USER_REQUEST,
-              c.CREATE_USER_SUCCESS,
-              c.CREATE_USER_FAILURE],
-      endpoint: formatEndpoint(`/users`),
-      method: 'POST',
-      body: {}, // todo: add body
-      headers: {
-        'Authorization': payload.token
+  createInvitation: (payload) => {
+    const body = JSON.stringify({
+      invitation: payload.invitation
+    });
+    return {
+      [CALL_API]: {
+        types: [c.CREATE_USER_REQUEST,
+                c.CREATE_USER_SUCCESS,
+                c.CREATE_USER_FAILURE],
+        endpoint: formatEndpoint(`/invitations`),
+        method: 'POST',
+        body,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': payload.token
+        }
       }
-    }
-  }),
-  updateUser: (payload) => ({
-    [CALL_API]: {
-      types: [c.UPDATE_USER_REQUEST,
-              c.UPDATE_USER_SUCCESS,
-              c.UPDATE_USER_FAILURE],
-      endpoint: formatEndpoint(`/users/${payload.id}`),
-      method: 'PATCH',
-      body: {}, // todo: add body
-      headers: {
-        'Authorization': payload.token
+    };
+  },
+  updateUser: (payload) => {
+    const body = JSON.stringify({
+      user: payload.user
+    });
+    return {
+      [CALL_API]: {
+        types: [c.UPDATE_USER_REQUEST,
+                c.UPDATE_USER_SUCCESS,
+                c.UPDATE_USER_FAILURE],
+        endpoint: formatEndpoint(`/users/${payload.id}`),
+        method: 'PATCH',
+        body,
+        headers: {
+          'Authorization': payload.token
+        }
       }
-    }
-  }),
+    };
+  },
   remove: (payload) => ({
     [CALL_API]: {
       types: [c.REMOVE_USER_REQUEST,

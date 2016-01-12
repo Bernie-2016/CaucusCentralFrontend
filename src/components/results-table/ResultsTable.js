@@ -38,7 +38,7 @@ export class ResultsTable extends React.Component {
     const rowHeight = 30;
     const tableWidth = 1200;
     const tableHeight = (precincts.length * rowHeight) + (headerHeight + 3);
-    const columnWidth = 150;
+    const columnWidth = 133.333;
 
     return (
       <Table
@@ -59,6 +59,15 @@ export class ResultsTable extends React.Component {
           cell={props => (
             <Cell {...props}>
               {precincts[props.rowIndex].name}
+            </Cell>
+          )}
+          width={columnWidth}
+        />
+        <Column
+          header={<Cell>Phase</Cell>}
+          cell={props => (
+            <Cell {...props}>
+              {precincts[props.rowIndex].phase}
             </Cell>
           )}
           width={columnWidth}
@@ -100,7 +109,7 @@ export class ResultsTable extends React.Component {
           width={columnWidth}
         />
         <Column
-          header={<Cell>Precinct Delegates</Cell>}
+          header={<Cell>Delegates</Cell>}
           cell={props => (
             <Cell {...props}>
               {precincts[props.rowIndex].total_delegates}
@@ -109,7 +118,7 @@ export class ResultsTable extends React.Component {
           width={columnWidth}
         />
         <Column
-          header={<Cell>Delegates Awarded</Cell>}
+          header={<Cell>Awarded</Cell>}
           cell={props => (
             <Cell {...props}>
               {this.getDelegateCountsFor('sanders', precincts[props.rowIndex]).won}

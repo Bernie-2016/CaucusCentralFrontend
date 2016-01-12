@@ -13,7 +13,6 @@ const precincts = {
       return reduceState(state, {error: false, gettingPrecincts:true});
     },
     success: (state, response) => {
-      console.log('response', response);
       return reduceState(state, {error: false, gettingPrecincts: false, precincts: response.precincts});
     },
     failure: (state, error) => {
