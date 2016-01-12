@@ -30,7 +30,7 @@ export default {
       endpoint: formatEndpoint(`/sessions`),
       headers: {
         'Content-Type': 'application/json',
-        'token': payload.token
+        'Authorization': payload.token
       },
       method: 'DELETE'
     }
