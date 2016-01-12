@@ -10,7 +10,7 @@ import adminActions           from 'actions/admin/';
 export class AdminUserAdministrationView extends React.Component {
 
   componentDidMount() {
-    this.props.actions.get_users();
+    this.props.actions.getAllUsers({token: this.props.session.token});
   }
 
   renderMessage() {
@@ -28,10 +28,10 @@ export class AdminUserAdministrationView extends React.Component {
         <div className='message'>{this.renderMessage()}</div>
         <div className='row'>
           <div className='col-lg-8'>
-            <UserAdministrationTableContainer users={this.props.adminUsers.users} />
+            <UserAdministrationTableContainer users={this.props.adminUsers.users} {...this.props} />
           </div>
           <div className='col-lg-4'>
-            <UserAdministrationFormContainer />
+            <UserAdministrationFormContainer {...this.props} />
           </div>
         </div>
       </div>
@@ -39,9 +39,7 @@ export class AdminUserAdministrationView extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  adminUsers : state.adminUsers
-});
+const mapStateToProps = (state) => (state);
 const mapDispatchToProps = (dispatch) => ({
   actions : bindActionCreators(adminActions, dispatch)
 });

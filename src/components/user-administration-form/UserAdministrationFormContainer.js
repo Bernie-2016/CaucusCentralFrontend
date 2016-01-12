@@ -9,28 +9,43 @@ export class UserAdministrationFormContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user:{
-          name:'Joseph Cotton',
-          email:'joeycotton@gmail.com',
-          type:'Admin',
-          precinct:'N/A'
-      }
+      email: '',
+      privilege: 'captain',
+      precinctId:''
     };
+  }
+
+  componentWillMount() {
+    this.props.actions.getAllPrecincts({token: this.props.session.token});
+  }
+
+  onUpdate(e) {
+    let newState = {};
+    newState[e.target.name] = e.target.value;
+    this.setState(newState);
   }
 
   onFormSubmit(e) {
     e.preventDefault();
-    this.props.actions.add_user({
-      id:10,
-      name:'Scott Joplin',
-      email:'ragtimer@gmail.com',
-      type:'Admin',
-      precinct:'N/A'
+    this.props.actions.createInvitation({
+      invitation: {
+        email: this.state.email,
+        privilege: this.state.privilege,
+        precinct_id: this.state.precinctId
+      },
+      token: this.props.session.token
     });
   }
 
   render() {
-    return <UserAdministrationForm user={this.state.user} onSubmit={(e) => this.onFormSubmit(e) } />;
+    return <UserAdministrationForm 
+      email={this.state.email} 
+      privilege={this.state.privilege} 
+      precinctId={this.state.precinctId} 
+      onUpdate={(e) => this.onUpdate(e) } 
+      onSubmit={(e) => this.onFormSubmit(e) } 
+      {...this.props} 
+    />;
   }
 }
 

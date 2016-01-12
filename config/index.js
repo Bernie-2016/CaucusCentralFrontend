@@ -21,8 +21,8 @@ config.set('coverage_reporters', [
   { type : 'html', dir : 'coverage' }
 ]);
 
-config.set('server_host',  'localhost');
-config.set('server_port',  process.env.PORT || 3000);
+config.set('server_host',  '0.0.0.0');
+config.set('server_port',  process.env.PORT || 9010);
 
 config.set('production_enable_source_maps', false);
 
@@ -58,6 +58,12 @@ Edit at Your Own Risk
 // ------------------------------------
 // Environment
 // ------------------------------------
+
+let apiSchema = 'https'
+if ( process.env.NODE_ENV === 'development' && !process.env.USE_HTTPS ) {
+  apiSchema = 'http'
+}
+
 config.set('env', process.env.NODE_ENV);
 config.set('globals', {
   'process.env'  : {
@@ -67,7 +73,8 @@ config.set('globals', {
   '__DEV__'      : config.get('env') === 'development',
   '__PROD__'     : config.get('env') === 'production',
   '__DEBUG__'    : config.get('env') === 'development' && !argv.no_debug,
-  '__DEBUG_NW__' : !!argv.nw
+  '__DEBUG_NW__' : !!argv.nw,
+  '__API_HOST__' : JSON.stringify(apiSchema + '://' + (process.env.API_HOST || 'localhost:3000') + '/api/v1')
 });
 
 // ------------------------------------

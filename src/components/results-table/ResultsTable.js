@@ -4,46 +4,45 @@ require('fixed-data-table/dist/fixed-data-table.min.css');
 
 export class ResultsTable extends React.Component {
 
-  constructor(props) {
+  constructor (props) {
     super(props);
   }
 
-  getDelegateCountsFor(delegate, delegatesArray) {
+  getDelegateCountsFor (delegate, delegatesArray) {
     let counts = {
       supporters:'N/A',
       won:'N/A'
     };
 
-    for (var i = 0, len = delegatesArray.length; i < len; i++) {
-      if (delegatesArray[i].key === delegate) {
-        let a = delegatesArray[i];
-
-        counts = {
-          supporters:a.supporters,
-          won:a.delegates_won
-        };
+    if ( delegatesArray !== undefined ) {
+      for (let i = 0, len = delegatesArray.length; i < len; i++) {
+        if (delegatesArray[i].key === delegate) {
+          let a = delegatesArray[i];
+          counts = {
+            supporters:a.supporters,
+            won:a.delegates_won
+          };
+        }
       }
     }
-
     return counts;
   }
 
-  render() {
+  render () {
+    const precincts = this.props.adminPrecincts.precincts;
+    const headerHeight = 30;
+    const rowHeight = 30;
+    const tableWidth = 1200;
+    const tableHeight = (precincts.length * rowHeight) + (headerHeight + 3);
+    const columnWidth = 133.333;
 
-    let precincts = this.props.precincts;
-    let headerHeight = 30;
-    let rowHeight = 30;
-    let tableWidth = 1200;
-    let tableHeight = (precincts.length * rowHeight)+(headerHeight+3);
-    let columnWidth = 150;
-
-    
-    return <Table
-      rowsCount={precincts.length}
-      rowHeight={rowHeight}
-      headerHeight={headerHeight}
-      width={tableWidth}
-      height={tableHeight}>
+    return (
+      <Table
+        rowsCount={precincts.length}
+        rowHeight={rowHeight}
+        headerHeight={headerHeight}
+        width={tableWidth}
+        height={tableHeight}>
         <Column
           header={<Cell>County</Cell>}
           cell={props => (
@@ -56,6 +55,15 @@ export class ResultsTable extends React.Component {
           cell={props => (
             <Cell {...props}>
               {precincts[props.rowIndex].name}
+            </Cell>
+          )}
+          width={columnWidth}
+        />
+        <Column
+          header={<Cell>Phase</Cell>}
+          cell={props => (
+            <Cell {...props}>
+              {precincts[props.rowIndex].phase}
             </Cell>
           )}
           width={columnWidth}
@@ -97,7 +105,7 @@ export class ResultsTable extends React.Component {
           width={columnWidth}
         />
         <Column
-          header={<Cell>Precinct Delegates</Cell>}
+          header={<Cell>Delegates</Cell>}
           cell={props => (
             <Cell {...props}>
               {precincts[props.rowIndex].total_delegates}
@@ -106,7 +114,7 @@ export class ResultsTable extends React.Component {
           width={columnWidth}
         />
         <Column
-          header={<Cell>Delegates Awarded</Cell>}
+          header={<Cell>Awarded</Cell>}
           cell={props => (
             <Cell {...props}>
               {this.getDelegateCountsFor('sanders', precincts[props.rowIndex].delegate_counts).won}
@@ -114,9 +122,8 @@ export class ResultsTable extends React.Component {
           )}
           width={columnWidth}
         />
-      </Table>;
+      </Table>);
   }
 }
 
 export default ResultsTable;
-

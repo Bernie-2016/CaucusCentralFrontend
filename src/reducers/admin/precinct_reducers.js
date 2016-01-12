@@ -1,29 +1,28 @@
-import { createReducer }     from 'utils';
+import { createReducer, reduceState } from 'utils';
 import * as c from 'constants/admin';
-import admin_actions from 'actions/admin';
-
-
-const getPrecinctsRequest = (state) => {
-  return Object.assign({}, state, {error: false, getting_precincts:true});
-};
-
-const getPrecinctsError = (state, error) => {
-  return Object.assign({}, state, {error:error, getting_precincts: false});
-};
-
-const getPrecinctsSuccess = (state, response) => {
-  return Object.assign({}, state, {error: false, getting_precincts: false, precincts: response.precincts});
-};
 
 const initialState = {
-  getting_precincts:false,
+  gettingPrecincts:false,
   error:false,
   precincts:[]
 };
+
+const precincts = {
+  get: {
+    request: (state) => {
+      return reduceState(state, {error: false, gettingPrecincts:true});
+    },
+    success: (state, response) => {
+      return reduceState(state, {error: false, gettingPrecincts: false, precincts: response.precincts});
+    },
+    failure: (state, error) => {
+      return reduceState(state, {error:error, gettingPrecincts: false});
+    }
+  }
+};
+
 export default createReducer(initialState, {
-  [c.GET_PRECINCTS_REQUEST] : getPrecinctsRequest,
-  [c.GET_PRECINCTS_ERROR] : getPrecinctsError,
-  [c.GET_PRECINCTS_SUCCESS] : getPrecinctsSuccess
+  [c.GET_PRECINCTS_REQUEST] : precincts.get.request,
+  [c.GET_PRECINCTS_SUCCESS] : precincts.get.success,
+  [c.GET_PRECINCTS_ERROR] : precincts.get.failure
 });
-
-

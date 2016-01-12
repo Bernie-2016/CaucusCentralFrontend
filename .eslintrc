@@ -8,9 +8,11 @@
     "__DEV__"      : false,
     "__PROD__"     : false,
     "__DEBUG__"    : false,
-    "__DEBUG_NW__" : false
+    "__DEBUG_NW__" : false,
+    "__API_HOST__" : false
   },
   "rules": {
+    "no-console"   : 0,
     "comma-dangle" : [1, "never"],
     "func-names"   : 0,
     "key-spacing"  : 0,
@@ -19,6 +21,7 @@
     "no-multi-spaces"  : 0,
     "quotes"           : [2, "single"],
     "jsx-quotes"       : [2, "prefer-single"],
-    "one-var"          : 0
+    "one-var"          : 0,
+    "prefer-const"     : 1
   }
 }

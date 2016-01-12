@@ -1,12 +1,44 @@
+import { CALL_API } from 'redux-api-middleware';
+import { formatEndpoint } from 'utils/api';
+import * as c from 'constants/captain';
+import _ from 'lodash';
+
 export default {
-  increment_person_counter: () => ({
-    type: 'INCREMENT_PERSON_COUNTER'
+  getCurrentTotals: (payload) => ({
+    [CALL_API]: {
+      types: [c.CANDIDATE_TOTALS_REQUEST,
+              c.CANDIDATE_TOTALS_SUCCESS,
+              c.CANDIDATE_TOTALS_FAILURE],
+      endpoint: formatEndpoint(`/precincts/${payload.precinctId}`),
+      method: 'GET'
+    }
   }),
-  decrement_person_counter: () => ({
-    type: 'DECREMENT_PERSON_COUNTER'
-  }),
-  tally_attendees: (payload) => ({
-    type: 'TALLY_ATTENDEES',
-    payload: payload
-  })
+  tallyAttendees: (payload) => {
+    const body = {
+      precinct: {
+        id: payload.precinctId,
+        total_attendees: payload.attendees,
+        delegate_counts: _.reduce(payload.candidates, (result, supporters, candidate) => {
+          return result.concat([{
+            key: candidate,
+            supporters: supporters
+          }]);}, [])
+      },
+      authentication: `BASIC ${window.__AUTH_TOKEN__}`,
+      attendees: payload.attendees
+    };
+    return {
+      [CALL_API]: {
+        types: [{ type: c.TALLY_ATTENDEES_REQUEST, payload: payload },
+                c.TALLY_ATTENDEES_SUCCESS,
+                c.TALLY_ATTENDEES_FAILURE],
+        endpoint: formatEndpoint(`/precincts/${payload.precinctId}/viability`),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        method: 'POST',
+        body: body
+      }
+    };
+  }
 };

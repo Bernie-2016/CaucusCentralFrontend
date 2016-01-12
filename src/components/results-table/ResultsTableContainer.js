@@ -1,28 +1,18 @@
 import React from 'react';
 import ResultsTable from './ResultsTable';
-import { bindActionCreators } from 'redux';
-import { connect }            from 'react-redux';
-import adminActions         from 'actions/admin/';
 
 export class ResultsTableContainer extends React.Component {
-
-  constructor(props) {
+  constructor (props) {
     super(props);
   }
 
-  render() {
+  componentWillMount () {
+    this.props.actions.getAllPrecincts({token: this.props.session.token});
+  }
+
+  render () {
     return <ResultsTable {...this.props} />;
   }
 }
 
-
-const mapStateToProps = (state) => ({
-  precincts : state.adminPrecincts.precincts
-});
-const mapDispatchToProps = (dispatch) => ({
-  actions : bindActionCreators(adminActions, dispatch)
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ResultsTableContainer);
-
-
+export default ResultsTableContainer;

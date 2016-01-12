@@ -6,15 +6,22 @@ import {
   compose,
   createStore
 } from 'redux';
+import persistState         from 'redux-localstorage';
+
+import { apiMiddleware } from 'redux-api-middleware';
 
 export default function configureStore (initialState, debug = false) {
   let createStoreWithMiddleware;
 
-  const middleware = applyMiddleware(thunk);
+  const middleware = compose(
+                       applyMiddleware(thunk),
+                       applyMiddleware(apiMiddleware)
+                     );
 
   if (debug) {
     createStoreWithMiddleware = compose(
       middleware,
+      persistState('session'),
       DevTools.instrument()
     );
   } else {
