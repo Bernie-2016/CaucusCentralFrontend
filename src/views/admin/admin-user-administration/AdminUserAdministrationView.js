@@ -28,10 +28,10 @@ export class AdminUserAdministrationView extends React.Component {
         <div className='message'>{this.renderMessage()}</div>
         <div className='row'>
           <div className='col-lg-8'>
-            <UserAdministrationTableContainer users={this.props.adminUsers.users} />
+            <UserAdministrationTableContainer users={this.props.adminUsers.users} {...this.props} />
           </div>
           <div className='col-lg-4'>
-            <UserAdministrationFormContainer />
+            <UserAdministrationFormContainer {...this.props} />
           </div>
         </div>
       </div>
