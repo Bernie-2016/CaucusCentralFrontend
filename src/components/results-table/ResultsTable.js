@@ -14,13 +14,15 @@ export class ResultsTable extends React.Component {
       won:'N/A'
     };
 
-    for (let i = 0, len = delegatesArray.length; i < len; i++) {
-      if (delegatesArray[i].key === delegate) {
-        let a = delegatesArray[i];
-        counts = {
-          supporters:a.supporters,
-          won:a.delegates_won
-        };
+    if ( delegatesArray !== undefined ) {
+      for (let i = 0, len = delegatesArray.length; i < len; i++) {
+        if (delegatesArray[i].key === delegate) {
+          let a = delegatesArray[i];
+          counts = {
+            supporters:a.supporters,
+            won:a.delegates_won
+          };
+        }
       }
     }
     return counts;
@@ -32,7 +34,7 @@ export class ResultsTable extends React.Component {
     const rowHeight = 30;
     const tableWidth = 1200;
     const tableHeight = (precincts.length * rowHeight) + (headerHeight + 3);
-    const columnWidth = 150;
+    const columnWidth = 133.333;
 
     return (
       <Table
@@ -53,6 +55,15 @@ export class ResultsTable extends React.Component {
           cell={props => (
             <Cell {...props}>
               {precincts[props.rowIndex].name}
+            </Cell>
+          )}
+          width={columnWidth}
+        />
+        <Column
+          header={<Cell>Phase</Cell>}
+          cell={props => (
+            <Cell {...props}>
+              {precincts[props.rowIndex].phase}
             </Cell>
           )}
           width={columnWidth}
