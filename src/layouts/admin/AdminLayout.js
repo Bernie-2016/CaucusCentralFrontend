@@ -11,7 +11,7 @@ const mapDispatchToProps = (dispatch) => ({
   actions : bindActionCreators(sessionActions, dispatch)
 });
 
-export class AdminView extends React.Component {
+export class AdminLayout extends React.Component {
   componentWillMount() {
     this.redirectToSigninIfLoggedOut();
   }
@@ -43,4 +43,4 @@ export class AdminView extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AdminView);
+export default connect(mapStateToProps, mapDispatchToProps)(AdminLayout);

@@ -24,7 +24,8 @@ export default class CaptainTopNav extends React.Component {
                                           signout-btn
                                           text-center"
                                href="#"
-                               role="button">
+                               role="button"
+                               onClick={this.props.signOut}>
                             <p>Sign Out</p>
                             </a>
                         </div>
