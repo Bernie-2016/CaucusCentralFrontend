@@ -10,7 +10,7 @@ import adminActions           from 'actions/admin/';
 export class AdminUserAdministrationView extends React.Component {
 
   componentDidMount() {
-    this.props.actions.getAllUsers(this.props.session.token);
+    this.props.actions.getAllUsers({token: this.props.session.token});
   }
 
   renderMessage() {
