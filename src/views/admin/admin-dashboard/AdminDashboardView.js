@@ -3,7 +3,6 @@ import { Link }                   from 'react-router';
 import { bindActionCreators }     from 'redux';
 import { connect }                from 'react-redux';
 import * as adminActions          from 'actions/admin';
-import SVGMapContainer            from 'components/SVGMap/SVGMapContainer';
 import ResultsTableContainer      from 'components/results-table/ResultsTableContainer';
 
 const mapStateToProps = (state) => (state);
@@ -27,7 +26,6 @@ export class AdminDashboardView extends React.Component {
         <h1>Dashboard</h1>
         <div className='message'>{this.renderMessage()}</div>
         <ResultsTableContainer {...this.props}/>
-        <SVGMapContainer />
       </div>
     );
   }
