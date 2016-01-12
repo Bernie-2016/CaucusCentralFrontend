@@ -8,19 +8,25 @@ export class ResultsTable extends React.Component {
     super(props);
   }
 
-  getDelegateCountsFor (delegate, delegatesArray) {
+  getDelegateCountsFor (candidateName, precinct) {
+    // if we're in the apportionment phase, or delegates have
+    // been apportioned, get the number of delegates awarded
+    // to the candidate
     let counts = {
       supporters:'N/A',
       won:'N/A'
     };
+    const candidates = precinct.delegate_counts;
 
-    for (let i = 0, len = delegatesArray.length; i < len; i++) {
-      if (delegatesArray[i].key === delegate) {
-        let a = delegatesArray[i];
-        counts = {
-          supporters:a.supporters,
-          won:a.delegates_won
-        };
+    if (precinct.phase === 'apportioned' || precinct.phase === 'apportionment') {
+      for (let i = 0, len = candidates.length; i < len; i++) {
+        if (candidates[i].key === candidateName) {
+          const candidate = candidates[i];
+          counts = {
+            supporters: candidate.supporters,
+            won: candidate.delegates_won
+          };
+        }
       }
     }
     return counts;
@@ -70,7 +76,7 @@ export class ResultsTable extends React.Component {
           header={<Cell>Bernie</Cell>}
           cell={props => (
             <Cell {...props}>
-              {this.getDelegateCountsFor('sanders', precincts[props.rowIndex].delegate_counts).supporters}
+              {this.getDelegateCountsFor('sanders', precincts[props.rowIndex]).supporters}
             </Cell>
           )}
           width={columnWidth}
@@ -79,7 +85,7 @@ export class ResultsTable extends React.Component {
           header={<Cell>Hillary</Cell>}
           cell={props => (
             <Cell {...props}>
-              {this.getDelegateCountsFor('hillary', precincts[props.rowIndex].delegate_counts).supporters}
+              {this.getDelegateCountsFor('hillary', precincts[props.rowIndex]).supporters}
             </Cell>
           )}
           width={columnWidth}
@@ -88,7 +94,7 @@ export class ResultsTable extends React.Component {
           header={<Cell>O'Malley</Cell>}
           cell={props => (
             <Cell {...props}>
-              {this.getDelegateCountsFor('omalley', precincts[props.rowIndex].delegate_counts).supporters}
+              {this.getDelegateCountsFor('omalley', precincts[props.rowIndex]).supporters}
             </Cell>
           )}
           width={columnWidth}
@@ -106,7 +112,7 @@ export class ResultsTable extends React.Component {
           header={<Cell>Delegates Awarded</Cell>}
           cell={props => (
             <Cell {...props}>
-              {this.getDelegateCountsFor('sanders', precincts[props.rowIndex].delegate_counts).won}
+              {this.getDelegateCountsFor('sanders', precincts[props.rowIndex]).won}
             </Cell>
           )}
           width={columnWidth}

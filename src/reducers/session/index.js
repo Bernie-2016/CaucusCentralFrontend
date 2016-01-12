@@ -9,7 +9,6 @@ const initialState = (function () {
     }
     return item;
   };
-
   return {
     id: get('id'),
     firstName: get('firstName'),
@@ -59,10 +58,12 @@ const sign = {
   },
   out: {
     request: function (state) {
+      console.log('destroying session');
       return reduceState(state, { destroying: true });
     },
     success: function (state) {
-      window.sessionStorage.setItem('authToken', response.user.token);
+      console.log('session destroyed');
+      window.sessionStorage.removeItem('token');
       return reduceState(state, initialState);
     },
     failure: function (state, error) {
