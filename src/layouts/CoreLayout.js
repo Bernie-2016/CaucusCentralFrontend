@@ -1,4 +1,5 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
 import 'styles/core.scss';
 
 export default class CoreLayout extends React.Component {
