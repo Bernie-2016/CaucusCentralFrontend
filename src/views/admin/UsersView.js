@@ -1,10 +1,10 @@
-import React                  from 'react';
-import { Link }               from 'react-router';
-import { bindActionCreators } from 'redux';
-import { connect }            from 'react-redux';
-import UserAdministrationTableContainer               from 'components/user-administration-table/UserAdministrationTableContainer';
-import UserAdministrationFormContainer               from 'components/user-administration-form/UserAdministrationFormContainer';
-import adminActions           from 'actions/admin/';
+import React                              from 'react';
+import { Link }                           from 'react-router';
+import { bindActionCreators }             from 'redux';
+import { connect }                        from 'react-redux';
+import UserAdministrationTableContainer   from 'components/admin/users/table/UserAdministrationTableContainer';
+import UserAdministrationFormContainer    from 'components/admin/users/form/UserAdministrationFormContainer';
+import adminActions                       from 'actions/admin/';
 
 
 export class AdminUserAdministrationView extends React.Component {

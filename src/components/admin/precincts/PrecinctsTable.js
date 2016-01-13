@@ -2,7 +2,7 @@ import React from 'react';
 import {Table, Column, Cell} from 'fixed-data-table';
 require('fixed-data-table/dist/fixed-data-table.min.css');
 
-export class ResultsTable extends React.Component {
+export class PrecinctsTable extends React.Component {
 
   constructor (props) {
     super(props);
@@ -33,12 +33,12 @@ export class ResultsTable extends React.Component {
   }
 
   render () {
-    const precincts = this.props.adminPrecincts.precincts;
+    const precincts = this.props.adminState.state.precincts;
     const headerHeight = 30;
     const rowHeight = 30;
-    const tableWidth = 1200;
+    const tableWidth = 1125;
     const tableHeight = (precincts.length * rowHeight) + (headerHeight + 3);
-    const columnWidth = 133.333;
+    const columnWidth = 125;
 
     return (
       <Table
@@ -130,4 +130,4 @@ export class ResultsTable extends React.Component {
   }
 }
 
-export default ResultsTable;
+export default PrecinctsTable;

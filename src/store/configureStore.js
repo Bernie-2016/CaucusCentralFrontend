@@ -15,13 +15,13 @@ export default function configureStore (initialState, debug = false) {
 
   const middleware = compose(
                        applyMiddleware(thunk),
-                       applyMiddleware(apiMiddleware)
+                       applyMiddleware(apiMiddleware),
+                       persistState('session')
                      );
 
   if (debug) {
     createStoreWithMiddleware = compose(
       middleware,
-      persistState('session'),
       DevTools.instrument()
     );
   } else {

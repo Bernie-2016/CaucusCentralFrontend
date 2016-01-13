@@ -1,9 +1,9 @@
 import React                      from 'react';
+import { Link }                   from 'react-router';
 import { bindActionCreators }     from 'redux';
 import { connect }                from 'react-redux';
 import * as adminActions          from 'actions/admin';
-import SVGMapContainer            from 'components/SVGMap/SVGMapContainer';
-import ResultsTableContainer      from 'components/results-table/ResultsTableContainer';
+import StatesTableContainer       from 'components/admin/states/StatesTableContainer';
 
 const mapStateToProps = (state) => (state);
 const mapDispatchToProps = (dispatch) => ({
@@ -14,8 +14,8 @@ export class AdminDashboardView extends React.Component {
 
   renderMessage () {
     let message = '';
-    if (this.props.adminPrecincts.gettingPrecincts) {
-      message = 'Retrieving Precincts';
+    if (this.props.adminStates.gettingStates) {
+      message = 'Retrieving States';
     }
     return message;
   }
@@ -23,10 +23,9 @@ export class AdminDashboardView extends React.Component {
   render () {
     return (
       <div className='container admin-dashboard-view'>
-        <h1>Dashboard</h1>
+        <h1>States</h1>
         <div className='message'>{this.renderMessage()}</div>
-        <ResultsTableContainer {...this.props}/>
-        <SVGMapContainer />
+        <StatesTableContainer {...this.props}/>
       </div>
     );
   }

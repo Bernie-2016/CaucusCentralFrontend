@@ -1,11 +1,11 @@
-.navbar {
+.navbar.navbar-captain {
     color: white;
     background-color: #0c66d1;
     margin-bottom: 0;
     height: 65px;
 }
 
-.navbar p {
+.navbar.navbar-captain p {
     font-size: 0.7em;
     font-weight: bold;
     letter-spacing: 0em;
@@ -37,11 +37,11 @@
         margin-top: 7px;
     }
 
-    .navbar {
+    .navbar.navbar-captain {
         height: 55px;
     }
 
-    .navbar p {
+    .navbar.navbar-captain p {
         font-size: 0.6em;
         padding-top: 20px;
     }
@@ -60,7 +60,7 @@
 }
 
 @media (max-width: 350px) and (max-height: 500px) {
-    .navbar {
+    .navbar.navbar-captain {
         height: 50px;
     }
 
