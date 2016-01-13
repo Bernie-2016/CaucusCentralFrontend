@@ -23,8 +23,6 @@ export class AdminNav extends React.Component {
             </ul>
 
             <ul className="nav navbar-nav navbar-right">
-              <li><Link to='#'>Download CSV</Link></li>
-              <li><Link to='#'>Upload CSV</Link></li>
               <li><Link to='#' onClick={this.props.signOut}>Sign Out</Link></li>
             </ul>
           </div>
