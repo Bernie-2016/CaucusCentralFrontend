@@ -1,6 +1,12 @@
 import { createConstants } from '../utils';
 
 export default createConstants(
+  'GET_STATES_REQUEST',
+  'GET_STATES_SUCCESS',
+  'GET_STATES_FAILURE',
+  'GET_STATE_REQUEST',
+  'GET_STATE_SUCCESS',
+  'GET_STATE_FAILURE',
   'GET_PRECINCTS_REQUEST',
   'GET_PRECINCTS_SUCCESS',
   'GET_PRECINCTS_FAILURE',

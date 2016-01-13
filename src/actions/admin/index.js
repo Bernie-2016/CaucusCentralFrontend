@@ -3,6 +3,18 @@ import { CALL_API } from 'redux-api-middleware';
 import { formatEndpoint } from 'utils/api';
 
 export default {
+  getAllStates: (payload) => ({
+    [CALL_API]: {
+      types: [c.GET_STATES_REQUEST,
+              c.GET_STATES_SUCCESS,
+              c.GET_STATES_FAILURE],
+      endpoint: formatEndpoint(`/states`),
+      method: 'GET',
+      headers: {
+        'Authorization': payload.token
+      }
+    }
+  }),
   getAllPrecincts: (payload) => ({
     [CALL_API]: {
       types: [c.GET_PRECINCTS_REQUEST,
@@ -21,6 +33,18 @@ export default {
               c.GET_USERS_SUCCESS,
               c.GET_USERS_FAILURE],
       endpoint: formatEndpoint(`/users`),
+      method: 'GET',
+      headers: {
+        'Authorization': payload.token
+      }
+    }
+  }),
+  getState: (payload) => ({
+    [CALL_API]: {
+      types: [c.GET_STATE_REQUEST,
+              c.GET_STATE_SUCCESS,
+              c.GET_STATE_FAILURE],
+      endpoint: formatEndpoint(`/states/${payload.code}`),
       method: 'GET',
       headers: {
         'Authorization': payload.token

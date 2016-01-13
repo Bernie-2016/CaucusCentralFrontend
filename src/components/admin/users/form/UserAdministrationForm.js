@@ -14,6 +14,7 @@ export class UserAdministrationForm extends React.Component {
     }
 
     return <form onSubmit={this.props.onSubmit}>
+      <h4>Add User</h4>
       <div className="form-group">
         <label htmlFor="email">Email</label>
         <input type="email" className="form-control" name="email" required={true} value={this.props.email} onChange={this.props.onUpdate} />

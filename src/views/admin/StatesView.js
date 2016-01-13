@@ -3,7 +3,7 @@ import { Link }                   from 'react-router';
 import { bindActionCreators }     from 'redux';
 import { connect }                from 'react-redux';
 import * as adminActions          from 'actions/admin';
-import PrecinctsTableContainer    from 'components/admin/precincts/PrecinctsTableContainer';
+import StatesTableContainer       from 'components/admin/states/StatesTableContainer';
 
 const mapStateToProps = (state) => (state);
 const mapDispatchToProps = (dispatch) => ({
@@ -14,8 +14,8 @@ export class AdminDashboardView extends React.Component {
 
   renderMessage () {
     let message = '';
-    if (this.props.adminState.gettingState) {
-      message = 'Retrieving Precincts';
+    if (this.props.adminStates.gettingStates) {
+      message = 'Retrieving States';
     }
     return message;
   }
@@ -23,9 +23,9 @@ export class AdminDashboardView extends React.Component {
   render () {
     return (
       <div className='container admin-dashboard-view'>
-        <h1>{this.props.adminState.state.name}</h1>
+        <h1>States</h1>
         <div className='message'>{this.renderMessage()}</div>
-        <PrecinctsTableContainer {...this.props}/>
+        <StatesTableContainer {...this.props}/>
       </div>
     );
   }

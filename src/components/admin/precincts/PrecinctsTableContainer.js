@@ -7,7 +7,8 @@ export class PrecinctsTableContainer extends React.Component {
   }
 
   componentWillMount () {
-    this.props.actions.getAllPrecincts({token: this.props.session.token});
+    let { code } = this.props.params;
+    this.props.actions.getState({code: code, token: this.props.session.token});
   }
 
   render () {
