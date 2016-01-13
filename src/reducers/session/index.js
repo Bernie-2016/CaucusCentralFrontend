@@ -3,10 +3,11 @@ import * as c from 'constants/session';
 
 const initialState = {
   id: undefined,
-  firstName: '',
-  lastName: '',
+  firstName: undefined,
+  lastName: undefined,
   email: undefined,
   privilege: undefined,
+  precinctId: undefined,
   token: undefined,
   fetching: false,
   destroying: false
@@ -21,14 +22,16 @@ const sign = {
       });
     },
     success: function (state, response) {
-      return reduceState(state, {
+      const session = {
         id: response.user.id,
         firstName: response.user.first_name,
         lastName: response.user.last_name,
         privilege: response.user.privilege,
+        precinctId: response.user.precinct_id,
         token: response.user.token,
         fetching: false
-      });
+      };
+      return reduceState(state, session);
     },
     failure: function (state, error) {
       return reduceState(state, { error: error, fetching: false });

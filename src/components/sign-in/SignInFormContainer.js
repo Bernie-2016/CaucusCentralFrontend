@@ -33,7 +33,7 @@ class SignInFormContainer extends React.Component {
       if ( this.props.session.privilege === 'organizer' ) {
         this.props.history.pushState(null, '/admin');
       } else if ( this.props.session.privilege === 'captain' ) {
-        this.props.history.pushState(null, '/captain/dashboard')
+        this.props.history.pushState(null, '/captain')
       }
     }
   }

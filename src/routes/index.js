@@ -8,7 +8,7 @@ import SignInView            from 'views/sign-in/SignInView';
 import StatesView            from 'views/admin/StatesView';
 import PrecinctsView         from 'views/admin/PrecinctsView';
 import UsersView             from 'views/admin/UsersView';
-import CaptainDashboardView  from 'views/captain/dashboard/CaptainDashboardView';
+import CaptainDashboardView  from 'views/captain/DashboardView';
 
 export default (
   <Route component={CoreLayout} path='/'>

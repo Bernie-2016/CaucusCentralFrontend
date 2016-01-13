@@ -111,11 +111,5 @@ export default {
         'Authorization': payload.token
       }
     }
-  }),
-  downloadCsv: () => ({
-    // todo: implement
-  }),
-  uploadCsv: () => ({
-    // todo: implement
   })
 };

@@ -10,8 +10,7 @@ const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(adminActions, dispatch)
 });
 
-export class AdminDashboardView extends React.Component {
-
+export class StatesView extends React.Component {
   renderMessage () {
     let message = '';
     if (this.props.adminStates.gettingStates) {
@@ -31,4 +30,4 @@ export class AdminDashboardView extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AdminDashboardView);
+export default connect(mapStateToProps, mapDispatchToProps)(StatesView);

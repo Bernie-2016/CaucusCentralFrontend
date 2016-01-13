@@ -1,5 +1,4 @@
 import React                      from 'react';
-import { Link }                   from 'react-router';
 import { bindActionCreators }     from 'redux';
 import { connect }                from 'react-redux';
 import * as adminActions          from 'actions/admin';
@@ -10,8 +9,7 @@ const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(adminActions, dispatch)
 });
 
-export class AdminDashboardView extends React.Component {
-
+export class PrecinctsView extends React.Component {
   renderMessage () {
     let message = '';
     if (this.props.adminState.gettingState) {
@@ -31,4 +29,4 @@ export class AdminDashboardView extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AdminDashboardView);
+export default connect(mapStateToProps, mapDispatchToProps)(PrecinctsView);

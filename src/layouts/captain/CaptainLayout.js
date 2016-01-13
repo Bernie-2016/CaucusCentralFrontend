@@ -2,10 +2,10 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect }            from 'react-redux';
 import sessionActions         from 'actions/session';
-import CaptainTopNav from 'components/captain/CaptainTopNav';
+import CaptainNav from 'components/captain/nav/CaptainNav';
 
 // Import styles here.
-import './Captain.scss';
+import './CaptainLayout.scss';
 
 const mapStateToProps = (state) => (state);
 
@@ -41,7 +41,7 @@ export class CaptainLayout extends React.Component {
     render () {
         return (
             <div>
-              <CaptainTopNav signOut={ (e) => this.signOut(e) } {...this.props} />
+              <CaptainNav signOut={ (e) => this.signOut(e) } {...this.props} />
               { this.props.children }
             </div>
         );
