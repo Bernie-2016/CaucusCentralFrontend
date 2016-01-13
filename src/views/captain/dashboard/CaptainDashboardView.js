@@ -17,7 +17,8 @@ const mapDispatchToProps = (dispatch) => ({
 const CaptainDashboardView = React.createClass({
 
   componentWillMount: function () {
-    this.props.actions.getCurrentTotals({
+    console.log('mounting!', JSON.stringify(this.props));
+    this.props.actions.getPrecinct({
       precinctId: this.props.captain.precinct.precinctId,
       token: this.props.session.token
     });

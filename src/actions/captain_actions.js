@@ -4,18 +4,21 @@ import * as c from 'constants/captain';
 import _ from 'lodash';
 
 export default {
-  getCurrentTotals: (payload) => ({
-    [CALL_API]: {
-      types: [c.CANDIDATE_TOTALS_REQUEST,
-              c.CANDIDATE_TOTALS_SUCCESS,
-              c.CANDIDATE_TOTALS_FAILURE],
-      endpoint: formatEndpoint(`/precincts/${payload.precinctId}`),
-      headers: {
-        'Authorization': payload.token
-      },
-      method: 'GET'
-    }
-  }),
+  getPrecinct: (payload) => {
+    console.log('action fired with', payload);
+    return {
+      [CALL_API]: {
+        types: [c.PRECINCT_REQUEST,
+                c.PRECINCT_SUCCESS,
+                c.PRECINCT_FAILURE],
+        endpoint: formatEndpoint(`/precincts/${payload.precinctId}`),
+        headers: {
+          'Authorization': payload.token
+        },
+        method: 'GET'
+      }
+    };
+  },
   calculate: (payload) => {
     return {
       type: c.CACLULATE_TOTALS,

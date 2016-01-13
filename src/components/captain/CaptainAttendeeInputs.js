@@ -39,9 +39,6 @@ const CaptainAttendeeInputs = React.createClass({
   },
 
   render: function () {
-    if (__DEV__) {
-      console.log(this.props);
-    }
     return (
       <div className='container-fluid attendee-inputs'>
 

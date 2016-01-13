@@ -14,9 +14,12 @@ const initialState = {
     forTwoMoreDelegates: 0
   },
   precinct: {
-    precinctId: 135,
-    precinctName: '',
-    totalDelegates: 0
+    id: undefined,
+    name: '',
+    county: '',
+    totalDelegates: 0,
+    phase: 'start',
+    fetching: false
   },
   fetchingTally: false
 };
@@ -30,12 +33,34 @@ const calculateDelegates = function (attendees, supporters, availableDelegates) 
 };
 
 const precinct = {
-  set: function (state, response) {
+  initialSet: function (state, response) {
+    console.log('setting captain precinct!', JSON.stringify(response));
     return reduceState(state, {
       precinct: {
         precinctId: response.user.precinct_id
       }
     });
+  },
+  request: function (state) {
+    console.log('fetching precinct', JSON.stringify(state));
+    return reduceState(state, { fetching: true });
+  },
+  success: function (state, response) {
+    console.log('response', JSON.stringify(response));
+    const res = response.precinct;
+    return reduceState(state, {
+      precinct: {
+        id: res.id,
+        name: res.name,
+        county: res.county,
+        totalDelegates: res.total_delegates,
+        phase: res.phase,
+        fetching: false
+      }
+    });
+  },
+  failure: function (state, error) {
+    return reduceState(state, { error: error, fetching: false });
   },
   calculateTotals: function (state, payload) {
     const changes = {};
@@ -58,7 +83,7 @@ const tallyAttendees = {
       fetchingTally: true
     });
   },
-  response: function (state, response) {
+  success: function (state, response) {
     const resPrecinct = response.precinct;
     const bernie = _.find(resPrecinct.delegate_counts, {'key': 'sanders'});
     return reduceState(state, {
@@ -78,10 +103,13 @@ const tallyAttendees = {
 };
 
 export default createReducer(initialState, {
-  [c.CALCULATE_TOTALS]        : precinct.calculateTotals,
-  [SIGN_IN_SUCCESS]           : precinct.set,
-  [c.TALLY_ATTENDEES_REQUEST] : tallyAttendees.request,
-  [c.TALLY_ATTENDEES_SUCCESS] : tallyAttendees.success,
-  [c.TALLY_ATTENDEES_FAILURE] : tallyAttendees.failure
+  [SIGN_IN_SUCCESS]             : precinct.initialSet,
+  [c.PRECINCT_REQUEST]          : precinct.request,
+  [c.PRECINCT_SUCCESS]          : precinct.success,
+  [c.PRECINCT_FAIURE]           : precinct.failure,
+  [c.CALCULATE_TOTALS]          : precinct.calculateTotals,
+  [c.TALLY_ATTENDEES_REQUEST]   : tallyAttendees.request,
+  [c.TALLY_ATTENDEES_SUCCESS]   : tallyAttendees.success,
+  [c.TALLY_ATTENDEES_FAILURE]   : tallyAttendees.failure
 });
 
