@@ -7,8 +7,6 @@ import CaptainEntryMessage       from './CaptainEntryMessage';
 import CaptainEntryViability     from './CaptainEntryViability';
 import captainActions            from 'actions/captain/';
 
-import './CaptainEntry.scss';
-
 const mapStateToProps = (state) => (state);
 const mapDispatchToProps = (dispatch) => ({
   actions : bindActionCreators(captainActions, dispatch)

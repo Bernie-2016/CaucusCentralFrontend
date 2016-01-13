@@ -4,8 +4,6 @@ import { connect }            from 'react-redux';
 import captainActions         from 'actions/captain';
 import CaptainEntry           from 'components/captain/CaptainEntry';
 
-import './DashboardView.scss';
-
 const mapStateToProps = (state) => (state);
 
 const mapDispatchToProps = (dispatch) => ({
