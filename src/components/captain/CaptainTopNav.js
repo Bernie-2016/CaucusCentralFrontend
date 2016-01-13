@@ -5,7 +5,7 @@ export default class CaptainTopNav extends React.Component {
     render() {
         var logoURL = 'http://i.imgur.com/iKckvAn.png';
         return (
-            <nav className="navbar navbar-default">
+            <nav className="navbar navbar-default navbar-captain">
                 <div className="container-fluid">
                     <div className="row">
 

@@ -1,12 +1,13 @@
 import React                 from 'react';
 import { Route, IndexRoute } from 'react-router';
 import CoreLayout            from 'layouts/CoreLayout';
-import SignInView            from 'views/sign-in/SignInView';
-import AdminDashboardView    from 'views/admin/admin-dashboard/AdminDashboardView';
-import AdminUserAdministrationView  from 'views/admin/admin-user-administration/AdminUserAdministrationView';
-
 import AdminLayout           from 'layouts/admin/AdminLayout';
 import CaptainLayout         from 'layouts/captain/CaptainLayout';
+
+import SignInView            from 'views/sign-in/SignInView';
+import StatesView            from 'views/admin/StatesView';
+import PrecinctsView         from 'views/admin/PrecinctsView';
+import UsersView             from 'views/admin/UsersView';
 import CaptainDashboardView  from 'views/captain/dashboard/CaptainDashboardView';
 
 export default (
@@ -16,8 +17,9 @@ export default (
       <IndexRoute component={CaptainDashboardView} />
     </Route>
     <Route component={AdminLayout}  path='/admin'>
-      <IndexRoute component={AdminDashboardView} />
-      <Route component={AdminUserAdministrationView} path='/admin/users' />
+      <IndexRoute component={StatesView} />
+      <Route component={PrecinctsView} path='/admin/states/:code' />
+      <Route component={UsersView} path='/admin/users' />
     </Route>
   </Route>
 );
