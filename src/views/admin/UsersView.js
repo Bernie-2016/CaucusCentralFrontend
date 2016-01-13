@@ -7,7 +7,7 @@ import UserAdministrationFormContainer    from 'components/admin/users/form/User
 import adminActions                       from 'actions/admin/';
 
 
-export class AdminUserAdministrationView extends React.Component {
+export class UsersView extends React.Component {
 
   componentDidMount() {
     this.props.actions.getAllUsers({token: this.props.session.token});
@@ -44,4 +44,4 @@ const mapDispatchToProps = (dispatch) => ({
   actions : bindActionCreators(adminActions, dispatch)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AdminUserAdministrationView);
+export default connect(mapStateToProps, mapDispatchToProps)(UsersView);

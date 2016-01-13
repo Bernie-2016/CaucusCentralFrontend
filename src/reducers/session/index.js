@@ -7,20 +7,10 @@ const initialState = {
   lastName: undefined,
   email: undefined,
   privilege: undefined,
+  precinctId: undefined,
   token: undefined,
   fetching: false,
   destroying: false
-};
-
-const storeSession = function (session) {
-  const store = (key, val) => {
-    window.sessionStorage.setItem(key, val);
-  };
-  store('id', session.id);
-  store('firstName', session.firstName);
-  store('lastName', session.lastName);
-  store('privilege', session.privilege);
-  store('token', session.token);
 };
 
 const sign = {
@@ -37,10 +27,10 @@ const sign = {
         firstName: response.user.first_name,
         lastName: response.user.last_name,
         privilege: response.user.privilege,
+        precinctId: response.user.precinct_id,
         token: response.user.token,
         fetching: false
       };
-      // storeSession(session)
       return reduceState(state, session);
     },
     failure: function (state, error) {
@@ -49,12 +39,9 @@ const sign = {
   },
   out: {
     request: function (state) {
-      console.log('destroying session');
       return reduceState(state, { destroying: true });
     },
     success: function (state) {
-      console.log('session destroyed');
-      // window.sessionStorage.removeItem('token');
       return reduceState(state, initialState);
     },
     failure: function (state, error) {
