@@ -13,19 +13,16 @@ export class UsersView extends React.Component {
     this.props.actions.getAllUsers({token: this.props.session.token});
   }
 
-  renderMessage() {
-    var message = '';
-    if (this.props.adminUsers.getting_users) {
-      message = 'Retrieving Users';
-    }
-    return message;
-  }
-
   render () {
+    let message = null;
+    if (this.props.adminUsers.gettingUsers) {
+      message = <div className='alert alert-warning'>Retrieving Users</div>;
+    }
+
     return (
       <div className='container admin-user-administration-view'>
         <h1>User Administration</h1>
-        <div className='message'>{this.renderMessage()}</div>
+        {message}
         <div className='row'>
           <div className='col-lg-8'>
             <UserAdministrationTableContainer users={this.props.adminUsers.users} {...this.props} />

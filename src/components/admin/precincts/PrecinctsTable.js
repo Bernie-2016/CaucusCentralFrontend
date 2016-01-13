@@ -9,9 +9,6 @@ export class PrecinctsTable extends React.Component {
   }
 
   getDelegateCountsFor (candidateName, precinct) {
-    // if we're in the apportionment phase, or delegates have
-    // been apportioned, get the number of delegates awarded
-    // to the candidate
     let counts = {
       supporters:'N/A',
       won:'N/A'
@@ -94,7 +91,7 @@ export class PrecinctsTable extends React.Component {
           header={<Cell>Hillary</Cell>}
           cell={props => (
             <Cell {...props}>
-              {this.getDelegateCountsFor('hillary', precincts[props.rowIndex]).supporters}
+              {this.getDelegateCountsFor('clinton', precincts[props.rowIndex]).supporters}
             </Cell>
           )}
           width={columnWidth}

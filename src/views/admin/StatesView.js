@@ -11,19 +11,15 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export class StatesView extends React.Component {
-  renderMessage () {
-    let message = '';
-    if (this.props.adminStates.gettingStates) {
-      message = 'Retrieving States';
-    }
-    return message;
-  }
-
   render () {
+    let message = null;
+    if (this.props.adminStates.gettingStates) {
+      message = <div className='alert alert-warning'>Retrieving States</div>;
+    }
     return (
       <div className='container admin-dashboard-view'>
         <h1>States</h1>
-        <div className='message'>{this.renderMessage()}</div>
+        {message}
         <StatesTableContainer {...this.props}/>
       </div>
     );
