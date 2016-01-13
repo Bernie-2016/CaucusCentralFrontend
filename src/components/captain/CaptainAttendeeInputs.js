@@ -33,6 +33,28 @@ const CaptainAttendeeInputs = React.createClass({
     this.props.actions.calculate(payload);
   },
 
+  submitText: function () {
+    const precinctStatus = this.props.captain.precinct.phase;
+    let text = '';
+    switch (precinctStatus) {
+    case 'start':
+      text = 'Submit total precinct attendees';
+      break;
+    case 'not_viable':
+      text = 'Submit totals for viability';
+      break;
+    case 'apportionment':
+      text = 'Submit totals for apportionment';
+      break;
+    case 'apportioned':
+      text = 'Caucus completed';
+      break;
+    default:
+      text = 'Invalid precinct state';
+    }
+    return text;
+  },
+
   handleSubmit: function (e) {
     e.preventDefault();
     this.props.actions.tallyAttendees(payload);
@@ -95,7 +117,7 @@ const CaptainAttendeeInputs = React.createClass({
             </div>
           </div>
         </div>
-        <button onClick={this.handleSubmit} action='submit'></button>
+        <button onClick={this.handleSubmit} action='submit'>{this.submitText()}</button>
       </div>
     );
   }

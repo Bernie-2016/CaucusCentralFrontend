@@ -39,11 +39,11 @@ const CaptainDashboardView = React.createClass({
 
         {/* Insert Viability Component Here */}
         <div className='row'>
-          <CaptainViabilityResults { ...this.props } />
+          <CaptainViabilityResults {...this.props} />
         </div>
 
         <div className='row'>
-          <CaptainAttendeeInputs { ...this.props }/>
+          <CaptainAttendeeInputs {...this.props}/>
         </div>
 
       </div>
