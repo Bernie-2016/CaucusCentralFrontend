@@ -1,8 +1,4 @@
 import React                  from 'react';
-import { Link }               from 'react-router';
-import { bindActionCreators } from 'redux';
-import { connect }            from 'react-redux';
-import sessionActions         from 'actions/session';
 import AdminNav               from 'components/admin-nav/AdminNav';
 
 const mapStateToProps = (state) => (state);
