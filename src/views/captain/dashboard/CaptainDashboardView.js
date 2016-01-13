@@ -8,17 +8,7 @@ import CaptainViabilityResults from 'components/captain/CaptainViabilityResults'
 
 import './CaptainDashboard.scss';
 
-const mapStateToProps = (state) => ({
-  routerState: state.router,
-  precinctId: state.captain.precinct.precinctId,
-  precinctName: state.captain.precinct.precinctName,
-  totalDelegates: state.captain.precinct.totalDelegates,
-  isViable: state.captain.viability.isViable,
-  toBecomeViable: state.captain.viability.toBecomeViable,
-  delegatesWon: state.captain.viability.delegatesWon,
-  forOneMoreDelegate: state.captain.viability.forOneMoreDelegate,
-  forTwoMoreDelegates: state.captain.viability.forTwoMoreDelegates
-});
+const mapStateToProps = (state) => (state);
 
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(captainActions, dispatch)
@@ -27,7 +17,10 @@ const mapDispatchToProps = (dispatch) => ({
 const CaptainDashboardView = React.createClass({
 
   componentWillMount: function () {
-    this.props.actions.getCurrentTotals(this.props.precinctId);
+    this.props.actions.getCurrentTotals({
+      precinctId: this.props.captain.precinct.precinctId,
+      token: this.props.session.token
+    });
   },
 
   render: function () {

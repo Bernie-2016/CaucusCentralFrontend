@@ -36,6 +36,11 @@ const precinct = {
         precinctId: response.user.precinct_id
       }
     });
+  },
+  calculateTotals: function (state, payload) {
+    const changes = {};
+    changes.something = payload.something;
+    return reduceState(state, changes);
   }
 };
 
@@ -73,6 +78,7 @@ const tallyAttendees = {
 };
 
 export default createReducer(initialState, {
+  [c.CALCULATE_TOTALS]        : precinct.calculateTotals,
   [SIGN_IN_SUCCESS]           : precinct.set,
   [c.TALLY_ATTENDEES_REQUEST] : tallyAttendees.request,
   [c.TALLY_ATTENDEES_SUCCESS] : tallyAttendees.success,

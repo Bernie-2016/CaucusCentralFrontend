@@ -1,5 +1,7 @@
 import React                  from 'react';
 import AdminNav               from 'components/admin-nav/AdminNav';
+import { connect }            from 'react-redux';
+import { sessionActions }     from 'actions/session';
 
 const mapStateToProps = (state) => (state);
 

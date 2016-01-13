@@ -10,9 +10,18 @@ export default {
               c.CANDIDATE_TOTALS_SUCCESS,
               c.CANDIDATE_TOTALS_FAILURE],
       endpoint: formatEndpoint(`/precincts/${payload.precinctId}`),
+      headers: {
+        'Authorization': payload.token
+      },
       method: 'GET'
     }
   }),
+  calculate: (payload) => {
+    return {
+      type: c.CACLULATE_TOTALS,
+      payload: payload
+    };
+  },
   tallyAttendees: (payload) => {
     const body = {
       precinct: {
@@ -24,7 +33,6 @@ export default {
             supporters: supporters
           }]);}, [])
       },
-      authentication: `BASIC ${window.__AUTH_TOKEN__}`,
       attendees: payload.attendees
     };
     return {
@@ -34,7 +42,8 @@ export default {
                 c.TALLY_ATTENDEES_FAILURE],
         endpoint: formatEndpoint(`/precincts/${payload.precinctId}/viability`),
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': payload.token
         },
         method: 'POST',
         body: body

@@ -1,25 +1,16 @@
 import { createReducer, reduceState } from 'utils';
 import * as c from 'constants/session';
 
-const initialState = (function () {
-  const get = (key) => {
-    const item = window.sessionStorage.getItem(key);
-    if (!item) {
-      return undefined;
-    }
-    return item;
-  };
-  return {
-    id: get('id'),
-    firstName: get('firstName'),
-    lastName: get('lastName'),
-    email: get('email'),
-    privilege: get('privilege'),
-    token: get('token'),
-    fetching: false,
-    destroying: false
-  };
-})();
+const initialState = {
+  id: undefined,
+  firstName: undefined,
+  lastName: undefined,
+  email: undefined,
+  privilege: undefined,
+  token: undefined,
+  fetching: false,
+  destroying: false
+};
 
 const storeSession = function (session) {
   const store = (key, val) => {
@@ -49,7 +40,7 @@ const sign = {
         token: response.user.token,
         fetching: false
       };
-      storeSession(session);
+      // storeSession(session)
       return reduceState(state, session);
     },
     failure: function (state, error) {
@@ -63,7 +54,7 @@ const sign = {
     },
     success: function (state) {
       console.log('session destroyed');
-      window.sessionStorage.removeItem('token');
+      // window.sessionStorage.removeItem('token');
       return reduceState(state, initialState);
     },
     failure: function (state, error) {

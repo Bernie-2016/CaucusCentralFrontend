@@ -1,6 +1,7 @@
 import { createConstants } from '../utils';
 
 export default createConstants(
+  'CALCULATE_TOTALS',
   'CANDIDATE_TOTALS_REQUEST',
   'CANDIDATE_TOTALS_SUCCESS',
   'CANDIDATE_TOTALS_FAILURE',
