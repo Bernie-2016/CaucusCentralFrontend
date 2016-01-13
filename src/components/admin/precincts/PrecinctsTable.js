@@ -2,7 +2,7 @@ import React from 'react';
 import {Table, Column, Cell} from 'fixed-data-table';
 require('fixed-data-table/dist/fixed-data-table.min.css');
 
-export class ResultsTable extends React.Component {
+export class PrecinctsTable extends React.Component {
 
   constructor (props) {
     super(props);
@@ -126,4 +126,4 @@ export class ResultsTable extends React.Component {
   }
 }
 
-export default ResultsTable;
+export default PrecinctsTable;

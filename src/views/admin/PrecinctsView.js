@@ -3,7 +3,7 @@ import { Link }                   from 'react-router';
 import { bindActionCreators }     from 'redux';
 import { connect }                from 'react-redux';
 import * as adminActions          from 'actions/admin';
-import ResultsTableContainer      from 'components/results-table/ResultsTableContainer';
+import PrecinctsTableContainer    from 'components/admin/precincts/PrecinctsTableContainer';
 
 const mapStateToProps = (state) => (state);
 const mapDispatchToProps = (dispatch) => ({
@@ -25,7 +25,7 @@ export class AdminDashboardView extends React.Component {
       <div className='container admin-dashboard-view'>
         <h1>Dashboard</h1>
         <div className='message'>{this.renderMessage()}</div>
-        <ResultsTableContainer {...this.props}/>
+        <PrecinctsTableContainer {...this.props}/>
       </div>
     );
   }

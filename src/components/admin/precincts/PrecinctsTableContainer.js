@@ -1,7 +1,7 @@
 import React from 'react';
-import ResultsTable from './ResultsTable';
+import PrecinctsTable from './PrecinctsTable';
 
-export class ResultsTableContainer extends React.Component {
+export class PrecinctsTableContainer extends React.Component {
   constructor (props) {
     super(props);
   }
@@ -11,8 +11,8 @@ export class ResultsTableContainer extends React.Component {
   }
 
   render () {
-    return <ResultsTable {...this.props} />;
+    return <PrecinctsTable {...this.props} />;
   }
 }
 
-export default ResultsTableContainer;
+export default PrecinctsTableContainer;
