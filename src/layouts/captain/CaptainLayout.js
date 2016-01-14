@@ -39,12 +39,12 @@ export class CaptainLayout extends React.Component {
     }
 
     render () {
-        return (
-            <div>
-              <CaptainNav signOut={ (e) => this.signOut(e) } {...this.props} />
-              { this.props.children }
-            </div>
-        );
+      return (
+        <div className='container'>
+          <CaptainNav signOut={ (e) => this.signOut(e) } {...this.props} />
+          { this.props.children }
+        </div>
+      );
     }
 }
 
