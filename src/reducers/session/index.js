@@ -10,7 +10,8 @@ const initialState = {
   precinctId: undefined,
   token: undefined,
   fetching: false,
-  destroying: false
+  destroying: false,
+  created: false
 };
 
 const sign = {
@@ -46,6 +47,17 @@ const sign = {
     },
     failure: function (state, error) {
       return reduceState(state, { error: error, destroying: false });
+    }
+  },
+  up: {
+    request: function (state) {
+      return reduceState(state, { created: false });
+    },
+    success: function (state) {
+      return reduceState(state, { created: true });
+    },
+    failure: function (state, error) {
+      return reduceState(state, { error: error, created: false });
     }
   }
 };
