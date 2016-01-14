@@ -17,6 +17,7 @@ export class UsersImportForm extends React.Component {
 
     return (
       <div>
+        <p>Upload a CSV with 4 columns and no headers: <br /><strong>State (short code e.g. IA), County Name, Precinct Name, Email</strong></p>
         <form onSubmit={this.props.onSubmit}>
           <div className="form-group">
             <label htmlFor="file">Users CSV</label>
