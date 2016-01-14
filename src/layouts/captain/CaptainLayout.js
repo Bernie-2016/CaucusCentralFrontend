@@ -2,7 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect }            from 'react-redux';
 import sessionActions         from 'actions/session';
-import CaptainNav from 'components/captain/nav/CaptainNav';
+import CaptainNav             from 'components/nav/CaptainNav';
 
 // Import styles here.
 import './CaptainLayout.scss';

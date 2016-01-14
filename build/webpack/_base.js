@@ -1,6 +1,7 @@
 import webpack           from 'webpack';
 import cssnano           from 'cssnano';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 import config            from '../../config';
 
 const paths = config.get('utils_paths');
@@ -31,7 +32,10 @@ const webpackConfig = {
       minify   : {
         collapseWhitespace : true
       }
-    })
+    }),
+    new CopyWebpackPlugin([
+      { from: './src/static' }
+    ])
   ],
   resolve : {
     extensions : ['', '.js', '.jsx'],

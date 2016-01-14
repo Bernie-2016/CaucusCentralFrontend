@@ -1,2 +1,11 @@
 @import 'base';
 @import 'vendor/normalize';
+
+div.logo-row {
+  text-align: center;
+
+  img {
+    width: 250px;
+    margin: 25px;
+  }
+}

@@ -3,7 +3,7 @@ import { Link }               from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect }            from 'react-redux';
 import * as sessionActions    from 'actions/session';
-import AdminNav               from 'components/admin/nav/AdminNav';
+import AdminNav               from 'components/nav/AdminNav';
 
 const mapStateToProps = (state) => (state);
 
