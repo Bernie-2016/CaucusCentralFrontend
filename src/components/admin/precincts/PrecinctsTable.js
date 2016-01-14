@@ -29,13 +29,36 @@ export class PrecinctsTable extends React.Component {
     return counts;
   }
 
+  phaseText(precinctStatus) {
+    let text = '';
+    switch (precinctStatus) {
+    case 'start':
+      text = 'Ready to Begin';
+      break;
+    case 'viability':
+      text = 'Viability Phase';
+      break;
+    case 'not_viable':
+      text = 'Not Viable';
+      break;
+    case 'apportionment':
+      text = 'Apportionment Phase';
+      break;
+    case 'apportioned':
+      text = 'Caucus completed';
+      break;
+    default:
+      text = 'Invalid precinct state';
+    }
+    return text;
+  }
+
   render () {
     const precincts = this.props.adminState.state.precincts;
     const headerHeight = 30;
     const rowHeight = 30;
     const tableWidth = 1125;
     const tableHeight = (precincts.length * rowHeight) + (headerHeight + 3);
-    const columnWidth = 125;
 
     return (
       <Table
@@ -49,7 +72,7 @@ export class PrecinctsTable extends React.Component {
           cell={props => (
             <Cell {...props}>{precincts[props.rowIndex].county}</Cell>
           )}
-          width={columnWidth}
+          width={125}
         />
         <Column
           header={<Cell>Precinct</Cell>}
@@ -58,16 +81,16 @@ export class PrecinctsTable extends React.Component {
               {precincts[props.rowIndex].name}
             </Cell>
           )}
-          width={columnWidth}
+          width={250}
         />
         <Column
           header={<Cell>Phase</Cell>}
           cell={props => (
             <Cell {...props}>
-              {precincts[props.rowIndex].phase}
+              {this.phaseText(precincts[props.rowIndex].phase)}
             </Cell>
           )}
-          width={columnWidth}
+          width={150}
         />
         <Column
           header={<Cell>Attendees</Cell>}
@@ -76,7 +99,7 @@ export class PrecinctsTable extends React.Component {
               {precincts[props.rowIndex].total_attendees}
             </Cell>
           )}
-          width={columnWidth}
+          width={100}
         />
         <Column
           header={<Cell>Bernie</Cell>}
@@ -85,7 +108,7 @@ export class PrecinctsTable extends React.Component {
               {this.getDelegateCountsFor('sanders', precincts[props.rowIndex]).supporters}
             </Cell>
           )}
-          width={columnWidth}
+          width={100}
         />
         <Column
           header={<Cell>Hillary</Cell>}
@@ -94,7 +117,7 @@ export class PrecinctsTable extends React.Component {
               {this.getDelegateCountsFor('clinton', precincts[props.rowIndex]).supporters}
             </Cell>
           )}
-          width={columnWidth}
+          width={100}
         />
         <Column
           header={<Cell>O'Malley</Cell>}
@@ -103,7 +126,7 @@ export class PrecinctsTable extends React.Component {
               {this.getDelegateCountsFor('omalley', precincts[props.rowIndex]).supporters}
             </Cell>
           )}
-          width={columnWidth}
+          width={100}
         />
         <Column
           header={<Cell>Delegates</Cell>}
@@ -112,7 +135,7 @@ export class PrecinctsTable extends React.Component {
               {precincts[props.rowIndex].total_delegates}
             </Cell>
           )}
-          width={columnWidth}
+          width={100}
         />
         <Column
           header={<Cell>Awarded</Cell>}
@@ -121,7 +144,7 @@ export class PrecinctsTable extends React.Component {
               {this.getDelegateCountsFor('sanders', precincts[props.rowIndex]).won}
             </Cell>
           )}
-          width={columnWidth}
+          width={100}
         />
       </Table>);
   }
