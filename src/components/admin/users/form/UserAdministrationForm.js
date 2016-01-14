@@ -28,7 +28,7 @@ export class UserAdministrationForm extends React.Component {
         </label>
       </div>
       <div className="form-group">
-        <label htmlFor="precinct">Precinct Number</label>
+        <label htmlFor="precinct">Precinct</label>
         <select className="form-control" name="precinctId" value={this.props.precinctId} onChange={this.props.onUpdate}>
           {precincts}
         </select>
