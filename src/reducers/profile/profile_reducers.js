@@ -15,7 +15,7 @@ const initialState = {
 const profile = {
   get: {
     request: (state) => {
-      return reduceState(state, { fetching: true });
+      return reduceState(state, { fetched: false, fetching: true });
     },
     success: (state, response) => {
       return reduceState(state, { 
@@ -32,7 +32,7 @@ const profile = {
   },
   update: {
     request: (state) => {
-      return reduceState(state, { updating: true });
+      return reduceState(state, { updated: false, updating: true });
     },
     success: (state, response) => {
       notifySuccess('Profile updated!')
