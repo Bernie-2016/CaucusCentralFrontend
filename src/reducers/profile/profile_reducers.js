@@ -1,4 +1,5 @@
 import { createReducer, reduceState } from 'utils';
+import { notifySuccess, notifyError } from 'utils/notifications';
 import * as c from 'constants/profile';
 
 const initialState = {
@@ -34,9 +35,11 @@ const profile = {
       return reduceState(state, { updating: true });
     },
     success: (state, response) => {
+      notifySuccess('Profile updated!')
       return reduceState(state, { profile: response.user, updated: true, updating: false });
     },
     failure: (state, error) => {
+      notifyError('Profile update error.');
       return reduceState(state, { error: error, updating: false });
     }
   }

@@ -1,4 +1,5 @@
 import { createReducer, reduceState } from 'utils';
+import { notifySuccess, notifyError } from 'utils/notifications';
 import * as c from 'constants/session';
 
 const initialState = {
@@ -23,6 +24,7 @@ const sign = {
       });
     },
     success: function (state, response) {
+      notifySuccess('Logged in!');
       const session = {
         id: response.user.id,
         firstName: response.user.first_name,
@@ -35,6 +37,7 @@ const sign = {
       return reduceState(state, session);
     },
     failure: function (state, error) {
+      notifyError('Login error.');
       return reduceState(state, { error: error, fetching: false });
     }
   },
@@ -43,9 +46,11 @@ const sign = {
       return reduceState(state, { destroying: true });
     },
     success: function (state) {
+      notifySuccess('Logged out!');
       return reduceState(state, initialState);
     },
     failure: function (state, error) {
+      notifyError('Logout error.');
       return reduceState(state, { error: error, destroying: false });
     }
   },
@@ -54,9 +59,11 @@ const sign = {
       return reduceState(state, { created: false });
     },
     success: function (state) {
+      notifySuccess('Signup successful! Please log in.');
       return reduceState(state, { created: true });
     },
     failure: function (state, error) {
+      notifyError('Signup error.');
       return reduceState(state, { error: error, created: false });
     }
   }

@@ -1,4 +1,5 @@
 import { createReducer, reduceState } from 'utils';
+import { notifySuccess, notifyError } from 'utils/notifications';
 import * as c from 'constants/captain';
 
 const initialState = {
@@ -25,9 +26,11 @@ const precinct = {
       return reduceState(precinct, {error: false, updatingPrecinct:true});
     },
     success: (precinct, response) => {
+      notifySuccess('Precinct updated!')
       return reduceState(precinct, {error: false, updatingPrecinct: false, precinct: response.precinct});
     },
     failure: (precinct, error) => {
+      notifyError('Precinct update error.')
       return reduceState(precinct, {error:error, updatingPrecinct: false});
     }
   }
