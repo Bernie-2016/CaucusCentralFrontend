@@ -15,7 +15,7 @@ export default class CaptainNav extends React.Component {
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <Link to='#' className='navbar-brand'>Caucus Central</Link>
+            <Link to='/captain' className='navbar-brand'>Caucus Central</Link>
           </div>
 
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
