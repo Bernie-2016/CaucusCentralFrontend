@@ -1,7 +1,6 @@
 import { CALL_API } from 'redux-api-middleware';
 import { formatEndpoint } from 'utils/api';
 import * as c from 'constants/captain';
-import _ from 'lodash';
 
 export default {
   getPrecinct: (payload) => ({
@@ -81,5 +80,5 @@ export default {
         }
       }
     }
-  }
+  },
 };

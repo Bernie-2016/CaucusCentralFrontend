@@ -1,6 +1,7 @@
 import { combineReducers }    from 'redux';
 import { routeReducer }       from 'redux-simple-router';
 import session                from './session';
+import profile                from './profile/profile_reducers';
 import captainPrecinct        from './captain/precinct_reducers';
 import adminUsers             from './admin/user_reducers';
 import adminPrecincts         from './admin/precinct_reducers';
@@ -13,6 +14,7 @@ export default combineReducers({
   adminStates,
   adminState,
   captainPrecinct,
+  profile,
   session,
   routing: routeReducer
 });

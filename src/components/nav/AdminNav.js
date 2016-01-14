@@ -23,6 +23,7 @@ export class AdminNav extends React.Component {
             </ul>
 
             <ul className="nav navbar-nav navbar-right">
+              <li><Link to='/admin/profile'>Profile</Link></li>
               <li><Link to='#' onClick={this.props.signOut}>Sign Out</Link></li>
             </ul>
           </div>
