@@ -8,3 +8,4 @@ dist
 coverage
 *.sublime-workspace
 *.sublime-project
+aws_credentials.json

@@ -14,7 +14,7 @@
     "dev:no-debug": "npm run dev -- --no_debug",
     "test": "node ./node_modules/karma/bin/karma start",
     "test:dev": "npm run test -- --watch",
-    "deploy": "npm run lint && npm run test && npm run compile",
+    "deploy": "NODE_ENV=production API_HOST=caucus-central.herokuapp.com npm run compile && gulp s3",
     "validate": "npm ls"
   },
   "pre-commit": [
@@ -64,6 +64,8 @@
     "express": "^4.13.3",
     "extract-text-webpack-plugin": "^0.9.0",
     "file-loader": "^0.8.4",
+    "gulp": "^3.9.0",
+    "gulp-s3-upload": "^1.5.1",
     "html-webpack-plugin": "^1.6.1",
     "isparta-loader": "^1.0.0",
     "karma": "^0.13.8",
