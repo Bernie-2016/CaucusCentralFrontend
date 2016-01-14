@@ -2,20 +2,13 @@ import React from 'react';
 import {Table, Column, Cell} from 'fixed-data-table';
 require('fixed-data-table/dist/fixed-data-table.min.css');
 
-export class UserAdministrationTable extends React.Component {
-
-  constructor(props) {
-    super(props);
-  }
-
+export class UsersTable extends React.Component {
   render() {
-
     let users = this.props.users;
     let headerHeight = 30;
     let rowHeight = 40;
-    let tableWidth = 680;
+    let tableWidth = 1125;
     let tableHeight = (users.length * rowHeight)+(headerHeight+2);
-    let columnWidth = 120;
 
     return <Table
       rowsCount={users.length}
@@ -28,14 +21,14 @@ export class UserAdministrationTable extends React.Component {
           cell={props => (
             <Cell {...props}>{users[props.rowIndex].first_name}</Cell>
           )}
-          width={columnWidth}
+          width={200}
         />
         <Column
           header={<Cell>Last Name</Cell>}
           cell={props => (
             <Cell {...props}>{users[props.rowIndex].last_name}</Cell>
           )}
-          width={columnWidth}
+          width={200}
         />
         <Column
           header={<Cell>Email</Cell>}
@@ -53,7 +46,7 @@ export class UserAdministrationTable extends React.Component {
               {users[props.rowIndex].privilege}
             </Cell>
           )}
-          width={columnWidth}
+          width={200}
         />
         <Column
           header={<Cell>Precinct</Cell>}
@@ -62,7 +55,7 @@ export class UserAdministrationTable extends React.Component {
               N/A
             </Cell>
           )}
-          width={80}
+          width={200}
         />
         <Column
           cell={props => (
@@ -70,12 +63,10 @@ export class UserAdministrationTable extends React.Component {
              <button type="button" className="close" aria-label="Close"><span aria-hidden="true">&times;</span></button> 
             </Cell>
           )}
-          width={40}
+          width={125}
         />
       </Table>;
   }
 }
 
-export default UserAdministrationTable;
-
-
+export default UsersTable;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export class UserAdministrationForm extends React.Component {
+export class UsersNewForm extends React.Component {
 
   constructor(props) {
     super(props);
@@ -33,13 +33,9 @@ export class UserAdministrationForm extends React.Component {
           {precincts}
         </select>
       </div>
-      <button type="submit" className="btn btn-default">Add User</button>
+      <button type="submit" className="btn btn-primary">Add User</button>
     </form>;
   }
 }
 
-export default UserAdministrationForm;
-
-
-
-
+export default UsersNewForm;
