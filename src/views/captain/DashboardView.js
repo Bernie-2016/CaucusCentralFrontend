@@ -22,7 +22,7 @@ export class DashboardView extends React.Component {
   }
 
   render() {
-    if(this.props.session.precinctId === undefined) {
+    if(this.props.session.precinctId === undefined || this.props.session.precinctId === null) {
       return (
         <div className='container'>
           <div className='col-md-12'>
