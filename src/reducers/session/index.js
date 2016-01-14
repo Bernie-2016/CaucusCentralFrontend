@@ -68,6 +68,9 @@ export default createReducer(initialState, {
   [c.SIGN_IN_FAILURE] : sign.in.failure,
   [c.SIGN_OUT_REQUEST] : sign.out.request,
   [c.SIGN_OUT_SUCCESS] : sign.out.success,
-  [c.SIGN_OUT_FAILURE] : sign.out.failure
+  [c.SIGN_OUT_FAILURE] : sign.out.failure,
+  [c.SIGN_UP_REQUEST] : sign.up.request,
+  [c.SIGN_UP_SUCCESS] : sign.up.success,
+  [c.SIGN_UP_FAILURE] : sign.up.failure
 });
 
