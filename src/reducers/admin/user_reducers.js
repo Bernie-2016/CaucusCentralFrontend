@@ -6,8 +6,12 @@ const initialState = {
   gettingUsers:false,
   addingUser:false,
   removingUser:false,
+  importingUsers: false,
+  imported: false,
   error:false,
-  users:[]
+  users:[],
+  importedCount: 0,
+  failedUsers: []
 };
 
 const users = {
@@ -47,6 +51,19 @@ const users = {
       notifyError('User removal error.')
       return reduceState(state, {error: error, removingUser: false});
     }
+  },
+  import: {
+    request: (state) => {
+      return reduceState(state, {error: false, importingUsers: true, imported: false});
+    },
+    success: (state, response) => {
+      notifySuccess('Users imported!');
+      return reduceState(state, {error: false, importingUsers: false, imported: true, importedCount: response.importedCount, failedUsers: response.failedUsers});
+    },
+    error: (state, error) => {
+      notifyError('User import error.')
+      return reduceState(state, {error: error, importingUsers: false});
+    }
   }
 };
 
@@ -59,6 +76,9 @@ export default createReducer(initialState, {
   [c.ADD_USER_ERROR] : users.add.error,
   [c.REMOVE_USER_REQUEST] : users.remove.request,
   [c.REMOVE_USER_SUCCESS] : users.remove.success,
-  [c.REMOVE_USER_ERROR] : users.remove.error
+  [c.REMOVE_USER_ERROR] : users.remove.error,
+  [c.IMPORT_USERS_REQUEST] : users.import.request,
+  [c.IMPORT_USERS_SUCCESS] : users.import.success,
+  [c.IMPORT_USERS_ERROR] : users.import.error
 });
 

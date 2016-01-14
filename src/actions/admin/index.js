@@ -111,5 +111,24 @@ export default {
         'Authorization': payload.token
       }
     }
-  })
+  }),
+  importUsers: (payload) => {
+    const body = JSON.stringify({
+      users: payload.users
+    });
+    return {
+      [CALL_API]: {
+        types: [c.IMPORT_USERS_REQUEST,
+                c.IMPORT_USERS_SUCCESS,
+                c.IMPORT_USERS_FAILURE],
+        endpoint: formatEndpoint(`/users/import`),
+        method: 'POST',
+        body,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': payload.token
+        }
+      }
+    };
+  },
 };

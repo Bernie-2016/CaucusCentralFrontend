@@ -1,11 +1,6 @@
 import React from 'react';
 
 export class UsersNewForm extends React.Component {
-
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     let precincts = [<option key={'blank'} value=''>None</option>];
     for (let i = 0; i < this.props.adminPrecincts.precincts.length; i++) {

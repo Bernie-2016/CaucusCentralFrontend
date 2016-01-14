@@ -5,6 +5,8 @@ import adminActions            from 'actions/admin/';
 import { bindActionCreators }  from 'redux';
 import { connect }             from 'react-redux';
 
+import './UsersTableContainer.scss';
+
 const mapStateToProps = (state) => ({
   users : state.adminUsers.users
 });
@@ -18,6 +20,7 @@ export class UsersTableContainer extends React.Component {
       <div>
         <p>
           <Link to='/admin/users/new' className='btn btn-primary'>New User</Link>
+          <Link to='/admin/users/import' className='btn btn-primary btn-import'>Import Users</Link>
         </p>
         <UsersTable users={this.props.users} dispatch={this.props.dispatch} />
       </div>
