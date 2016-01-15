@@ -73,7 +73,7 @@ export class CaptainEntryApportionment extends React.Component {
             <label htmlFor="martinSupporters">Martin O'Malley Supporters</label>
             <input type="number" className="form-control" name="martinSupporters" required={true} value={this.props.martinSupporters} onChange={this.props.onUpdate} />
           </div>
-          <button type="submit" className="btn btn-default">Submit Viability Phase Supporters</button>
+          <button type="submit" className="btn btn-primary">Submit Viability Phase Supporters</button>
         </form>
       </div>
     );

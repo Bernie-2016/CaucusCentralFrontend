@@ -9,6 +9,7 @@ import SignInView            from 'views/sign-in/SignInView';
 import StatesView            from 'views/admin/StatesView';
 import PrecinctsView         from 'views/admin/PrecinctsView';
 import PrecinctView          from 'views/admin/PrecinctView';
+import PrecinctEditView      from 'views/admin/PrecinctEditView';
 import UsersView             from 'views/admin/UsersView';
 import UsersNewView          from 'views/admin/UsersNewView';
 import UsersImportView       from 'views/admin/UsersImportView';
@@ -28,7 +29,8 @@ export default (
     <Route component={AdminLayout}  path='/admin'>
       <IndexRoute component={StatesView} />
       <Route component={PrecinctsView} path='/admin/states/:code' />
-       <Route component={PrecinctView} path='/admin/precincts/:id' />
+      <Route component={PrecinctView} path='/admin/precincts/:id' />
+      <Route component={PrecinctEditView} path='/admin/precincts/:id/edit' />
       <Route component={UsersView} path='/admin/users' />
       <Route component={UsersNewView} path='/admin/users/new' />
       <Route component={UsersImportView} path='/admin/users/import' />

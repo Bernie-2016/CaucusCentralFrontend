@@ -107,6 +107,26 @@ export default {
         method: 'PATCH',
         body,
         headers: {
+          'Content-Type': 'application/json',
+          'Authorization': payload.token
+        }
+      }
+    };
+  },
+  updatePrecinct: (payload) => {
+    const body = JSON.stringify({
+      precinct: payload.precinct
+    });
+    return {
+      [CALL_API]: {
+        types: [c.UPDATE_PRECINCT_REQUEST,
+                c.UPDATE_PRECINCT_SUCCESS,
+                c.UPDATE_PRECINCT_FAILURE],
+        endpoint: formatEndpoint(`/precincts/${payload.id}`),
+        method: 'PATCH',
+        body,
+        headers: {
+          'Content-Type': 'application/json',
           'Authorization': payload.token
         }
       }

@@ -5,6 +5,7 @@ import * as c from 'constants/captain';
 const initialState = {
   gettingPrecinct:false,
   updatingPrecinct:false,
+  fetched:false,
   error:false,
   precinct:{}
 };
@@ -12,10 +13,10 @@ const initialState = {
 const precinct = {
   get: {
     request: (precinct) => {
-      return reduceState(precinct, {error: false, gettingPrecinct:true});
+      return reduceState(precinct, {error: false, gettingPrecinct:true, fetched: false});
     },
     success: (precinct, response) => {
-      return reduceState(precinct, {error: false, gettingPrecinct: false, precinct: response.precinct});
+      return reduceState(precinct, {error: false, gettingPrecinct: false, fetched: true, precinct: response.precinct});
     },
     failure: (precinct, error) => {
       return reduceState(precinct, {error:error, gettingPrecinct: false});

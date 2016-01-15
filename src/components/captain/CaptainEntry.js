@@ -21,13 +21,14 @@ export class CaptainEntry extends React.Component {
       bernieSupporters: 0,
       hillarySupporters: 0,
       martinSupporters: 0,
-      viabilitySupporters: 0
+      viabilitySupporters: 0,
+      awaitingLoad: true
     };
   }
 
   onUpdate(e) {
     let newState = {};
-    newState[e.target.name] = e.target.value;
+    newState[e.target.name] = parseInt(e.target.value);
     this.setState(newState);
   }
 
@@ -64,6 +65,31 @@ export class CaptainEntry extends React.Component {
       break;
     }
     return phase;
+  }
+
+  componentWillMount () {
+    this.props.actions.getPrecinct({id: this.props.session.precinctId, token: this.props.session.token});
+  }
+
+  componentDidUpdate () {
+    if(this.props.captainPrecinct.fetched && this.state.awaitingLoad) {
+      let bernieSupporters = 0;
+      let hillarySupporters = 0;
+      let martinSupporters = 0;
+      if(this.props.captainPrecinct.precinct.delegate_counts !== undefined) {
+        bernieSupporters = _.find(this.props.captainPrecinct.precinct.delegate_counts, {key: 'sanders'}).supporters || 0;
+        hillarySupporters = _.find(this.props.captainPrecinct.precinct.delegate_counts, {key: 'clinton'}).supporters || 0;
+        martinSupporters = _.find(this.props.captainPrecinct.precinct.delegate_counts, {key: 'omalley'}).supporters || 0;
+      }
+      this.setState({
+        awaitingLoad: false,
+        attendees: this.props.captainPrecinct.precinct.total_attendees || 0,
+        bernieSupporters: bernieSupporters,
+        hillarySupporters: hillarySupporters,
+        martinSupporters: martinSupporters,
+        viabilitySupporters: this.props.captainPrecinct.precinct.threshold || 0
+      });
+    }
   }
 
   render() {

@@ -26,7 +26,7 @@ export class CaptainEntryAttendees extends React.Component {
             <label htmlFor="attendees">Total Attendees</label>
             <input type="number" className="form-control" name="attendees" required={true} value={this.props.attendees} onChange={this.props.onUpdate} />
           </div>
-          <button type="submit" className="btn btn-default">Submit Attendees</button>
+          <button type="submit" className="btn btn-primary">Submit Attendees</button>
         </form>
       </div>
     );
