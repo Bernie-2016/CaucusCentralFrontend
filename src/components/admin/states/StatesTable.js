@@ -3,7 +3,6 @@ import { Link } from 'react-router';
 import {Table, Column, Cell} from 'fixed-data-table';
 require('fixed-data-table/dist/fixed-data-table.min.css');
 
-
 class TextCell extends React.Component {
   render() {
     const {rowIndex, field, data, ...props} = this.props;

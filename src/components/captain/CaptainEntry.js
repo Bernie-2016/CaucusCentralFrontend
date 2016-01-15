@@ -6,6 +6,7 @@ import CaptainEntryAttendees     from './CaptainEntryAttendees';
 import CaptainEntryMessage       from './CaptainEntryMessage';
 import CaptainEntryViability     from './CaptainEntryViability';
 import captainActions            from 'actions/captain/';
+import { phaseText }             from 'utils/phaseText';
 
 const mapStateToProps = (state) => (state);
 const mapDispatchToProps = (dispatch) => ({
@@ -28,31 +29,6 @@ export class CaptainEntry extends React.Component {
     let newState = {};
     newState[e.target.name] = e.target.value;
     this.setState(newState);
-  }
-
-  phaseText() {
-    const precinctStatus = this.props.captainPrecinct.precinct.phase;
-    let text = '';
-    switch (precinctStatus) {
-    case 'start':
-      text = 'Ready to Begin';
-      break;
-    case 'viability':
-      text = 'Viability Phase';
-      break;
-    case 'not_viable':
-      text = 'Not Viable';
-      break;
-    case 'apportionment':
-      text = 'Apportionment Phase';
-      break;
-    case 'apportioned':
-      text = 'Caucus completed';
-      break;
-    default:
-      text = 'Invalid precinct state';
-    }
-    return text;
   }
 
   phaseComponent() {
@@ -95,7 +71,7 @@ export class CaptainEntry extends React.Component {
       <div className="row">
         <div className=".col-md-12">
           <h1>Precinct: {this.props.captainPrecinct.precinct.name}</h1>
-          <h3>Phase: {this.phaseText()}</h3>
+          <h3>Phase: {phaseText(this.props.captainPrecinct.precinct.phase)}</h3>
           {this.phaseComponent()}
         </div>
       </div>

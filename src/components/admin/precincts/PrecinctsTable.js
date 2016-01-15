@@ -1,13 +1,23 @@
 import React from 'react';
+import { Link } from 'react-router';
 import {Table, Column, Cell} from 'fixed-data-table';
 require('fixed-data-table/dist/fixed-data-table.min.css');
 
-export class PrecinctsTable extends React.Component {
-
-  constructor (props) {
-    super(props);
+class LinkCell extends React.Component {
+  render() {
+    const {rowIndex, field, linkField, data, ...props} = this.props;
+    const link = '/admin/precincts/' + data[rowIndex][linkField];
+    return (
+      <Cell {...props}>
+        <Link to={link}>
+          {data[rowIndex][field]}
+        </Link>
+      </Cell>
+    );
   }
+}
 
+export class PrecinctsTable extends React.Component {
   getDelegateCountsFor (candidateName, precinct) {
     let counts = {
       supporters:'N/A',
@@ -76,11 +86,13 @@ export class PrecinctsTable extends React.Component {
         />
         <Column
           header={<Cell>Precinct</Cell>}
-          cell={props => (
-            <Cell {...props}>
-              {precincts[props.rowIndex].name}
-            </Cell>
-          )}
+          cell={
+            <LinkCell
+              data={precincts}
+              field='name'
+              linkField='id'
+            />
+          }
           width={250}
         />
         <Column

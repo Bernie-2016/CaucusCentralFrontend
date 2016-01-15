@@ -51,6 +51,18 @@ export default {
       }
     }
   }),
+  getPrecinct: (payload) => ({
+    [CALL_API]: {
+      types: [c.GET_PRECINCT_REQUEST,
+              c.GET_PRECINCT_SUCCESS,
+              c.GET_PRECINCT_FAILURE],
+      endpoint: formatEndpoint(`/precincts/${payload.id}`),
+      method: 'GET',
+      headers: {
+        'Authorization': payload.token
+      }
+    }
+  }),
   getUser: (payload) => ({
     [CALL_API]: {
       types: [c.GET_USER_REQUEST,
