@@ -4,14 +4,19 @@ import * as c from 'constants/admin';
 
 const initialState = {
   gettingUsers:false,
+  gettingUser:false,
   addingUser:false,
   removingUser:false,
   importingUsers: false,
   imported: false,
   error:false,
+  fetchedUser:false,
+  updatedUser:false,
+  updatingUser:false,
   users:[],
   importedCount: 0,
-  failedUsers: []
+  failedUsers: [],
+  user:{}
 };
 
 const users = {
@@ -68,6 +73,42 @@ const users = {
   }
 };
 
+const user = {
+  get: {
+    request: (state) => {
+      return reduceState(state, {error: false, gettingUser: true, fetchedUser: false, updatedUser: false});
+    },
+    success: (state, response) => {
+      return reduceState(state, { 
+        gettingUser: false,
+        fetchedUser: true,
+        user: {
+          firstName: response.user.first_name,
+          lastName: response.user.last_name,
+          email: response.user.email,
+          precinctId: response.user.precinct_id
+        }
+      });
+    },
+    error: (state, error) => {
+      return reduceState(state, {error: error, gettingUser: false});
+    }
+  },
+  update: {
+    request: (state) => {
+      return reduceState(state, { updatedUser: false, updatingUser: true });
+    },
+    success: (state, response) => {
+      notifySuccess('User updated!')
+      return reduceState(state, { user: response.user, updatedUser: true, updatingUser: false });
+    },
+    failure: (state, error) => {
+      notifyError('User update error.');
+      return reduceState(state, { error: error, updatingUser: false });
+    }
+  }
+};
+
 export default createReducer(initialState, {
   [c.GET_USERS_REQUEST] : users.get.request,
   [c.GET_USERS_SUCCESS] : users.get.success,
@@ -80,6 +121,12 @@ export default createReducer(initialState, {
   [c.REMOVE_USER_ERROR] : users.remove.error,
   [c.IMPORT_USERS_REQUEST] : users.import.request,
   [c.IMPORT_USERS_SUCCESS] : users.import.success,
-  [c.IMPORT_USERS_ERROR] : users.import.error
+  [c.IMPORT_USERS_ERROR] : users.import.error,
+  [c.GET_USER_REQUEST] : user.get.request,
+  [c.GET_USER_SUCCESS] : user.get.success,
+  [c.GET_USER_ERROR] : user.get.error,
+  [c.UPDATE_USER_REQUEST] : user.update.request,
+  [c.UPDATE_USER_SUCCESS] : user.update.success,
+  [c.UPDATE_USER_ERROR] : user.update.error
 });
 

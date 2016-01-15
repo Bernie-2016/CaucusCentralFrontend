@@ -2,18 +2,19 @@ import React                  from 'react';
 import { bindActionCreators } from 'redux';
 import { connect }            from 'react-redux';
 import Profile                from 'components/profile/Profile';
-import profileActions         from 'actions/profile/';
+import adminActions           from 'actions/admin/';
 
 const mapStateToProps = (state) => (state);
 const mapDispatchToProps = (dispatch) => ({
-  actions : bindActionCreators(profileActions, dispatch)
+  actions : bindActionCreators(adminActions, dispatch)
 });
 
 export class ProfileView extends React.Component {
-
   componentWillMount() {
-    this.props.actions.getProfile({
-      token: this.props.session.token
+    let { id } = this.props.params;
+    this.props.actions.getUser({
+      token: this.props.session.token,
+      id: id
     });
   }
 
@@ -22,7 +23,7 @@ export class ProfileView extends React.Component {
       <div className='container'>
         <div className='row'>
           <div className='col-md-12'>
-            <Profile user={this.props.profile} {...this.props} />
+            <Profile user={this.props.adminUsers.user} {...this.props} />
           </div>
         </div>
       </div>

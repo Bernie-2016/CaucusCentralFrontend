@@ -10,13 +10,13 @@ export class Profile extends React.Component {
         <div className=".col-md-12">
           <h1>Profile</h1>
           <p>
-            <strong>First name: </strong> {this.props.profile.firstName}
+            <strong>First name: </strong> {this.props.user.firstName}
           </p>
           <p>
-            <strong>Last name: </strong> {this.props.profile.lastName}
+            <strong>Last name: </strong> {this.props.user.lastName}
           </p>
           <p>
-            <strong>Email: </strong> {this.props.profile.email}
+            <strong>Email: </strong> {this.props.user.email}
           </p>
           <p>
             <Link to={this.props.location.pathname + '/edit'} className='btn btn-primary'>Edit</Link>

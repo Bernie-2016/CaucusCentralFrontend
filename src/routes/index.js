@@ -14,6 +14,8 @@ import PrecinctEditView      from 'views/admin/PrecinctEditView';
 import UsersView             from 'views/admin/UsersView';
 import UsersNewView          from 'views/admin/UsersNewView';
 import UsersImportView       from 'views/admin/UsersImportView';
+import UserView              from 'views/admin/UserView';
+import UserEditView          from 'views/admin/UserEditView';
 import DashboardView         from 'views/captain/DashboardView';
 import ProfileView           from 'views/profile/ProfileView';
 import ProfileEditView       from 'views/profile/ProfileEditView';
@@ -36,6 +38,8 @@ export default (
       <Route component={UsersView} path='/admin/users' />
       <Route component={UsersNewView} path='/admin/users/new' />
       <Route component={UsersImportView} path='/admin/users/import' />
+      <Route component={UserView} path='/admin/users/:id' />
+      <Route component={UserEditView} path='/admin/users/:id/edit' />
       <Route component={ProfileView} path='/admin/profile' />
       <Route component={ProfileEditView} path='/admin/profile/edit' />
     </Route>

@@ -1,6 +1,21 @@
-import React from 'react';
+import React                 from 'react';
+import { Link }              from 'react-router';
 import {Table, Column, Cell} from 'fixed-data-table';
 require('fixed-data-table/dist/fixed-data-table.min.css');
+
+class LinkCell extends React.Component {
+  render() {
+    const {rowIndex, field, linkField, data, ...props} = this.props;
+    const link = '/admin/users/' + data[rowIndex][linkField];
+    return (
+      <Cell {...props}>
+        <Link to={link}>
+          {data[rowIndex][field]}
+        </Link>
+      </Cell>
+    );
+  }
+}
 
 export class UsersTable extends React.Component {
   render() {
@@ -17,16 +32,20 @@ export class UsersTable extends React.Component {
       width={tableWidth}
       height={tableHeight}>
         <Column
-          header={<Cell>First Name</Cell>}
-          cell={props => (
-            <Cell {...props}>{users[props.rowIndex].first_name}</Cell>
-          )}
+          header={<Cell>Last Name</Cell>}
+          cell={
+            <LinkCell
+              data={users}
+              field='first_name'
+              linkField='id'
+            />
+          }
           width={200}
         />
         <Column
-          header={<Cell>Last Name</Cell>}
+          header={<Cell>First Name</Cell>}
           cell={props => (
-            <Cell {...props}>{users[props.rowIndex].last_name}</Cell>
+            <Cell {...props}>{users[props.rowIndex].first_name}</Cell>
           )}
           width={200}
         />

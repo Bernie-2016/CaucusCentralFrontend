@@ -1,9 +1,9 @@
 import React from 'react';
 import { bindActionCreators }    from 'redux';
 import { connect }               from 'react-redux';
-import ProfileForm               from './ProfileForm';
+import ProfileForm               from 'components/profile/ProfileForm';
 
-export class ProfileFormContainer extends React.Component {
+export class UsersEditFormContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,7 +12,8 @@ export class ProfileFormContainer extends React.Component {
       lastName: '',
       email: '',
       password: '',
-      passwordConfirmation: ''
+      passwordConfirmation: '',
+      precinctId: ''
     }
   }
 
@@ -24,34 +25,41 @@ export class ProfileFormContainer extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    this.props.actions.updateProfile({
+    let { id } = this.props.params;
+    this.props.actions.updateUser({
       token: this.props.session.token,
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
-      email: this.state.email,
-      password: this.state.password,
-      passwordConfirmation: this.state.passwordConfirmation
+      id: id,
+      user: {
+        first_name: this.state.firstName,
+        last_name: this.state.lastName,
+        email: this.state.email,
+        password: this.state.password,
+        password_confirmation: this.state.passwordConfirmation,
+        precinct_id: this.state.precinctId
+      }
     });
   }
 
   componentWillMount () {
-    this.redirectToProfileIfUpdated();
+    this.props.actions.getAllPrecincts({token: this.props.session.token});
+    this.redirectToUserIfUpdated();
   }
 
   componentDidUpdate () {
-    if(this.props.profile.fetched && this.state.awaitingLoad) {
+    if(this.props.adminUsers.fetchedUser && this.state.awaitingLoad) {
       this.setState({
         awaitingLoad: false,
-        firstName: this.props.profile.firstName,
-        lastName: this.props.profile.lastName,
-        email: this.props.profile.email
+        firstName: this.props.adminUsers.user.firstName,
+        lastName: this.props.adminUsers.user.lastName,
+        email: this.props.adminUsers.user.email,
+        precinctId: this.props.adminUsers.user.precinctId
       });
     }
-    this.redirectToProfileIfUpdated();
+    this.redirectToUserIfUpdated();
   }
 
-  redirectToProfileIfUpdated () {
-    if (this.props.profile.updated) {
+  redirectToUserIfUpdated () {
+    if (this.props.adminUsers.updatedUser) {
       this.props.history.pushState(null, this.props.location.pathname.replace('/edit', ''));
     }
   }
@@ -60,14 +68,15 @@ export class ProfileFormContainer extends React.Component {
     return (
       <div className="row">
         <div className=".col-md-12">
-          <h1>Edit Profile</h1>
+          <h1>Edit User</h1>
           <ProfileForm 
             firstName={this.state.firstName} 
             lastName={this.state.lastName} 
             email={this.state.email} 
             password={this.state.password} 
             passwordConfirmation={this.state.passwordConfirmation} 
-            includePrecincts={false} 
+            includePrecincts={true} 
+            precinctId={this.state.precinctId} 
             onUpdate={ (e) => this.onUpdate(e) } 
             onSubmit={ (e) => this.onSubmit(e) } 
             {...this.props} />
@@ -77,4 +86,4 @@ export class ProfileFormContainer extends React.Component {
   }
 };
 
-export default ProfileFormContainer;
+export default UsersEditFormContainer;
