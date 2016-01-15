@@ -40,19 +40,6 @@ const users = {
       return reduceState(state, {error: error, addingUser: false});
     }
   },
-  remove: {
-    request: (state) => {
-      return reduceState(state, {error: false, removingUser: true});
-    },
-    success: (state, response) => {
-      notifySuccess('User removed!');
-      return reduceState(state, {error: error, removingUser: false, users: response});
-    },
-    error: (state, error) => {
-      notifyError('User removal error.')
-      return reduceState(state, {error: error, removingUser: false});
-    }
-  },
   import: {
     request: (state) => {
       return reduceState(state, {error: false, importingUsers: true, imported: false});
@@ -75,9 +62,6 @@ export default createReducer(initialState, {
   [c.CREATE_USER_REQUEST]  : users.add.request,
   [c.CREATE_USER_SUCCESS]  : users.add.success,
   [c.CREATE_USER_ERROR]    : users.add.error,
-  [c.REMOVE_USER_REQUEST]  : users.remove.request,
-  [c.REMOVE_USER_SUCCESS]  : users.remove.success,
-  [c.REMOVE_USER_ERROR]    : users.remove.error,
   [c.IMPORT_USERS_REQUEST] : users.import.request,
   [c.IMPORT_USERS_SUCCESS] : users.import.success,
   [c.IMPORT_USERS_ERROR]   : users.import.error

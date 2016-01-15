@@ -40,14 +40,14 @@ export class UsersTable extends React.Component {
               linkField='id'
             />
           }
-          width={200}
+          width={225}
         />
         <Column
           header={<Cell>First Name</Cell>}
           cell={props => (
             <Cell {...props}>{users[props.rowIndex].first_name}</Cell>
           )}
-          width={200}
+          width={225}
         />
         <Column
           header={<Cell>Email</Cell>}
@@ -56,7 +56,7 @@ export class UsersTable extends React.Component {
               {users[props.rowIndex].email}
             </Cell>
           )}
-          width={200}
+          width={225}
         />
         <Column
           header={<Cell>Privilege</Cell>}
@@ -65,7 +65,7 @@ export class UsersTable extends React.Component {
               {users[props.rowIndex].privilege}
             </Cell>
           )}
-          width={200}
+          width={225}
         />
         <Column
           header={<Cell>Precinct</Cell>}
@@ -74,15 +74,7 @@ export class UsersTable extends React.Component {
               N/A
             </Cell>
           )}
-          width={200}
-        />
-        <Column
-          cell={props => (
-            <Cell>
-             <button type="button" className="close" aria-label="Close"><span aria-hidden="true">&times;</span></button> 
-            </Cell>
-          )}
-          width={125}
+          width={225}
         />
       </Table>;
   }

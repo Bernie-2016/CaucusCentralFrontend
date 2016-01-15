@@ -132,7 +132,7 @@ export default {
       }
     };
   },
-  remove: (payload) => ({
+  removeUser: (payload) => ({
     [CALL_API]: {
       types: [c.REMOVE_USER_REQUEST,
               c.REMOVE_USER_SUCCESS,

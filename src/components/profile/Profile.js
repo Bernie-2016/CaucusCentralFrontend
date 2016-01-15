@@ -5,6 +5,14 @@ import { connect }             from 'react-redux';
 
 export class Profile extends React.Component {
   render() {
+    let removeUser = '';
+    if(this.props.removeUser !== undefined) {
+      removeUser = (
+        <p>
+          <Link to='#' className='btn btn-danger' onClick={this.props.removeUser}>Remove User</Link>
+        </p>
+      );
+    }
     return (
       <div className="row">
         <div className=".col-md-12">
@@ -21,6 +29,7 @@ export class Profile extends React.Component {
           <p>
             <Link to={this.props.location.pathname + '/edit'} className='btn btn-primary'>Edit</Link>
           </p>
+          {removeUser}
         </div>
       </div>
     );
