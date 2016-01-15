@@ -31,6 +31,7 @@ const users = {
       return reduceState(state, {error: false});
     },
     success: (state, response) => {
+      console.log(response);
       notifySuccess('User invited!')
       return reduceState(state, {error: false, addingUser: false, users: [...state.users, response]});
     },
@@ -71,9 +72,9 @@ export default createReducer(initialState, {
   [c.GET_USERS_REQUEST] : users.get.request,
   [c.GET_USERS_SUCCESS] : users.get.success,
   [c.GET_USERS_ERROR] : users.get.error,
-  [c.ADD_USER_REQUEST] : users.add.request,
-  [c.ADD_USER_SUCCESS] : users.add.success,
-  [c.ADD_USER_ERROR] : users.add.error,
+  [c.CREATE_USER_REQUEST] : users.add.request,
+  [c.CREATE_USER_SUCCESS] : users.add.success,
+  [c.CREATE_USER_ERROR] : users.add.error,
   [c.REMOVE_USER_REQUEST] : users.remove.request,
   [c.REMOVE_USER_SUCCESS] : users.remove.success,
   [c.REMOVE_USER_ERROR] : users.remove.error,
