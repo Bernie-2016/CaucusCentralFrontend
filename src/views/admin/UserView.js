@@ -23,7 +23,7 @@ export class ProfileView extends React.Component {
       <div className='container'>
         <div className='row'>
           <div className='col-md-12'>
-            <Profile user={this.props.adminUsers.user} {...this.props} />
+            <Profile user={this.props.adminUser.user} {...this.props} />
           </div>
         </div>
       </div>

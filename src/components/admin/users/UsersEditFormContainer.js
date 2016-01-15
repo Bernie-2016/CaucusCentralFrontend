@@ -46,20 +46,20 @@ export class UsersEditFormContainer extends React.Component {
   }
 
   componentDidUpdate () {
-    if(this.props.adminUsers.fetchedUser && this.state.awaitingLoad) {
+    if(this.props.adminUser.fetched && this.state.awaitingLoad) {
       this.setState({
         awaitingLoad: false,
-        firstName: this.props.adminUsers.user.firstName,
-        lastName: this.props.adminUsers.user.lastName,
-        email: this.props.adminUsers.user.email,
-        precinctId: this.props.adminUsers.user.precinctId
+        firstName: this.props.adminUser.user.firstName,
+        lastName: this.props.adminUser.user.lastName,
+        email: this.props.adminUser.user.email,
+        precinctId: this.props.adminUser.user.precinctId
       });
     }
     this.redirectToUserIfUpdated();
   }
 
   redirectToUserIfUpdated () {
-    if (this.props.adminUsers.updatedUser) {
+    if (this.props.adminUser.updated) {
       this.props.history.pushState(null, this.props.location.pathname.replace('/edit', ''));
     }
   }
