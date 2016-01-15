@@ -6,6 +6,7 @@ import CaptainLayout         from 'layouts/captain/CaptainLayout';
 
 import SignUpView            from 'views/sign-up/SignUpView';
 import SignInView            from 'views/sign-in/SignInView';
+import ResetView             from 'views/reset/ResetView';
 import StatesView            from 'views/admin/StatesView';
 import PrecinctsView         from 'views/admin/PrecinctsView';
 import PrecinctView          from 'views/admin/PrecinctView';
@@ -21,6 +22,7 @@ export default (
   <Route component={CoreLayout} path='/'>
     <IndexRoute component={SignInView} />
     <Route component={SignUpView} path='/signup/:token' />
+    <Route component={ResetView} path='/reset/:token' />
     <Route component={CaptainLayout} path='/captain'>
       <IndexRoute component={DashboardView} />
       <Route component={ProfileView} path='/captain/profile' />

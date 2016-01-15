@@ -12,7 +12,8 @@ const initialState = {
   token: undefined,
   fetching: false,
   destroying: false,
-  created: false
+  created: false,
+  reset: false
 };
 
 const sign = {
@@ -50,8 +51,7 @@ const sign = {
       return reduceState(state, initialState);
     },
     failure: function (state, error) {
-      notifyError('Logout error.');
-      return reduceState(state, { error: error, destroying: false });
+      return reduceState(state, initialState);
     }
   },
   up: {
@@ -69,6 +69,20 @@ const sign = {
   }
 };
 
+const reset = {
+  request: function (state) {
+    return reduceState(state, { reset: false });
+  },
+  success: function (state) {
+    notifySuccess('Password reset successful! Please log in.');
+    return reduceState(state, { reset: true });
+  },
+  failure: function (state, error) {
+    notifyError('Password reset error.');
+    return reduceState(state, { error: error, reset: false });
+  }
+};
+
 export default createReducer(initialState, {
   [c.SIGN_IN_REQUEST] : sign.in.request,
   [c.SIGN_IN_SUCCESS] : sign.in.success,
@@ -78,6 +92,9 @@ export default createReducer(initialState, {
   [c.SIGN_OUT_FAILURE] : sign.out.failure,
   [c.SIGN_UP_REQUEST] : sign.up.request,
   [c.SIGN_UP_SUCCESS] : sign.up.success,
-  [c.SIGN_UP_FAILURE] : sign.up.failure
+  [c.SIGN_UP_FAILURE] : sign.up.failure,
+  [c.RESET_REQUEST] : reset.request,
+  [c.RESET_SUCCESS] : reset.success,
+  [c.RESET_FAILURE] : reset.failure
 });
 
