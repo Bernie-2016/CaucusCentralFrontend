@@ -43,8 +43,8 @@ export class CaptainEntryViability extends React.Component {
   render() {
     return (
       <div>
-        <h4>Determine viability</h4>
-        <p>Next, enter the supporters for each candidate in the viability phase. When the phase is complete, submit to the campaign.</p>
+        <h4>FIRST COUNT (determining viability)</h4>
+        <p>Enter the supporters for each candidate once the first count is announced. When you're done, click submit. (NOTE: You'll still need to submit a final count in the next step!)</p>
 
         <div className={this.alertClass()}>
           Based on current inputs, Bernie has <strong>{this.props.bernieSupporters} supporters</strong> and needs <strong>{this.props.captainPrecinct.precinct.threshold} supporters</strong> to be viable.
@@ -63,7 +63,7 @@ export class CaptainEntryViability extends React.Component {
             <label htmlFor="martinSupporters">Martin O'Malley Supporters</label>
             <input type="number" className="form-control" name="martinSupporters" required={true} value={this.props.martinSupporters} onChange={this.props.onUpdate} />
           </div>
-          <button type="submit" className="btn btn-primary">Submit Viability Phase Supporters</button>
+          <button type="submit" className="btn btn-primary">Submit first count</button>
         </form>
       </div>
     );

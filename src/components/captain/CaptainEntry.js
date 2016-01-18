@@ -3,6 +3,7 @@ import { bindActionCreators }    from 'redux';
 import { connect }               from 'react-redux';
 import CaptainEntryApportionment from './CaptainEntryApportionment';
 import CaptainEntryAttendees     from './CaptainEntryAttendees';
+import CaptainEntryCompleted     from './CaptainEntryCompleted';
 import CaptainEntryMessage       from './CaptainEntryMessage';
 import CaptainEntryViability     from './CaptainEntryViability';
 import captainActions            from 'actions/captain/';
@@ -58,7 +59,11 @@ export class CaptainEntry extends React.Component {
         {...this.props} />;
       break;
     case 'apportioned':
-      phase = <CaptainEntryMessage message="Caucus has been completed. Thanks for your help!" {...this.props} />;
+      phase = <CaptainEntryCompleted 
+        bernieSupporters={this.state.bernieSupporters} 
+        hillarySupporters={this.state.hillarySupporters} 
+        martinSupporters={this.state.martinSupporters} 
+        {...this.props} />;
       break;
     default:
       phase = <CaptainEntryMessage message="An error occurred." {...this.props} />;

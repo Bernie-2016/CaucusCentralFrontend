@@ -38,8 +38,8 @@ export class CaptainEntryApportionment extends React.Component {
   render() {
     return (
       <div>
-        <h4>Determine apportionment</h4>
-        <p>Next, enter the supporters for each candidate in the apportionment phase. When the phase is complete, submit to the campaign.</p>
+        <h4>SECOND COUNT (determining delegates won)</h4>
+        <p><strong>After realignment is over</strong>, enter the final number of supporters for each candidate. When you're done, click submit.</p>
 
         <p>Based on current data, this is how delegates will be assigned:</p>
 
@@ -73,7 +73,7 @@ export class CaptainEntryApportionment extends React.Component {
             <label htmlFor="martinSupporters">Martin O'Malley Supporters</label>
             <input type="number" className="form-control" name="martinSupporters" required={true} value={this.props.martinSupporters} onChange={this.props.onUpdate} />
           </div>
-          <button type="submit" className="btn btn-primary">Submit Viability Phase Supporters</button>
+          <button type="submit" className="btn btn-primary">Submit final count</button>
         </form>
       </div>
     );
