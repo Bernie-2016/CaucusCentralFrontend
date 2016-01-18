@@ -1,69 +1,54 @@
 import React from 'react';
 import { bindActionCreators }    from 'redux';
 import { connect }               from 'react-redux';
+import reactMixin                from 'react-mixin';
 import CaptainEntryApportionment from './CaptainEntryApportionment';
 import CaptainEntryAttendees     from './CaptainEntryAttendees';
 import CaptainEntryCompleted     from './CaptainEntryCompleted';
 import CaptainEntryMessage       from './CaptainEntryMessage';
 import CaptainEntryViability     from './CaptainEntryViability';
 import captainActions            from 'actions/captain/';
+import sessionActions            from 'actions/session/';
+import LogoutIfUnauthorizedMixin from 'components/mixins/LogoutIfUnauthorizedMixin';
 import { phaseText }             from 'utils/phaseText';
 
-const mapStateToProps = (state) => (state);
+const mapStateToProps = (state) => ({
+  sessionToken: state.session.token,
+  precinct:     state.captainPrecinct.precinct,
+  attendees:    state.captainPrecinct.attendees,
+  error:        state.captainPrecinct.error,
+  supporters: {
+    sanders: state.captainPrecinct.sandersSupporters,
+    clinton: state.captainPrecinct.clintonSupporters,
+    omalley: state.captainPrecinct.omalleySupporters
+  }
+});
+
 const mapDispatchToProps = (dispatch) => ({
-  actions : bindActionCreators(captainActions, dispatch)
+  captainActions: bindActionCreators(captainActions, dispatch),
+  sessionActions: bindActionCreators(sessionActions, dispatch)
 });
 
 export class CaptainEntry extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      attendees: 0,
-      bernieSupporters: 0,
-      hillarySupporters: 0,
-      martinSupporters: 0,
-      viabilitySupporters: 0,
-      awaitingLoad: true
-    };
-  }
-
-  onUpdate(e) {
-    let newState = {};
-    newState[e.target.name] = parseInt(e.target.value);
-    this.setState(newState);
-  }
-
   phaseComponent() {
-    const precinctStatus = this.props.captainPrecinct.precinct.phase;
-    let phase = undefined;
+    const precinctStatus = this.props.precinct.phase;
+    let phase = null;
     switch (precinctStatus) {
     case 'start':
-      phase = <CaptainEntryAttendees attendees={this.state.attendees} onUpdate={(e) => this.onUpdate(e) } {...this.props} />;
+      phase = <CaptainEntryAttendees {...this.props} />;
       break;
     case 'viability':
-      phase = <CaptainEntryViability 
-        bernieSupporters={this.state.bernieSupporters} 
-        hillarySupporters={this.state.hillarySupporters} 
-        martinSupporters={this.state.martinSupporters} 
-        onUpdate={(e) => this.onUpdate(e) } {...this.props} />;
+      phase = <CaptainEntryViability {...this.props} />;
       break;
     case 'not_viable':
       phase = <CaptainEntryMessage message="Sorry, Bernie is not viable in your precinct." {...this.props} />;
       break;
     case 'apportionment':
-      phase = <CaptainEntryApportionment 
-        bernieSupporters={this.state.bernieSupporters} 
-        hillarySupporters={this.state.hillarySupporters} 
-        martinSupporters={this.state.martinSupporters} 
-        onUpdate={(e) => this.onUpdate(e) } {...this.props} 
+      phase = <CaptainEntryApportionment {...this.props} 
         {...this.props} />;
       break;
     case 'apportioned':
-      phase = <CaptainEntryCompleted 
-        bernieSupporters={this.state.bernieSupporters} 
-        hillarySupporters={this.state.hillarySupporters} 
-        martinSupporters={this.state.martinSupporters} 
-        {...this.props} />;
+      phase = <CaptainEntryCompleted {...this.props} />;
       break;
     default:
       phase = <CaptainEntryMessage message="An error occurred." {...this.props} />;
@@ -72,42 +57,19 @@ export class CaptainEntry extends React.Component {
     return phase;
   }
 
-  componentWillMount () {
-    this.props.actions.getPrecinct({id: this.props.session.precinctId, token: this.props.session.token});
-  }
-
-  componentDidUpdate () {
-    if(this.props.captainPrecinct.fetched && this.state.awaitingLoad) {
-      let bernieSupporters = 0;
-      let hillarySupporters = 0;
-      let martinSupporters = 0;
-      if(this.props.captainPrecinct.precinct.delegate_counts !== undefined) {
-        bernieSupporters = _.find(this.props.captainPrecinct.precinct.delegate_counts, {key: 'sanders'}).supporters || 0;
-        hillarySupporters = _.find(this.props.captainPrecinct.precinct.delegate_counts, {key: 'clinton'}).supporters || 0;
-        martinSupporters = _.find(this.props.captainPrecinct.precinct.delegate_counts, {key: 'omalley'}).supporters || 0;
-      }
-      this.setState({
-        awaitingLoad: false,
-        attendees: this.props.captainPrecinct.precinct.total_attendees || 0,
-        bernieSupporters: bernieSupporters,
-        hillarySupporters: hillarySupporters,
-        martinSupporters: martinSupporters,
-        viabilitySupporters: this.props.captainPrecinct.precinct.threshold || 0
-      });
-    }
-  }
-
   render() {
     return (
       <div className="row">
         <div className=".col-md-12">
-          <h1>Precinct: {this.props.captainPrecinct.precinct.name}</h1>
-          <h3>Phase: {phaseText(this.props.captainPrecinct.precinct.phase)}</h3>
+          <h1>Precinct: {this.props.precinct.name}</h1>
+          <h3>Phase: {phaseText(this.props.precinct.phase)}</h3>
           {this.phaseComponent()}
         </div>
       </div>
     );
   }
 };
+
+reactMixin(CaptainEntry.prototype, LogoutIfUnauthorizedMixin);
 
 export default connect(mapStateToProps, mapDispatchToProps)(CaptainEntry);

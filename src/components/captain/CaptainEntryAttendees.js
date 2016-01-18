@@ -1,6 +1,10 @@
 import React from 'react';
 
 export class CaptainEntryAttendees extends React.Component {
+  onUpdate(e) {
+    this.props.captainActions.setAttendees(parseInt(e.target.value));
+  }
+
   onSubmit(e) {
     e.preventDefault();
     if(this.props.attendees == 0 || isNaN(this.props.attendees)) {
@@ -8,8 +12,8 @@ export class CaptainEntryAttendees extends React.Component {
     }
     else if(confirm('Are you sure you want to report ' + this.props.attendees + ' attendees? This action cannot be undone.')) {
       this.props.actions.updateAttendees({
-        id: this.props.session.precinctId,
-        token: this.props.session.token,
+        id: this.props.precinctId,
+        token: this.props.sessionToken,
         total_attendees: this.props.attendees
       });
     }
@@ -24,7 +28,7 @@ export class CaptainEntryAttendees extends React.Component {
         <form onSubmit={ (e) => this.onSubmit(e) }>
           <div className="form-group">
             <label htmlFor="attendees">Total Attendees</label>
-            <input type="number" className="form-control" name="attendees" required={true} value={this.props.attendees} onChange={this.props.onUpdate} />
+            <input type="number" className="form-control" name="attendees" required={true} value={this.props.attendees} onChange={ (e) => this.onUpdate(e) } />
           </div>
           <button type="submit" className="btn btn-primary">Submit Attendees</button>
         </form>

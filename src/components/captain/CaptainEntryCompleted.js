@@ -1,8 +1,8 @@
 import React from 'react';
 
 export class CaptainEntryCompleted extends React.Component {
-  totalSupporters() {
-    return parseInt(this.props.bernieSupporters) + parseInt(this.props.hillarySupporters) + parseInt(this.props.martinSupporters);
+  candidateDelegates(candidate) {
+    return Math.round(this.props.supporters[candidate] / this.props.attendees * this.props.precinct.total_delegates) || 0;
   }
 
   render() {
@@ -23,9 +23,9 @@ export class CaptainEntryCompleted extends React.Component {
           </thead>
           <tbody>
             <tr>
-              <td>{ Math.round(this.props.bernieSupporters / this.totalSupporters() * this.props.captainPrecinct.precinct.total_delegates) || 0 }</td>
-              <td>{ Math.round(this.props.hillarySupporters / this.totalSupporters() * this.props.captainPrecinct.precinct.total_delegates) || 0 }</td>
-              <td>{ Math.round(this.props.martinSupporters / this.totalSupporters() * this.props.captainPrecinct.precinct.total_delegates) || 0 }</td>
+              <td>{ this.candidateDelegates('sanders') }</td>
+              <td>{ this.candidateDelegates('clinton') }</td>
+              <td>{ this.candidateDelegates('omalley') }</td>
             </tr>
           </tbody>
         </table>

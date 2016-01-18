@@ -4,7 +4,10 @@ import { connect }            from 'react-redux';
 import captainActions         from 'actions/captain';
 import CaptainEntry           from 'components/captain/CaptainEntry';
 
-const mapStateToProps = (state) => (state);
+const mapStateToProps = (state) => ({
+  precinctId: state.session.precinctId,
+  token: state.session.token
+});
 
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(captainActions, dispatch)
@@ -12,17 +15,17 @@ const mapDispatchToProps = (dispatch) => ({
 
 export class DashboardView extends React.Component {
 
-  componentWillMount() {
-    if(this.props.session.precinctId !== undefined) {
+  componentDidMount() {
+    if(this.props.precinctId !== undefined) {
       this.props.actions.getPrecinct({
-        id: this.props.session.precinctId,
-        token: this.props.session.token
+        id: this.props.precinctId,
+        token: this.props.token
       });
     }
   }
 
   render() {
-    if(this.props.session.precinctId === undefined || this.props.session.precinctId === null) {
+    if(this.props.precinctId === undefined || this.props.precinctId === null) {
       return (
         <div className='container'>
           <div className='col-md-12'>

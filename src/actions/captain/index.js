@@ -15,6 +15,18 @@ export default {
       }
     }
   }),
+  setAttendees: (payload) => {
+    return {
+      type: c.SET_ATTENDEES,
+      payload
+    }
+  },
+  setSupporters: (payload) => {
+    return {
+      type: c.SET_SUPPORTERS,
+      payload
+    }
+  },
   updateAttendees: (payload) => {
     const body = JSON.stringify({
       precinct: {

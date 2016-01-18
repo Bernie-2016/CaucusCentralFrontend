@@ -3,32 +3,72 @@ import { notifySuccess, notifyError } from 'utils/notifications';
 import * as c from 'constants/captain';
 
 const initialState = {
-  gettingPrecinct:false,
-  updatingPrecinct:false,
-  fetched:false,
-  error:false,
-  precinct:{}
+  gettingPrecinct: false,
+  updatingPrecinct: false,
+  fetched: false,
+  error: false,
+  precinct: {},
+  attendees: 0,
+  sandersSupporters: 0,
+  clintonSupporters: 0,
+  omalleySupporters: 0
 };
 
 const precinct = {
   get: {
-    request: (precinct) => {
-      return reduceState(precinct, {error: false, gettingPrecinct:true, fetched: false});
+    request: (state) => {
+      return reduceState(state, { error: false, gettingPrecinct: true, fetched: false });
     },
-    success: (precinct, response) => {
-      return reduceState(precinct, {error: false, gettingPrecinct: false, fetched: true, precinct: response.precinct});
+    success: (state, response) => {
+      return reduceState(state, {
+        error: false, 
+        gettingPrecinct: false, 
+        fetched: true, 
+        precinct: response.precinct,
+        attendees: response.precinct.total_attendees || 0,
+        sandersSupporters: (_.find(response.precinct.delegate_counts || [], {key: 'sanders'}) || {}).supporters || 0,
+        clintonSupporters: (_.find(response.precinct.delegate_counts || [], {key: 'clinton'}) || {}).supporters || 0,
+        omalleySupporters: (_.find(response.precinct.delegate_counts || [], {key: 'omalley'}) || {}).supporters || 0
+      });
     },
-    failure: (precinct, error) => {
-      return reduceState(precinct, {error:error, gettingPrecinct: false});
+    failure: (state, error) => {
+      return reduceState(state, { error: error, gettingPrecinct: false});
+    }
+  },
+  set: {
+    attendees: (state, attendees) => {
+      return reduceState(state, { attendees: attendees });
+    },
+    supporters: (state, payload) => {
+      switch (payload.candidate) {
+      case 'sanders':
+        return reduceState(state, { sandersSupporters: payload.supporters });
+        break;
+      case 'clinton':
+        return reduceState(state, { clintonSupporters: payload.supporters });
+        break;
+      case 'omalley':
+        return reduceState(state, { omalleySupporters: payload.supporters });
+        break;
+      }
     }
   },
   update: {
-    request: (precinct) => {
-      return reduceState(precinct, {error: false, updatingPrecinct:true});
+    request: (state) => {
+      return reduceState(state, { error: false, updatingPrecinct: true });
     },
-    success: (precinct, response) => {
+    success: (state, response) => {
       notifySuccess('Precinct updated!')
-      return reduceState(precinct, {error: false, updatingPrecinct: false, precinct: response.precinct});
+      return reduceState(state, {
+        error: false, 
+        updatingPrecinct: false, 
+        fetched: true, 
+        precinct: response.precinct,
+        attendees: response.precinct.total_attendees || 0,
+        sandersSupporters: (_.find(response.precinct.delegate_counts || [], {key: 'sanders'}) || {}).supporters || 0,
+        clintonSupporters: (_.find(response.precinct.delegate_counts || [], {key: 'clinton'}) || {}).supporters || 0,
+        omalleySupporters: (_.find(response.precinct.delegate_counts || [], {key: 'omalley'}) || {}).supporters || 0
+      });
     },
     failure: (precinct, error) => {
       notifyError('Precinct update error.')
@@ -49,6 +89,8 @@ export default createReducer(initialState, {
   [c.UPDATE_VIABILITY_COUNTS_FAILURE]  : precinct.update.failure,
   [c.UPDATE_APPORTIONMENT_COUNTS_REQUEST] : precinct.update.request,
   [c.UPDATE_APPORTIONMENT_COUNTS_SUCCESS] : precinct.update.success,
-  [c.UPDATE_APPORTIONMENT_COUNTS_FAILURE]  : precinct.update.failure
+  [c.UPDATE_APPORTIONMENT_COUNTS_FAILURE]  : precinct.update.failure,
+  [c.SET_ATTENDEES] : precinct.set.attendees,
+  [c.SET_SUPPORTERS] : precinct.set.supporters
 });
 

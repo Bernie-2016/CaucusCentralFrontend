@@ -1,6 +1,8 @@
 import { createConstants } from '../utils';
 
 export default createConstants(
+  'SET_ATTENDEES',
+  'SET_SUPPORTERS',
   'GET_PRECINCT_REQUEST',
   'GET_PRECINCT_SUCCESS',
   'GET_PRECINCT_FAILURE',
