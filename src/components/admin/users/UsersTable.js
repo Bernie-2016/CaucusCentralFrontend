@@ -50,7 +50,7 @@ export class UsersTable extends React.Component {
         <p>
           <input type="search" name="keyword" placeholder="Keyword" value={this.props.keyword} onChange={ (e) => this.onUpdate(e) } />
         </p>
-        <Table className="table table-striped">
+        <Table className="table table-striped" itemsPerPage={50}>
           <Thead>
             <Th column="lastName">
               <strong>Last Name</strong>
