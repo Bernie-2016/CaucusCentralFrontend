@@ -7,6 +7,7 @@ const initialState = {
   fetched: false,
   updating: false,
   updated: false,
+  error: false,
   firstName: '',
   lastName: '',
   email: '',
