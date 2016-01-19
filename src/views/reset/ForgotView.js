@@ -2,29 +2,29 @@ import React                     from 'react';
 import { bindActionCreators }    from 'redux';
 import { connect }               from 'react-redux';
 import resetActions              from 'actions/reset';
-import ResetForm                 from 'components/reset/ResetForm';
+import sessionActions            from 'actions/session';
+import ForgotForm                from 'components/reset/ForgotForm';
 
 const mapStateToProps = (state) => ({
-  reset:                state.reset.reset,
-  password:             state.reset.password,
-  passwordConfirmation: state.reset.passwordConfirmation
+  forgot: state.reset.forgot,
+  email:  state.reset.email
 });
 
 const mapDispatchToProps = (dispatch) => ({
   resetActions: bindActionCreators(resetActions, dispatch)
 });
 
-class ResetView extends React.Component {
+class ForgotView extends React.Component {
   componentWillMount () {
-    this.redirectToLoginIfReset();
+    this.redirectToLoginIfForgot();
   }
 
   componentDidUpdate () {
-    this.redirectToLoginIfReset();
+    this.redirectToLoginIfForgot();
   }
 
-  redirectToLoginIfReset () {
-    if (this.props.reset) {
+  redirectToLoginIfForgot () {
+    if (this.props.forgot) {
       this.props.history.pushState(null, '/');
     }
   }
@@ -32,10 +32,10 @@ class ResetView extends React.Component {
   render () {
     return (
       <div className='sign-in'>
-        <ResetForm {...this.props}/>
+        <ForgotForm {...this.props}/>
       </div>
     );
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ResetView);
+export default connect(mapStateToProps, mapDispatchToProps)(ForgotView);

@@ -11,12 +11,17 @@ export class ResetForm extends React.Component {
 
   onSubmit (e) {
     e.preventDefault();
-    let { token } = this.props.params;
-    this.props.resetActions.reset({
-      token:                 this.props.sessionToken,
-      password:              this.props.password,
-      password_confirmation: this.props.passwordConfirmation
-    });
+    if(this.props.password !== this.props.passwordConfirmation) {
+      alert('Password and confirmation must match.')
+    }
+    else {
+      let { token } = this.props.params;
+      this.props.resetActions.reset({
+        token:                 token,
+        password:              this.props.password,
+        password_confirmation: this.props.passwordConfirmation
+      });
+    }
   }
 
   render () {

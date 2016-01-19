@@ -1,4 +1,5 @@
-import React from 'react';
+import React    from 'react';
+import { Link } from 'react-router';
 import './SignInForm.scss';
 
 export class SignInForm extends React.Component {
@@ -28,6 +29,9 @@ export class SignInForm extends React.Component {
           <input type="password" name="password" className="form-control" placeholder="Password" value={this.props.password} onChange={ (e) => this.onUpdate(e) } required />
           <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
         </form>
+        <div className="forgot-link">
+          <Link to='/forgot'>Forgot Password?</Link>
+        </div>
       </div>
     );
   }
