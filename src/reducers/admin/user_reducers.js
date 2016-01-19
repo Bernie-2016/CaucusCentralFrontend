@@ -17,6 +17,7 @@ const initialState = {
   email: '',
   password: '',
   passwordConfirmation: '',
+  newEmail: '',
   precinctId: '',
   privilege: 'captain'
 };
@@ -24,7 +25,7 @@ const initialState = {
 const user = {
   get: {
     request: (state) => {
-      return reduceState(state, {error: false, fetching: true, fetched: false, updated: false, removed: false});
+      return reduceState(state, { error: false, fetching: true, fetched: false });
     },
     success: (state, response) => {
       return reduceState(state, { 
@@ -90,6 +91,9 @@ const user = {
       notifyError('User removal error.');
       return reduceState(state, { error: error, removing: false });
     }
+  },
+  reset: (state) => {
+    return reduceState(state, initialState);
   }
 };
 
@@ -106,5 +110,6 @@ export default createReducer(initialState, {
   [c.REMOVE_USER_REQUEST] : user.remove.request,
   [c.REMOVE_USER_SUCCESS] : user.remove.success,
   [c.REMOVE_USER_ERROR]   : user.remove.error,
-  [c.SET_USER_ATTR]       : user.set
+  [c.SET_USER_ATTR]       : user.set,
+  [c.RESET_USER]          : user.reset
 });

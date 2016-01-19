@@ -30,8 +30,8 @@ export class UserNewForm extends React.Component {
     return <form onSubmit={ (e) => this.onSubmit(e) }>
       <h4>Add User</h4>
       <div className="form-group">
-        <label htmlFor="email">Email</label>
-        <input type="email" className="form-control" name="email" required={true} value={this.props.user.email} onChange={ (e) => this.onUpdate(e) } />
+        <label htmlFor="newEmail">Email</label>
+        <input type="email" className="form-control" name="newEmail" required={true} value={this.props.user.email} onChange={ (e) => this.onUpdate(e) } />
       </div>
       <div className="form-group">
         <label htmlFor="typeCaptain" className="radio-inline">

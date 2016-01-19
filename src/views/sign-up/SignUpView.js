@@ -28,6 +28,7 @@ class SignUpView extends React.Component {
 
   redirectToLoginIfSignedUp () {
     if (this.props.created) {
+      this.props.signupActions.reset();
       this.props.history.pushState(null, '/');
     }
   }

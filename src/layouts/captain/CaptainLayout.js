@@ -15,8 +15,9 @@ const mapDispatchToProps = (dispatch) => ({
 
 export class CaptainLayout extends React.Component {
     static propTypes = {
-        children: React.PropTypes.element
+      children: React.PropTypes.element
     }
+
     componentWillMount() {
       this.redirectToSigninIfLoggedOut();
     }
@@ -26,7 +27,7 @@ export class CaptainLayout extends React.Component {
     }
 
     redirectToSigninIfLoggedOut () {
-      if ( this.props.session.id == undefined ) {
+      if (this.props.session.id == undefined) {
         this.props.history.pushState(null, '/');
       }
     }

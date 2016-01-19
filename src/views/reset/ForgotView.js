@@ -25,6 +25,7 @@ class ForgotView extends React.Component {
 
   redirectToLoginIfForgot () {
     if (this.props.forgot) {
+      this.props.resetActions.resetForm();
       this.props.history.pushState(null, '/');
     }
   }

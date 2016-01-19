@@ -21,7 +21,7 @@ export class AdminLayout extends React.Component {
   }
 
   redirectToSigninIfLoggedOut () {
-    if ( this.props.session.id == undefined ) {
+    if (this.props.session.id == undefined) {
       this.props.history.pushState(null, '/');
     }
   }

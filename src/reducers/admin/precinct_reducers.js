@@ -23,7 +23,7 @@ const initialState = {
 const precinct = {
   get: {
     request: (state) => {
-      return reduceState(state, { error: false, updated: false, fetched: false, getting: true });
+      return reduceState(state, { error: false, fetched: false, getting: true });
     },
     success: (state, response) => {
       return reduceState(state, {
@@ -77,15 +77,21 @@ const precinct = {
       notifyError('Precinct update error.');
       return reduceState(state, { error:error, updating: false });
     }
+  },
+  reset: (state) => {
+    return reduceState(state, {
+      updated: false
+    });
   }
 };
 
 export default createReducer(initialState, {
-  [c.GET_PRECINCT_REQUEST] : precinct.get.request,
-  [c.GET_PRECINCT_SUCCESS] : precinct.get.success,
-  [c.GET_PRECINCT_ERROR] : precinct.get.failure,
+  [c.GET_PRECINCT_REQUEST]    : precinct.get.request,
+  [c.GET_PRECINCT_SUCCESS]    : precinct.get.success,
+  [c.GET_PRECINCT_ERROR]      : precinct.get.failure,
   [c.UPDATE_PRECINCT_REQUEST] : precinct.update.request,
   [c.UPDATE_PRECINCT_SUCCESS] : precinct.update.success,
-  [c.UPDATE_PRECINCT_ERROR] : precinct.update.failure,
-  [c.SET_PRECINCT_ATTR] : precinct.set,
+  [c.UPDATE_PRECINCT_ERROR]   : precinct.update.failure,
+  [c.SET_PRECINCT_ATTR]       : precinct.set,
+  [c.RESET_PRECINCT]          : precinct.reset
 });

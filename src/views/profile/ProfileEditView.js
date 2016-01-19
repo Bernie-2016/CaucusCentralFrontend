@@ -41,6 +41,7 @@ export class ProfileEditView extends React.Component {
 
   redirectToProfileIfUpdated () {
     if (this.props.updated) {
+      this.props.profileActions.reset();
       this.props.history.pushState(null, this.props.location.pathname.replace('/edit', ''));
     }
   }

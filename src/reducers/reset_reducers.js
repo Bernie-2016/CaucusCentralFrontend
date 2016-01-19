@@ -41,6 +41,9 @@ const reset = {
     const newState = {};
     newState[payload.key] = payload.value;
     return reduceState(state, newState);
+  },
+  reset: (state) => {
+    return reduceState(state, initialState);
   }
 };
 
@@ -51,5 +54,6 @@ export default createReducer(initialState, {
   [c.RESET_REQUEST]  : reset.request,
   [c.RESET_SUCCESS]  : reset.success,
   [c.RESET_FAILURE]  : reset.failure,
-  [c.SET_FORM_ATTR]  : reset.set
+  [c.SET_FORM_ATTR]  : reset.set,
+  [c.RESET_FORM]     : reset.reset
 });

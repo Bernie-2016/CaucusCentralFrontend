@@ -1,6 +1,6 @@
 import { createReducer, reduceState } from 'utils';
 import { notifySuccess, notifyError } from 'utils/notifications';
-import * as c from 'constants/session';
+import * as c from 'constants/signup';
 
 const initialState = {
   firstName: undefined,
@@ -34,9 +34,14 @@ const set = (state, payload) => {
   return reduceState(state, newState);
 };
 
+const reset = (state) => {
+  return reduceState(state, initialState);
+};
+
 export default createReducer(initialState, {
   [c.SIGN_UP_REQUEST]  : sign.up.request,
   [c.SIGN_UP_SUCCESS]  : sign.up.success,
   [c.SIGN_UP_FAILURE]  : sign.up.failure,
-  [c.SET_ATTR]         : set
+  [c.SET_ATTR]         : set,
+  [c.RESET]            : reset
 });

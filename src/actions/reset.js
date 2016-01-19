@@ -46,5 +46,8 @@ export default {
         method: 'POST'
       }
     };
-  }
+  },
+  resetForm: () => ({
+    type: c.RESET_FORM
+  })
 };

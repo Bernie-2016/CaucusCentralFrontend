@@ -56,6 +56,9 @@ const profile = {
       notifyError('Profile update error.');
       return reduceState(state, { error: error, updating: false });
     }
+  },
+  reset: (state) => {
+    return reduceState(state, initialState);
   }
 };
 
@@ -66,6 +69,7 @@ export default createReducer(initialState, {
   [c.UPDATE_PROFILE_REQUEST] : profile.update.request,
   [c.UPDATE_PROFILE_SUCCESS] : profile.update.success,
   [c.UPDATE_PROFILE_FAILURE] : profile.update.failure,
-  [c.SET_ATTR]       : profile.set
+  [c.SET_ATTR]               : profile.set,
+  [c.RESET]                  : profile.reset
 });
 

@@ -13,7 +13,7 @@ const mapStateToProps = (state) => ({
   sessionToken: state.session.token,
   precincts:    state.adminPrecincts.precincts,
   user: {
-    email:      state.adminUser.email,
+    email:      state.adminUser.newEmail,
     privilege:  state.adminUser.privilege,
     precinctId: state.adminUser.precinctId
   }
@@ -39,6 +39,7 @@ export class UserNewView extends React.Component {
 
   redirectToUsersIfCreated () {
     if (this.props.created) {
+      this.props.adminActions.resetUser();
       this.props.history.pushState(null, '/admin/users');
     }
   }

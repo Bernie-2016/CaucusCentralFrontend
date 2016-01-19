@@ -38,5 +38,7 @@ export default createConstants(
   'SET_PRECINCT_ATTR',
   'SET_USERS_ATTR',
   'SET_USER_ATTR',
-  'SET_IMPORT_USERS'
+  'SET_IMPORT_USERS',
+  'RESET_PRECINCT',
+  'RESET_USER'
 );

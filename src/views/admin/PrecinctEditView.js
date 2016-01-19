@@ -48,6 +48,7 @@ export class PrecinctEditView extends React.Component {
 
   redirectToPrecinctIfUpdated () {
     if (this.props.updated) {
+      this.props.adminActions.resetPrecinct();
       this.props.history.pushState(null, this.props.location.pathname.replace('/edit', ''));
     }
   }

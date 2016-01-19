@@ -42,6 +42,7 @@ export class UserView extends React.Component {
 
   redirectToListIfRemoved () {
     if (this.props.removed) {
+      this.props.adminActions.resetUser();
       this.props.history.pushState(null, '/admin/users');
     }
   }

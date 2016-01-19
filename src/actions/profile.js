@@ -44,5 +44,8 @@ export default {
         }
       }
     };
-  }
+  },
+  reset: () => ({
+    type: c.RESET
+  })
 };

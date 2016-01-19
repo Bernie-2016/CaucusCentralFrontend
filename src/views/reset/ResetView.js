@@ -25,6 +25,7 @@ class ResetView extends React.Component {
 
   redirectToLoginIfReset () {
     if (this.props.reset) {
+      this.props.resetActions.resetForm();
       this.props.history.pushState(null, '/');
     }
   }

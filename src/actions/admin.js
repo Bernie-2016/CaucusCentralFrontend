@@ -125,6 +125,9 @@ export default {
       }
     };
   },
+  resetUser: () => ({
+    type: c.RESET_USER
+  }),
   setPrecinctAttr: (payload) => ({
     type: c.SET_PRECINCT_ATTR,
     payload
@@ -148,6 +151,9 @@ export default {
       }
     };
   },
+  resetPrecinct: () => ({
+    type: c.RESET_PRECINCT
+  }),
   removeUser: (payload) => ({
     [CALL_API]: {
       types: [c.REMOVE_USER_REQUEST,

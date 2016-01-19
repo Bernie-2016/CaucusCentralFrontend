@@ -7,5 +7,6 @@ export default createConstants(
   'RESET_REQUEST',
   'RESET_SUCCESS',
   'RESET_FAILURE',
-  'SET_FORM_ATTR'
+  'SET_FORM_ATTR',
+  'RESET_FORM'
 );

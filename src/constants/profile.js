@@ -7,5 +7,6 @@ export default createConstants(
   'UPDATE_PROFILE_REQUEST',
   'UPDATE_PROFILE_SUCCESS',
   'UPDATE_PROFILE_FAILURE',
-  'SET_ATTR'
+  'SET_ATTR',
+  'RESET'
 );

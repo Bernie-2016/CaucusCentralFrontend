@@ -47,6 +47,7 @@ export class UserEditView extends React.Component {
 
   redirectToUserIfUpdated () {
     if (this.props.updated) {
+      this.props.adminActions.resetUser();
       this.props.history.pushState(null, this.props.location.pathname.replace('/edit', ''));
     }
   }

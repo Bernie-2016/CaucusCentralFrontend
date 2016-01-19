@@ -32,5 +32,8 @@ export default {
         method: 'POST'
       }
     };
-  }
+  },
+  reset: () => ({
+    type: c.RESET
+  })
 };

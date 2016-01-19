@@ -3,7 +3,7 @@ import { phaseText } from 'utils/phaseText';
 
 export class PrecinctEditForm extends React.Component {
   onUpdate(e) {
-    this.props.adminActions.setAttr({
+    this.props.adminActions.setPrecinctAttr({
       key: e.target.name, 
       value: e.target.value
     });
@@ -12,7 +12,6 @@ export class PrecinctEditForm extends React.Component {
   onSubmit(e) {
     e.preventDefault();
     let { id } = this.props.params;
-    let precinct = this.props.precinct;
     this.props.adminActions.updatePrecinct({
       token: this.props.sessionToken,
       id: id,
@@ -75,18 +74,18 @@ export class PrecinctEditForm extends React.Component {
         </div>
 
         <div className="form-group">
-          <label htmlFor="bernieSupporters">Bernie Sanders Supporters</label>
-          <input type="number" className="form-control" name="bernieSupporters" value={this.props.supporters.sanders} onChange={ (e) => this.onUpdate(e) }  />
+          <label htmlFor="sandersSupporters">Bernie Sanders Supporters</label>
+          <input type="number" className="form-control" name="sandersSupporters" value={this.props.supporters.sanders} onChange={ (e) => this.onUpdate(e) }  />
         </div>
 
         <div className="form-group">
-          <label htmlFor="hillarySupporters">Hillary Clinton Supporters</label>
-          <input type="number" className="form-control" name="hillarySupporters" value={this.props.supporters.clinton} onChange={ (e) => this.onUpdate(e) }  />
+          <label htmlFor="clintonSupporters">Hillary Clinton Supporters</label>
+          <input type="number" className="form-control" name="clintonSupporters" value={this.props.supporters.clinton} onChange={ (e) => this.onUpdate(e) }  />
         </div>
 
         <div className="form-group">
-          <label htmlFor="martinSupporters">Martin O'Malley Supporters</label>
-          <input type="number" className="form-control" name="martinSupporters" value={this.props.supporters.omalley} onChange={ (e) => this.onUpdate(e) }  />
+          <label htmlFor="omalleySupporters">Martin O'Malley Supporters</label>
+          <input type="number" className="form-control" name="omalleySupporters" value={this.props.supporters.omalley} onChange={ (e) => this.onUpdate(e) }  />
         </div>
 
         <button type="submit" className="btn btn-primary">Update Precinct</button>

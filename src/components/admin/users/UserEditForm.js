@@ -34,7 +34,7 @@ export class UserEditForm extends React.Component {
     let precinctsField = (
       <div className="form-group">
         <label htmlFor="precinct">Precinct</label>
-        <select className="form-control" name="precinctId" value={this.props.user.precinctId} onChange={this.props.onUpdate}>
+        <select className="form-control" name="precinctId" value={this.props.user.precinctId} onChange={ (e) => this.onUpdate(e) }>
           {precincts}
         </select>
       </div>
@@ -43,30 +43,30 @@ export class UserEditForm extends React.Component {
       <div className="row">
         <div className=".col-md-12">
           <h1>Edit User</h1>
-          <form onSubmit={this.props.onSubmit}>
+          <form onSubmit={ (e) => this.onSubmit(e) }>
             <div className="form-group">
               <label htmlFor="firstName">First name</label>
-              <input type="text" className="form-control" name="firstName" required={true} value={this.props.user.firstName} onChange={this.props.onUpdate} />
+              <input type="text" className="form-control" name="firstName" required={true} value={this.props.user.firstName} onChange={ (e) => this.onUpdate(e) } />
             </div>
 
             <div className="form-group">
               <label htmlFor="lastName">Last name</label>
-              <input type="text" className="form-control" name="lastName" required={true} value={this.props.user.lastName} onChange={this.props.onUpdate} />
+              <input type="text" className="form-control" name="lastName" required={true} value={this.props.user.lastName} onChange={ (e) => this.onUpdate(e) } />
             </div>
 
             <div className="form-group">
               <label htmlFor="email">Email</label>
-              <input type="email" className="form-control" name="email" required={true} value={this.props.user.email} onChange={this.props.onUpdate} />
+              <input type="email" className="form-control" name="email" required={true} value={this.props.user.email} onChange={ (e) => this.onUpdate(e) } />
             </div>
 
             <div className="form-group">
               <label htmlFor="password">Password</label>
-              <input type="password" className="form-control" name="password" value={this.props.user.password} onChange={this.props.onUpdate} />
+              <input type="password" className="form-control" name="password" value={this.props.user.password} onChange={ (e) => this.onUpdate(e) } />
             </div>
 
             <div className="form-group">
               <label htmlFor="passwordConfirmation">Confirm password</label>
-              <input type="password" className="form-control" name="passwordConfirmation" value={this.props.user.passwordConfirmation} onChange={this.props.onUpdate} />
+              <input type="password" className="form-control" name="passwordConfirmation" value={this.props.user.passwordConfirmation} onChange={ (e) => this.onUpdate(e) } />
             </div>
 
             {precinctsField}

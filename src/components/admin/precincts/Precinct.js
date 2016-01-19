@@ -36,6 +36,9 @@ export class Precinct extends React.Component {
         <p key="phase">
           Phase: <strong>{phaseText(this.props.phase)}</strong>
         </p>
+        <p key="delegates">
+          Total delegates: <strong>{this.props.delegates}</strong>
+        </p>
         {details}
         <p key="edit-link">
           <Link to={'/admin/states/' + this.props.state.code + '/precincts/' + this.props.params.id + '/edit'} className='btn btn-primary'>Edit</Link>
