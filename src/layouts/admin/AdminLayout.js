@@ -28,7 +28,7 @@ export class AdminLayout extends React.Component {
 
   signOut(e) {
     e.preventDefault();
-    this.props.actions.signOut({
+    this.props.sessionActions.signOut({
       token: this.props.session.token
     });
   }

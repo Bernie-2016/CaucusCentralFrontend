@@ -12,7 +12,7 @@ export class SignUpForm extends React.Component {
   onSubmit (e) {
     e.preventDefault();
     let { token } = this.props.params;
-    this.props.actions.signUp({
+    this.props.signupActions.signUp({
       first_name: this.props.firstName,
       last_name: this.props.lastName,
       email: this.props.email,

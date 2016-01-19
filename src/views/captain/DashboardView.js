@@ -29,7 +29,7 @@ const mapDispatchToProps = (dispatch) => ({
 export class DashboardView extends React.Component {
   componentDidMount() {
     if(this.props.precinctId !== undefined) {
-      this.props.actions.getPrecinct({
+      this.props.captainActions.getPrecinct({
         id: this.props.precinctId,
         token: this.props.sessionToken
       });

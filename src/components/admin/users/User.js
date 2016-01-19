@@ -6,7 +6,7 @@ export class User extends React.Component {
     e.preventDefault();
     let { id } = this.props.params;
     if(confirm('Are you sure you want to remove this user? This action cannot be undone.')) {
-      this.props.actions.removeUser({
+      this.props.adminActions.removeUser({
         token: this.props.sessionToken,
         id: id
       });
