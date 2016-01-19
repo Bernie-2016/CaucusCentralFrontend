@@ -2,8 +2,8 @@ import React                   from 'react';
 import { bindActionCreators }    from 'redux';
 import { connect }               from 'react-redux';
 import reactMixin                from 'react-mixin';
-import adminActions              from 'actions/admin/';
-import sessionActions            from 'actions/session/';
+import adminActions              from 'actions/admin';
+import sessionActions            from 'actions/session';
 import LogoutIfUnauthorizedMixin from 'components/mixins/LogoutIfUnauthorizedMixin';
 import UserNewForm               from 'components/admin/users/UserNewForm';
 

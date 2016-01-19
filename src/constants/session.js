@@ -7,10 +7,5 @@ export default createConstants(
   'SIGN_OUT_REQUEST',
   'SIGN_OUT_SUCCESS',
   'SIGN_OUT_FAILURE',
-  'SIGN_UP_REQUEST',
-  'SIGN_UP_SUCCESS',
-  'SIGN_UP_FAILURE',
-  'RESET_REQUEST',
-  'RESET_SUCCESS',
-  'RESET_FAILURE'
+  'SET_ATTR'
 );

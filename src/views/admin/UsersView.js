@@ -3,8 +3,8 @@ import { Link }                  from 'react-router';
 import { bindActionCreators }    from 'redux';
 import { connect }               from 'react-redux';
 import reactMixin                from 'react-mixin';
-import adminActions              from 'actions/admin/';
-import sessionActions            from 'actions/session/';
+import adminActions              from 'actions/admin';
+import sessionActions            from 'actions/session';
 import LogoutIfUnauthorizedMixin from 'components/mixins/LogoutIfUnauthorizedMixin';
 import UsersTable                from 'components/admin/users/UsersTable';
 

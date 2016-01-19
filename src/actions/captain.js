@@ -15,12 +15,10 @@ export default {
       }
     }
   }),
-  setPrecinctAttr: (payload) => {
-    return {
-      type: c.SET_PRECINCT_ATTR,
-      payload
-    }
-  },
+  setAttr: (payload) => ({
+    type: c.SET_ATTR,
+    payload
+  }),
   updateAttendees: (payload) => {
     const body = JSON.stringify({
       precinct: {
@@ -41,7 +39,7 @@ export default {
           'Authorization': payload.token
         }
       }
-    }
+    };
   },
   updateViabilityCounts: (payload) => {
     const body = JSON.stringify({
@@ -63,7 +61,7 @@ export default {
           'Authorization': payload.token
         }
       }
-    }
+    };
   },
   updateApportionmentCounts: (payload) => {
     const body = JSON.stringify({
@@ -85,6 +83,6 @@ export default {
           'Authorization': payload.token
         }
       }
-    }
-  },
+    };
+  }
 };

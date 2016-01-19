@@ -1,19 +1,30 @@
-import React                  from 'react';
-import { bindActionCreators } from 'redux';
-import { connect }            from 'react-redux';
-import Profile                from 'components/profile/Profile';
-import profileActions         from 'actions/profile/';
+import React                     from 'react';
+import { bindActionCreators }    from 'redux';
+import { connect }               from 'react-redux';
+import reactMixin                from 'react-mixin';
+import profileActions            from 'actions/profile';
+import sessionActions            from 'actions/session';
+import LogoutIfUnauthorizedMixin from 'components/mixins/LogoutIfUnauthorizedMixin';
+import Profile                   from 'components/profile/Profile';
 
-const mapStateToProps = (state) => (state);
+const mapStateToProps = (state) => ({
+  sessionToken: state.session.token,
+  profile: {
+    firstName: state.profile.firstName,
+    lastName:  state.profile.lastName,
+    email:     state.profile.email
+  }
+});
+
 const mapDispatchToProps = (dispatch) => ({
-  actions : bindActionCreators(profileActions, dispatch)
+  profileActions: bindActionCreators(profileActions, dispatch),
+  sessionActions: bindActionCreators(sessionActions, dispatch)
 });
 
 export class ProfileView extends React.Component {
-
-  componentWillMount() {
-    this.props.actions.getProfile({
-      token: this.props.session.token
+  componentDidMount() {
+    this.props.profileActions.getProfile({
+      token: this.props.sessionToken
     });
   }
 
@@ -22,12 +33,14 @@ export class ProfileView extends React.Component {
       <div className='container'>
         <div className='row'>
           <div className='col-md-12'>
-            <Profile user={this.props.profile} {...this.props} />
+            <Profile {...this.props} />
           </div>
         </div>
       </div>
     );
   }
 };
+
+reactMixin(ProfileView.prototype, LogoutIfUnauthorizedMixin);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileView);

@@ -1,6 +1,5 @@
 import React    from 'react';
 import { Link } from 'react-router';
-import Profile  from 'components/profile/Profile';
 
 export class User extends React.Component {
   removeUser(e) {
@@ -18,7 +17,26 @@ export class User extends React.Component {
     return (
       <div>
         <Link to={'/admin/users'}>Back to Users</Link>
-        <Profile removeUser={ (e) => this.removeUser(e) } {...this.props} />
+        <div className="row">
+          <div className=".col-md-12">
+            <h1>User</h1>
+            <p>
+              <strong>First name: </strong> {this.props.user.firstName}
+            </p>
+            <p>
+              <strong>Last name: </strong> {this.props.user.lastName}
+            </p>
+            <p>
+              <strong>Email: </strong> {this.props.user.email}
+            </p>
+            <p>
+              <Link to={this.props.location.pathname + '/edit'} className='btn btn-primary'>Edit</Link>
+            </p>
+            <p>
+              <Link to='#' className='btn btn-danger' onClick={ (e) => this.removeUser(e) }>Remove User</Link>
+            </p>
+          </div>
+        </div>
       </div>
     );
   }

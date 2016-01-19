@@ -3,13 +3,15 @@ import { notifySuccess, notifyError } from 'utils/notifications';
 import * as c from 'constants/profile';
 
 const initialState = {
-  firstName: '',
-  lastName: '',
-  email: '',
   fetching: false,
   fetched: false,
   updating: false,
-  updated: false
+  updated: false,
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
+  passwordConfirmation: ''
 };
 
 const profile = {
@@ -30,13 +32,24 @@ const profile = {
       return reduceState(state, { error: error, fetching: false });
     }
   },
+  set: (state, payload) => {
+    let newState = {};
+    newState[payload.key] = payload.value;
+    return reduceState(state, newState);
+  },
   update: {
     request: (state) => {
       return reduceState(state, { updated: false, updating: true });
     },
     success: (state, response) => {
       notifySuccess('Profile updated!')
-      return reduceState(state, { profile: response.user, updated: true, updating: false });
+      return reduceState(state, { 
+        updated: true,
+        updating: false,
+        firstName: response.user.first_name,
+        lastName: response.user.last_name,
+        email: response.user.email
+      });
     },
     failure: (state, error) => {
       notifyError('Profile update error.');
@@ -46,11 +59,12 @@ const profile = {
 };
 
 export default createReducer(initialState, {
-  [c.GET_PROFILE_REQUEST] : profile.get.request,
-  [c.GET_PROFILE_SUCCESS] : profile.get.success,
-  [c.GET_PROFILE_FAILURE] : profile.get.failure,
+  [c.GET_PROFILE_REQUEST]    : profile.get.request,
+  [c.GET_PROFILE_SUCCESS]    : profile.get.success,
+  [c.GET_PROFILE_FAILURE]    : profile.get.failure,
   [c.UPDATE_PROFILE_REQUEST] : profile.update.request,
   [c.UPDATE_PROFILE_SUCCESS] : profile.update.success,
-  [c.UPDATE_PROFILE_FAILURE] : profile.update.failure
+  [c.UPDATE_PROFILE_FAILURE] : profile.update.failure,
+  [c.SET_ATTR]       : profile.set
 });
 

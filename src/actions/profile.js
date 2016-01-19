@@ -15,6 +15,10 @@ export default {
       }
     }
   }),
+  setAttr: (payload) => ({
+    type: c.SET_ATTR,
+    payload
+  }),
   updateProfile: (payload) => {
     const body = JSON.stringify({
       user: {
@@ -39,6 +43,6 @@ export default {
           'Authorization': payload.token
         }
       }
-    }
+    };
   }
 };

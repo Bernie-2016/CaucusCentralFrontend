@@ -77,6 +77,6 @@ export default createReducer(initialState, {
   [c.UPDATE_APPORTIONMENT_COUNTS_REQUEST] : precinct.update.request,
   [c.UPDATE_APPORTIONMENT_COUNTS_SUCCESS] : precinct.update.success,
   [c.UPDATE_APPORTIONMENT_COUNTS_FAILURE]  : precinct.update.failure,
-  [c.SET_PRECINCT_ATTR] : precinct.set,
+  [c.SET_ATTR] : precinct.set,
 });
 

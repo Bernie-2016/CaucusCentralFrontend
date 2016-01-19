@@ -1,6 +1,8 @@
 import { combineReducers }    from 'redux';
 import { routeReducer }       from 'redux-simple-router';
-import session                from './session';
+import session                from './session_reducers';
+import reset                  from './reset_reducers';
+import signup                 from './signup_reducers';
 import profile                from './profile/profile_reducers';
 import captainPrecinct        from './captain/precinct_reducers';
 import adminUsers             from './admin/users_reducers';
@@ -20,5 +22,7 @@ export default combineReducers({
   captainPrecinct,
   profile,
   session,
+  signup,
+  reset,
   routing: routeReducer
 });

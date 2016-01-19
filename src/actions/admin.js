@@ -94,12 +94,10 @@ export default {
       }
     };
   },
-  setUserAttr: (payload) => {
-    return {
-      type: c.SET_USER_ATTR,
-      payload
-    }
-  },
+  setUserAttr: (payload) => ({
+    type: c.SET_USER_ATTR,
+    payload
+  }),
   updateUser: (payload) => {
     const body = JSON.stringify({
       user: payload.user
@@ -119,12 +117,10 @@ export default {
       }
     };
   },
-  setPrecinctAttr: (payload) => {
-    return {
-      type: c.SET_PRECINCT_ATTR,
-      payload
-    }
-  },
+  setPrecinctAttr: (payload) => ({
+    type: c.SET_PRECINCT_ATTR,
+    payload
+  }),
   updatePrecinct: (payload) => {
     const body = JSON.stringify({
       precinct: payload.precinct
@@ -160,7 +156,7 @@ export default {
     return {
       type: c.SET_IMPORT_USERS,
       payload
-    }
+    };
   },
   importUsers: (payload) => {
     const body = JSON.stringify({
@@ -180,5 +176,5 @@ export default {
         }
       }
     };
-  },
+  }
 };
