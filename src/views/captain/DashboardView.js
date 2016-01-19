@@ -11,6 +11,7 @@ import CaptainEntry              from 'components/captain/CaptainEntry';
 const mapStateToProps = (state) => ({
   precinctId:   state.session.precinctId,
   sessionToken: state.session.token,
+  fetched:      state.captainPrecinct.fetched,
   precinct:     state.captainPrecinct.precinct,
   attendees:    state.captainPrecinct.attendees,
   error:        state.captainPrecinct.error,
@@ -49,13 +50,7 @@ export class DashboardView extends React.Component {
     }
     else {
       return (
-        <div className='container'>
-          <div className='row'>
-            <div className='col-md-12'>
-              <CaptainEntry {...this.props} />
-            </div>
-          </div>
-        </div>
+        <CaptainEntry {...this.props} />
       );
     }
   }

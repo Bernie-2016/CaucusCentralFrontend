@@ -4,14 +4,10 @@ import * as c from 'constants/admin';
 
 const initialState = {
   error: false,
-  fetching: false,
   fetched: false,
-  creating: false,
   created: false,
-  updating: false,
   updated: false,
   removed: false,
-  removing: false,
   firstName: '',
   lastName: '',
   email: '',
@@ -25,11 +21,10 @@ const initialState = {
 const user = {
   get: {
     request: (state) => {
-      return reduceState(state, { error: false, fetching: true, fetched: false });
+      return reduceState(state, { error: false, fetched: false });
     },
     success: (state, response) => {
       return reduceState(state, { 
-        fetching: false,
         fetched: true,
         firstName: response.user.first_name,
         lastName: response.user.last_name,
@@ -38,7 +33,7 @@ const user = {
       });
     },
     error: (state, error) => {
-      return reduceState(state, {error: error, fetching: false});
+      return reduceState(state, {error: error});
     }
   },
   set: (state, payload) => {
@@ -48,26 +43,25 @@ const user = {
   },
   add: {
     request: (state) => {
-      return reduceState(state, { error: false, creating: true, created: false });
+      return reduceState(state, { error: false, created: false });
     },
     success: (state, response) => {
       notifySuccess('User invited!')
-      return reduceState(state, { error: false, creating: false, created: true });
+      return reduceState(state, { error: false, created: true });
     },
     error: (state, error) => {
       notifyError('User invite error.')
-      return reduceState(state, { error: error, creating: false });
+      return reduceState(state, { error: error });
     }
   },
   update: {
     request: (state) => {
-      return reduceState(state, { updated: false, updating: true });
+      return reduceState(state, { updated: false });
     },
     success: (state, response) => {
       notifySuccess('User updated!')
       return reduceState(state, { 
         updated: true, 
-        updating: false,
         firstName: response.user.first_name,
         lastName: response.user.last_name,
         email: response.user.email,
@@ -76,20 +70,20 @@ const user = {
     },
     failure: (state, error) => {
       notifyError('User update error.');
-      return reduceState(state, { error: error, updating: false });
+      return reduceState(state, { error: error });
     }
   },
   remove: {
     request: (state) => {
-      return reduceState(state, { removed: false, removing: true });
+      return reduceState(state, { removed: false });
     },
     success: (state, response) => {
       notifySuccess('User removed!')
-      return reduceState(state, { removed: true, removing: false });
+      return reduceState(state, { removed: true });
     },
     failure: (state, error) => {
       notifyError('User removal error.');
-      return reduceState(state, { error: error, removing: false });
+      return reduceState(state, { error: error });
     }
   },
   reset: (state) => {

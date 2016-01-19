@@ -8,6 +8,8 @@ import LogoutIfUnauthorizedMixin  from 'components/mixins/LogoutIfUnauthorizedMi
 import Precinct                   from 'components/admin/precincts/Precinct';
 
 const mapStateToProps = (state) => ({
+  fetched:        state.adminPrecinct.fetched && state.adminState.fetched,
+  error:          state.adminPrecinct.error,
   state:          state.adminState.state,
   name:           state.adminPrecinct.name,
   county:         state.adminPrecinct.county,

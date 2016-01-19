@@ -1,5 +1,6 @@
 import React                 from 'react';
 import { Link }              from 'react-router';
+import Loader                from 'react-loader';
 import {Table, Column, Cell} from 'fixed-data-table';
 
 import 'fixed-data-table/dist/fixed-data-table.min.css';
@@ -42,7 +43,7 @@ export class UsersTable extends React.Component {
     let tableHeight = (users.length * rowHeight)+(headerHeight+2);
 
     return (
-      <div>
+      <Loader loaded={this.props.fetched}>
         <p>
           <input type="text" name="keyword" placeholder="Keyword" value={this.props.keyword} onChange={ (e) => this.onUpdate(e) } />
         </p>
@@ -98,7 +99,7 @@ export class UsersTable extends React.Component {
               width={225}
             />
           </Table>
-      </div>
+      </Loader>
     );
   }
 }

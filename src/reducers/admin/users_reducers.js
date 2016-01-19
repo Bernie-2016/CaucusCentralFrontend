@@ -3,7 +3,7 @@ import { notifySuccess, notifyError } from 'utils/notifications';
 import * as c from 'constants/admin';
 
 const initialState = {
-  fetching: false,
+  fetched: false,
   adding: false,
   removing: false,
   importing: false,
@@ -18,13 +18,13 @@ const initialState = {
 const users = {
   get: {
     request: (state) => {
-      return reduceState(state, {error: false, fetching: true, imported: false});
+      return reduceState(state, {error: false, fetched: false, imported: false});
     },
     success: (state, response) => {
-      return reduceState(state, {error: false, fetching: false, users: response.users});
+      return reduceState(state, {error: false, fetched: true, users: response.users});
     },
     error: (state, error) => {
-      return reduceState(state, {error: error, fetching: false});
+      return reduceState(state, {error: error, fetched: false});
     }
   },
   import: {

@@ -2,7 +2,7 @@ import { createReducer, reduceState } from 'utils';
 import * as c from 'constants/admin';
 
 const initialState = {
-  gettingPrecincts: false,
+  fetched: false,
   error: false,
   keyword: '',
   precincts: []
@@ -11,13 +11,13 @@ const initialState = {
 const precincts = {
   get: {
     request: (state) => {
-      return reduceState(state, {error: false, gettingPrecincts:true});
+      return reduceState(state, { error: false, fetched: false });
     },
     success: (state, response) => {
-      return reduceState(state, {error: false, gettingPrecincts: false, precincts: response.precincts});
+      return reduceState(state, { error: false, fetched: true, precincts: response.precincts});
     },
     failure: (state, error) => {
-      return reduceState(state, {error:error, gettingPrecincts: false});
+      return reduceState(state, { error:error, fetched: false });
     }
   },
   set: (state, payload) => {

@@ -1,6 +1,10 @@
 @import 'base';
 @import 'vendor/normalize';
 
+div.content {
+  min-height: 400px;
+}
+
 div.logo-row {
   text-align: center;
   margin-left: 0px;

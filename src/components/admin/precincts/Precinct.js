@@ -1,5 +1,6 @@
 import React         from 'react';
 import { Link }      from 'react-router';
+import Loader        from 'react-loader';
 import { phaseText } from 'utils/phaseText';
 
 export class Precinct extends React.Component {
@@ -27,7 +28,7 @@ export class Precinct extends React.Component {
     }
 
     return (
-      <div>
+      <Loader loaded={this.props.fetched}>
         <Link to={'/admin/states/' + this.props.state.code}>Back to {this.props.state.name}</Link>
         <h1>{this.props.name}</h1>
         <p key="county">
@@ -43,7 +44,7 @@ export class Precinct extends React.Component {
         <p key="edit-link">
           <Link to={'/admin/states/' + this.props.state.code + '/precincts/' + this.props.params.id + '/edit'} className='btn btn-primary'>Edit</Link>
         </p>
-      </div>
+      </Loader>
     );
   }
 }

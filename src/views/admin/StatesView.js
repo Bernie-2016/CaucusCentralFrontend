@@ -8,10 +8,10 @@ import LogoutIfUnauthorizedMixin  from 'components/mixins/LogoutIfUnauthorizedMi
 import StatesTable                from 'components/admin/states/StatesTable';
 
 const mapStateToProps = (state) => ({
-  gettingStates: state.adminStates.gettingStates,
-  states:        state.adminStates.states,
-  error:         state.adminStates.error,
-  sessionToken:  state.session.token
+  fetched:      state.adminStates.fetched,
+  states:       state.adminStates.states,
+  error:        state.adminStates.error,
+  sessionToken: state.session.token
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -25,14 +25,9 @@ export class StatesView extends React.Component {
   }
 
   render () {
-    let message = null;
-    if (this.props.gettingStates) {
-      message = <div className='alert alert-warning'>Retrieving States</div>;
-    }
     return (
       <div className='container admin-dashboard-view'>
         <h1>States</h1>
-        {message}
         <StatesTable {...this.props}/>
       </div>
     );

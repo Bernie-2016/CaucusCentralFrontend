@@ -1,5 +1,6 @@
 import React    from 'react';
 import { Link } from 'react-router';
+import Loader   from 'react-loader';
 
 export class User extends React.Component {
   removeUser(e) {
@@ -15,10 +16,10 @@ export class User extends React.Component {
 
   render() {
     return (
-      <div>
+      <Loader loaded={this.props.fetched}>
         <Link to={'/admin/users'}>Back to Users</Link>
         <div className="row">
-          <div className=".col-md-12">
+          <div className="col-md-12">
             <h1>User</h1>
             <p>
               <strong>First name: </strong> {this.props.user.firstName}
@@ -37,7 +38,7 @@ export class User extends React.Component {
             </p>
           </div>
         </div>
-      </div>
+      </Loader>
     );
   }
 }

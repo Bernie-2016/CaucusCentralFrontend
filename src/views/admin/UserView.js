@@ -8,6 +8,7 @@ import LogoutIfUnauthorizedMixin from 'components/mixins/LogoutIfUnauthorizedMix
 import User                      from 'components/admin/users/User'
 
 const mapStateToProps = (state) => ({
+  fetched:      state.adminUser.fetched,
   removed:      state.adminUser.removed,
   error:        state.adminUser.error,
   sessionToken: state.session.token,

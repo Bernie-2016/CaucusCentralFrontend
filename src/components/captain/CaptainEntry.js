@@ -1,4 +1,5 @@
-import React from 'react';
+import React                     from 'react';
+import Loader                    from 'react-loader';
 import { bindActionCreators }    from 'redux';
 import { connect }               from 'react-redux';
 
@@ -42,10 +43,12 @@ export class CaptainEntry extends React.Component {
   render() {
     return (
       <div className="row">
-        <div className=".col-md-12">
-          <h1>Precinct: {this.props.precinct.name}</h1>
-          <h3>Phase: {phaseText(this.props.precinct.phase)}</h3>
-          {this.phaseComponent()}
+        <div className="col-md-12">
+          <Loader loaded={this.props.fetched}>
+            <h1>Precinct: {this.props.precinct.name}</h1>
+            <h3>Phase: {phaseText(this.props.precinct.phase)}</h3>
+            {this.phaseComponent()}
+          </Loader>
         </div>
       </div>
     );

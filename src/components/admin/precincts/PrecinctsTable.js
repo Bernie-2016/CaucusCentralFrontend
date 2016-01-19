@@ -1,5 +1,6 @@
 import React                 from 'react';
 import { Link }              from 'react-router';
+import Loader                from 'react-loader';
 import {Table, Column, Cell} from 'fixed-data-table';
 import { phaseText }         from 'utils/phaseText';
 import _                     from 'lodash';
@@ -63,7 +64,7 @@ export class PrecinctsTable extends React.Component {
     const tableHeight = (precincts.length * rowHeight) + (headerHeight + 3);
 
     return (
-      <div>
+      <Loader loaded={this.props.fetched}>
         <p>
           <input type="text" name="keyword" placeholder="Keyword" value={this.props.keyword} onChange={ (e) => this.onUpdate(e) } />
         </p>
@@ -156,7 +157,7 @@ export class PrecinctsTable extends React.Component {
             width={100}
           />
         </Table>
-      </div>
+      </Loader>
     );
   }
 }

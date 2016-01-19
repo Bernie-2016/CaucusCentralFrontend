@@ -9,7 +9,7 @@ import LogoutIfUnauthorizedMixin from 'components/mixins/LogoutIfUnauthorizedMix
 import UsersTable                from 'components/admin/users/UsersTable';
 
 const mapStateToProps = (state) => ({
-  fetching:     state.adminUsers.fetching,
+  fetched:      state.adminUsers.fetched,
   users:        state.adminUsers.users,
   keyword:      state.adminUsers.keyword,
   error:        state.adminUsers.error,
@@ -27,15 +27,9 @@ export class UsersView extends React.Component {
   }
 
   render () {
-    let message = null;
-    if (this.props.fetching) {
-      message = <div className='alert alert-warning'>Retrieving Users</div>;
-    }
-
     return (
       <div className='container admin-user-administration-view'>
         <h1>User Administration</h1>
-        {message}
         <div className='row'>
           <div className='col-lg-12'>
             <p>

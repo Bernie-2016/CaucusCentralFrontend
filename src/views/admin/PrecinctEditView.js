@@ -8,6 +8,7 @@ import LogoutIfUnauthorizedMixin  from 'components/mixins/LogoutIfUnauthorizedMi
 import PrecinctEditForm           from 'components/admin/precincts/PrecinctEditForm';
 
 const mapStateToProps = (state) => ({
+  fetched:        state.adminPrecinct.fetched,
   updated:        state.adminPrecinct.updated,
   error:          state.adminPrecinct.error,
   sessionToken:   state.session.token,

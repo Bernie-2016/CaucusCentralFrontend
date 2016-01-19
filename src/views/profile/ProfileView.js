@@ -9,6 +9,7 @@ import Profile                   from 'components/profile/Profile';
 
 const mapStateToProps = (state) => ({
   sessionToken: state.session.token,
+  fetched:      state.profile.fetched,
   profile: {
     firstName: state.profile.firstName,
     lastName:  state.profile.lastName,
@@ -30,13 +31,7 @@ export class ProfileView extends React.Component {
 
   render() {
     return (
-      <div className='container'>
-        <div className='row'>
-          <div className='col-md-12'>
-            <Profile {...this.props} />
-          </div>
-        </div>
-      </div>
+      <Profile {...this.props} />
     );
   }
 };

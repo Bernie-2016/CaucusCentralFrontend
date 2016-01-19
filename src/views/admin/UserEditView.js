@@ -8,6 +8,7 @@ import LogoutIfUnauthorizedMixin from 'components/mixins/LogoutIfUnauthorizedMix
 import UserEditForm              from 'components/admin/users/UserEditForm';
 
 const mapStateToProps = (state) => ({
+  fetched:      state.adminUser.fetched,
   updated:      state.adminUser.updated,
   error:        state.adminUser.error,
   sessionToken: state.session.token,

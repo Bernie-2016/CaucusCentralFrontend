@@ -8,7 +8,9 @@ import LogoutIfUnauthorizedMixin from 'components/mixins/LogoutIfUnauthorizedMix
 import ProfileForm               from 'components/profile/ProfileForm';
 
 const mapStateToProps = (state) => ({
+  fetched:      state.profile.fetched,
   updated:      state.profile.updated,
+  error:        state.profile.error,
   sessionToken: state.session.token,
   profile: {
     firstName:            state.profile.firstName,

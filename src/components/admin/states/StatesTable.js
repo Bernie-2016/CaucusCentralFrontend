@@ -1,7 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router';
+import React                 from 'react';
+import { Link }              from 'react-router';
+import Loader                from 'react-loader';
 import {Table, Column, Cell} from 'fixed-data-table';
-require('fixed-data-table/dist/fixed-data-table.min.css');
+import 'fixed-data-table/dist/fixed-data-table.min.css';
 
 class TextCell extends React.Component {
   render() {
@@ -37,45 +38,48 @@ export class StatesTable extends React.Component {
     const tableHeight = (states.length * rowHeight) + (headerHeight + 3);
 
     return (
-      <Table
-        rowsCount={states.length}
-        rowHeight={rowHeight}
-        headerHeight={headerHeight}
-        width={tableWidth}
-        height={tableHeight}>
+      <Loader loaded={this.props.fetched}>
+        <Table
+          rowsCount={states.length}
+          rowHeight={rowHeight}
+          headerHeight={headerHeight}
+          width={tableWidth}
+          height={tableHeight}>
 
-        <Column
-          header={<Cell>Name</Cell>}
-          cell={
-            <LinkCell
-              data={states}
-              field='name'
-              linkField='code'
-            />
-          }
-          width={340}
-        />
-        <Column
-          header={<Cell>Code</Cell>}
-          cell={
-            <TextCell
-              data={states}
-              field='code'
-            />
-          }
-          width={300}
-        />
-        <Column
-          header={<Cell>Date</Cell>}
-          cell={
-            <TextCell
-              data={states}
-              field='caucus_date'
-            />
-          }
-          width={480}
-        />
-      </Table>);
+          <Column
+            header={<Cell>Name</Cell>}
+            cell={
+              <LinkCell
+                data={states}
+                field='name'
+                linkField='code'
+              />
+            }
+            width={340}
+          />
+          <Column
+            header={<Cell>Code</Cell>}
+            cell={
+              <TextCell
+                data={states}
+                field='code'
+              />
+            }
+            width={300}
+          />
+          <Column
+            header={<Cell>Date</Cell>}
+            cell={
+              <TextCell
+                data={states}
+                field='caucus_date'
+              />
+            }
+            width={480}
+          />
+        </Table>
+      </Loader>
+    );
   }
 }
 

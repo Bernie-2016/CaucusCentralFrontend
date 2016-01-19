@@ -3,9 +3,7 @@ import { notifySuccess, notifyError } from 'utils/notifications';
 import * as c from 'constants/admin';
 
 const initialState = {
-  getting: false,
   fetched: false,
-  updating: false,
   updated: false,
   error: false,
   name: '',
@@ -23,12 +21,11 @@ const initialState = {
 const precinct = {
   get: {
     request: (state) => {
-      return reduceState(state, { error: false, fetched: false, getting: true });
+      return reduceState(state, { error: false, fetched: false });
     },
     success: (state, response) => {
       return reduceState(state, {
         error: false, 
-        getting: false, 
         fetched: true, 
         name: response.precinct.name,
         county: response.precinct.county,
@@ -43,7 +40,7 @@ const precinct = {
       });
     },
     failure: (state, error) => {
-      return reduceState(state, { error:error, getting: false });
+      return reduceState(state, { error: error });
     }
   },
   set: (state, payload) => {

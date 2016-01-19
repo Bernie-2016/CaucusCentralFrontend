@@ -3,8 +3,6 @@ import { notifySuccess, notifyError } from 'utils/notifications';
 import * as c from 'constants/captain';
 
 const initialState = {
-  gettingPrecinct: false,
-  updatingPrecinct: false,
   fetched: false,
   error: false,
   precinct: {},
@@ -17,12 +15,11 @@ const initialState = {
 const precinct = {
   get: {
     request: (state) => {
-      return reduceState(state, { error: false, gettingPrecinct: true, fetched: false });
+      return reduceState(state, { error: false, fetched: false });
     },
     success: (state, response) => {
       return reduceState(state, {
         error: false, 
-        gettingPrecinct: false, 
         fetched: true, 
         precinct: response.precinct,
         attendees: response.precinct.total_attendees || 0,
@@ -32,7 +29,7 @@ const precinct = {
       });
     },
     failure: (state, error) => {
-      return reduceState(state, { error: error, gettingPrecinct: false});
+      return reduceState(state, { error: error });
     }
   },
   set: (state, payload) => {
@@ -42,14 +39,12 @@ const precinct = {
   },
   update: {
     request: (state) => {
-      return reduceState(state, { error: false, updatingPrecinct: true });
+      return reduceState(state, { error: false });
     },
     success: (state, response) => {
       notifySuccess('Precinct updated!')
       return reduceState(state, {
-        error: false, 
-        updatingPrecinct: false, 
-        fetched: true, 
+        error: false,
         precinct: response.precinct,
         attendees: response.precinct.total_attendees || 0,
         sandersSupporters: (_.find(response.precinct.delegate_counts || [], {key: 'sanders'}) || {}).supporters || 0,
@@ -59,7 +54,7 @@ const precinct = {
     },
     failure: (precinct, error) => {
       notifyError('Precinct update error.')
-      return reduceState(precinct, {error:error, updatingPrecinct: false});
+      return reduceState(precinct, { error:error });
     }
   }
 };
@@ -79,4 +74,3 @@ export default createReducer(initialState, {
   [c.UPDATE_APPORTIONMENT_COUNTS_FAILURE]  : precinct.update.failure,
   [c.SET_ATTR] : precinct.set,
 });
-

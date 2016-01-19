@@ -3,9 +3,7 @@ import { notifySuccess, notifyError } from 'utils/notifications';
 import * as c from 'constants/profile';
 
 const initialState = {
-  fetching: false,
   fetched: false,
-  updating: false,
   updated: false,
   error: false,
   firstName: '',
@@ -18,11 +16,10 @@ const initialState = {
 const profile = {
   get: {
     request: (state) => {
-      return reduceState(state, { fetched: false, fetching: true });
+      return reduceState(state, { fetched: false });
     },
     success: (state, response) => {
       return reduceState(state, { 
-        fetching: false,
         fetched: true,
         firstName: response.user.first_name,
         lastName: response.user.last_name,
@@ -30,7 +27,7 @@ const profile = {
       });
     },
     failure: (state, error) => {
-      return reduceState(state, { error: error, fetching: false });
+      return reduceState(state, { error: error });
     }
   },
   set: (state, payload) => {
@@ -40,13 +37,12 @@ const profile = {
   },
   update: {
     request: (state) => {
-      return reduceState(state, { updated: false, updating: true });
+      return reduceState(state, { updated: false });
     },
     success: (state, response) => {
       notifySuccess('Profile updated!')
       return reduceState(state, { 
         updated: true,
-        updating: false,
         firstName: response.user.first_name,
         lastName: response.user.last_name,
         email: response.user.email
@@ -54,7 +50,7 @@ const profile = {
     },
     failure: (state, error) => {
       notifyError('Profile update error.');
-      return reduceState(state, { error: error, updating: false });
+      return reduceState(state, { error: error });
     }
   },
   reset: (state) => {
