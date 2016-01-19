@@ -9,15 +9,17 @@ import PrecinctEditForm           from 'components/admin/precincts/PrecinctEditF
 
 const mapStateToProps = (state) => ({
   updated:        state.adminPrecinct.updated,
-  name:           state.adminPrecinct.name,
-  county:         state.adminPrecinct.county,
-  phase:          state.adminPrecinct.phase,
-  attendees:      state.adminPrecinct.attendees,
-  delegates:      state.adminPrecinct.delegates,
-  threshold:      state.adminPrecinct.threshold,
-  delegateCounts: state.adminPrecinct.delegateCounts,
   error:          state.adminPrecinct.error,
   sessionToken:   state.session.token,
+  precinct: {
+    name:           state.adminPrecinct.name,
+    county:         state.adminPrecinct.county,
+    phase:          state.adminPrecinct.phase,
+    attendees:      state.adminPrecinct.attendees,
+    delegates:      state.adminPrecinct.delegates,
+    threshold:      state.adminPrecinct.threshold,
+    delegateCounts: state.adminPrecinct.delegateCounts,
+  },
   supporters: {
     sanders: state.adminPrecinct.sandersSupporters,
     clinton: state.adminPrecinct.clintonSupporters,
@@ -31,12 +33,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export class PrecinctEditView extends React.Component {
-  redirectToPrecinctIfUpdated () {
-    if (this.props.updated) {
-      this.props.history.pushState(null, this.props.location.pathname.replace('/edit', ''));
-    }
-  }
-
   componentDidMount() {
     let { id } = this.props.params;
     this.props.adminActions.getPrecinct({id: id, token: this.props.sessionToken});
@@ -48,6 +44,12 @@ export class PrecinctEditView extends React.Component {
 
   componentDidUpdate () {
     this.redirectToPrecinctIfUpdated();
+  }
+
+  redirectToPrecinctIfUpdated () {
+    if (this.props.updated) {
+      this.props.history.pushState(null, this.props.location.pathname.replace('/edit', ''));
+    }
   }
 
   render () {

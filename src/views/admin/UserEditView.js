@@ -1,22 +1,54 @@
-import React                  from 'react';
-import { bindActionCreators } from 'redux';
-import { connect }            from 'react-redux';
-import UsersEditFormContainer from 'components/admin/users/UsersEditFormContainer';
-import adminActions           from 'actions/admin/';
+import React                     from 'react';
+import { bindActionCreators }    from 'redux';
+import { connect }               from 'react-redux';
+import reactMixin                from 'react-mixin';
+import adminActions              from 'actions/admin/';
+import sessionActions            from 'actions/session/';
+import LogoutIfUnauthorizedMixin from 'components/mixins/LogoutIfUnauthorizedMixin';
+import UserEditForm              from 'components/admin/users/UserEditForm';
 
-const mapStateToProps = (state) => (state);
-
-const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators(adminActions, dispatch)
+const mapStateToProps = (state) => ({
+  updated:      state.adminUser.updated,
+  error:        state.adminUser.error,
+  sessionToken: state.session.token,
+  precincts:    state.adminPrecincts.precincts,
+  user: {
+    firstName:            state.adminUser.firstName,
+    lastName:             state.adminUser.lastName,
+    email:                state.adminUser.email,
+    password:             state.adminUser.password,
+    passwordConfirmation: state.adminUser.passwordConfirmation,
+    precinctId:           state.adminUser.precinctId
+  }
 });
 
-export class UsersEditView extends React.Component {
-  componentWillMount() {
+const mapDispatchToProps = (dispatch) => ({
+  adminActions:   bindActionCreators(adminActions, dispatch),
+  sessionActions: bindActionCreators(sessionActions, dispatch)
+});
+
+export class UserEditView extends React.Component {
+  componentDidMount() {
     let { id } = this.props.params;
-    this.props.actions.getUser({
-      token: this.props.session.token,
+    this.props.adminActions.getUser({
+      token: this.props.sessionToken,
       id: id
     });
+    this.props.adminActions.getAllPrecincts({token: this.props.sessionToken});
+  }
+
+  componentWillMount() {
+    this.redirectToUserIfUpdated();
+  }
+
+  componentDidUpdate () {
+    this.redirectToUserIfUpdated();
+  }
+
+  redirectToUserIfUpdated () {
+    if (this.props.updated) {
+      this.props.history.pushState(null, this.props.location.pathname.replace('/edit', ''));
+    }
   }
 
   render() {
@@ -24,7 +56,7 @@ export class UsersEditView extends React.Component {
       <div className='container'>
         <div className='row'>
           <div className='col-md-12'>
-            <UsersEditFormContainer {...this.props} />
+            <UserEditForm {...this.props} />
           </div>
         </div>
       </div>
@@ -32,4 +64,6 @@ export class UsersEditView extends React.Component {
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersEditView);
+reactMixin(UserEditView.prototype, LogoutIfUnauthorizedMixin);
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserEditView);

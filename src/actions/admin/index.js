@@ -94,6 +94,12 @@ export default {
       }
     };
   },
+  setUserAttr: (payload) => {
+    return {
+      type: c.SET_USER_ATTR,
+      payload
+    }
+  },
   updateUser: (payload) => {
     const body = JSON.stringify({
       user: payload.user
@@ -150,6 +156,12 @@ export default {
       }
     }
   }),
+  setImportUsers: (payload) => {
+    return {
+      type: c.SET_IMPORT_USERS,
+      payload
+    }
+  },
   importUsers: (payload) => {
     const body = JSON.stringify({
       users: payload.users

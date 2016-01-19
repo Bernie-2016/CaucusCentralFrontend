@@ -5,14 +5,14 @@ export class ProfileForm extends React.Component {
     let precinctsField = '';
     if(this.props.includePrecincts) {
       let precincts = [<option key={'blank'} value=''>None</option>];
-      for (let i = 0; i < this.props.adminPrecincts.precincts.length; i++) {
-        let id = this.props.adminPrecincts.precincts[i].id;
-        precincts.push(<option key={id} value={id}>{this.props.adminPrecincts.precincts[i].name}</option>);
+      for (let i = 0; i < this.props.precincts.length; i++) {
+        let id = this.props.precincts[i].id;
+        precincts.push(<option key={id} value={id}>{this.props.precincts[i].name}</option>);
       }
       precinctsField = (
         <div className="form-group">
           <label htmlFor="precinct">Precinct</label>
-          <select className="form-control" name="precinctId" value={this.props.precinctId} onChange={this.props.onUpdate}>
+          <select className="form-control" name="precinctId" value={this.props.user.precinctId} onChange={this.props.onUpdate}>
             {precincts}
           </select>
         </div>
@@ -22,27 +22,27 @@ export class ProfileForm extends React.Component {
       <form onSubmit={this.props.onSubmit}>
         <div className="form-group">
           <label htmlFor="firstName">First name</label>
-          <input type="text" className="form-control" name="firstName" required={true} value={this.props.firstName} onChange={this.props.onUpdate} />
+          <input type="text" className="form-control" name="firstName" required={true} value={this.props.user.firstName} onChange={this.props.onUpdate} />
         </div>
 
         <div className="form-group">
           <label htmlFor="lastName">Last name</label>
-          <input type="text" className="form-control" name="lastName" required={true} value={this.props.lastName} onChange={this.props.onUpdate} />
+          <input type="text" className="form-control" name="lastName" required={true} value={this.props.user.lastName} onChange={this.props.onUpdate} />
         </div>
 
         <div className="form-group">
           <label htmlFor="email">Email</label>
-          <input type="email" className="form-control" name="email" required={true} value={this.props.email} onChange={this.props.onUpdate} />
+          <input type="email" className="form-control" name="email" required={true} value={this.props.user.email} onChange={this.props.onUpdate} />
         </div>
 
         <div className="form-group">
           <label htmlFor="password">Password</label>
-          <input type="password" className="form-control" name="password" value={this.props.password} onChange={this.props.onUpdate} />
+          <input type="password" className="form-control" name="password" value={this.props.user.password} onChange={this.props.onUpdate} />
         </div>
 
         <div className="form-group">
           <label htmlFor="passwordConfirmation">Confirm password</label>
-          <input type="text" className="form-control" name="passwordConfirmation" value={this.props.passwordConfirmation} onChange={this.props.onUpdate} />
+          <input type="text" className="form-control" name="passwordConfirmation" value={this.props.user.passwordConfirmation} onChange={this.props.onUpdate} />
         </div>
 
         {precinctsField}

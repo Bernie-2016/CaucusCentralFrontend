@@ -1,30 +1,52 @@
 import React from 'react';
+import _     from 'lodash';
+import Papa  from 'papaparse';
 
 export class UsersImportForm extends React.Component {
+  onSelect(e) {
+    // Parse CSV into JSON array.
+    Papa.parse(e.target.files[0], {
+      complete: (results) => {
+        let userJson = _.map(results.data, (user) => {
+          if(user.length === 4) {
+            return {
+              code: user[0],
+              county: user[1],
+              precinct: user[2],
+              email: user[3]
+            }
+          }
+        });
+
+        this.props.adminActions.setImportUsers({users: _.compact(userJson)});
+      }
+    });
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+    this.props.adminActions.importUsers({
+      token: this.props.sessionToken,
+      users: this.props.usersToImport
+    });
+  }
+
   render() {
-    let precincts = [<option key={'blank'} value=''>None</option>];
-    for (let i = 0; i < this.props.adminPrecincts.precincts.length; i++) {
-      let id = this.props.adminPrecincts.precincts[i].id;
-      precincts.push(<option key={id} value={id}>{this.props.adminPrecincts.precincts[i].name}</option>);
-    }
-
     let message = '';
-    if(this.props.users.length > 0) {
-      message = <div className='alert alert-success'>{this.props.users.length} user(s) ready for import.</div>
+    if(this.props.usersToImport.length > 0) {
+      message = <div className='alert alert-success'>{this.props.usersToImport.length} user(s) ready for import.</div>
     }
-
-    let submitDisabled = (this.props.users.length === 0);
 
     return (
       <div>
         <p>Upload a CSV with 4 columns and no headers: <br /><strong>State (short code e.g. IA), County Name, Precinct Name, Email</strong></p>
-        <form onSubmit={this.props.onSubmit}>
+        <form onSubmit={ (e) => this.onSubmit(e) }>
           <div className="form-group">
             <label htmlFor="file">Users CSV</label>
-            <input type="file" className="form-control" name="file" required={true} onChange={this.props.onSelect} />
+            <input type="file" className="form-control" name="file" required={true} onChange={ (e) => this.onSelect(e) } />
           </div>
           {message}
-          <button type="submit" className="btn btn-primary" disabled={submitDisabled}>Import Users</button>
+          <button type="submit" className="btn btn-primary" disabled={this.props.usersToImport.length === 0}>Import Users</button>
         </form>
       </div>
     );

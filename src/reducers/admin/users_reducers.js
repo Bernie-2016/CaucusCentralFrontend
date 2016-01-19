@@ -3,13 +3,14 @@ import { notifySuccess, notifyError } from 'utils/notifications';
 import * as c from 'constants/admin';
 
 const initialState = {
-  gettingUsers: false,
-  addingUser: false,
-  removingUser: false,
-  importingUsers: false,
+  fetching: false,
+  adding: false,
+  removing: false,
+  importing: false,
   imported: false,
   error: false,
   importedCount: 0,
+  usersToImport: [],
   failedUsers: [],
   users: []
 };
@@ -17,32 +18,21 @@ const initialState = {
 const users = {
   get: {
     request: (state) => {
-      return reduceState(state, {error: false, gettingUsers: true});
+      return reduceState(state, {error: false, fetching: true, imported: false});
     },
     success: (state, response) => {
-      return reduceState(state, {error: false, gettingUsers: false, users: response.users});
+      return reduceState(state, {error: false, fetching: false, users: response.users});
     },
     error: (state, error) => {
-      return reduceState(state, {error: error, gettingUsers: false});
-    }
-  },
-  add: {
-    request: (state) => {
-      return reduceState(state, {error: false});
-    },
-    success: (state, response) => {
-      console.log(response);
-      notifySuccess('User invited!')
-      return reduceState(state, {error: false, addingUser: false, users: [...state.users, response]});
-    },
-    error: (state, error) => {
-      notifyError('User invite error.')
-      return reduceState(state, {error: error, addingUser: false});
+      return reduceState(state, {error: error, fetching: false});
     }
   },
   import: {
+    set: (state, payload) => {
+      return reduceState(state, { usersToImport: payload.users });
+    },
     request: (state) => {
-      return reduceState(state, {error: false, importingUsers: true, imported: false});
+      return reduceState(state, {error: false, usersToImport: [], importingUsers: true, imported: false});
     },
     success: (state, response) => {
       notifySuccess('Users imported!');
@@ -59,10 +49,8 @@ export default createReducer(initialState, {
   [c.GET_USERS_REQUEST]    : users.get.request,
   [c.GET_USERS_SUCCESS]    : users.get.success,
   [c.GET_USERS_ERROR]      : users.get.error,
-  [c.CREATE_USER_REQUEST]  : users.add.request,
-  [c.CREATE_USER_SUCCESS]  : users.add.success,
-  [c.CREATE_USER_ERROR]    : users.add.error,
   [c.IMPORT_USERS_REQUEST] : users.import.request,
   [c.IMPORT_USERS_SUCCESS] : users.import.success,
-  [c.IMPORT_USERS_ERROR]   : users.import.error
+  [c.IMPORT_USERS_ERROR]   : users.import.error,
+  [c.SET_IMPORT_USERS]     : users.import.set
 });

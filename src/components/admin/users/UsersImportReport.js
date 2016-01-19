@@ -3,13 +3,13 @@ import React from 'react';
 export class UsersImportReport extends React.Component {
   render() {
     let failedTable = '';
-    if(this.props.adminUsers.failedUsers.length > 0) {
+    if(this.props.failedUsers.length > 0) {
       let failedRows = [];
-      for(let i = 0; i < this.props.adminUsers.failedUsers.length; i++) {
-        let user = this.props.adminUsers.failedUsers[i];
+      for(let i = 0; i < this.props.failedUsers.length; i++) {
+        let user = this.props.failedUsers[i];
         failedRows.push(
-          <tr>
-            <td>{user.user.state}</td>
+          <tr key={'failed-user-' + i}>
+            <td>{user.user.code}</td>
             <td>{user.user.county}</td>
             <td>{user.user.precinct}</td>
             <td>{user.user.email}</td>
@@ -19,7 +19,7 @@ export class UsersImportReport extends React.Component {
       }
       failedTable = (
         <div>
-          <p>The following {this.props.adminUsers.failedUsers.length} users could not be imported.</p>
+          <p>The following {this.props.failedUsers.length} users could not be imported.</p>
           <table className='table'>
             <thead>
               <tr>
@@ -41,7 +41,7 @@ export class UsersImportReport extends React.Component {
     return (
       <div>
         <p>
-          <strong>{this.props.adminUsers.importedCount} users imported</strong>
+          <strong>{this.props.importedCount} users imported</strong>
         </p>
         <p>
           {failedTable}
