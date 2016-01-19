@@ -43,6 +43,10 @@ export default {
       }
     }
   }),
+  setUsersAttr: (payload) => ({
+    type: c.SET_USERS_ATTR,
+    payload
+  }),
   getState: (payload) => ({
     [CALL_API]: {
       types: [c.GET_STATE_REQUEST,

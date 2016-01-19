@@ -24,7 +24,7 @@ const precincts = {
     let newState = {};
     newState[payload.key] = payload.value;
     return reduceState(state, newState);
-  },
+  }
 };
 
 export default createReducer(initialState, {

@@ -36,6 +36,7 @@ export default createConstants(
   'UPDATE_PRECINCT_FAILURE',
   'SET_PRECINCTS_ATTR',
   'SET_PRECINCT_ATTR',
+  'SET_USERS_ATTR',
   'SET_USER_ATTR',
   'SET_IMPORT_USERS'
 );

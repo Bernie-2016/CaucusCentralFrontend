@@ -42,6 +42,11 @@ const users = {
       notifyError('User import error.')
       return reduceState(state, {error: error, importingUsers: false});
     }
+  },
+  set: (state, payload) => {
+    let newState = {};
+    newState[payload.key] = payload.value;
+    return reduceState(state, newState);
   }
 };
 
@@ -52,5 +57,6 @@ export default createReducer(initialState, {
   [c.IMPORT_USERS_REQUEST] : users.import.request,
   [c.IMPORT_USERS_SUCCESS] : users.import.success,
   [c.IMPORT_USERS_ERROR]   : users.import.error,
-  [c.SET_IMPORT_USERS]     : users.import.set
+  [c.SET_IMPORT_USERS]     : users.import.set,
+  [c.SET_USERS_ATTR]       : users.set
 });
