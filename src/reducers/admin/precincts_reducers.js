@@ -4,6 +4,7 @@ import * as c from 'constants/admin';
 const initialState = {
   gettingPrecincts: false,
   error: false,
+  keyword: '',
   precincts: []
 };
 
@@ -18,11 +19,17 @@ const precincts = {
     failure: (state, error) => {
       return reduceState(state, {error:error, gettingPrecincts: false});
     }
-  }
+  },
+  set: (state, payload) => {
+    let newState = {};
+    newState[payload.key] = payload.value;
+    return reduceState(state, newState);
+  },
 };
 
 export default createReducer(initialState, {
   [c.GET_PRECINCTS_REQUEST] : precincts.get.request,
   [c.GET_PRECINCTS_SUCCESS] : precincts.get.success,
-  [c.GET_PRECINCTS_ERROR] : precincts.get.failure
+  [c.GET_PRECINCTS_ERROR]   : precincts.get.failure,
+  [c.SET_PRECINCTS_ATTR]    : precincts.set
 });

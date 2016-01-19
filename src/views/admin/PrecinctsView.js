@@ -12,6 +12,7 @@ const mapStateToProps = (state) => ({
   gettingState: state.adminState.gettingState,
   state:        state.adminState.state,
   precincts:    state.adminState.state.precincts,
+  keyword:      state.adminPrecincts.keyword,
   error:        state.adminState.error,
   sessionToken: state.session.token
 });

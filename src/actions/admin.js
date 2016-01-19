@@ -27,6 +27,10 @@ export default {
       }
     }
   }),
+  setPrecinctsAttr: (payload) => ({
+    type: c.SET_PRECINCTS_ATTR,
+    payload
+  }),
   getAllUsers: (payload) => ({
     [CALL_API]: {
       types: [c.GET_USERS_REQUEST,
