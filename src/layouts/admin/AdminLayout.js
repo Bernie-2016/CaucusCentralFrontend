@@ -8,7 +8,7 @@ import AdminNav               from 'components/nav/AdminNav';
 const mapStateToProps = (state) => (state);
 
 const mapDispatchToProps = (dispatch) => ({
-  actions : bindActionCreators(sessionActions, dispatch)
+  sessionActions : bindActionCreators(sessionActions, dispatch)
 });
 
 export class AdminLayout extends React.Component {
