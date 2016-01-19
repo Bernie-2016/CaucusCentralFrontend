@@ -17,6 +17,7 @@ import UsersImportView       from 'views/admin/UsersImportView';
 import UserView              from 'views/admin/UserView';
 import UserEditView          from 'views/admin/UserEditView';
 import DashboardView         from 'views/captain/DashboardView';
+import HelpView              from 'views/captain/HelpView';
 import ProfileView           from 'views/profile/ProfileView';
 import ProfileEditView       from 'views/profile/ProfileEditView';
 
@@ -27,6 +28,7 @@ export default (
     <Route component={ResetView} path='/reset/:token' />
     <Route component={CaptainLayout} path='/captain'>
       <IndexRoute component={DashboardView} />
+      <Route component={HelpView} path='/captain/help' />
       <Route component={ProfileView} path='/captain/profile' />
       <Route component={ProfileEditView} path='/captain/profile/edit' />
     </Route>
