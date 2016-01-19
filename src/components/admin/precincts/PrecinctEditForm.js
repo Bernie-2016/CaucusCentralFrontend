@@ -3,7 +3,7 @@ import { phaseText } from 'utils/phaseText';
 
 export class PrecinctEditForm extends React.Component {
   onUpdate(e) {
-    this.props.adminActions.setPrecinctAttr({
+    this.props.adminActions.setAttr({
       key: e.target.name, 
       value: e.target.value
     });

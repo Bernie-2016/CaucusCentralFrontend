@@ -2,7 +2,7 @@ import React from 'react';
 
 export class CaptainEntryAttendees extends React.Component {
   onUpdate(e) {
-    this.props.captainActions.setPrecinctAttr({
+    this.props.captainActions.setAttr({
       key: 'attendees',
       value: parseInt(e.target.value)
     });

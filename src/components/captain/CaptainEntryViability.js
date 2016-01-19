@@ -9,7 +9,7 @@ export class CaptainEntryViability extends React.Component {
     else {
       val = parseInt(val);
     }
-    this.props.captainActions.setPrecinctAttr({
+    this.props.captainActions.setAttr({
       key: e.target.name, 
       value: val
     });
@@ -20,17 +20,18 @@ export class CaptainEntryViability extends React.Component {
     let delegateCounts = [];
     let total = 0;
     let valid = true;
+    let msg = '';
 
     // Create delegate hash and check validity along the way
     _.forOwn(this.props.supporters, (supporters, candidate) => {
       if(isNaN(supporters)) {
-        alert('Supporter counts must be a valid number.');
+        msg = 'Supporter counts must be a valid number.';
         valid = false;
       }
 
       total += supporters;
       if(total > this.props.attendees) {
-        alert('Supporter counts cannot total more than ' + this.props.attendees + ' (the total number of attendees).');
+        msg = 'Supporter counts cannot total more than ' + this.props.attendees + ' (the total number of attendees).';
         valid = false;
       }
 
@@ -39,13 +40,18 @@ export class CaptainEntryViability extends React.Component {
         supporters: supporters
       });
 
-      if(valid && delegateCounts.length === Object.keys(this.props.supporters).length) {
-        if(confirm('Are you sure you want to finalize these viability supporter counts? This action cannot be undone.')) {
-          this.props.captainActions.updateViabilityCounts({
-            id: this.props.precinct.id,
-            token: this.props.sessionToken,
-            delegate_counts: delegateCounts
-          });
+      if(delegateCounts.length === Object.keys(this.props.supporters).length) {
+        if(valid) {
+          if(confirm('Are you sure you want to finalize these viability supporter counts? This action cannot be undone.')) {
+            this.props.captainActions.updateViabilityCounts({
+              id: this.props.precinct.id,
+              token: this.props.sessionToken,
+              delegate_counts: delegateCounts
+            });
+          }
+        }
+        else {
+          alert(msg);
         }
       }
     });
