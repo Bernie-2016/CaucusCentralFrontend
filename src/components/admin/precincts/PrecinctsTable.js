@@ -66,7 +66,7 @@ export class PrecinctsTable extends React.Component {
     return (
       <Loader loaded={this.props.fetched}>
         <p>
-          <input type="text" name="keyword" placeholder="Keyword" value={this.props.keyword} onChange={ (e) => this.onUpdate(e) } />
+          <input type="search" name="keyword" placeholder="Keyword" value={this.props.keyword} onChange={ (e) => this.onUpdate(e) } />
         </p>
         <Table
           rowsCount={precincts.length}
