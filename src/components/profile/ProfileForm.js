@@ -45,7 +45,7 @@ export class ProfileForm extends React.Component {
 
         <div className="form-group">
           <label htmlFor="passwordConfirmation">Confirm password</label>
-          <input type="text" className="form-control" name="passwordConfirmation" value={this.props.profile.passwordConfirmation} onChange={ (e) => this.onUpdate(e) } />
+          <input type="password" className="form-control" name="passwordConfirmation" value={this.props.profile.passwordConfirmation} onChange={ (e) => this.onUpdate(e) } />
         </div>
 
         <button type="submit" className="btn btn-primary">Update Profile</button>

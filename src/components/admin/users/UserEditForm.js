@@ -66,7 +66,7 @@ export class UserEditForm extends React.Component {
 
             <div className="form-group">
               <label htmlFor="passwordConfirmation">Confirm password</label>
-              <input type="text" className="form-control" name="passwordConfirmation" value={this.props.user.passwordConfirmation} onChange={this.props.onUpdate} />
+              <input type="password" className="form-control" name="passwordConfirmation" value={this.props.user.passwordConfirmation} onChange={this.props.onUpdate} />
             </div>
 
             {precinctsField}
