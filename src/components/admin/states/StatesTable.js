@@ -29,13 +29,8 @@ class LinkCell extends React.Component {
 }
 
 export class StatesTable extends React.Component {
-
-  constructor (props) {
-    super(props);
-  }
-
   render () {
-    const states = this.props.adminStates.states;
+    const states = this.props.states;
     const headerHeight = 30;
     const rowHeight = 30;
     const tableWidth = 1125;

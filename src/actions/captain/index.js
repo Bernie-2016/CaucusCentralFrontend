@@ -15,15 +15,9 @@ export default {
       }
     }
   }),
-  setAttendees: (payload) => {
+  setPrecinctAttr: (payload) => {
     return {
-      type: c.SET_ATTENDEES,
-      payload
-    }
-  },
-  setSupporters: (payload) => {
-    return {
-      type: c.SET_SUPPORTERS,
+      type: c.SET_PRECINCT_ATTR,
       payload
     }
   },

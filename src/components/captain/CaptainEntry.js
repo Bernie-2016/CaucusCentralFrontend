@@ -1,7 +1,7 @@
 import React from 'react';
 import { bindActionCreators }    from 'redux';
 import { connect }               from 'react-redux';
-import reactMixin                from 'react-mixin';
+
 import CaptainEntryApportionment from './CaptainEntryApportionment';
 import CaptainEntryAttendees     from './CaptainEntryAttendees';
 import CaptainEntryCompleted     from './CaptainEntryCompleted';
@@ -9,25 +9,7 @@ import CaptainEntryMessage       from './CaptainEntryMessage';
 import CaptainEntryViability     from './CaptainEntryViability';
 import captainActions            from 'actions/captain/';
 import sessionActions            from 'actions/session/';
-import LogoutIfUnauthorizedMixin from 'components/mixins/LogoutIfUnauthorizedMixin';
 import { phaseText }             from 'utils/phaseText';
-
-const mapStateToProps = (state) => ({
-  sessionToken: state.session.token,
-  precinct:     state.captainPrecinct.precinct,
-  attendees:    state.captainPrecinct.attendees,
-  error:        state.captainPrecinct.error,
-  supporters: {
-    sanders: state.captainPrecinct.sandersSupporters,
-    clinton: state.captainPrecinct.clintonSupporters,
-    omalley: state.captainPrecinct.omalleySupporters
-  }
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  captainActions: bindActionCreators(captainActions, dispatch),
-  sessionActions: bindActionCreators(sessionActions, dispatch)
-});
 
 export class CaptainEntry extends React.Component {
   phaseComponent() {
@@ -70,6 +52,4 @@ export class CaptainEntry extends React.Component {
   }
 };
 
-reactMixin(CaptainEntry.prototype, LogoutIfUnauthorizedMixin);
-
-export default connect(mapStateToProps, mapDispatchToProps)(CaptainEntry);
+export default CaptainEntry;

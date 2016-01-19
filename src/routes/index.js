@@ -33,8 +33,8 @@ export default (
     <Route component={AdminLayout}  path='/admin'>
       <IndexRoute component={StatesView} />
       <Route component={PrecinctsView} path='/admin/states/:code' />
-      <Route component={PrecinctView} path='/admin/precincts/:id' />
-      <Route component={PrecinctEditView} path='/admin/precincts/:id/edit' />
+      <Route component={PrecinctView} path='/admin/states/:code/precincts/:id' />
+      <Route component={PrecinctEditView} path='/admin/states/:code/precincts/:id/edit' />
       <Route component={UsersView} path='/admin/users' />
       <Route component={UsersNewView} path='/admin/users/new' />
       <Route component={UsersImportView} path='/admin/users/import' />

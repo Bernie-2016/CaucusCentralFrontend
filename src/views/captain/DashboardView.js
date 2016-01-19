@@ -1,25 +1,37 @@
-import React                  from 'react';
-import { bindActionCreators } from 'redux';
-import { connect }            from 'react-redux';
-import captainActions         from 'actions/captain';
-import CaptainEntry           from 'components/captain/CaptainEntry';
+import React                     from 'react';
+import { bindActionCreators }    from 'redux';
+import { connect }               from 'react-redux';
+import reactMixin                from 'react-mixin';
+
+import LogoutIfUnauthorizedMixin from 'components/mixins/LogoutIfUnauthorizedMixin';
+import captainActions            from 'actions/captain';
+import sessionActions            from 'actions/session';
+import CaptainEntry              from 'components/captain/CaptainEntry';
 
 const mapStateToProps = (state) => ({
-  precinctId: state.session.precinctId,
-  token: state.session.token
+  precinctId:   state.session.precinctId,
+  sessionToken: state.session.token,
+  precinct:     state.captainPrecinct.precinct,
+  attendees:    state.captainPrecinct.attendees,
+  error:        state.captainPrecinct.error,
+  supporters: {
+    sanders: state.captainPrecinct.sandersSupporters,
+    clinton: state.captainPrecinct.clintonSupporters,
+    omalley: state.captainPrecinct.omalleySupporters
+  }
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators(captainActions, dispatch)
+  captainActions: bindActionCreators(captainActions, dispatch),
+  sessionActions: bindActionCreators(sessionActions, dispatch)
 });
 
 export class DashboardView extends React.Component {
-
   componentDidMount() {
     if(this.props.precinctId !== undefined) {
       this.props.actions.getPrecinct({
         id: this.props.precinctId,
-        token: this.props.token
+        token: this.props.sessionToken
       });
     }
   }
@@ -48,5 +60,7 @@ export class DashboardView extends React.Component {
     }
   }
 };
+
+reactMixin(CaptainEntry.prototype, LogoutIfUnauthorizedMixin);
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardView);

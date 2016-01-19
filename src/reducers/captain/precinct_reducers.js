@@ -35,23 +35,10 @@ const precinct = {
       return reduceState(state, { error: error, gettingPrecinct: false});
     }
   },
-  set: {
-    attendees: (state, attendees) => {
-      return reduceState(state, { attendees: attendees });
-    },
-    supporters: (state, payload) => {
-      switch (payload.candidate) {
-      case 'sanders':
-        return reduceState(state, { sandersSupporters: payload.supporters });
-        break;
-      case 'clinton':
-        return reduceState(state, { clintonSupporters: payload.supporters });
-        break;
-      case 'omalley':
-        return reduceState(state, { omalleySupporters: payload.supporters });
-        break;
-      }
-    }
+  set: (state, payload) => {
+    let newState = {};
+    newState[payload.key] = payload.value;
+    return reduceState(state, newState);
   },
   update: {
     request: (state) => {
@@ -90,7 +77,6 @@ export default createReducer(initialState, {
   [c.UPDATE_APPORTIONMENT_COUNTS_REQUEST] : precinct.update.request,
   [c.UPDATE_APPORTIONMENT_COUNTS_SUCCESS] : precinct.update.success,
   [c.UPDATE_APPORTIONMENT_COUNTS_FAILURE]  : precinct.update.failure,
-  [c.SET_ATTENDEES] : precinct.set.attendees,
-  [c.SET_SUPPORTERS] : precinct.set.supporters
+  [c.SET_PRECINCT_ATTR] : precinct.set,
 });
 

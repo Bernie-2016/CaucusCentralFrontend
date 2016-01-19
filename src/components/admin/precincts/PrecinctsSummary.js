@@ -1,14 +1,14 @@
 import React from 'react';
 
 export class PrecinctsSummary extends React.Component {
-  getTotalCountsFor (candidateName) {
+  getTotalCountsFor (candidate) {
     let count = 0;
-    const precincts = this.props.adminState.state.precincts;
+    const precincts = this.props.precincts;
     for(let i = 0; i < precincts.length; i++) {
       if(precincts[i].phase === 'apportioned') {
         const candidates = precincts[i].delegate_counts;
         for (let j = 0; j < candidates.length; j++) {
-          if (candidates[j].key === candidateName) {
+          if (candidates[j].key === candidate) {
             count += candidates[j].delegates_won;
           }
         }
@@ -19,7 +19,7 @@ export class PrecinctsSummary extends React.Component {
 
   getTotalDelegates() {
     let count = 0;
-    const precincts = this.props.adminState.state.precincts;
+    const precincts = this.props.precincts;
     for(let i = 0; i < precincts.length; i++) {
       count += precincts[i].total_delegates;
     }

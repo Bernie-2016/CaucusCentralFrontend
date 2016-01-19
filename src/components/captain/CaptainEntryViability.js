@@ -9,9 +9,9 @@ export class CaptainEntryViability extends React.Component {
     else {
       val = parseInt(val);
     }
-    this.props.actions.setSupporters({
-      candidate: e.target.name, 
-      supporters: val
+    this.props.captainActions.setPrecinctAttr({
+      key: e.target.name, 
+      value: val
     });
   }
 
@@ -41,7 +41,7 @@ export class CaptainEntryViability extends React.Component {
 
       if(valid && delegateCounts.length === Object.keys(this.props.supporters).length) {
         if(confirm('Are you sure you want to finalize these viability supporter counts? This action cannot be undone.')) {
-          this.props.actions.updateViabilityCounts({
+          this.props.captainActions.updateViabilityCounts({
             id: this.props.precinct.id,
             token: this.props.sessionToken,
             delegate_counts: delegateCounts
@@ -72,16 +72,16 @@ export class CaptainEntryViability extends React.Component {
 
         <form onSubmit={ (e) => this.onSubmit(e) }>
           <div className="form-group">
-            <label htmlFor="sanders">Bernie Sanders Supporters</label>
-            <input type="number" className="form-control" name="sanders" required={true} value={this.props.supporters.sanders} onChange={ (e) => this.onUpdate(e) } />
+            <label htmlFor="sandersSupporters">Bernie Sanders Supporters</label>
+            <input type="number" className="form-control" name="sandersSupporters" required={true} value={this.props.supporters.sanders} onChange={ (e) => this.onUpdate(e) } />
           </div>
           <div className="form-group">
-            <label htmlFor="clinton">Hillary Clinton Supporters</label>
-            <input type="number" className="form-control" name="clinton" required={true} value={this.props.supporters.clinton} onChange={ (e) => this.onUpdate(e) } />
+            <label htmlFor="clintonSupporters">Hillary Clinton Supporters</label>
+            <input type="number" className="form-control" name="clintonSupporters" required={true} value={this.props.supporters.clinton} onChange={ (e) => this.onUpdate(e) } />
           </div>
           <div className="form-group">
-            <label htmlFor="omalley">Martin O'Malley Supporters</label>
-            <input type="number" className="form-control" name="omalley" required={true} value={this.props.supporters.omalley} onChange={ (e) => this.onUpdate(e) } />
+            <label htmlFor="omalleySupporters">Martin O'Malley Supporters</label>
+            <input type="number" className="form-control" name="omalleySupporters" required={true} value={this.props.supporters.omalley} onChange={ (e) => this.onUpdate(e) } />
           </div>
           <button type="submit" className="btn btn-primary">Submit first count</button>
         </form>

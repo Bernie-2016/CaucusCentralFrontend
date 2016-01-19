@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router';
 import {Table, Column, Cell} from 'fixed-data-table';
+import { phaseText } from 'utils/phaseText';
 require('fixed-data-table/dist/fixed-data-table.min.css');
 
 class LinkCell extends React.Component {
   render() {
-    const {rowIndex, field, linkField, data, ...props} = this.props;
-    const link = '/admin/precincts/' + data[rowIndex][linkField];
+    const { rowIndex, field, linkField, data, code, ...props } = this.props;
+    const link = '/admin/states/' + code + '/precincts/' + data[rowIndex][linkField];
     return (
       <Cell {...props}>
         <Link to={link}>
@@ -39,32 +40,9 @@ export class PrecinctsTable extends React.Component {
     return counts;
   }
 
-  phaseText(precinctStatus) {
-    let text = '';
-    switch (precinctStatus) {
-    case 'start':
-      text = 'Ready to Begin';
-      break;
-    case 'viability':
-      text = 'Viability Phase';
-      break;
-    case 'not_viable':
-      text = 'Not Viable';
-      break;
-    case 'apportionment':
-      text = 'Apportionment Phase';
-      break;
-    case 'apportioned':
-      text = 'Caucus completed';
-      break;
-    default:
-      text = 'Invalid precinct state';
-    }
-    return text;
-  }
-
   render () {
-    const precincts = this.props.adminState.state.precincts;
+    const precincts = this.props.precincts;
+    const { code } = this.props.params;
     const headerHeight = 30;
     const rowHeight = 30;
     const tableWidth = 1125;
@@ -91,6 +69,7 @@ export class PrecinctsTable extends React.Component {
               data={precincts}
               field='name'
               linkField='id'
+              code={code}
             />
           }
           width={250}
@@ -99,7 +78,7 @@ export class PrecinctsTable extends React.Component {
           header={<Cell>Phase</Cell>}
           cell={props => (
             <Cell {...props}>
-              {this.phaseText(precincts[props.rowIndex].phase)}
+              {phaseText(precincts[props.rowIndex].phase)}
             </Cell>
           )}
           width={150}

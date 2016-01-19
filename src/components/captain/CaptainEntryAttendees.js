@@ -2,7 +2,10 @@ import React from 'react';
 
 export class CaptainEntryAttendees extends React.Component {
   onUpdate(e) {
-    this.props.captainActions.setAttendees(parseInt(e.target.value));
+    this.props.captainActions.setPrecinctAttr({
+      key: 'attendees',
+      value: parseInt(e.target.value)
+    });
   }
 
   onSubmit(e) {
@@ -11,7 +14,7 @@ export class CaptainEntryAttendees extends React.Component {
       alert('Attendees must be a valid number greater than 0.');
     }
     else if(confirm('Are you sure you want to report ' + this.props.attendees + ' attendees? This action cannot be undone.')) {
-      this.props.actions.updateAttendees({
+      this.props.captainActions.updateAttendees({
         id: this.props.precinctId,
         token: this.props.sessionToken,
         total_attendees: this.props.attendees

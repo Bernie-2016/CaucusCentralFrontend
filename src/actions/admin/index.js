@@ -113,6 +113,12 @@ export default {
       }
     };
   },
+  setPrecinctAttr: (payload) => {
+    return {
+      type: c.SET_PRECINCT_ATTR,
+      payload
+    }
+  },
   updatePrecinct: (payload) => {
     const body = JSON.stringify({
       precinct: payload.precinct

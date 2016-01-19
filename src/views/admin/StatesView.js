@@ -1,29 +1,44 @@
 import React                      from 'react';
-import { Link }                   from 'react-router';
 import { bindActionCreators }     from 'redux';
 import { connect }                from 'react-redux';
-import * as adminActions          from 'actions/admin';
-import StatesTableContainer       from 'components/admin/states/StatesTableContainer';
+import reactMixin                 from 'react-mixin';
+import adminActions               from 'actions/admin/';
+import sessionActions             from 'actions/session/';
+import LogoutIfUnauthorizedMixin  from 'components/mixins/LogoutIfUnauthorizedMixin';
+import StatesTable                from 'components/admin/states/StatesTable';
 
-const mapStateToProps = (state) => (state);
+const mapStateToProps = (state) => ({
+  gettingStates: state.adminStates.gettingStates,
+  states:        state.adminStates.states,
+  error:         state.adminStates.error,
+  sessionToken:  state.session.token
+});
+
 const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators(adminActions, dispatch)
+  adminActions:   bindActionCreators(adminActions, dispatch),
+  sessionActions: bindActionCreators(sessionActions, dispatch)
 });
 
 export class StatesView extends React.Component {
+  componentDidMount() {
+    this.props.adminActions.getAllStates({token: this.props.sessionToken});
+  }
+
   render () {
     let message = null;
-    if (this.props.adminStates.gettingStates) {
+    if (this.props.gettingStates) {
       message = <div className='alert alert-warning'>Retrieving States</div>;
     }
     return (
       <div className='container admin-dashboard-view'>
         <h1>States</h1>
         {message}
-        <StatesTableContainer {...this.props}/>
+        <StatesTable {...this.props}/>
       </div>
     );
   }
 }
+
+reactMixin(StatesView.prototype, LogoutIfUnauthorizedMixin);
 
 export default connect(mapStateToProps, mapDispatchToProps)(StatesView);
