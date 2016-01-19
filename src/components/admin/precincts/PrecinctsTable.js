@@ -1,24 +1,9 @@
-import React                 from 'react';
-import { Link }              from 'react-router';
-import Loader                from 'react-loader';
-import {Table, Column, Cell} from 'fixed-data-table';
-import { phaseText }         from 'utils/phaseText';
-import _                     from 'lodash';
-import 'fixed-data-table/dist/fixed-data-table.min.css';
-
-class LinkCell extends React.Component {
-  render() {
-    const { rowIndex, field, linkField, data, code, ...props } = this.props;
-    const link = '/admin/states/' + code + '/precincts/' + data[rowIndex][linkField];
-    return (
-      <Cell {...props}>
-        <Link to={link}>
-          {data[rowIndex][field]}
-        </Link>
-      </Cell>
-    );
-  }
-}
+import React                        from 'react';
+import { Link }                     from 'react-router';
+import Loader                       from 'react-loader';
+import { Table, Thead, Th, Tr, Td } from 'reactable';
+import { phaseText }                from 'utils/phaseText';
+import _                            from 'lodash';
 
 export class PrecinctsTable extends React.Component {
   getDelegateCountsFor (candidateName, precinct) {
@@ -58,104 +43,80 @@ export class PrecinctsTable extends React.Component {
       });
     }
     const { code } = this.props.params;
-    const headerHeight = 30;
-    const rowHeight = 30;
-    const tableWidth = 1125;
-    const tableHeight = (precincts.length * rowHeight) + (headerHeight + 3);
+
+    let precinctComponents = [];
+    _.each(precincts, (precinct) => {
+      precinctComponents.push(
+        <Tr key={precinct.id}>
+          <Td column="county">
+            {precinct.county}
+          </Td>
+          <Td column="precinct">
+            <Link to={'/admin/states/' + code + '/precincts/' + precinct.id}>
+              {precinct.name}
+            </Link>
+          </Td>
+          <Td column="phase">
+            {phaseText(precinct.phase)}
+          </Td>
+          <Td column="attendees">
+            {precinct.total_attendees}
+          </Td>
+          <Td column="sanders">
+            {this.getDelegateCountsFor('sanders', precinct).supporters}
+          </Td>
+          <Td column="clinton">
+            {this.getDelegateCountsFor('clinton', precinct).supporters}
+          </Td>
+          <Td column="omalley">
+            {this.getDelegateCountsFor('omalley', precinct).supporters}
+          </Td>
+          <Td column="delegates">
+            {this.total_delegates}
+          </Td>
+          <Td column="awarded">
+            {this.getDelegateCountsFor('sanders', precinct).won}
+          </Td>
+        </Tr>
+      );
+    });
 
     return (
       <Loader loaded={this.props.fetched}>
         <p>
           <input type="search" name="keyword" placeholder="Keyword" value={this.props.keyword} onChange={ (e) => this.onUpdate(e) } />
         </p>
-        <Table
-          rowsCount={precincts.length}
-          rowHeight={rowHeight}
-          headerHeight={headerHeight}
-          width={tableWidth}
-          height={tableHeight}>
-          <Column
-            header={<Cell>County</Cell>}
-            cell={props => (
-              <Cell {...props}>{precincts[props.rowIndex].county}</Cell>
-            )}
-            width={125}
-          />
-          <Column
-            header={<Cell>Precinct</Cell>}
-            cell={
-              <LinkCell
-                data={precincts}
-                field='name'
-                linkField='id'
-                code={code}
-              />
-            }
-            width={250}
-          />
-          <Column
-            header={<Cell>Phase</Cell>}
-            cell={props => (
-              <Cell {...props}>
-                {phaseText(precincts[props.rowIndex].phase)}
-              </Cell>
-            )}
-            width={150}
-          />
-          <Column
-            header={<Cell>Attendees</Cell>}
-            cell={props => (
-              <Cell {...props}>
-                {precincts[props.rowIndex].total_attendees}
-              </Cell>
-            )}
-            width={100}
-          />
-          <Column
-            header={<Cell>Bernie</Cell>}
-            cell={props => (
-              <Cell {...props}>
-                {this.getDelegateCountsFor('sanders', precincts[props.rowIndex]).supporters}
-              </Cell>
-            )}
-            width={100}
-          />
-          <Column
-            header={<Cell>Hillary</Cell>}
-            cell={props => (
-              <Cell {...props}>
-                {this.getDelegateCountsFor('clinton', precincts[props.rowIndex]).supporters}
-              </Cell>
-            )}
-            width={100}
-          />
-          <Column
-            header={<Cell>O'Malley</Cell>}
-            cell={props => (
-              <Cell {...props}>
-                {this.getDelegateCountsFor('omalley', precincts[props.rowIndex]).supporters}
-              </Cell>
-            )}
-            width={100}
-          />
-          <Column
-            header={<Cell>Delegates</Cell>}
-            cell={props => (
-              <Cell {...props}>
-                {precincts[props.rowIndex].total_delegates}
-              </Cell>
-            )}
-            width={100}
-          />
-          <Column
-            header={<Cell>Awarded</Cell>}
-            cell={props => (
-              <Cell {...props}>
-                {this.getDelegateCountsFor('sanders', precincts[props.rowIndex]).won}
-              </Cell>
-            )}
-            width={100}
-          />
+        <Table className="table table-striped">
+          <Thead>
+            <Th column="county">
+              <strong>County</strong>
+            </Th>
+            <Th column="precinct">
+              <strong>Precinct</strong>
+            </Th>
+            <Th column="phase">
+              <strong>Phase</strong>
+            </Th>
+            <Th column="attendees">
+              <strong>Attendees</strong>
+            </Th>
+            <Th column="sanders">
+              <strong>Sanders</strong>
+            </Th>
+            <Th column="clinton">
+              <strong>Clinton</strong>
+            </Th>
+            <Th column="omalley">
+              <strong>O'Malley</strong>
+            </Th>
+            <Th column="delegates">
+              <strong>Total Delegates</strong>
+            </Th>
+            <Th column="awarded">
+              <strong>Delegates Awarded</strong>
+            </Th>
+          </Thead>
+          {precinctComponents}
         </Table>
       </Loader>
     );

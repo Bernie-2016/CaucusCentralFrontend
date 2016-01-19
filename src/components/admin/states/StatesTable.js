@@ -1,82 +1,44 @@
-import React                 from 'react';
-import { Link }              from 'react-router';
-import Loader                from 'react-loader';
-import {Table, Column, Cell} from 'fixed-data-table';
-import 'fixed-data-table/dist/fixed-data-table.min.css';
-
-class TextCell extends React.Component {
-  render() {
-    const {rowIndex, field, data, ...props} = this.props;
-    return (
-      <Cell {...props}>
-        {data[rowIndex][field]}
-      </Cell>
-    );
-  }
-}
-
-class LinkCell extends React.Component {
-  render() {
-    const {rowIndex, field, linkField, data, ...props} = this.props;
-    const link = '/admin/states/' + data[rowIndex][linkField];
-    return (
-      <Cell {...props}>
-        <Link to={link}>
-          {data[rowIndex][field]}
-        </Link>
-      </Cell>
-    );
-  }
-}
+import React                        from 'react';
+import { Link }                     from 'react-router';
+import Loader                       from 'react-loader';
+import { Table, Thead, Th, Tr, Td } from 'reactable';
 
 export class StatesTable extends React.Component {
   render () {
-    const states = this.props.states;
-    const headerHeight = 30;
-    const rowHeight = 30;
-    const tableWidth = 1125;
-    const tableHeight = (states.length * rowHeight) + (headerHeight + 3);
+    let stateComponents = [];
+    _.each(this.props.states, (state) => {
+      stateComponents.push(
+        <Tr key={state.code}>
+          <Td column="name">
+            <Link to={'/admin/states/' + state.code}>
+              {state.name}
+            </Link>
+          </Td>
+          <Td column="code">
+            {state.code}
+          </Td>
+          <Td column="date">
+            {state.caucus_date}
+          </Td>
+        </Tr>
+      );
+    });
 
     return (
       <Loader loaded={this.props.fetched}>
-        <Table
-          rowsCount={states.length}
-          rowHeight={rowHeight}
-          headerHeight={headerHeight}
-          width={tableWidth}
-          height={tableHeight}>
-
-          <Column
-            header={<Cell>Name</Cell>}
-            cell={
-              <LinkCell
-                data={states}
-                field='name'
-                linkField='code'
-              />
-            }
-            width={340}
-          />
-          <Column
-            header={<Cell>Code</Cell>}
-            cell={
-              <TextCell
-                data={states}
-                field='code'
-              />
-            }
-            width={300}
-          />
-          <Column
-            header={<Cell>Date</Cell>}
-            cell={
-              <TextCell
-                data={states}
-                field='caucus_date'
-              />
-            }
-            width={480}
-          />
+        <Table className="table table-striped">
+          <Thead>
+            <Th column="name">
+              <strong>Name</strong>
+            </Th>
+            <Th column="code">
+              <strong>Code</strong>
+            </Th>
+            <Th column="date">
+              <strong>Date</strong>
+            </Th>
+          </Thead>
+          {stateComponents}
         </Table>
       </Loader>
     );

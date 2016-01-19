@@ -1,23 +1,8 @@
-import React                 from 'react';
-import { Link }              from 'react-router';
-import Loader                from 'react-loader';
-import {Table, Column, Cell} from 'fixed-data-table';
-
-import 'fixed-data-table/dist/fixed-data-table.min.css';
-
-class LinkCell extends React.Component {
-  render() {
-    const {rowIndex, field, linkField, data, ...props} = this.props;
-    const link = '/admin/users/' + data[rowIndex][linkField];
-    return (
-      <Cell {...props}>
-        <Link to={link}>
-          {data[rowIndex][field]}
-        </Link>
-      </Cell>
-    );
-  }
-}
+import React                        from 'react';
+import { Link }                     from 'react-router';
+import Loader                       from 'react-loader';
+import { Table, Thead, Th, Tr, Td } from 'reactable';
+import _                            from 'lodash';
 
 export class UsersTable extends React.Component {
   onUpdate(e) {
@@ -37,68 +22,51 @@ export class UsersTable extends React.Component {
                _.lowerCase(user.email).indexOf(keyword) !== -1;
       });
     }
-    let headerHeight = 30;
-    let rowHeight = 40;
-    let tableWidth = 1125;
-    let tableHeight = (users.length * rowHeight)+(headerHeight+2);
+
+    let userComponents = [];
+    _.each(users, (user) => {
+      userComponents.push(
+        <Tr key={user.id}>
+          <Td column="lastName">
+            <Link to={'/admin/users/' + user.id}>
+              {user.last_name}
+            </Link>
+          </Td>
+          <Td column="firstName">
+            {user.first_name}
+          </Td>
+          <Td column="email">
+            {user.email}
+          </Td>
+          <Td column="privilege">
+            {_.capitalize(user.privilege)}
+          </Td>
+        </Tr>
+      );
+    });
 
     return (
       <Loader loaded={this.props.fetched}>
         <p>
           <input type="search" name="keyword" placeholder="Keyword" value={this.props.keyword} onChange={ (e) => this.onUpdate(e) } />
         </p>
-        <Table
-          rowsCount={users.length}
-          rowHeight={rowHeight}
-          headerHeight={headerHeight}
-          width={tableWidth}
-          height={tableHeight}>
-            <Column
-              header={<Cell>Last Name</Cell>}
-              cell={
-                <LinkCell
-                  data={users}
-                  field='first_name'
-                  linkField='id'
-                />
-              }
-              width={225}
-            />
-            <Column
-              header={<Cell>First Name</Cell>}
-              cell={props => (
-                <Cell {...props}>{users[props.rowIndex].first_name}</Cell>
-              )}
-              width={225}
-            />
-            <Column
-              header={<Cell>Email</Cell>}
-              cell={props => (
-                <Cell {...props}>
-                  {users[props.rowIndex].email}
-                </Cell>
-              )}
-              width={225}
-            />
-            <Column
-              header={<Cell>Privilege</Cell>}
-              cell={props => (
-                <Cell {...props}>
-                  {users[props.rowIndex].privilege}
-                </Cell>
-              )}
-              width={225}
-            />
-            <Column
-              header={<Cell>Precinct</Cell>}
-              cell={props => (
-                <Cell {...props}>
-                  N/A
-                </Cell>
-              )}
-              width={225}
-            />
-          </Table>
+        <Table className="table table-striped">
+          <Thead>
+            <Th column="lastName">
+              <strong>Last Name</strong>
+            </Th>
+            <Th column="firstName">
+              <strong>First Name</strong>
+            </Th>
+            <Th column="email">
+              <strong>Email</strong>
+            </Th>
+            <Th column="privilege">
+              <strong>Privilege</strong>
+            </Th>
+          </Thead>
+          {userComponents}
+        </Table>
       </Loader>
     );
   }
