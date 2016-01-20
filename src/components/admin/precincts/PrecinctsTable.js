@@ -72,7 +72,7 @@ export class PrecinctsTable extends React.Component {
             {this.getDelegateCountsFor('omalley', precinct).supporters}
           </Td>
           <Td column="delegates">
-            {this.total_delegates}
+            {precinct.total_delegates}
           </Td>
           <Td column="awarded">
             {this.getDelegateCountsFor('sanders', precinct).won}
