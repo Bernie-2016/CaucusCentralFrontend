@@ -31,7 +31,6 @@ export class ProfileView extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <Profile {...this.props} />
     );
