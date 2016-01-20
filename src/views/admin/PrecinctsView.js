@@ -6,6 +6,7 @@ import adminActions               from 'actions/admin';
 import sessionActions             from 'actions/session';
 import LogoutIfUnauthorizedMixin  from 'components/mixins/LogoutIfUnauthorizedMixin';
 import PrecinctsSummary           from 'components/admin/precincts/PrecinctsSummary';
+import PrecinctsMap               from 'components/admin/precincts/PrecinctsMap';
 import PrecinctsTable             from 'components/admin/precincts/PrecinctsTable';
 
 const mapStateToProps = (state) => ({
@@ -33,8 +34,9 @@ export class PrecinctsView extends React.Component {
     return (
       <div className='container admin-dashboard-view'>
         <h1>{this.props.state.name}</h1>
-        <PrecinctsSummary {...this.props}/>
-        <PrecinctsTable {...this.props}/>
+        <PrecinctsSummary {...this.props} />
+        <PrecinctsMap {...this.props} />
+        <PrecinctsTable {...this.props} />
       </div>
     );
   }
