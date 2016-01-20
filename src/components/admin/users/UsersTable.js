@@ -5,6 +5,21 @@ import { Table, Thead, Th, Tr, Td } from 'reactable';
 import _                            from 'lodash';
 
 export class UsersTable extends React.Component {
+  userPrecinctLink(user) {
+    if(user.precinct_id !== undefined) {
+      return (
+        <Link to={'/admin/states/' + user.precinct_state + '/precincts/' + user.precinct_id}>
+          {user.precinct_name}
+        </Link>
+      );
+    }
+    else {
+      return (
+        <p>N/A</p>
+      );
+    }
+  }
+
   onUpdate(e) {
     this.props.adminActions.setUsersAttr({
       key: e.target.name,
@@ -41,6 +56,9 @@ export class UsersTable extends React.Component {
           <Td column="privilege">
             {_.capitalize(user.privilege)}
           </Td>
+          <Td column="precinct">
+            {this.userPrecinctLink(user)}
+          </Td>
         </Tr>
       );
     });
@@ -63,6 +81,9 @@ export class UsersTable extends React.Component {
             </Th>
             <Th column="privilege">
               <strong>Privilege</strong>
+            </Th>
+            <Th column="precinct">
+              <strong>Precinct</strong>
             </Th>
           </Thead>
           {userComponents}
