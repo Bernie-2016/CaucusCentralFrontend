@@ -15,7 +15,9 @@ const initialState = {
   clintonSupporters: 0,
   omalleySupporters: 0,
   threshold: 0,
-  delegateCounts: []
+  delegateCounts: [],
+  captainId: '',
+  captainName: ''
 };
 
 const precinct = {
@@ -36,7 +38,9 @@ const precinct = {
         clintonSupporters: (_.find(response.precinct.delegate_counts || [], {key: 'clinton'}) || {}).supporters || 0,
         omalleySupporters: (_.find(response.precinct.delegate_counts || [], {key: 'omalley'}) || {}).supporters || 0,
         threshold: response.precinct.threshold,
-        delegateCounts: response.precinct.delegate_counts
+        delegateCounts: response.precinct.delegate_counts,
+        captainId: response.precinct.captain_id,
+        captainName: response.precinct.captain_first_name + ' ' + response.precinct.captain_last_name
       });
     },
     failure: (state, error) => {

@@ -27,6 +27,21 @@ export class PrecinctsTable extends React.Component {
     return counts;
   }
 
+  precinctCaptainLink(precinct) {
+    if(precinct.captain_id !== null) {
+      return (
+        <Link to={'/admin/users/' + precinct.captain_id}>
+          {precinct.captain_first_name + ' ' + precinct.captain_last_name}
+        </Link>
+      );
+    }
+    else {
+      return (
+        <p>N/A</p>
+      );
+    }
+  }
+
   onUpdate(e) {
     this.props.adminActions.setPrecinctsAttr({
       key: e.target.name,
@@ -77,6 +92,9 @@ export class PrecinctsTable extends React.Component {
           <Td column="awarded">
             {this.getDelegateCountsFor('sanders', precinct).won}
           </Td>
+          <Td column="captain">
+            {this.precinctCaptainLink(precinct)}
+          </Td>
         </Tr>
       );
     });
@@ -114,6 +132,9 @@ export class PrecinctsTable extends React.Component {
             </Th>
             <Th column="awarded">
               <strong>Delegates Awarded</strong>
+            </Th>
+            <Th column="captain">
+              <strong>Captain</strong>
             </Th>
           </Thead>
           {precinctComponents}

@@ -18,6 +18,8 @@ const mapStateToProps = (state) => ({
   delegates:      state.adminPrecinct.delegates,
   threshold:      state.adminPrecinct.threshold,
   delegateCounts: state.adminPrecinct.delegateCounts,
+  captainId:      state.adminPrecinct.captainId,
+  captainName:    state.adminPrecinct.captainName,
   error:          state.adminPrecinct.error,
   sessionToken:   state.session.token,
   supporters: {

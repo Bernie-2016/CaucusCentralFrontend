@@ -15,6 +15,7 @@ const initialState = {
   passwordConfirmation: '',
   newEmail: '',
   precinctId: '',
+  precinctName: '',
   privilege: 'captain'
 };
 
@@ -29,7 +30,9 @@ const user = {
         firstName: response.user.first_name,
         lastName: response.user.last_name,
         email: response.user.email,
-        precinctId: response.user.precinct_id
+        precinctId: response.user.precinct_id,
+        precinctState: response.user.precinct_state,
+        precinctName: response.user.precinct_name
       });
     },
     error: (state, error) => {

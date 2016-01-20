@@ -15,6 +15,17 @@ export class User extends React.Component {
   }
 
   render() {
+    let precinctLink = null;
+    if(this.props.user.precinctId !== null) {
+      precinctLink = (
+        <p>
+          <strong>Precinct: </strong>
+          <Link to={'/admin/states/' + this.props.user.precinctState + '/precincts/' + this.props.user.precinctId}>
+            {this.props.user.precinctName}
+          </Link>
+        </p>
+      );
+    }
     return (
       <Loader loaded={this.props.fetched}>
         <Link to={'/admin/users'}>Back to Users</Link>
@@ -30,6 +41,7 @@ export class User extends React.Component {
             <p>
               <strong>Email: </strong> {this.props.user.email}
             </p>
+            {precinctLink}
             <p>
               <Link to={this.props.location.pathname + '/edit'} className='btn btn-primary'>Edit</Link>
             </p>

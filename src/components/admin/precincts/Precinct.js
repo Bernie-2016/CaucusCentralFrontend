@@ -27,6 +27,10 @@ export class Precinct extends React.Component {
       }
     }
 
+    if(this.props.captainId) {
+      details.push(<p key={"captain"}>Captain: <Link to={'/admin/users/' + this.props.captainId}>{this.props.captainName}</Link></p>)
+    }
+
     return (
       <Loader loaded={this.props.fetched}>
         <Link to={'/admin/states/' + this.props.state.code}>Back to {this.props.state.name}</Link>
