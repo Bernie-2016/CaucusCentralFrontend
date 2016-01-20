@@ -32,8 +32,8 @@ export class UsersTable extends React.Component {
     let users = this.props.users;
     if(keyword !== '') {
       users = _.filter(users, (user) => {
-        return _.lowerCase(user.firstName).indexOf(keyword) !== -1 ||
-               _.lowerCase(user.lastName).indexOf(keyword) !== -1 ||
+        return _.lowerCase(user.first_name).indexOf(keyword) !== -1 ||
+               _.lowerCase(user.last_name).indexOf(keyword) !== -1 ||
                _.lowerCase(user.email).indexOf(keyword) !== -1;
       });
     }
