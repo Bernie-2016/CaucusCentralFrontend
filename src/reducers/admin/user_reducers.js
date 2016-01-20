@@ -11,6 +11,7 @@ const initialState = {
   firstName: '',
   lastName: '',
   email: '',
+  phoneNumber: '',
   password: '',
   passwordConfirmation: '',
   newEmail: '',
@@ -30,6 +31,7 @@ const user = {
         firstName: response.user.first_name,
         lastName: response.user.last_name,
         email: response.user.email,
+        phoneNumber: response.user.phone_number,
         precinctId: response.user.precinct_id,
         precinctState: response.user.precinct_state,
         precinctName: response.user.precinct_name

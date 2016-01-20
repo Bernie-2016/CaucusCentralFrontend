@@ -41,6 +41,12 @@ export class User extends React.Component {
             <p>
               <strong>Email: </strong> {this.props.user.email}
             </p>
+            <p>
+              <strong>Phone number: </strong> 
+              <Link to={'tel:1' + this.props.user.phoneNumber}>
+                {this.props.user.phoneNumber.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3')}
+              </Link>
+            </p>
             {precinctLink}
             <p>
               <Link to={this.props.location.pathname + '/edit'} className='btn btn-primary'>Edit</Link>

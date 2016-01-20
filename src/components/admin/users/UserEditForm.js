@@ -1,5 +1,6 @@
-import React  from 'react';
-import Loader from 'react-loader';
+import React       from 'react';
+import Loader      from 'react-loader';
+import MaskedInput from 'react-maskedinput';
 
 export class UserEditForm extends React.Component {
   onUpdate(e) {
@@ -19,6 +20,7 @@ export class UserEditForm extends React.Component {
         first_name:            this.props.user.firstName,
         last_name:             this.props.user.lastName,
         email:                 this.props.user.email,
+        phone_number:          this.props.user.phoneNumber.replace(/-/g, ''),
         password:              this.props.user.password,
         password_confirmation: this.props.user.passwordConfirmation,
         precinct_id:           this.props.user.precinctId
@@ -59,6 +61,11 @@ export class UserEditForm extends React.Component {
               <div className="form-group">
                 <label htmlFor="email">Email</label>
                 <input type="email" className="form-control" name="email" required={true} value={this.props.user.email} onChange={ (e) => this.onUpdate(e) } />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="phoneNumber">Phone Number</label>
+                <MaskedInput mask="111-111-1111" className="form-control" name="phoneNumber" value={this.props.user.phoneNumber.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3')} onChange={ (e) => this.onUpdate(e) } />
               </div>
 
               <div className="form-group">

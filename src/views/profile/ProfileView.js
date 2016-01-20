@@ -11,9 +11,10 @@ const mapStateToProps = (state) => ({
   sessionToken: state.session.token,
   fetched:      state.profile.fetched,
   profile: {
-    firstName: state.profile.firstName,
-    lastName:  state.profile.lastName,
-    email:     state.profile.email
+    firstName:   state.profile.firstName,
+    lastName:    state.profile.lastName,
+    email:       state.profile.email,
+    phoneNumber: state.profile.phoneNumber || ''
   }
 });
 
@@ -30,6 +31,7 @@ export class ProfileView extends React.Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <Profile {...this.props} />
     );

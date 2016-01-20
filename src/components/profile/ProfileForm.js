@@ -1,5 +1,6 @@
-import React  from 'react';
-import Loader from 'react-loader';
+import React       from 'react';
+import Loader      from 'react-loader';
+import MaskedInput from 'react-maskedinput';
 
 export class ProfileForm extends React.Component {
   onUpdate(e) {
@@ -16,6 +17,7 @@ export class ProfileForm extends React.Component {
       firstName: this.props.profile.firstName,
       lastName: this.props.profile.lastName,
       email: this.props.profile.email,
+      phoneNumber: this.props.profile.phoneNumber.replace(/-/g, ''),
       password: this.props.profile.password,
       passwordConfirmation: this.props.profile.passwordConfirmation
     });
@@ -39,6 +41,11 @@ export class ProfileForm extends React.Component {
           <div className="form-group">
             <label htmlFor="email">Email</label>
             <input type="email" className="form-control" name="email" required={true} value={this.props.profile.email} onChange={ (e) => this.onUpdate(e) } />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="phoneNumber">Phone Number</label>
+            <MaskedInput mask="111-111-1111" className="form-control" name="phoneNumber" value={this.props.profile.phoneNumber.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3')} onChange={ (e) => this.onUpdate(e) } />
           </div>
 
           <div className="form-group">

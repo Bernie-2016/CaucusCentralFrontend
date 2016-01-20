@@ -25,6 +25,7 @@ export default {
         first_name: payload.firstName,
         last_name: payload.lastName,
         email: payload.email,
+        phone_number: payload.phoneNumber,
         password: payload.password,
         password_confirmation: payload.passwordConfirmation
       }

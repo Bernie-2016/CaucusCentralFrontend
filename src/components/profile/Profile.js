@@ -19,6 +19,12 @@ export class Profile extends React.Component {
               <strong>Email: </strong> {this.props.profile.email}
             </p>
             <p>
+              <strong>Phone number: </strong> 
+              <Link to={'tel:1' + this.props.profile.phoneNumber}>
+                {this.props.profile.phoneNumber.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3')}
+              </Link>
+            </p>
+            <p>
               <Link to={this.props.location.pathname + '/edit'} className='btn btn-primary'>Edit</Link>
             </p>
           </Loader>

@@ -6,6 +6,7 @@ const initialState = {
   firstName: undefined,
   lastName: undefined,
   email: undefined,
+  phoneNumber: '',
   password: undefined,
   passwordConfirmation: undefined,
   creating: false,

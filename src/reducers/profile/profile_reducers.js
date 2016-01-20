@@ -9,6 +9,7 @@ const initialState = {
   firstName: '',
   lastName: '',
   email: '',
+  phoneNumber: '',
   password: '',
   passwordConfirmation: ''
 };
@@ -23,7 +24,8 @@ const profile = {
         fetched: true,
         firstName: response.user.first_name,
         lastName: response.user.last_name,
-        email: response.user.email
+        email: response.user.email,
+        phoneNumber: response.user.phone_number
       });
     },
     failure: (state, error) => {
@@ -45,7 +47,8 @@ const profile = {
         updated: true,
         firstName: response.user.first_name,
         lastName: response.user.last_name,
-        email: response.user.email
+        email: response.user.email,
+        phoneNumber: response.user.phone_number
       });
     },
     failure: (state, error) => {

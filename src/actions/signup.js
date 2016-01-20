@@ -13,6 +13,7 @@ export default {
         first_name: payload.first_name,
         last_name: payload.last_name,
         email: payload.email,
+        phone_number: payload.phone_number,
         password: payload.password,
         password_confirmation: payload.password_confirmation,
         invitation_token: payload.token

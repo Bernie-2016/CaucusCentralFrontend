@@ -1,5 +1,6 @@
-import React    from 'react';
-import { Link } from 'react-router';
+import React       from 'react';
+import { Link }    from 'react-router';
+
 import './SignInForm.scss';
 
 export class SignInForm extends React.Component {
@@ -23,10 +24,17 @@ export class SignInForm extends React.Component {
       <div className="container signin">
         <form className="form-signin" onSubmit={ (e) => this.onSubmit(e) }>
           <h2 className="form-signin-heading">Sign in</h2>
-          <label htmlFor="email" className="sr-only">Email</label>
-          <input type="email" name="email" className="form-control" placeholder="Email" value={this.props.email} onChange={ (e) => this.onUpdate(e) } required autofocus />
-          <label htmlFor="password" className="sr-only">Password</label>
-          <input type="password" name="password" className="form-control" placeholder="Password" value={this.props.password} onChange={ (e) => this.onUpdate(e) } required />
+
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input type="email" name="email" className="form-control" placeholder="Email" value={this.props.email} onChange={ (e) => this.onUpdate(e) } required autofocus />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input type="password" name="password" className="form-control" placeholder="Password" value={this.props.password} onChange={ (e) => this.onUpdate(e) } required />
+          </div>
+          
           <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
         </form>
         <div className="forgot-link">
