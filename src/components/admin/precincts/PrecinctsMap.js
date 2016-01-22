@@ -10,12 +10,38 @@ export class PrecinctsMap extends React.Component {
       clinton: 0,
       omalley: 0
     };
-    const candidates = precinct.delegate_counts;
 
-    if (precinct.phase === 'apportioned' || precinct.phase === 'apportionment') {
-      for (let i = 0, len = candidates.length; i < len; i++) {
-        const candidate = candidates[i];
-        won[candidate.key] = candidate.delegates_won;
+    if (precinct.phase === 'apportioned') {
+      const reports = _.filter(this.props.precincts[i].reports, { phase: 'apportioned' });
+      let report = null;
+
+      switch(this.props.dataSource) {
+        case 'best':
+          report = _.find(reports, { source: 'microsoft' });
+          if(report === undefined) {
+            report = _.find(reports, { source: 'captain' });
+          }
+          if(report === undefined) {
+            report = _.find(reports, { source: 'crowd' });
+          }
+          break;
+        case 'microsoft':
+          report = _.find(reports, { source: 'microsoft' });
+          break;
+        case 'captain':
+          report = _.find(reports, { source: 'captain' });
+          break;
+        case 'crowd':
+          report = _.find(_.reverse(_.sortBy(reports, 'created_at')), { source: 'crowd' });
+          break;
+      }
+
+      if(report !== undefined) {
+        const candidates = report.delegate_counts;
+        for(let i = 0; i < candidates.length; i++) {
+          const candidate = candidates[i];
+          won[candidate.key] = candidate.delegates_won;
+        }
       }
     }
     return won;

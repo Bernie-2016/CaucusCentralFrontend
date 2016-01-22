@@ -5,6 +5,7 @@ const initialState = {
   fetched: false,
   error: false,
   keyword: '',
+  dataSource: 'best',
   precincts: []
 };
 
