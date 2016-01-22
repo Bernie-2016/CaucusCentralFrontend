@@ -36,7 +36,7 @@ const precinct = {
           sandersSupporters: (_.find(report.delegate_counts || [], {key: 'sanders'}) || {}).supporters || 0,
           clintonSupporters: (_.find(report.delegate_counts || [], {key: 'clinton'}) || {}).supporters || 0,
           omalleySupporters: (_.find(report.delegate_counts || [], {key: 'omalley'}) || {}).supporters || 0,
-          delegatesWon: report.delegates_won || 0
+          delegatesWon: (_.find(report.delegate_counts || [], {key: 'sanders'}) || {}).delegates_won || 0
         }))
       });
     },

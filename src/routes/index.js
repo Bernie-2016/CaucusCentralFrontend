@@ -8,6 +8,7 @@ import SignUpView            from 'views/sign-up/SignUpView';
 import SignInView            from 'views/sign-in/SignInView';
 import ForgotView            from 'views/reset/ForgotView';
 import ResetView             from 'views/reset/ResetView';
+import ReportView            from 'views/report/ReportView';
 import StatesView            from 'views/admin/StatesView';
 import PrecinctsView         from 'views/admin/PrecinctsView';
 import PrecinctView          from 'views/admin/PrecinctView';
@@ -28,6 +29,7 @@ export default (
     <Route component={SignUpView} path='/signup/:token' />
     <Route component={ResetView} path='/reset/:token' />
     <Route component={ForgotView} path='/forgot' />
+    <Route component={ReportView} path='/report' />
     <Route component={CaptainLayout} path='/captain'>
       <IndexRoute component={DashboardView} />
       <Route component={HelpView} path='/captain/help' />

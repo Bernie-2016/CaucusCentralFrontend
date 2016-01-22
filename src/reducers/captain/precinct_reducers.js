@@ -22,7 +22,7 @@ const precinct = {
       return reduceState(state, { error: false, fetched: false });
     },
     success: (state, response) => {
-      const report = response.precinct.reports[0];
+      const report = response.precinct.reports[0] || {};
       return reduceState(state, {
         error: false, 
         fetched: true,
@@ -53,7 +53,7 @@ const precinct = {
     },
     success: (state, response) => {
       notifySuccess('Precinct updated!')
-      const report = response.precinct.reports[0];
+      const report = response.precinct.reports[0] || {};
       return reduceState(state, {
         error: false, 
         fetched: true,
