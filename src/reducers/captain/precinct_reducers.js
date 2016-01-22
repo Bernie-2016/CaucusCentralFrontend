@@ -5,11 +5,15 @@ import * as c from 'constants/captain';
 const initialState = {
   fetched: false,
   error: false,
-  precinct: {},
+  name: '',
+  county: '',
+  delegates: 0,
   attendees: 0,
+  threshold: 0,
   sandersSupporters: 0,
   clintonSupporters: 0,
-  omalleySupporters: 0
+  omalleySupporters: 0,
+  delegatesWon: 0
 };
 
 const precinct = {
@@ -18,14 +22,20 @@ const precinct = {
       return reduceState(state, { error: false, fetched: false });
     },
     success: (state, response) => {
+      const report = response.precinct.reports[0];
       return reduceState(state, {
         error: false, 
-        fetched: true, 
-        precinct: response.precinct,
-        attendees: response.precinct.total_attendees || 0,
-        sandersSupporters: (_.find(response.precinct.delegate_counts || [], {key: 'sanders'}) || {}).supporters || 0,
-        clintonSupporters: (_.find(response.precinct.delegate_counts || [], {key: 'clinton'}) || {}).supporters || 0,
-        omalleySupporters: (_.find(response.precinct.delegate_counts || [], {key: 'omalley'}) || {}).supporters || 0
+        fetched: true,
+        name: response.precinct.name,
+        county: response.precinct.county,
+        delegates: response.precinct.total_delegates || 0,
+        phase: report.phase,
+        attendees: report.total_attendees || 0,
+        threshold: report.threshold || 0,
+        sandersSupporters: (_.find(report.delegate_counts || [], {key: 'sanders'}) || {}).supporters || 0,
+        clintonSupporters: (_.find(report.delegate_counts || [], {key: 'clinton'}) || {}).supporters || 0,
+        omalleySupporters: (_.find(report.delegate_counts || [], {key: 'omalley'}) || {}).supporters || 0,
+        delegatesWon: report.delegates_won || 0
       });
     },
     failure: (state, error) => {
@@ -43,13 +53,20 @@ const precinct = {
     },
     success: (state, response) => {
       notifySuccess('Precinct updated!')
+      const report = response.precinct.reports[0];
       return reduceState(state, {
-        error: false,
-        precinct: response.precinct,
-        attendees: response.precinct.total_attendees || 0,
-        sandersSupporters: (_.find(response.precinct.delegate_counts || [], {key: 'sanders'}) || {}).supporters || 0,
-        clintonSupporters: (_.find(response.precinct.delegate_counts || [], {key: 'clinton'}) || {}).supporters || 0,
-        omalleySupporters: (_.find(response.precinct.delegate_counts || [], {key: 'omalley'}) || {}).supporters || 0
+        error: false, 
+        fetched: true,
+        name: response.precinct.name,
+        county: response.precinct.county,
+        delegates: response.precinct.total_delegates || 0,
+        phase: report.phase,
+        attendees: report.total_attendees || 0,
+        threshold: report.threshold || 0,
+        sandersSupporters: (_.find(report.delegate_counts || [], {key: 'sanders'}) || {}).supporters || 0,
+        clintonSupporters: (_.find(report.delegate_counts || [], {key: 'clinton'}) || {}).supporters || 0,
+        omalleySupporters: (_.find(report.delegate_counts || [], {key: 'omalley'}) || {}).supporters || 0,
+        delegatesWon: report.delegates_won || 0
       });
     },
     failure: (precinct, error) => {

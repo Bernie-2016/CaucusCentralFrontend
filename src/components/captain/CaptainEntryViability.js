@@ -44,7 +44,7 @@ export class CaptainEntryViability extends React.Component {
         if(valid) {
           if(confirm('Are you sure you want to finalize these viability supporter counts? This action cannot be undone.')) {
             this.props.captainActions.updateViabilityCounts({
-              id: this.props.precinct.id,
+              id: this.props.precinctId,
               token: this.props.sessionToken,
               delegate_counts: delegateCounts
             });
@@ -58,7 +58,7 @@ export class CaptainEntryViability extends React.Component {
   }
 
   alertClass() {
-    if(this.props.supporters.sanders >= this.props.precinct.threshold) {
+    if(this.props.supporters.sanders >= this.props.threshold) {
       return 'alert alert-success';
     }
     else {
@@ -73,7 +73,7 @@ export class CaptainEntryViability extends React.Component {
         <p>Enter the supporters for each candidate once the first count is announced. When you're done, click submit. (NOTE: You'll still need to submit a final count in the next step!)</p>
 
         <div className={this.alertClass()}>
-          Based on current inputs, Bernie has <strong>{this.props.supporters.sanders} supporters</strong> and needs <strong>{this.props.precinct.threshold} supporters</strong> to be viable.
+          Based on current inputs, Bernie has <strong>{this.props.supporters.sanders} supporters</strong> and needs <strong>{this.props.threshold} supporters</strong> to be viable.
         </div>
 
         <form onSubmit={ (e) => this.onSubmit(e) }>

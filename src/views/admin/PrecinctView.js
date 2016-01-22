@@ -13,20 +13,12 @@ const mapStateToProps = (state) => ({
   state:          state.adminState.state,
   name:           state.adminPrecinct.name,
   county:         state.adminPrecinct.county,
-  phase:          state.adminPrecinct.phase,
-  attendees:      state.adminPrecinct.attendees,
   delegates:      state.adminPrecinct.delegates,
-  threshold:      state.adminPrecinct.threshold,
-  delegateCounts: state.adminPrecinct.delegateCounts,
   captainId:      state.adminPrecinct.captainId,
   captainName:    state.adminPrecinct.captainName,
+  reports:        state.adminPrecinct.reports,
   error:          state.adminPrecinct.error,
   sessionToken:   state.session.token,
-  supporters: {
-    sanders: state.adminPrecinct.sandersSupporters,
-    clinton: state.adminPrecinct.clintonSupporters,
-    omalley: state.adminPrecinct.omalleySupporters
-  }
 });
 
 const mapDispatchToProps = (dispatch) => ({

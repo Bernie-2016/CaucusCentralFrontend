@@ -71,26 +71,8 @@ export class PrecinctsTable extends React.Component {
               {precinct.name}
             </Link>
           </Td>
-          <Td column="phase">
-            {phaseText(precinct.phase)}
-          </Td>
-          <Td column="attendees">
-            {precinct.total_attendees}
-          </Td>
-          <Td column="sanders">
-            {this.getDelegateCountsFor('sanders', precinct).supporters}
-          </Td>
-          <Td column="clinton">
-            {this.getDelegateCountsFor('clinton', precinct).supporters}
-          </Td>
-          <Td column="omalley">
-            {this.getDelegateCountsFor('omalley', precinct).supporters}
-          </Td>
           <Td column="delegates">
             {precinct.total_delegates}
-          </Td>
-          <Td column="awarded">
-            {this.getDelegateCountsFor('sanders', precinct).won}
           </Td>
           <Td column="captain">
             {this.precinctCaptainLink(precinct)}
@@ -112,26 +94,8 @@ export class PrecinctsTable extends React.Component {
             <Th column="precinct">
               <strong>Precinct</strong>
             </Th>
-            <Th column="phase">
-              <strong>Phase</strong>
-            </Th>
-            <Th column="attendees">
-              <strong>Attendees</strong>
-            </Th>
-            <Th column="sanders">
-              <strong>Sanders</strong>
-            </Th>
-            <Th column="clinton">
-              <strong>Clinton</strong>
-            </Th>
-            <Th column="omalley">
-              <strong>O'Malley</strong>
-            </Th>
             <Th column="delegates">
               <strong>Total Delegates</strong>
-            </Th>
-            <Th column="awarded">
-              <strong>Delegates Awarded</strong>
             </Th>
             <Th column="captain">
               <strong>Captain</strong>

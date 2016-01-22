@@ -2,7 +2,7 @@ import React from 'react';
 
 export class CaptainEntryApportionment extends React.Component {
   candidateDelegates(candidate) {
-    return Math.round(this.props.supporters[candidate] / this.props.attendees * this.props.precinct.total_delegates) || 0;
+    return Math.round(this.props.supporters[candidate] / this.props.attendees * this.props.delegates) || 0;
   }
 
   onUpdate(e) {
@@ -48,7 +48,7 @@ export class CaptainEntryApportionment extends React.Component {
         if(valid) {
           if(confirm('Are you sure you want to finalize these delegate apportionment supporter counts? This action cannot be undone.')) {
             this.props.captainActions.updateApportionmentCounts({
-              id: this.props.precinct.id,
+              id: this.props.precinctId,
               token: this.props.sessionToken,
               delegate_counts: delegateCounts
             });

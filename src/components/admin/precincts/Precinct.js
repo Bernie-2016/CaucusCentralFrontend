@@ -1,35 +1,46 @@
-import React         from 'react';
-import { Link }      from 'react-router';
-import Loader        from 'react-loader';
-import { phaseText } from 'utils/phaseText';
+import React                        from 'react';
+import { Link }                     from 'react-router';
+import Loader                       from 'react-loader';
+import { Table, Thead, Th, Tr, Td } from 'reactable';
+import { phaseText }                from 'utils/phaseText';
+import _                            from 'lodash';
 
 export class Precinct extends React.Component {
   render() {
-    let details = [];
-
-    if(this.props.phase !== 'start') {
-      details.push(<p key="attendees">Total attendees: <strong>{this.props.attendees}</strong></p>)
-      details.push(<p key="viability">Viability threshold: <strong>{this.props.threshold}</strong></p>)
-    }
-
-    if(this.props.phase === 'apportionment') {
-      for(let i = 0; i < this.props.delegateCounts.length; i++) {
-        let candidate = this.props.delegateCounts[i];
-        details.push(<p key={"supporters-" + candidate.key}>{candidate.name} supporters: <strong>{candidate.supporters}</strong></p>)
-      }
-    }
-
-    if(this.props.phase === 'apportioned') {
-      for(let i = 0; i < this.props.delegateCounts.length; i++) {
-        let candidate = this.props.delegateCounts[i];
-        details.push(<p key={"supporters-" + candidate.key}>{candidate.name} supporters: <strong>{candidate.supporters}</strong></p>)
-        details.push(<p key={"delegates-" + candidate.key}>{candidate.name} delegates won: <strong>{candidate.delegates_won}</strong></p>)
-      }
-    }
+    let captain = null;
 
     if(this.props.captainId) {
-      details.push(<p key={"captain"}>Captain: <Link to={'/admin/users/' + this.props.captainId}>{this.props.captainName}</Link></p>)
+      captain = <p key={"captain"}>Captain: <Link to={'/admin/users/' + this.props.captainId}>{this.props.captainName}</Link></p>;
     }
+
+    let reportComponents = [];
+    _.each(this.props.reports, (report) => {
+      reportComponents.push(
+        <Tr key={report.id}>
+          <Td column="source">
+            {_.capitalize(report.source)}
+          </Td>
+          <Td column="phase">
+            {phaseText(report.phase)}
+          </Td>
+          <Td column="attendees">
+            {report.attendees}
+          </Td>
+          <Td column="sandersSupporters">
+            {report.sandersSupporters}
+          </Td>
+          <Td column="clintonSupporters">
+            {report.clintonSupporters}
+          </Td>
+          <Td column="omalleySupporters">
+            {report.omalleySupporters}
+          </Td>
+          <Td column="delegatesWon">
+            {report.delegatesWon}
+          </Td>
+        </Tr>
+      );
+    });
 
     return (
       <Loader loaded={this.props.fetched}>
@@ -38,16 +49,42 @@ export class Precinct extends React.Component {
         <p key="county">
           County: <strong>{this.props.county}</strong>
         </p>
-        <p key="phase">
-          Phase: <strong>{phaseText(this.props.phase)}</strong>
-        </p>
         <p key="delegates">
           Total delegates: <strong>{this.props.delegates}</strong>
         </p>
-        {details}
+        {captain}
         <p key="edit-link">
           <Link to={'/admin/states/' + this.props.state.code + '/precincts/' + this.props.params.id + '/edit'} className='btn btn-primary'>Edit</Link>
         </p>
+
+        <h2>Reports</h2>
+
+        <Table className="table table-striped" itemsPerPage={50}>
+          <Thead>
+            <Th column="source">
+              <strong>Source</strong>
+            </Th>
+            <Th column="phase">
+              <strong>Phase</strong>
+            </Th>
+            <Th column="attendees">
+              <strong>Attendees</strong>
+            </Th>
+            <Th column="sandersSupporters">
+              <strong>Sanders Supporters</strong>
+            </Th>
+            <Th column="clintonSupporters">
+              <strong>Clinton Supporters</strong>
+            </Th>
+            <Th column="omalleySupporters">
+              <strong>O'Malley Supporters</strong>
+            </Th>
+            <Th column="delegatesWon">
+              <strong>Delegates Won</strong>
+            </Th>
+          </Thead>
+          {reportComponents}
+        </Table>
       </Loader>
     );
   }
