@@ -11,7 +11,10 @@ export class PrecinctsSummary extends React.Component {
 
       switch(this.props.dataSource) {
         case 'best':
-          report = _.find(reports, { source: 'microsoft' });
+          report = _.find(reports, { source: 'manual' });
+          if(report === undefined) {
+            report = _.find(reports, { source: 'microsoft' });
+          }
           if(report === undefined) {
             report = _.find(reports, { source: 'captain' });
           }
