@@ -110,6 +110,8 @@ export class Precinct extends React.Component {
           </Thead>
           {reportComponents}
         </Table>
+
+        <Link to={this.props.location.pathname + '/report'} className='btn btn-primary'>New Report</Link>
       </Loader>
     );
   }
