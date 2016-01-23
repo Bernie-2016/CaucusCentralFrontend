@@ -29,6 +29,7 @@ const precinct = {
         captainId: response.precinct.captain_id,
         captainName: response.precinct.captain_first_name + ' ' + response.precinct.captain_last_name,
         reports: _.map(response.precinct.reports, (report) => ({
+          id: report.id,
           source: report.source,
           phase: report.phase,
           attendees: report.total_attendees,

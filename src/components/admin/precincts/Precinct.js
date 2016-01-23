@@ -6,6 +6,19 @@ import { phaseText }                from 'utils/phaseText';
 import _                            from 'lodash';
 
 export class Precinct extends React.Component {
+  removeReport(e) {
+    e.preventDefault();
+    const reportId = e.target.getAttribute('data-id');
+    let { id } = this.props.params;
+    if(confirm('Are you sure you want to remove this report? This action cannot be undone.')) {
+      this.props.reportActions.remove({
+        token: this.props.sessionToken,
+        id: reportId,
+        precinctId: id
+      });
+    }
+  }
+
   render() {
     let captain = null;
 
@@ -37,6 +50,12 @@ export class Precinct extends React.Component {
           </Td>
           <Td column="delegatesWon">
             {report.delegatesWon}
+          </Td>
+          <Td column="edit">
+            Edit
+          </Td>
+          <Td column="remove">
+            <Link to='#' data-id={report.id} onClick={ (e) => this.removeReport(e) }>Remove</Link>
           </Td>
         </Tr>
       );
@@ -81,6 +100,12 @@ export class Precinct extends React.Component {
             </Th>
             <Th column="delegatesWon">
               <strong>Delegates Won</strong>
+            </Th>
+            <Th column="edit">
+              <strong>Edit</strong>
+            </Th>
+            <Th column="remove">
+              <strong>Remove</strong>
             </Th>
           </Thead>
           {reportComponents}

@@ -17,7 +17,7 @@ export default {
     });
     return {
       [CALL_API]: {
-        types: [{ type: c.CREATE_REPORT_REQUEST, payload: payload },
+        types: [c.CREATE_REPORT_REQUEST,
                 c.CREATE_REPORT_SUCCESS,
                 c.CREATE_REPORT_FAILURE],
         endpoint: formatEndpoint(`/precincts/${payload.precinctId}/reports`),
@@ -30,6 +30,41 @@ export default {
       }
     };
   },
+  update: (payload) => {
+    const body = JSON.stringify({
+      report: {
+        total_attendees: payload.attendees,
+        phase: payload.phase,
+        delegate_counts: payload.delegateCounts
+      }
+    });
+    return {
+      [CALL_API]: {
+        types: [c.UPDATE_REPORT_REQUEST,
+                c.UPDATE_REPORT_SUCCESS,
+                c.UPDATE_REPORT_FAILURE],
+        endpoint: formatEndpoint(`/precincts/${payload.precinctId}/${payload.id}`),
+        body,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': payload.token
+        },
+        method: 'PATCH'
+      }
+    };
+  },
+  remove: (payload) => ({
+    [CALL_API]: {
+      types: [c.REMOVE_REPORT_REQUEST,
+              c.REMOVE_REPORT_SUCCESS,
+              c.REMOVE_REPORT_FAILURE],
+      endpoint: formatEndpoint(`/precincts/${payload.precinctId}/reports/${payload.id}`),
+      method: 'DELETE',
+      headers: {
+        'Authorization': payload.token
+      }
+    }
+  }),
   reset: () => ({
     type: c.RESET
   })
