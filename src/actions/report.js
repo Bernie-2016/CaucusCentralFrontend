@@ -7,6 +7,18 @@ export default {
     type: c.SET_ATTR,
     payload
   }),
+  get: (payload) => ({
+    [CALL_API]: {
+      types: [c.GET_REPORT_REQUEST,
+              c.GET_REPORT_SUCCESS,
+              c.GET_REPORT_FAILURE],
+      endpoint: formatEndpoint(`/precincts/${payload.precinctId}/reports/${payload.id}`),
+      method: 'GET',
+      headers: {
+        'Authorization': payload.token
+      }
+    }
+  }),
   create: (payload) => {
     const body = JSON.stringify({
       report: {
@@ -43,7 +55,7 @@ export default {
         types: [c.UPDATE_REPORT_REQUEST,
                 c.UPDATE_REPORT_SUCCESS,
                 c.UPDATE_REPORT_FAILURE],
-        endpoint: formatEndpoint(`/precincts/${payload.precinctId}/${payload.id}`),
+        endpoint: formatEndpoint(`/precincts/${payload.precinctId}/reports/${payload.id}`),
         body,
         headers: {
           'Content-Type': 'application/json',

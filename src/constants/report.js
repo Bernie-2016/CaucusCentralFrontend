@@ -1,6 +1,9 @@
 import { createConstants } from '../utils';
 
 export default createConstants(
+  'GET_REPORT_REQUEST',
+  'GET_REPORT_SUCCESS',
+  'GET_REPORT_FAILURE',
   'CREATE_REPORT_REQUEST',
   'CREATE_REPORT_SUCCESS',
   'CREATE_REPORT_FAILURE',

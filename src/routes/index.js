@@ -13,7 +13,8 @@ import StatesView            from 'views/admin/StatesView';
 import PrecinctsView         from 'views/admin/precincts/PrecinctsView';
 import PrecinctView          from 'views/admin/precincts/PrecinctView';
 import PrecinctEditView      from 'views/admin/precincts/PrecinctEditView';
-import ReportNewView         from 'views/admin/ReportNewView';
+import ReportNewView         from 'views/admin/reports/ReportNewView';
+import ReportEditView        from 'views/admin/reports/ReportEditView';
 import UsersView             from 'views/admin/users/UsersView';
 import UserNewView           from 'views/admin/users/UserNewView';
 import UsersImportView       from 'views/admin/users/UsersImportView';
@@ -43,6 +44,7 @@ export default (
       <Route component={PrecinctView} path='/admin/states/:code/precincts/:id' />
       <Route component={PrecinctEditView} path='/admin/states/:code/precincts/:id/edit' />
       <Route component={ReportNewView} path='/admin/states/:code/precincts/:id/report' />
+      <Route component={ReportEditView} path='/admin/states/:code/precincts/:precinctid/reports/:id' />
       <Route component={UsersView} path='/admin/users' />
       <Route component={UserNewView} path='/admin/users/new' />
       <Route component={UsersImportView} path='/admin/users/import' />

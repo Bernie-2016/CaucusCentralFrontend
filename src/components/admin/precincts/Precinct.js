@@ -52,7 +52,7 @@ export class Precinct extends React.Component {
             {report.delegatesWon}
           </Td>
           <Td column="edit">
-            Edit
+            <Link to={`${this.props.location.pathname}/reports/${report.id}`}>Edit</Link>
           </Td>
           <Td column="remove">
             <Link to='#' data-id={report.id} onClick={ (e) => this.removeReport(e) }>Remove</Link>

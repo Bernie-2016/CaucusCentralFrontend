@@ -10,12 +10,32 @@ const initialState = {
   sandersSupporters: 0,
   clintonSupporters: 0,
   omalleySupporters: 0,
+  fetched: false,
   created: false,
   updated: false,
   removed: false
 };
 
 const report = {
+  get: {
+    request: (state) => {
+      return reduceState(state, { error: false, fetched: false });
+    },
+    success: (state, response) => {
+      return reduceState(state, {
+        fetched: true,
+        precinctId: response.report.precinct_id,
+        attendees: response.report.total_attendees,
+        phase: response.report.phase,
+        sandersSupporters: (_.find(response.report.delegate_counts || [], {key: 'sanders'}) || {}).supporters || 0,
+        clintonSupporters: (_.find(response.report.delegate_counts || [], {key: 'clinton'}) || {}).supporters || 0,
+        omalleySupporters: (_.find(response.report.delegate_counts || [], {key: 'omalley'}) || {}).supporters || 0
+      });
+    },
+    failure: (state, error) => {
+      return reduceState(state, { error: error });
+    }
+  },
   create: {
     request: function (state) {
       return reduceState(state, { created: false });
@@ -84,6 +104,9 @@ const reset = (state) => {
 };
 
 export default createReducer(initialState, {
+  [c.GET_REPORT_REQUEST]  : report.get.request,
+  [c.GET_REPORT_SUCCESS]  : report.get.success,
+  [c.GET_REPORT_FAILURE]  : report.get.failure,
   [c.CREATE_REPORT_REQUEST]  : report.create.request,
   [c.CREATE_REPORT_SUCCESS]  : report.create.success,
   [c.CREATE_REPORT_FAILURE]  : report.create.failure,
