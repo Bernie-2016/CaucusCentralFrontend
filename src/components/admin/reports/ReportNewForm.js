@@ -36,16 +36,14 @@ export class ReportNewForm extends React.Component {
 
       if(delegateCounts.length === Object.keys(this.props.supporters).length) {
         if(valid) {
-          if(confirm('Are you sure you want to finalize this report? This action cannot be undone.')) {
-            let { id } = this.props.params;
-            this.props.reportActions.create({
-              token: this.props.sessionToken,
-              precinctId: id,
-              attendees: this.props.attendees,
-              phase: this.props.phase,
-              delegateCounts: delegateCounts
-            });
-          }
+          let { id } = this.props.params;
+          this.props.reportActions.create({
+            token: this.props.sessionToken,
+            precinctId: id,
+            attendees: this.props.attendees,
+            phase: this.props.phase,
+            delegateCounts: delegateCounts
+          });
         }
         else {
           alert(msg);

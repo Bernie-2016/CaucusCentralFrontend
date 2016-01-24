@@ -4,6 +4,7 @@ import CoreLayout            from 'layouts/CoreLayout';
 import AdminLayout           from 'layouts/admin/AdminLayout';
 import CaptainLayout         from 'layouts/captain/CaptainLayout';
 
+import HomeView              from 'views/HomeView';
 import SignUpView            from 'views/sign-up/SignUpView';
 import SignInView            from 'views/sign-in/SignInView';
 import ForgotView            from 'views/reset/ForgotView';
@@ -27,7 +28,8 @@ import ProfileEditView       from 'views/profile/ProfileEditView';
 
 export default (
   <Route component={CoreLayout} path='/'>
-    <IndexRoute component={SignInView} />
+    <IndexRoute component={HomeView} />
+    <Route component={SignInView} path='/signin' />
     <Route component={SignUpView} path='/signup/:token' />
     <Route component={ResetView} path='/reset/:token' />
     <Route component={ForgotView} path='/forgot' />

@@ -15,16 +15,7 @@ const mapStateToProps = (state) => ({
   precinct: {
     name:           state.adminPrecinct.name,
     county:         state.adminPrecinct.county,
-    phase:          state.adminPrecinct.phase,
-    attendees:      state.adminPrecinct.attendees,
-    delegates:      state.adminPrecinct.delegates,
-    threshold:      state.adminPrecinct.threshold,
-    delegateCounts: state.adminPrecinct.delegateCounts,
-  },
-  supporters: {
-    sanders: state.adminPrecinct.sandersSupporters,
-    clinton: state.adminPrecinct.clintonSupporters,
-    omalley: state.adminPrecinct.omalleySupporters
+    delegates:      state.adminPrecinct.delegates
   }
 });
 

@@ -6,27 +6,6 @@ import { phaseText }                from 'utils/phaseText';
 import _                            from 'lodash';
 
 export class PrecinctsTable extends React.Component {
-  getDelegateCountsFor (candidateName, precinct) {
-    let counts = {
-      supporters:'N/A',
-      won:'N/A'
-    };
-    const candidates = precinct.delegate_counts;
-
-    if (precinct.phase === 'apportioned' || precinct.phase === 'apportionment') {
-      for (let i = 0, len = candidates.length; i < len; i++) {
-        if (candidates[i].key === candidateName) {
-          const candidate = candidates[i];
-          counts = {
-            supporters: candidate.supporters,
-            won: candidate.delegates_won
-          };
-        }
-      }
-    }
-    return counts;
-  }
-
   precinctCaptainLink(precinct) {
     if(precinct.captain_id !== null) {
       return (

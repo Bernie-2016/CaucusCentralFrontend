@@ -47,8 +47,8 @@ class ReportView extends React.Component {
         } else if (this.props.privilege === 'captain') {
           this.props.history.pushState(null, '/captain')
         }
-        this.props.reportActions.reset();
       }
+      this.props.reportActions.reset();
     }
   }
 

@@ -37,17 +37,15 @@ export class ReportEditForm extends React.Component {
 
       if(delegateCounts.length === Object.keys(this.props.supporters).length) {
         if(valid) {
-          if(confirm('Are you sure you want to finalize this report? This action cannot be undone.')) {
-            let { precinctid, id } = this.props.params;
-            this.props.reportActions.update({
-              token: this.props.sessionToken,
-              precinctId: precinctid,
-              id: id,
-              attendees: this.props.attendees,
-              phase: this.props.phase,
-              delegateCounts: delegateCounts
-            });
-          }
+          let { precinctid, id } = this.props.params;
+          this.props.reportActions.update({
+            token: this.props.sessionToken,
+            precinctId: precinctid,
+            id: id,
+            attendees: this.props.attendees,
+            phase: this.props.phase,
+            delegateCounts: delegateCounts
+          });
         }
         else {
           alert(msg);
