@@ -29,23 +29,16 @@ export class PrecinctsTable extends React.Component {
   }
 
   render () {
-    const keyword = _.lowerCase(this.props.keyword);
-    let precincts = this.props.precincts;
-    if(keyword !== '') {
-      precincts = _.filter(precincts, (precinct) => {
-        return _.lowerCase(precinct.name).indexOf(keyword) !== -1 || _.lowerCase(precinct.county).indexOf(keyword) !== -1;
-      });
-    }
     const { code } = this.props.params;
 
     let precinctComponents = [];
-    _.each(precincts, (precinct) => {
+    _.each(this.props.precincts, (precinct) => {
       precinctComponents.push(
         <Tr key={precinct.id}>
           <Td column="county">
             {precinct.county}
           </Td>
-          <Td column="precinct">
+          <Td column="precinct" value={precinct.name}>
             <Link to={'/admin/states/' + code + '/precincts/' + precinct.id}>
               {precinct.name}
             </Link>
@@ -62,10 +55,7 @@ export class PrecinctsTable extends React.Component {
 
     return (
       <Loader loaded={this.props.fetched}>
-        <p>
-          <input type="search" name="keyword" placeholder="Keyword" value={this.props.keyword} onChange={ (e) => this.onUpdate(e) } />
-        </p>
-        <Table className="table table-striped" itemsPerPage={50}>
+        <Table className="table table-striped" itemsPerPage={50} filterable={['county', 'precinct']}>
           <Thead>
             <Th column="county">
               <strong>County</strong>

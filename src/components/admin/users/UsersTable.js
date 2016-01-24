@@ -28,26 +28,16 @@ export class UsersTable extends React.Component {
   }
 
   render() {
-    const keyword = _.lowerCase(this.props.keyword);
-    let users = this.props.users;
-    if(keyword !== '') {
-      users = _.filter(users, (user) => {
-        return _.lowerCase(user.first_name).indexOf(keyword) !== -1 ||
-               _.lowerCase(user.last_name).indexOf(keyword) !== -1 ||
-               _.lowerCase(user.email).indexOf(keyword) !== -1;
-      });
-    }
-
     let userComponents = [];
-    _.each(users, (user) => {
+    _.each(this.props.users, (user) => {
       userComponents.push(
         <Tr key={user.id}>
-          <Td column="lastName">
+          <Td column="lastName" value={user.last_name}>
             <Link to={'/admin/users/' + user.id}>
               {user.last_name}
             </Link>
           </Td>
-          <Td column="firstName">
+          <Td column="firstName" value={user.first_name}>
             {user.first_name}
           </Td>
           <Td column="email">
@@ -65,10 +55,7 @@ export class UsersTable extends React.Component {
 
     return (
       <Loader loaded={this.props.fetched}>
-        <p>
-          <input type="search" name="keyword" placeholder="Keyword" value={this.props.keyword} onChange={ (e) => this.onUpdate(e) } />
-        </p>
-        <Table className="table table-striped" itemsPerPage={50}>
+        <Table className="table table-striped" itemsPerPage={50} filterable={['firstName', 'lastName', 'email']}>
           <Thead>
             <Th column="lastName">
               <strong>Last Name</strong>

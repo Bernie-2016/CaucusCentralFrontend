@@ -4,7 +4,6 @@ import * as c from 'constants/admin';
 const initialState = {
   fetched: false,
   error: false,
-  keyword: '',
   dataSource: 'best',
   precincts: []
 };

@@ -11,7 +11,6 @@ import UsersTable                from 'components/admin/users/UsersTable';
 const mapStateToProps = (state) => ({
   fetched:      state.adminUsers.fetched,
   users:        state.adminUsers.users,
-  keyword:      state.adminUsers.keyword,
   error:        state.adminUsers.error,
   sessionToken: state.session.token
 });
