@@ -5,20 +5,49 @@ import _               from 'lodash';
 
 export class PrecinctsMap extends React.Component {
   getDelegateCounts(precinct) {
-    let won = {
-      sanders: 0,
-      clinton: 0,
-      omalley: 0
-    };
-    const candidates = precinct.delegate_counts;
+    const reports = _.filter(precinct.reports, { phase: 'apportioned' });
+    let report = null;
 
-    if (precinct.phase === 'apportioned' || precinct.phase === 'apportionment') {
-      for (let i = 0, len = candidates.length; i < len; i++) {
+    switch(this.props.dataSource) {
+      case 'best':
+        report = _.find(reports, { source: 'manual' });
+        if(report === undefined) {
+          report = _.find(reports, { source: 'microsoft' });
+        }
+        if(report === undefined) {
+          report = _.find(reports, { source: 'captain' });
+        }
+        if(report === undefined) {
+          report = _.find(reports, { source: 'crowd' });
+        }
+        break;
+      case 'microsoft':
+        report = _.find(reports, { source: 'microsoft' });
+        break;
+      case 'captain':
+        report = _.find(reports, { source: 'captain' });
+        break;
+      case 'crowd':
+        report = _.find(_.reverse(_.sortBy(reports, 'created_at')), { source: 'crowd' });
+        break;
+    }
+
+    if(report !== undefined) {
+      const candidates = report.delegate_counts;
+      let won = {
+        sanders: 0,
+        clinton: 0,
+        omalley: 0
+      };
+      for(let i = 0; i < candidates.length; i++) {
         const candidate = candidates[i];
         won[candidate.key] = candidate.delegates_won;
       }
+      return won;
     }
-    return won;
+    else {
+      return null;
+    }
   }
 
   render() {
@@ -50,28 +79,30 @@ export class PrecinctsMap extends React.Component {
         if(incomplete) {
           return;
         }
-        else if(precinct.phase !== 'apportioned') {
-          incomplete = true;
-        }
         else {
           const won = this.getDelegateCounts(precinct);
-      
-          countySet.sandersDelegates += won.sanders;
-          countySet.clintonDelegates += won.clinton;
-          countySet.omalleyDelegates += won.omalley;
 
-          if(countySet.sandersDelegates >= countySet.clintonDelegates && countySet.sandersDelegates >= countySet.omalleyDelegates) {
-            countySet.value = 1;
-          }
-          else if(countySet.clintonDelegates >= countySet.sandersDelegates && countySet.clintonDelegates >= countySet.omalleyDelegates) {
-            countySet.value = 2;
-          }
-          else if(countySet.omalleyDelegates >= countySet.sandersDelegates && countySet.omalleyDelegates >= countySet.clintonDelegates) {
-            countySet.value = 3;
+          if(won === null) {
+            incomplete = true;
           }
           else {
-            countySet.value = 0;
-          }        
+            countySet.sandersDelegates += won.sanders;
+            countySet.clintonDelegates += won.clinton;
+            countySet.omalleyDelegates += won.omalley;
+
+            if(countySet.sandersDelegates >= countySet.clintonDelegates && countySet.sandersDelegates >= countySet.omalleyDelegates) {
+              countySet.value = 1;
+            }
+            else if(countySet.clintonDelegates >= countySet.sandersDelegates && countySet.clintonDelegates >= countySet.omalleyDelegates) {
+              countySet.value = 2;
+            }
+            else if(countySet.omalleyDelegates >= countySet.sandersDelegates && countySet.omalleyDelegates >= countySet.clintonDelegates) {
+              countySet.value = 3;
+            }
+            else {
+              countySet.value = 0;
+            }
+          }     
         }
       });
 

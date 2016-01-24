@@ -24,5 +24,5 @@ const states = {
 export default createReducer(initialState, {
   [c.GET_STATES_REQUEST] : states.get.request,
   [c.GET_STATES_SUCCESS] : states.get.success,
-  [c.GET_STATES_ERROR] : states.get.failure
+  [c.GET_STATES_FAILURE] : states.get.failure
 });

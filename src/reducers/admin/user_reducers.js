@@ -99,16 +99,16 @@ const user = {
 export default createReducer(initialState, {
   [c.GET_USER_REQUEST]    : user.get.request,
   [c.GET_USER_SUCCESS]    : user.get.success,
-  [c.GET_USER_ERROR]      : user.get.error,
+  [c.GET_USER_FAILURE]    : user.get.error,
   [c.CREATE_USER_REQUEST] : user.add.request,
   [c.CREATE_USER_SUCCESS] : user.add.success,
-  [c.CREATE_USER_ERROR]   : user.add.error,
+  [c.CREATE_USER_FAILURE] : user.add.error,
   [c.UPDATE_USER_REQUEST] : user.update.request,
   [c.UPDATE_USER_SUCCESS] : user.update.success,
-  [c.UPDATE_USER_ERROR]   : user.update.error,
+  [c.UPDATE_USER_FAILURE] : user.update.error,
   [c.REMOVE_USER_REQUEST] : user.remove.request,
   [c.REMOVE_USER_SUCCESS] : user.remove.success,
-  [c.REMOVE_USER_ERROR]   : user.remove.error,
+  [c.REMOVE_USER_FAILURE] : user.remove.error,
   [c.SET_USER_ATTR]       : user.set,
   [c.RESET_USER]          : user.reset
 });

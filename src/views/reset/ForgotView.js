@@ -32,9 +32,7 @@ class ForgotView extends React.Component {
 
   render () {
     return (
-      <div className='sign-in'>
-        <ForgotForm {...this.props}/>
-      </div>
+      <ForgotForm {...this.props}/>
     );
   }
 }

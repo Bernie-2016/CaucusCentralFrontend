@@ -26,27 +26,15 @@ export class UsersImportView extends React.Component {
   render () {
     let component = null;
     if(this.props.imported) {
-      component = (
-        <div className='col-md-12'>
-          <UsersImportReport {...this.props} /> 
-        </div>
+      return (
+        <UsersImportReport {...this.props} /> 
       );
     }
     else {
-      component = (
-        <div className='col-md-6'>
-          <UsersImportForm {...this.props} />
-        </div>
+      return (
+        <UsersImportForm {...this.props} />
       );
     }
-    return (
-      <div className='container admin-user-administration-view'>
-        <h1>Import Users</h1>
-        <div className='row'>
-          {component}
-        </div>
-      </div>
-    );
   }
 }
 

@@ -11,7 +11,6 @@ import UsersTable                from 'components/admin/users/UsersTable';
 const mapStateToProps = (state) => ({
   fetched:      state.adminUsers.fetched,
   users:        state.adminUsers.users,
-  keyword:      state.adminUsers.keyword,
   error:        state.adminUsers.error,
   sessionToken: state.session.token
 });
@@ -28,17 +27,13 @@ export class UsersView extends React.Component {
 
   render () {
     return (
-      <div className='container admin-user-administration-view'>
-        <h1>User Administration</h1>
-        <div className='row'>
-          <div className='col-lg-12'>
-            <p>
-              <Link to='/admin/users/new' className='btn btn-primary'>New User</Link>
-              <Link to='/admin/users/import' className='btn btn-primary btn-import'>Import Users</Link>
-            </p>
-            <UsersTable {...this.props} />
-          </div>
-        </div>
+      <div>
+        <h1>Users</h1>
+        <p>
+          <Link to='/admin/users/new' className='btn btn-primary'>New User</Link>
+          <Link to='/admin/users/import' className='btn btn-primary btn-import'>Import Users</Link>
+        </p>
+        <UsersTable {...this.props} />
       </div>
     );
   }

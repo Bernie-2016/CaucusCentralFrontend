@@ -15,16 +15,7 @@ const mapStateToProps = (state) => ({
   precinct: {
     name:           state.adminPrecinct.name,
     county:         state.adminPrecinct.county,
-    phase:          state.adminPrecinct.phase,
-    attendees:      state.adminPrecinct.attendees,
-    delegates:      state.adminPrecinct.delegates,
-    threshold:      state.adminPrecinct.threshold,
-    delegateCounts: state.adminPrecinct.delegateCounts,
-  },
-  supporters: {
-    sanders: state.adminPrecinct.sandersSupporters,
-    clinton: state.adminPrecinct.clintonSupporters,
-    omalley: state.adminPrecinct.omalleySupporters
+    delegates:      state.adminPrecinct.delegates
   }
 });
 
@@ -56,11 +47,7 @@ export class PrecinctEditView extends React.Component {
 
   render () {
     return (
-      <div className='container admin-dashboard-view'>
-        <h1>Edit Precinct</h1>
-        <p>Use this form to override precinct data if a volunteer reports an error.</p>
-        <PrecinctEditForm {...this.props} />
-      </div>
+      <PrecinctEditForm {...this.props} />
     );
   }
 }

@@ -32,9 +32,7 @@ class ResetView extends React.Component {
 
   render () {
     return (
-      <div className='sign-in'>
-        <ResetForm {...this.props}/>
-      </div>
+      <ResetForm {...this.props}/>
     );
   }
 }

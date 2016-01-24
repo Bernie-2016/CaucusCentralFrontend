@@ -46,10 +46,7 @@ export class UserNewView extends React.Component {
 
   render () {
     return (
-      <div className='container admin-user-administration-view'>
-        <h1>New User</h1>
-        <UserNewForm {...this.props} />
-      </div>
+      <UserNewForm {...this.props} />
     );
   }
 }

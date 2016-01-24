@@ -43,48 +43,44 @@ export class UserEditForm extends React.Component {
       </div>
     );
     return (
-      <div className="row">
-        <div className="col-md-6">
-          <Loader loaded={this.props.fetched}>
-            <h1>Edit User</h1>
-            <form onSubmit={ (e) => this.onSubmit(e) }>
-              <div className="form-group">
-                <label htmlFor="firstName">First name</label>
-                <input type="text" className="form-control" name="firstName" required={true} value={this.props.user.firstName} onChange={ (e) => this.onUpdate(e) } />
-              </div>
+      <Loader loaded={this.props.fetched}>
+        <h1>Edit User</h1>
+        <form onSubmit={ (e) => this.onSubmit(e) }>
+          <div className="form-group">
+            <label htmlFor="firstName">First name</label>
+            <input type="text" className="form-control" name="firstName" required={true} value={this.props.user.firstName} onChange={ (e) => this.onUpdate(e) } />
+          </div>
 
-              <div className="form-group">
-                <label htmlFor="lastName">Last name</label>
-                <input type="text" className="form-control" name="lastName" required={true} value={this.props.user.lastName} onChange={ (e) => this.onUpdate(e) } />
-              </div>
+          <div className="form-group">
+            <label htmlFor="lastName">Last name</label>
+            <input type="text" className="form-control" name="lastName" required={true} value={this.props.user.lastName} onChange={ (e) => this.onUpdate(e) } />
+          </div>
 
-              <div className="form-group">
-                <label htmlFor="email">Email</label>
-                <input type="email" className="form-control" name="email" required={true} value={this.props.user.email} onChange={ (e) => this.onUpdate(e) } />
-              </div>
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input type="email" className="form-control" name="email" required={true} value={this.props.user.email} onChange={ (e) => this.onUpdate(e) } />
+          </div>
 
-              <div className="form-group">
-                <label htmlFor="phoneNumber">Phone Number</label>
-                <MaskedInput mask="111-111-1111" className="form-control" name="phoneNumber" value={this.props.user.phoneNumber.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3')} onChange={ (e) => this.onUpdate(e) } />
-              </div>
+          <div className="form-group">
+            <label htmlFor="phoneNumber">Phone Number</label>
+            <MaskedInput mask="111-111-1111" className="form-control" name="phoneNumber" value={this.props.user.phoneNumber.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3')} onChange={ (e) => this.onUpdate(e) } />
+          </div>
 
-              <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <input type="password" className="form-control" name="password" value={this.props.user.password} onChange={ (e) => this.onUpdate(e) } />
-              </div>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input type="password" className="form-control" name="password" value={this.props.user.password} onChange={ (e) => this.onUpdate(e) } />
+          </div>
 
-              <div className="form-group">
-                <label htmlFor="passwordConfirmation">Confirm password</label>
-                <input type="password" className="form-control" name="passwordConfirmation" value={this.props.user.passwordConfirmation} onChange={ (e) => this.onUpdate(e) } />
-              </div>
+          <div className="form-group">
+            <label htmlFor="passwordConfirmation">Confirm password</label>
+            <input type="password" className="form-control" name="passwordConfirmation" value={this.props.user.passwordConfirmation} onChange={ (e) => this.onUpdate(e) } />
+          </div>
 
-              {precinctsField}
+          {precinctsField}
 
-              <button type="submit" className="btn btn-primary">Update Profile</button>
-            </form>
-          </Loader>
-        </div>
-      </div>
+          <button type="submit" className="btn btn-primary">Update Profile</button>
+        </form>
+      </Loader>
     );
   }
 };

@@ -1,21 +1,16 @@
-import React from 'react';
+import React         from 'react';
+import Loader        from 'react-loader';
+import { phaseText } from 'utils/phaseText';
 
-export class CaptainEntryViability extends React.Component {
+export class ReportEditForm extends React.Component {
   onUpdate(e) {
-    let val = e.target.value;
-    if(val === '') {
-      val = null;
-    }
-    else {
-      val = parseInt(val);
-    }
-    this.props.captainActions.setAttr({
-      key: e.target.name, 
-      value: val
+    this.props.reportActions.setAttr({
+      key: e.target.name,
+      value: e.target.value
     });
   }
 
-  onSubmit(e) {
+  onSubmit (e) {
     e.preventDefault();
     let delegateCounts = [];
     let total = 0;
@@ -42,13 +37,15 @@ export class CaptainEntryViability extends React.Component {
 
       if(delegateCounts.length === Object.keys(this.props.supporters).length) {
         if(valid) {
-          if(confirm('Are you sure you want to finalize these viability supporter counts? This action cannot be undone.')) {
-            this.props.captainActions.updateViabilityCounts({
-              id: this.props.precinctId,
-              token: this.props.sessionToken,
-              delegate_counts: delegateCounts
-            });
-          }
+          let { precinctid, id } = this.props.params;
+          this.props.reportActions.update({
+            token: this.props.sessionToken,
+            precinctId: precinctid,
+            id: id,
+            attendees: this.props.attendees,
+            phase: this.props.phase,
+            delegateCounts: delegateCounts
+          });
         }
         else {
           alert(msg);
@@ -57,43 +54,47 @@ export class CaptainEntryViability extends React.Component {
     });
   }
 
-  alertClass() {
-    if(this.props.supporters.sanders >= this.props.threshold) {
-      return 'alert alert-success';
-    }
-    else {
-      return 'alert alert-danger';
-    }
-  }
-
   render() {
     return (
-      <div>
-        <h4>FIRST COUNT (determining viability)</h4>
-        <p>Enter the supporters for each candidate once the first count is announced. When you're done, click submit. (NOTE: You'll still need to submit a final count in the next step!)</p>
-
-        <div className={this.alertClass()}>
-          Based on current inputs, Bernie has <strong>{this.props.supporters.sanders} supporters</strong> and needs <strong>{this.props.threshold} supporters</strong> to be viable.
-        </div>
-
+      <Loader loaded={this.props.fetched}>
         <form onSubmit={ (e) => this.onSubmit(e) }>
+          <h1>Edit Report</h1>
+          <div className="form-group">
+            <label htmlFor="phase">Caucus Phase</label>
+            <select className="form-control" name="phase" value={this.props.phase} onChange={ (e) => this.onUpdate(e) } >
+              <option value="start" key="start">{phaseText('start')}</option>
+              <option value="viability" key="viability">{phaseText('viability')}</option>
+              <option value="not_viable" key="not_viable">{phaseText('not_viable')}</option>
+              <option value="apportionment" key="apportionment">{phaseText('apportionment')}</option>
+              <option value="apportioned" key="apportioned">{phaseText('apportioned')}</option>
+            </select>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="attendees">Total Attendees</label>
+            <input type="number" className="form-control" name="attendees" required={true} value={this.props.attendees} onChange={ (e) => this.onUpdate(e) } />
+          </div>
+
           <div className="form-group">
             <label htmlFor="sandersSupporters">Bernie Sanders Supporters</label>
             <input type="number" className="form-control" name="sandersSupporters" required={true} value={this.props.supporters.sanders} onChange={ (e) => this.onUpdate(e) } />
           </div>
+
           <div className="form-group">
             <label htmlFor="clintonSupporters">Hillary Clinton Supporters</label>
             <input type="number" className="form-control" name="clintonSupporters" required={true} value={this.props.supporters.clinton} onChange={ (e) => this.onUpdate(e) } />
           </div>
+
           <div className="form-group">
             <label htmlFor="omalleySupporters">Martin O'Malley Supporters</label>
             <input type="number" className="form-control" name="omalleySupporters" required={true} value={this.props.supporters.omalley} onChange={ (e) => this.onUpdate(e) } />
           </div>
-          <button type="submit" className="btn btn-primary">Submit first count</button>
+
+          <button type="submit" className="btn btn-primary">Update Report</button>
         </form>
-      </div>
+      </Loader>
     );
   }
-};
+}
 
-export default CaptainEntryViability;
+export default ReportEditForm;

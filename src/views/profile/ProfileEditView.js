@@ -51,13 +51,7 @@ export class ProfileEditView extends React.Component {
 
   render() {
     return (
-      <div className='container'>
-        <div className='row'>
-          <div className='col-md-12'>
-            <ProfileForm {...this.props} />
-          </div>
-        </div>
-      </div>
+      <ProfileForm {...this.props} />
     );
   }
 };

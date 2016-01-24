@@ -26,5 +26,5 @@ const state = {
 export default createReducer(initialState, {
   [c.GET_STATE_REQUEST] : state.get.request,
   [c.GET_STATE_SUCCESS] : state.get.success,
-  [c.GET_STATE_ERROR] : state.get.failure
+  [c.GET_STATE_FAILURE] : state.get.failure
 });

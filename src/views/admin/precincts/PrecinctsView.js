@@ -14,7 +14,7 @@ const mapStateToProps = (state) => ({
   error:        state.adminState.error,
   state:        state.adminState.state,
   precincts:    state.adminState.state.precincts,
-  keyword:      state.adminPrecincts.keyword,
+  dataSource:   state.adminPrecincts.dataSource,
   error:        state.adminState.error,
   sessionToken: state.session.token
 });
@@ -32,8 +32,7 @@ export class PrecinctsView extends React.Component {
 
   render () {
     return (
-      <div className='container admin-dashboard-view'>
-        <h1>{this.props.state.name}</h1>
+      <div>
         <PrecinctsSummary {...this.props} />
         <PrecinctsMap {...this.props} />
         <PrecinctsTable {...this.props} />

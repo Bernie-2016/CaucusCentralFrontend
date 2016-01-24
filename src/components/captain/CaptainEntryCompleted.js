@@ -2,13 +2,12 @@ import React from 'react';
 
 export class CaptainEntryCompleted extends React.Component {
   candidateDelegates(candidate) {
-    return Math.round(this.props.supporters[candidate] / this.props.attendees * this.props.precinct.total_delegates) || 0;
+    return Math.round(this.props.supporters[candidate] / this.props.attendees * this.props.delegates) || 0;
   }
 
   render() {
     return (
       <div>
-        <h4>Completed</h4>
         <p>Caucus has been completed. Thanks for your help!</p>
 
         <p>Based on the data you entered, this is how delegates will be assigned:</p>

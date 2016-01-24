@@ -21,7 +21,7 @@ export class SignInForm extends React.Component {
 
   render () {
     return (
-      <div className="container signin">
+      <div className="signin">
         <form className="form-signin" onSubmit={ (e) => this.onSubmit(e) }>
           <h2 className="form-signin-heading">Sign in</h2>
 

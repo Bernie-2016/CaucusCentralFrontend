@@ -6,18 +6,13 @@ const initialState = {
   fetched: false,
   updated: false,
   error: false,
+  state: '',
   name: '',
   county: '',
-  phase: '',
-  attendees: 0,
   delegates: 0,
-  sandersSupporters: 0,
-  clintonSupporters: 0,
-  omalleySupporters: 0,
-  threshold: 0,
-  delegateCounts: [],
   captainId: '',
-  captainName: ''
+  captainName: '',
+  reports: []
 };
 
 const precinct = {
@@ -29,18 +24,23 @@ const precinct = {
       return reduceState(state, {
         error: false, 
         fetched: true, 
+        state: response.precinct.state,
         name: response.precinct.name,
         county: response.precinct.county,
-        phase: response.precinct.phase,
-        attendees: response.precinct.total_attendees || 0,
         delegates: response.precinct.total_delegates || 0,
-        sandersSupporters: (_.find(response.precinct.delegate_counts || [], {key: 'sanders'}) || {}).supporters || 0,
-        clintonSupporters: (_.find(response.precinct.delegate_counts || [], {key: 'clinton'}) || {}).supporters || 0,
-        omalleySupporters: (_.find(response.precinct.delegate_counts || [], {key: 'omalley'}) || {}).supporters || 0,
-        threshold: response.precinct.threshold,
-        delegateCounts: response.precinct.delegate_counts,
         captainId: response.precinct.captain_id,
-        captainName: response.precinct.captain_first_name + ' ' + response.precinct.captain_last_name
+        captainName: response.precinct.captain_first_name + ' ' + response.precinct.captain_last_name,
+        reports: _.map(response.precinct.reports, (report) => ({
+          id: report.id,
+          source: report.source,
+          phase: report.phase,
+          attendees: report.total_attendees,
+          threshold: report.threshold,
+          sandersSupporters: (_.find(report.delegate_counts || [], {key: 'sanders'}) || {}).supporters || 0,
+          clintonSupporters: (_.find(report.delegate_counts || [], {key: 'clinton'}) || {}).supporters || 0,
+          omalleySupporters: (_.find(report.delegate_counts || [], {key: 'omalley'}) || {}).supporters || 0,
+          delegatesWon: (_.find(report.delegate_counts || [], {key: 'sanders'}) || {}).delegates_won || 0
+        }))
       });
     },
     failure: (state, error) => {
@@ -60,18 +60,22 @@ const precinct = {
       notifySuccess('Precinct updated!');
       return reduceState(state, {
         error: false, 
-        updating: false, 
         updated: true, 
+        state: response.precinct.state,
         name: response.precinct.name,
         county: response.precinct.county,
-        phase: response.precinct.phase,
-        attendees: response.precinct.total_attendees || 0,
         delegates: response.precinct.total_delegates || 0,
-        sandersSupporters: (_.find(response.precinct.delegate_counts || [], {key: 'sanders'}) || {}).supporters || 0,
-        clintonSupporters: (_.find(response.precinct.delegate_counts || [], {key: 'clinton'}) || {}).supporters || 0,
-        omalleySupporters: (_.find(response.precinct.delegate_counts || [], {key: 'omalley'}) || {}).supporters || 0,
-        threshold: response.precinct.threshold,
-        delegateCounts: response.precinct.delegate_counts
+        captainId: response.precinct.captain_id,
+        captainName: response.precinct.captain_first_name + ' ' + response.precinct.captain_last_name,
+        reports: _.map(response.precinct.reports, (report) => ({
+          source: report.source,
+          phase: report.phase,
+          attendees: report.total_attendees,
+          threshold: report.threshold,
+          sandersSupporters: (_.find(report.delegate_counts || [], {key: 'sanders'}) || {}).supporters || 0,
+          clintonSupporters: (_.find(report.delegate_counts || [], {key: 'clinton'}) || {}).supporters || 0,
+          omalleySupporters: (_.find(report.delegate_counts || [], {key: 'omalley'}) || {}).supporters || 0,
+        }))
       });
     },
     failure: (state, error) => {
@@ -89,10 +93,10 @@ const precinct = {
 export default createReducer(initialState, {
   [c.GET_PRECINCT_REQUEST]    : precinct.get.request,
   [c.GET_PRECINCT_SUCCESS]    : precinct.get.success,
-  [c.GET_PRECINCT_ERROR]      : precinct.get.failure,
+  [c.GET_PRECINCT_FAILURE]    : precinct.get.failure,
   [c.UPDATE_PRECINCT_REQUEST] : precinct.update.request,
   [c.UPDATE_PRECINCT_SUCCESS] : precinct.update.success,
-  [c.UPDATE_PRECINCT_ERROR]   : precinct.update.failure,
+  [c.UPDATE_PRECINCT_FAILURE] : precinct.update.failure,
   [c.SET_PRECINCT_ATTR]       : precinct.set,
   [c.RESET_PRECINCT]          : precinct.reset
 });
