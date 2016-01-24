@@ -54,9 +54,7 @@ class ReportView extends React.Component {
 
   render () {
     return (
-      <div className='sign-in'>
-        <ReportForm {...this.props}/>
-      </div>
+      <ReportForm {...this.props}/>
     );
   }
 }

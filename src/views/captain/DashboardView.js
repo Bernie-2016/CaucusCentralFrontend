@@ -45,8 +45,8 @@ export class DashboardView extends React.Component {
   render() {
     if(this.props.precinctId === undefined || this.props.precinctId === null) {
       return (
-        <div className='container'>
-          <div className='col-md-12'>
+        <div className='row'>
+          <div className='col-md-6 col-md-offset-3 col-xs-12 col-xs-offset-0'>
             <h1>Unassigned</h1>
             <p>You are not currently assigned to any precinct.</p>
           </div>

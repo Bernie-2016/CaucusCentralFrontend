@@ -26,7 +26,7 @@ export class ResetForm extends React.Component {
 
   render () {
     return (
-      <div className="container reset">
+      <div className="reset">
         <form className="form-reset" onSubmit={ (e) => this.onSubmit(e) }>
           <h2 className="form-reset-heading">Reset password</h2>
           <label htmlFor="password" className="sr-only">Password</label>

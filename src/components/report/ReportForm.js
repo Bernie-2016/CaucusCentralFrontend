@@ -64,7 +64,7 @@ export class ReportForm extends React.Component {
     }
 
     return (
-      <div className="container signup">
+      <div className="report">
         <Loader loaded={this.props.fetched}>
           <form className="form-signup" onSubmit={ (e) => this.onSubmit(e) }>
             <h2 className="form-signup-heading">Create Report</h2>
@@ -107,7 +107,7 @@ export class ReportForm extends React.Component {
               <input type="number" className="form-control" name="omalleySupporters" required={true} value={this.props.supporters.omalley} onChange={ (e) => this.onUpdate(e) } />
             </div>
 
-            <button className="btn btn-lg btn-primary btn-block" type="submit">Submit Report</button>
+            <button className="btn btn-primary btn-lg" type="submit">Submit Report</button>
           </form>
         </Loader>
       </div>

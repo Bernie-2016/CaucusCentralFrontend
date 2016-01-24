@@ -5,31 +5,27 @@ import Loader   from 'react-loader';
 export class Profile extends React.Component {
   render() {
     return (
-      <div className="row">
-        <div className="col-md-12">
-          <Loader loaded={this.props.fetched}>
-            <h1>Profile</h1>
-            <p>
-              <strong>First name: </strong> {this.props.profile.firstName}
-            </p>
-            <p>
-              <strong>Last name: </strong> {this.props.profile.lastName}
-            </p>
-            <p>
-              <strong>Email: </strong> {this.props.profile.email}
-            </p>
-            <p>
-              <strong>Phone number: </strong> 
-              <Link to={'tel:1' + this.props.profile.phoneNumber}>
-                {this.props.profile.phoneNumber.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3')}
-              </Link>
-            </p>
-            <p>
-              <Link to={this.props.location.pathname + '/edit'} className='btn btn-primary'>Edit</Link>
-            </p>
-          </Loader>
-        </div>
-      </div>
+      <Loader loaded={this.props.fetched}>
+        <h1>Profile</h1>
+        <p>
+          <strong>First name: </strong> {this.props.profile.firstName}
+        </p>
+        <p>
+          <strong>Last name: </strong> {this.props.profile.lastName}
+        </p>
+        <p>
+          <strong>Email: </strong> {this.props.profile.email}
+        </p>
+        <p>
+          <strong>Phone number: </strong> 
+          <Link to={'tel:1' + this.props.profile.phoneNumber}>
+            {this.props.profile.phoneNumber.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3')}
+          </Link>
+        </p>
+        <p>
+          <Link to={this.props.location.pathname + '/edit'} className='btn btn-primary'>Edit</Link>
+        </p>
+      </Loader>
     );
   }
 };

@@ -36,9 +36,7 @@ class SignUpView extends React.Component {
 
   render () {
     return (
-      <div className='sign-in'>
-        <SignUpForm {...this.props}/>
-      </div>
+      <SignUpForm {...this.props}/>
     );
   }
 }

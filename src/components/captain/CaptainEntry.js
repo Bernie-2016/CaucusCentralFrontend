@@ -41,15 +41,11 @@ export class CaptainEntry extends React.Component {
 
   render() {
     return (
-      <div className="row">
-        <div className="col-md-6 col-md-offset-3 col-xs-12 col-xs-offset-0">
-          <Loader loaded={this.props.fetched}>
-            <h1>Precinct: {this.props.name}</h1>
-            <h3>Phase: {phaseText(this.props.phase)}</h3>
-            {this.phaseComponent()}
-          </Loader>
-        </div>
-      </div>
+      <Loader loaded={this.props.fetched}>
+        <h1>Precinct: {this.props.name}</h1>
+        <h3>Phase: {phaseText(this.props.phase)}</h3>
+        {this.phaseComponent()}
+      </Loader>
     );
   }
 };

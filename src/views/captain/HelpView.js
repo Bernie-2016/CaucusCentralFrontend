@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 export class HelpView extends React.Component {
   render() {
     return (
-      <div className='container'>
+      <div>
         <h1>Help</h1>
         <p>
           If you need help with anything, please use the hotline to let us know.

@@ -1,8 +1,10 @@
 import React                 from 'react';
 import { Route, IndexRoute } from 'react-router';
+
 import CoreLayout            from 'layouts/CoreLayout';
-import AdminLayout           from 'layouts/admin/AdminLayout';
-import CaptainLayout         from 'layouts/captain/CaptainLayout';
+import AdminLayout           from 'layouts/AdminLayout';
+import CaptainLayout         from 'layouts/CaptainLayout';
+import HomeLayout            from 'layouts/HomeLayout';
 
 import HomeView              from 'views/HomeView';
 import SignUpView            from 'views/sign-up/SignUpView';
@@ -28,12 +30,14 @@ import ProfileEditView       from 'views/profile/ProfileEditView';
 
 export default (
   <Route component={CoreLayout} path='/'>
-    <IndexRoute component={HomeView} />
-    <Route component={SignInView} path='/signin' />
-    <Route component={SignUpView} path='/signup/:token' />
-    <Route component={ResetView} path='/reset/:token' />
-    <Route component={ForgotView} path='/forgot' />
-    <Route component={ReportView} path='/report' />
+    <Route component={HomeLayout}>
+      <IndexRoute component={HomeView} />
+      <Route component={SignInView} path='/signin' />
+      <Route component={SignUpView} path='/signup/:token' />
+      <Route component={ResetView} path='/reset/:token' />
+      <Route component={ForgotView} path='/forgot' />
+      <Route component={ReportView} path='/report' />
+    </Route>
     <Route component={CaptainLayout} path='/captain'>
       <IndexRoute component={DashboardView} />
       <Route component={HelpView} path='/captain/help' />
