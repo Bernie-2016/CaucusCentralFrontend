@@ -34,10 +34,12 @@ export class AdminLayout extends React.Component {
 
   render () {
     return (
-      <div className='container admin-view'>
+      <div className='container'>
         <AdminNav signOut={ (e) => this.signOut(e) } {...this.props} />
-        <div className="content">
-          {this.props.children}
+        <div className='content row'>
+          <div className='col-md-12'>
+            {this.props.children}
+          </div>
         </div>
       </div>
     );

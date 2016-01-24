@@ -56,46 +56,43 @@ export class ReportEditForm extends React.Component {
 
   render() {
     return (
-      <div className="row">
-        <div className="col-md-6">
-          <Loader loaded={this.props.fetched}>
-            <form onSubmit={ (e) => this.onSubmit(e) }>
-              <div className="form-group">
-                <label htmlFor="phase">Caucus Phase</label>
-                <select className="form-control" name="phase" value={this.props.phase} onChange={ (e) => this.onUpdate(e) } >
-                  <option value="start" key="start">{phaseText('start')}</option>
-                  <option value="viability" key="viability">{phaseText('viability')}</option>
-                  <option value="not_viable" key="not_viable">{phaseText('not_viable')}</option>
-                  <option value="apportionment" key="apportionment">{phaseText('apportionment')}</option>
-                  <option value="apportioned" key="apportioned">{phaseText('apportioned')}</option>
-                </select>
-              </div>
+      <Loader loaded={this.props.fetched}>
+        <form onSubmit={ (e) => this.onSubmit(e) }>
+          <h1>Edit Report</h1>
+          <div className="form-group">
+            <label htmlFor="phase">Caucus Phase</label>
+            <select className="form-control" name="phase" value={this.props.phase} onChange={ (e) => this.onUpdate(e) } >
+              <option value="start" key="start">{phaseText('start')}</option>
+              <option value="viability" key="viability">{phaseText('viability')}</option>
+              <option value="not_viable" key="not_viable">{phaseText('not_viable')}</option>
+              <option value="apportionment" key="apportionment">{phaseText('apportionment')}</option>
+              <option value="apportioned" key="apportioned">{phaseText('apportioned')}</option>
+            </select>
+          </div>
 
-              <div className="form-group">
-                <label htmlFor="attendees">Total Attendees</label>
-                <input type="number" className="form-control" name="attendees" required={true} value={this.props.attendees} onChange={ (e) => this.onUpdate(e) } />
-              </div>
+          <div className="form-group">
+            <label htmlFor="attendees">Total Attendees</label>
+            <input type="number" className="form-control" name="attendees" required={true} value={this.props.attendees} onChange={ (e) => this.onUpdate(e) } />
+          </div>
 
-              <div className="form-group">
-                <label htmlFor="sandersSupporters">Bernie Sanders Supporters</label>
-                <input type="number" className="form-control" name="sandersSupporters" required={true} value={this.props.supporters.sanders} onChange={ (e) => this.onUpdate(e) } />
-              </div>
+          <div className="form-group">
+            <label htmlFor="sandersSupporters">Bernie Sanders Supporters</label>
+            <input type="number" className="form-control" name="sandersSupporters" required={true} value={this.props.supporters.sanders} onChange={ (e) => this.onUpdate(e) } />
+          </div>
 
-              <div className="form-group">
-                <label htmlFor="clintonSupporters">Hillary Clinton Supporters</label>
-                <input type="number" className="form-control" name="clintonSupporters" required={true} value={this.props.supporters.clinton} onChange={ (e) => this.onUpdate(e) } />
-              </div>
+          <div className="form-group">
+            <label htmlFor="clintonSupporters">Hillary Clinton Supporters</label>
+            <input type="number" className="form-control" name="clintonSupporters" required={true} value={this.props.supporters.clinton} onChange={ (e) => this.onUpdate(e) } />
+          </div>
 
-              <div className="form-group">
-                <label htmlFor="omalleySupporters">Martin O'Malley Supporters</label>
-                <input type="number" className="form-control" name="omalleySupporters" required={true} value={this.props.supporters.omalley} onChange={ (e) => this.onUpdate(e) } />
-              </div>
+          <div className="form-group">
+            <label htmlFor="omalleySupporters">Martin O'Malley Supporters</label>
+            <input type="number" className="form-control" name="omalleySupporters" required={true} value={this.props.supporters.omalley} onChange={ (e) => this.onUpdate(e) } />
+          </div>
 
-              <button type="submit" className="btn btn-primary">Update Report</button>
-            </form>
-          </Loader>
-        </div>
-      </div>
+          <button type="submit" className="btn btn-primary">Update Report</button>
+        </form>
+      </Loader>
     );
   }
 }

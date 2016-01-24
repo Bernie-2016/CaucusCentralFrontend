@@ -43,10 +43,7 @@ export class ReportNewView extends React.Component {
 
   render () {
     return (
-      <div className='container admin-user-administration-view'>
-        <h1>New Report</h1>
-        <ReportNewForm {...this.props} />
-      </div>
+      <ReportNewForm {...this.props} />
     );
   }
 }

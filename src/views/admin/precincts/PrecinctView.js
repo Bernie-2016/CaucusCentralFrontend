@@ -55,9 +55,7 @@ export class PrecinctView extends React.Component {
 
   render () {
     return (
-      <div className='container admin-dashboard-view'>
-        <Precinct {...this.props} />
-      </div>
+      <Precinct {...this.props} />
     );
   }
 }

@@ -27,6 +27,7 @@ export class PrecinctEditForm extends React.Component {
     return (
       <Loader loaded={this.props.fetched}>
         <form onSubmit={ (e) => this.onSubmit(e) } >
+          <h1>Edit Precinct</h1>
           <div className="form-group">
             <label htmlFor="name">Precinct name</label>
             <input type="text" className="form-control" name="name" value={this.props.precinct.name} onChange={ (e) => this.onUpdate(e) }  />

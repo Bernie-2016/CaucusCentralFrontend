@@ -54,13 +54,7 @@ export class UserView extends React.Component {
 
   render() {
     return (
-      <div className='container'>
-        <div className='row'>
-          <div className='col-md-12'>
-            <User {...this.props} />
-          </div>
-        </div>
-      </div>
+      <User {...this.props} />
     );
   }
 };

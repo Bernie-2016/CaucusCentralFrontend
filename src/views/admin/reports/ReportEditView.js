@@ -54,10 +54,7 @@ export class ReportEditView extends React.Component {
 
   render () {
     return (
-      <div className='container admin-user-administration-view'>
-        <h1>Edit Report</h1>
-        <ReportEditForm {...this.props} />
-      </div>
+      <ReportEditForm {...this.props} />
     );
   }
 }

@@ -56,13 +56,7 @@ export class UserEditView extends React.Component {
 
   render() {
     return (
-      <div className='container'>
-        <div className='row'>
-          <div className='col-md-12'>
-            <UserEditForm {...this.props} />
-          </div>
-        </div>
-      </div>
+      <UserEditForm {...this.props} />
     );
   }
 };

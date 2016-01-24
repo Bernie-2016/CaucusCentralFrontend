@@ -32,7 +32,7 @@ export class PrecinctsView extends React.Component {
 
   render () {
     return (
-      <div className='container admin-dashboard-view'>
+      <div>
         <PrecinctsSummary {...this.props} />
         <PrecinctsMap {...this.props} />
         <PrecinctsTable {...this.props} />

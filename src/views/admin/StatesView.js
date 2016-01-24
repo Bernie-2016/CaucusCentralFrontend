@@ -26,7 +26,7 @@ export class StatesView extends React.Component {
 
   render () {
     return (
-      <div className='container admin-dashboard-view'>
+      <div>
         <h1>States</h1>
         <StatesTable {...this.props}/>
       </div>

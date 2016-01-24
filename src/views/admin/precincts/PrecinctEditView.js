@@ -47,11 +47,7 @@ export class PrecinctEditView extends React.Component {
 
   render () {
     return (
-      <div className='container admin-dashboard-view'>
-        <h1>Edit Precinct</h1>
-        <p>Use this form to override precinct data if a volunteer reports an error.</p>
-        <PrecinctEditForm {...this.props} />
-      </div>
+      <PrecinctEditForm {...this.props} />
     );
   }
 }
