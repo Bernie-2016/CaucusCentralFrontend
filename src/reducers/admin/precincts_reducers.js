@@ -30,6 +30,6 @@ const precincts = {
 export default createReducer(initialState, {
   [c.GET_PRECINCTS_REQUEST] : precincts.get.request,
   [c.GET_PRECINCTS_SUCCESS] : precincts.get.success,
-  [c.GET_PRECINCTS_ERROR]   : precincts.get.failure,
+  [c.GET_PRECINCTS_FAILURE] : precincts.get.failure,
   [c.SET_PRECINCTS_ATTR]    : precincts.set
 });

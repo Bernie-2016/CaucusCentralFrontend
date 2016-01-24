@@ -93,10 +93,10 @@ const precinct = {
 export default createReducer(initialState, {
   [c.GET_PRECINCT_REQUEST]    : precinct.get.request,
   [c.GET_PRECINCT_SUCCESS]    : precinct.get.success,
-  [c.GET_PRECINCT_ERROR]      : precinct.get.failure,
+  [c.GET_PRECINCT_FAILURE]    : precinct.get.failure,
   [c.UPDATE_PRECINCT_REQUEST] : precinct.update.request,
   [c.UPDATE_PRECINCT_SUCCESS] : precinct.update.success,
-  [c.UPDATE_PRECINCT_ERROR]   : precinct.update.failure,
+  [c.UPDATE_PRECINCT_FAILURE] : precinct.update.failure,
   [c.SET_PRECINCT_ATTR]       : precinct.set,
   [c.RESET_PRECINCT]          : precinct.reset
 });

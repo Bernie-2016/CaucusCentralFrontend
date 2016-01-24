@@ -53,10 +53,10 @@ const users = {
 export default createReducer(initialState, {
   [c.GET_USERS_REQUEST]    : users.get.request,
   [c.GET_USERS_SUCCESS]    : users.get.success,
-  [c.GET_USERS_ERROR]      : users.get.error,
+  [c.GET_USERS_FAILURE]    : users.get.error,
   [c.IMPORT_USERS_REQUEST] : users.import.request,
   [c.IMPORT_USERS_SUCCESS] : users.import.success,
-  [c.IMPORT_USERS_ERROR]   : users.import.error,
+  [c.IMPORT_USERS_FAILURE] : users.import.error,
   [c.SET_IMPORT_USERS]     : users.import.set,
   [c.SET_USERS_ATTR]       : users.set
 });
