@@ -6,6 +6,7 @@ const initialState = {
   fetched: false,
   updated: false,
   error: false,
+  state: '',
   name: '',
   county: '',
   delegates: 0,
@@ -23,6 +24,7 @@ const precinct = {
       return reduceState(state, {
         error: false, 
         fetched: true, 
+        state: response.precinct.state,
         name: response.precinct.name,
         county: response.precinct.county,
         delegates: response.precinct.total_delegates || 0,
@@ -59,6 +61,7 @@ const precinct = {
       return reduceState(state, {
         error: false, 
         updated: true, 
+        state: response.precinct.state,
         name: response.precinct.name,
         county: response.precinct.county,
         delegates: response.precinct.total_delegates || 0,

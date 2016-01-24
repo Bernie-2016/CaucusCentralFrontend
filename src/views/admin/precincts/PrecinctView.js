@@ -9,12 +9,12 @@ import LogoutIfUnauthorizedMixin  from 'components/mixins/LogoutIfUnauthorizedMi
 import Precinct                   from 'components/admin/precincts/Precinct';
 
 const mapStateToProps = (state) => ({
-  fetched:        state.adminPrecinct.fetched && state.adminState.fetched,
+  fetched:        state.adminPrecinct.fetched,
   error:          state.adminPrecinct.error,
   reportCreated:  state.report.created,
   reportUpdated:  state.report.updated,
   reportRemoved:  state.report.removed,
-  state:          state.adminState.state,
+  state:          state.adminPrecinct.state,
   name:           state.adminPrecinct.name,
   county:         state.adminPrecinct.county,
   delegates:      state.adminPrecinct.delegates,
@@ -35,7 +35,6 @@ export class PrecinctView extends React.Component {
   componentDidMount() {
     let { id, code } = this.props.params;
     this.props.adminActions.getPrecinct({id: id, token: this.props.sessionToken});
-    this.props.adminActions.getState({code: code, token: this.props.sessionToken});
   }
 
   componentWillMount() {

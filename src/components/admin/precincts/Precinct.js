@@ -63,7 +63,7 @@ export class Precinct extends React.Component {
 
     return (
       <Loader loaded={this.props.fetched}>
-        <Link to={'/admin/states/' + this.props.state.code}>Back to {this.props.state.name}</Link>
+        <Link to={'/admin/states/' + this.props.state}>Back to {this.props.state}</Link>
         <h1>{this.props.name}</h1>
         <p key="county">
           County: <strong>{this.props.county}</strong>
@@ -73,7 +73,7 @@ export class Precinct extends React.Component {
         </p>
         {captain}
         <p key="edit-link">
-          <Link to={'/admin/states/' + this.props.state.code + '/precincts/' + this.props.params.id + '/edit'} className='btn btn-primary'>Edit</Link>
+          <Link to={'/admin/states/' + this.props.state + '/precincts/' + this.props.params.id + '/edit'} className='btn btn-primary'>Edit</Link>
         </p>
 
         <h2>Reports</h2>
