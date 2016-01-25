@@ -1,4 +1,5 @@
 import React         from 'react';
+import { Link }      from 'react-router';
 import Loader        from 'react-loader';
 import { phaseText } from 'utils/phaseText';
 
@@ -106,6 +107,10 @@ export class ReportForm extends React.Component {
               <label htmlFor="omalleySupporters">Martin O'Malley Supporters</label>
               <input type="number" className="form-control" name="omalleySupporters" required={true} value={this.props.supporters.omalley} onChange={ (e) => this.onUpdate(e) } />
             </div>
+
+            <p>
+              If you found anything abnormal at your caucus, please call our help line number at <Link to='tel:+15152776073'>(515) 277-6073</Link> or email us at <Link to='mailto:iowa-help@berniesanders.com'>iowa-help@berniesanders.com</Link> and let us know.
+            </p>
 
             <button className="btn btn-primary btn-lg" type="submit">Submit Report</button>
           </form>
