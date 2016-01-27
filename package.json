@@ -17,9 +17,6 @@
     "deploy": "NODE_ENV=production API_HOST=caucus-central.herokuapp.com npm run compile && gulp s3",
     "validate": "npm ls"
   },
-  "pre-commit": [
-    ""
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Bernie-2016/CaucusCentralFrontend.git"
