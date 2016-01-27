@@ -29,13 +29,13 @@ export class StatesTable extends React.Component {
         <Table className="table table-striped">
           <Thead>
             <Th column="name">
-              <strong>Name</strong>
+              <strong>State</strong>
             </Th>
             <Th column="code">
               <strong>Code</strong>
             </Th>
             <Th column="date">
-              <strong>Date</strong>
+              <strong>Caucus Date</strong>
             </Th>
           </Thead>
           {stateComponents}

@@ -29,18 +29,24 @@ export class UserNewForm extends React.Component {
 
     return (
       <form onSubmit={ (e) => this.onSubmit(e) }>
-        <h1>Invite User</h1>
+        <h3 className='text-center'>Invite a new user</h3>
+        <hr />
         <div className="form-group">
           <label htmlFor="newEmail">Email</label>
           <input type="email" className="form-control" name="newEmail" required={true} value={this.props.user.email} onChange={ (e) => this.onUpdate(e) } />
         </div>
         <div className="form-group">
-          <label htmlFor="typeCaptain" className="radio-inline">
-            <input type="radio" name="privilege" id="typeCaptain" value="captain" checked={this.props.user.privilege == "captain"} onChange={ (e) => this.onUpdate(e) } /> Precinct Captain
-          </label>
-          <label htmlFor="typeAdmin" className="radio-inline">
-            <input type="radio" name="privilege" id="typeAdmin" value="organizer" checked={this.props.user.privilege == "organizer"} onChange={ (e) => this.onUpdate(e) } /> Organizer
-          </label>
+          <label htmlFor="privilege">Privilege</label>
+          <div className='radio'>
+            <label htmlFor="typeCaptain" className="radio-inline">
+              <input type="radio" name="privilege" id="typeCaptain" value="captain" checked={this.props.user.privilege == "captain"} onChange={ (e) => this.onUpdate(e) } /> Precinct Captain
+            </label>
+          </div>
+          <div className='radio'>
+            <label htmlFor="typeAdmin" className="radio-inline">
+              <input type="radio" name="privilege" id="typeAdmin" value="organizer" checked={this.props.user.privilege == "organizer"} onChange={ (e) => this.onUpdate(e) } /> Organizer
+            </label>
+          </div>
         </div>
         <div className="form-group">
           <label htmlFor="precinct">Precinct</label>
@@ -48,7 +54,7 @@ export class UserNewForm extends React.Component {
             {precincts}
           </select>
         </div>
-        <button type="submit" className="btn btn-primary">Add User</button>
+        <button type="submit" className="btn btn-lg btn-primary btn-block">Add User</button>
       </form>
     );
   }

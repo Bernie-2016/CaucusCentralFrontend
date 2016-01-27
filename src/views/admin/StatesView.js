@@ -27,7 +27,8 @@ export class StatesView extends React.Component {
   render () {
     return (
       <div>
-        <h1>States</h1>
+        <h3 className='text-center'>All states</h3>
+        <hr />
         <StatesTable {...this.props}/>
       </div>
     );

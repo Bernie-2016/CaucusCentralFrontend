@@ -170,7 +170,12 @@ export class PrecinctsMap extends React.Component {
     };
 
     if(this.props.fetched) {
-      return <ReactHighmap config={config} />;
+      return (
+          <div>
+            <h3 className='text-center'>Map</h3>
+            <ReactHighmap config={config} />
+          </div>
+          );
     } else {
       return <div />;
     }

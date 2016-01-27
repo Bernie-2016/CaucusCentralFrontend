@@ -18,7 +18,7 @@
     "validate": "npm ls"
   },
   "pre-commit": [
-    "lint"
+    ""
   ],
   "repository": {
     "type": "git",

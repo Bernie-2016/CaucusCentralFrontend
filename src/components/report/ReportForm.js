@@ -68,7 +68,8 @@ export class ReportForm extends React.Component {
       <div className="report">
         <Loader loaded={this.props.fetched}>
           <form className="form-signup" onSubmit={ (e) => this.onSubmit(e) }>
-            <h2 className="form-signup-heading">Create Report</h2>
+            <h3 className="text-center form-signup-heading">Submit Volunteer Report</h3>
+            <hr />
 
             <div className="form-group">
               <label htmlFor="precinct">Precinct</label>
@@ -109,10 +110,10 @@ export class ReportForm extends React.Component {
             </div>
 
             <p>
-              If you found anything abnormal at your caucus, please call our help line number at <Link to='tel:+15152776073'>(515) 277-6073</Link> or email us at <Link to='mailto:iowa-help@berniesanders.com'>iowa-help@berniesanders.com</Link> and let us know.
+              If you found anything abnormal at your caucus, please call our help line number at <Link to='tel:+15152776073'>(515) 277-6073</Link> or let us know at <Link to='mailto:iowa-help@berniesanders.com'>iowa-help@berniesanders.com</Link>.
             </p>
 
-            <button className="btn btn-primary btn-lg" type="submit">Submit Report</button>
+            <button className="btn btn-primary btn-lg btn-block" type="submit">Submit Report</button>
           </form>
         </Loader>
       </div>

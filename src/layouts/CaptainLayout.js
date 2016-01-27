@@ -38,7 +38,7 @@ export class CaptainLayout extends React.Component {
 
     render () {
       return (
-        <div className='container'>
+        <div>
           <CaptainNav signOut={ (e) => this.signOut(e) } {...this.props} />
           <div className='content row'>
             <div className='col-md-6 col-md-offset-3 col-xs-12'>

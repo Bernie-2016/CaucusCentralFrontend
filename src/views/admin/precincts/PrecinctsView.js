@@ -34,7 +34,9 @@ export class PrecinctsView extends React.Component {
     return (
       <div>
         <PrecinctsSummary {...this.props} />
+        <hr />
         <PrecinctsMap {...this.props} />
+        <hr />
         <PrecinctsTable {...this.props} />
       </div>
     );

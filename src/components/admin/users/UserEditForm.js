@@ -44,7 +44,8 @@ export class UserEditForm extends React.Component {
     );
     return (
       <Loader loaded={this.props.fetched}>
-        <h1>Edit User</h1>
+        <h3>Edit User</h3>
+        <hr />
         <form onSubmit={ (e) => this.onSubmit(e) }>
           <div className="form-group">
             <label htmlFor="firstName">First name</label>
