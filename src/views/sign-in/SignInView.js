@@ -32,6 +32,7 @@ class SignInView extends React.Component {
       } else if (this.props.privilege === 'captain') {
         this.props.history.pushState(null, '/captain')
       }
+      this.props.sessionActions.reset();
     }
   }
 

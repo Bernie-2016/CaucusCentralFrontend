@@ -38,5 +38,8 @@ export default {
       },
       method: 'DELETE'
     }
+  }),
+  reset: () => ({
+    type: c.RESET
   })
 };
