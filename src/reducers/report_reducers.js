@@ -10,6 +10,7 @@ const initialState = {
   sandersSupporters: 0,
   clintonSupporters: 0,
   omalleySupporters: 0,
+  error: false,
   fetched: false,
   created: false,
   updated: false,
@@ -38,7 +39,7 @@ const report = {
   },
   create: {
     request: function (state) {
-      return reduceState(state, { created: false });
+      return reduceState(state, { error: false, created: false });
     },
     success: function (state, response) {
       notifySuccess('Report successfully sent!');
@@ -59,7 +60,7 @@ const report = {
   },
   update: {
     request: function (state) {
-      return reduceState(state, { updated: false });
+      return reduceState(state, { error: false, updated: false });
     },
     success: function (state, response) {
       notifySuccess('Report updated!');
@@ -80,7 +81,7 @@ const report = {
   },
   remove: {
     request: (state) => {
-      return reduceState(state, { removed: false });
+      return reduceState(state, { error: false, removed: false });
     },
     success: (state) => {
       notifySuccess('Report removed!');

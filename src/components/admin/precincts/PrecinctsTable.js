@@ -55,23 +55,26 @@ export class PrecinctsTable extends React.Component {
 
     return (
       <Loader loaded={this.props.fetched}>
-        <Table className="table table-striped" itemsPerPage={50} filterable={['county', 'precinct']}>
-          <Thead>
-            <Th column="county">
-              <strong>County</strong>
-            </Th>
-            <Th column="precinct">
-              <strong>Precinct</strong>
-            </Th>
-            <Th column="delegates">
-              <strong>Total Delegates</strong>
-            </Th>
-            <Th column="captain">
-              <strong>Captain</strong>
-            </Th>
-          </Thead>
-          {precinctComponents}
-        </Table>
+        <h3 className='text-center'>Precincts</h3>
+        <div className="table-responsive">
+          <Table className="table table-striped" itemsPerPage={50} filterable={['county', 'precinct']}>
+            <Thead>
+              <Th column="county">
+                <strong>County</strong>
+              </Th>
+              <Th column="precinct">
+                <strong>Precinct</strong>
+              </Th>
+              <Th column="delegates">
+                <strong>Total Delegates</strong>
+              </Th>
+              <Th column="captain">
+                <strong>Captain</strong>
+              </Th>
+            </Thead>
+            {precinctComponents}
+          </Table>
+        </div>
       </Loader>
     );
   }

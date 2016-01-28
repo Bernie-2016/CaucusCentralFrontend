@@ -7,17 +7,21 @@ export default class HomeView extends React.Component {
       <div className='text-center'>
         <h1>Caucus Central</h1>
         <p>
-          Welcome to Caucus Central, the official campaign app to collect live data from caucus precincts. We designate precinct captains to officially report on totals from their precinct, and we also accept crowdsourced data from all Bernie supporters to get the most up-to-the-minute results.
-        </p>
-        <p>
-          If you're a precinct captain, click "Captain Login" below to log in. If you're a supporter, click "Submit Report" to submit a report from your precinct.
+          The official app to collect live data from caucus precincts.
         </p>
         <hr />
         <p>
-          <Link to='/report' className='btn btn-primary btn-lg'>Submit Report</Link>
+          <Link to='/report' className='btn btn-primary btn-block btn-lg'>Submit Volunteer Report</Link>
         </p>
         <p>
-          <Link to='/signin' className='btn btn-primary btn-lg'>Captain Login</Link>
+          <strong>Any supporter</strong>  can submit a volunteer report, to help everyone get up-to-the-minute results.
+        </p>
+        <hr />
+        <p>
+          <Link to='/signin' className='btn btn-primary btn-block btn-lg'>Captain Login</Link>
+        </p>
+        <p>
+          <strong>Designated precinct captains</strong> should login to officially report on totals.
         </p>
       </div>
     );

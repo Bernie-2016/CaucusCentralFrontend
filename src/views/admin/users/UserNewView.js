@@ -1,7 +1,8 @@
-import React                   from 'react';
+import React                     from 'react';
 import { bindActionCreators }    from 'redux';
 import { connect }               from 'react-redux';
 import reactMixin                from 'react-mixin';
+import { Row, Col }              from 'react-bootstrap';
 import adminActions              from 'actions/admin';
 import sessionActions            from 'actions/session';
 import LogoutIfUnauthorizedMixin from 'components/mixins/LogoutIfUnauthorizedMixin';
@@ -46,7 +47,11 @@ export class UserNewView extends React.Component {
 
   render () {
     return (
-      <UserNewForm {...this.props} />
+      <Row>
+        <Col md={6} mdOffset={3} sm={8} smOffset={2} xs={12} xsOffset={0}>
+          <UserNewForm {...this.props} />
+        </Col>
+      </Row>
     );
   }
 }

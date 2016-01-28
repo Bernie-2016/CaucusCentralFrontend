@@ -1,6 +1,8 @@
-import React         from 'react';
-import Loader        from 'react-loader';
-import { phaseText } from 'utils/phaseText';
+import React                  from 'react';
+import Loader                 from 'react-loader';
+import { Link }               from 'react-router';
+import { Input, ButtonInput } from 'react-bootstrap';
+import { phaseText }          from 'utils/phaseText';
 
 export class ReportEditForm extends React.Component {
   onUpdate(e) {
@@ -57,40 +59,24 @@ export class ReportEditForm extends React.Component {
   render() {
     return (
       <Loader loaded={this.props.fetched}>
+        <p className='back-link'>
+          <Link to='#' onClick={this.props.history.goBack}>&laquo; Back</Link>
+        </p>
+        <h3 className='text-center'>Edit existing report</h3>
+        <hr />
         <form onSubmit={ (e) => this.onSubmit(e) }>
-          <h1>Edit Report</h1>
-          <div className="form-group">
-            <label htmlFor="phase">Caucus Phase</label>
-            <select className="form-control" name="phase" value={this.props.phase} onChange={ (e) => this.onUpdate(e) } >
-              <option value="start" key="start">{phaseText('start')}</option>
-              <option value="viability" key="viability">{phaseText('viability')}</option>
-              <option value="not_viable" key="not_viable">{phaseText('not_viable')}</option>
-              <option value="apportionment" key="apportionment">{phaseText('apportionment')}</option>
-              <option value="apportioned" key="apportioned">{phaseText('apportioned')}</option>
-            </select>
-          </div>
+          <Input type='select' label='Caucus phase' name='phase' value={this.props.phase} onChange={ (e) => this.onUpdate(e) }>
+            <option value='viability' key='viability'>{phaseText('viability')}</option>
+            <option value='not_viable' key='not_viable'>{phaseText('not_viable')}</option>
+            <option value='apportionment' key='apportionment'>{phaseText('apportionment')}</option>
+            <option value='apportioned' key='apportioned'>{phaseText('apportioned')}</option>
+          </Input>
+          <Input type='number' label='Total attendees' name='attendees' required={true} value={this.props.attendees} onChange={ (e) => this.onUpdate(e) } />
+          <Input type='number' label='Bernie Sanders supporters' name='sandersSupporters' required={true} value={this.props.supporters.sanders} onChange={ (e) => this.onUpdate(e) } />
+          <Input type='number' label='Hillary Clinton supporters' name='clintonSupporters' required={true} value={this.props.supporters.clinton} onChange={ (e) => this.onUpdate(e) } />
+          <Input type='number' label="Martin O'Malley supporters" name='omalleySupporters' required={true} value={this.props.supporters.omalley} onChange={ (e) => this.onUpdate(e) } />
 
-          <div className="form-group">
-            <label htmlFor="attendees">Total Attendees</label>
-            <input type="number" className="form-control" name="attendees" required={true} value={this.props.attendees} onChange={ (e) => this.onUpdate(e) } />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="sandersSupporters">Bernie Sanders Supporters</label>
-            <input type="number" className="form-control" name="sandersSupporters" required={true} value={this.props.supporters.sanders} onChange={ (e) => this.onUpdate(e) } />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="clintonSupporters">Hillary Clinton Supporters</label>
-            <input type="number" className="form-control" name="clintonSupporters" required={true} value={this.props.supporters.clinton} onChange={ (e) => this.onUpdate(e) } />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="omalleySupporters">Martin O'Malley Supporters</label>
-            <input type="number" className="form-control" name="omalleySupporters" required={true} value={this.props.supporters.omalley} onChange={ (e) => this.onUpdate(e) } />
-          </div>
-
-          <button type="submit" className="btn btn-primary">Update Report</button>
+          <ButtonInput type='submit' bsStyle='primary' value='Update Report' />
         </form>
       </Loader>
     );

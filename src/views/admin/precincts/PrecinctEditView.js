@@ -1,11 +1,12 @@
-import React                      from 'react';
-import { bindActionCreators }     from 'redux';
-import { connect }                from 'react-redux';
-import reactMixin                 from 'react-mixin';
-import adminActions               from 'actions/admin';
-import sessionActions             from 'actions/session';
-import LogoutIfUnauthorizedMixin  from 'components/mixins/LogoutIfUnauthorizedMixin';
-import PrecinctEditForm           from 'components/admin/precincts/PrecinctEditForm';
+import React                     from 'react';
+import { bindActionCreators }    from 'redux';
+import { connect }               from 'react-redux';
+import reactMixin                from 'react-mixin';
+import { Row, Col }              from 'react-bootstrap';
+import adminActions              from 'actions/admin';
+import sessionActions            from 'actions/session';
+import LogoutIfUnauthorizedMixin from 'components/mixins/LogoutIfUnauthorizedMixin';
+import PrecinctEditForm          from 'components/admin/precincts/PrecinctEditForm';
 
 const mapStateToProps = (state) => ({
   fetched:        state.adminPrecinct.fetched,
@@ -15,7 +16,7 @@ const mapStateToProps = (state) => ({
   precinct: {
     name:           state.adminPrecinct.name,
     county:         state.adminPrecinct.county,
-    delegates:      state.adminPrecinct.delegates
+    delegates:      state.adminPrecinct.delegates,
   }
 });
 
@@ -47,7 +48,11 @@ export class PrecinctEditView extends React.Component {
 
   render () {
     return (
-      <PrecinctEditForm {...this.props} />
+      <Row>
+        <Col md={6} mdOffset={3} sm={8} smOffset={2} xs={12} xsOffset={0}>
+          <PrecinctEditForm {...this.props} />
+        </Col>
+      </Row>
     );
   }
 }

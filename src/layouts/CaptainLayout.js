@@ -1,6 +1,7 @@
 import React                  from 'react';
 import { bindActionCreators } from 'redux';
 import { connect }            from 'react-redux';
+import { Row, Col }           from 'react-bootstrap';
 import sessionActions         from 'actions/session';
 import CaptainNav             from 'components/nav/CaptainNav';
 
@@ -38,13 +39,13 @@ export class CaptainLayout extends React.Component {
 
     render () {
       return (
-        <div className='container'>
+        <div>
           <CaptainNav signOut={ (e) => this.signOut(e) } {...this.props} />
-          <div className='content row'>
-            <div className='col-md-6 col-md-offset-3 col-xs-12'>
+          <Row className='content'>
+            <Col md={6} mdOffset={3} xs={12} xsOffset={0}>
               { this.props.children }
-            </div>
-          </div>
+            </Col>
+          </Row>
         </div>
       );
     }

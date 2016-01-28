@@ -1,5 +1,7 @@
-import React         from 'react';
-import Loader        from 'react-loader';
+import React                  from 'react';
+import Loader                 from 'react-loader';
+import { Link }               from 'react-router';
+import { Input, ButtonInput } from 'react-bootstrap';
 
 export class PrecinctEditForm extends React.Component {
   onUpdate(e) {
@@ -26,24 +28,18 @@ export class PrecinctEditForm extends React.Component {
   render() {
     return (
       <Loader loaded={this.props.fetched}>
-        <form onSubmit={ (e) => this.onSubmit(e) } >
-          <h1>Edit Precinct</h1>
-          <div className="form-group">
-            <label htmlFor="name">Precinct name</label>
-            <input type="text" className="form-control" name="name" value={this.props.precinct.name} onChange={ (e) => this.onUpdate(e) }  />
-          </div>
+        <p className='back-link'>
+          <Link to='#' onClick={this.props.history.goBack}>&laquo; Back</Link>
+        </p>
+        <h3 className='text-center'>Edit {this.props.precinct.name}</h3>
+        <p className='text-center'>Precinct in county {this.props.precinct.county}.</p>
+        <hr />
+        <form onSubmit={ (e) => this.onSubmit(e) }>
+          <Input type='text' label='Precinct name' name='name' required={true} value={this.props.precinct.name} onChange={ (e) => this.onUpdate(e) } />
+          <Input type='text' label='County' name='county' required={true} value={this.props.precinct.county} onChange={ (e) => this.onUpdate(e) } />
+          <Input type='number' label='Delegates' name='delegates' required={true} value={this.props.precinct.delegates} onChange={ (e) => this.onUpdate(e) } />
 
-          <div className="form-group">
-            <label htmlFor="county">County</label>
-            <input type="text" className="form-control" name="county" value={this.props.precinct.county} onChange={ (e) => this.onUpdate(e) }  />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="delegates">Total delegates</label>
-            <input type="number" className="form-control" name="delegates" value={this.props.precinct.delegates} onChange={ (e) => this.onUpdate(e) }  />
-          </div>
-
-          <button type="submit" className="btn btn-primary">Update Precinct</button>
+          <ButtonInput type='submit' bsStyle='primary' value='Update Precinct' />
         </form>
       </Loader>
     );

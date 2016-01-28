@@ -28,11 +28,14 @@ export class UsersView extends React.Component {
   render () {
     return (
       <div>
-        <h1>Users</h1>
-        <p>
-          <Link to='/admin/users/new' className='btn btn-primary'>New User</Link>
-          <Link to='/admin/users/import' className='btn btn-primary btn-import'>Import Users</Link>
-        </p>
+        <div className='text-center'>
+          <h3> Captains &amp; Organizers</h3>
+          <p>
+            <Link to='/admin/users/new'>Invite a new user</Link>
+            &nbsp;/&nbsp;
+            <Link to='/admin/users/import'>Bulk import</Link>
+          </p>
+        </div>
         <UsersTable {...this.props} />
       </div>
     );

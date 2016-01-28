@@ -1,4 +1,5 @@
 import React              from 'react';
+import { Input }          from 'react-bootstrap';
 import { Link }           from 'react-router';
 import { formatEndpoint } from 'utils/api';
 
@@ -60,38 +61,50 @@ export class PrecinctsSummary extends React.Component {
     if(this.props.fetched) {
       return (
         <div>
-          <div className="pull-right col-md-3">
-            <select className="form-control" name="dataSource" value={this.props.dataSource} onChange={ (e) => this.onUpdate(e) } >
+          <p className='back-link'>
+            <Link to='/admin'>&laquo; All states</Link>
+          </p>
+
+          <h1 className='text-center'>{this.props.state.name}</h1>
+          <hr />
+
+          <h3 className='text-center'>Summary</h3>
+
+          <div className='data-source pull-right text-center'>
+            <Input type='select' label='Data Source' name='dataSource' value={this.props.dataSource} onChange={ (e) => this.onUpdate(e) }>
               <option value="best" key="best">Best Available</option>
               <option value="microsoft" key="microsoft">Microsoft</option>
               <option value="captain" key="captain">Captain Reports</option>
               <option value="crowd" key="crowd">Crowdsourced</option>
-            </select>
+            </Input>
           </div>
-          <h1>{this.props.state.name}</h1>
+
           <table className="table">
-            <thead>
-              <tr>
-                <th>Total Delegates</th>
-                <th>Bernie Sanders</th>
-                <th>Hillary Clinton</th>
-                <th>Martin O'Malley</th>
-              </tr>
-            </thead>
             <tbody>
               <tr>
+                <td>Total Delegates</td>
                 <td>{this.getTotalDelegates()}</td>
+              </tr>
+              <tr>
+                <td>Bernie Sanders</td>
                 <td>{this.getTotalCountsFor('sanders')}</td>
+              </tr>
+              <tr>
+                <td>Hillary Clinton</td>
                 <td>{this.getTotalCountsFor('clinton')}</td>
+              </tr>
+              <tr>
+                <td>Martin O'Malley</td>
                 <td>{this.getTotalCountsFor('omalley')}</td>
               </tr>
             </tbody>
           </table>
           <p>
             <a href={formatEndpoint('/states/' + this.props.state.code + '/csv?token=' + this.props.sessionToken)} target='_blank'>
-              Download Results CSV
+              Download Full Results CSV
             </a>
           </p>
+          <hr />
         </div>
       );
     } else {

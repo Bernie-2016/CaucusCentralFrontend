@@ -55,26 +55,28 @@ export class UsersTable extends React.Component {
 
     return (
       <Loader loaded={this.props.fetched}>
-        <Table className="table table-striped" itemsPerPage={50} filterable={['firstName', 'lastName', 'email']}>
-          <Thead>
-            <Th column="lastName">
-              <strong>Last Name</strong>
-            </Th>
-            <Th column="firstName">
-              <strong>First Name</strong>
-            </Th>
-            <Th column="email">
-              <strong>Email</strong>
-            </Th>
-            <Th column="privilege">
-              <strong>Privilege</strong>
-            </Th>
-            <Th column="precinct">
-              <strong>Precinct</strong>
-            </Th>
-          </Thead>
-          {userComponents}
-        </Table>
+        <div className="table-responsive">
+          <Table className="table table-striped" itemsPerPage={50} filterable={['firstName', 'lastName', 'email']}>
+            <Thead>
+              <Th column="lastName">
+                <strong>Last</strong>
+              </Th>
+              <Th column="firstName">
+                <strong>First</strong>
+              </Th>
+              <Th column="email">
+                <strong>Email</strong>
+              </Th>
+              <Th column="privilege">
+                <strong>Privilege</strong>
+              </Th>
+              <Th column="precinct">
+                <strong>Precinct</strong>
+              </Th>
+            </Thead>
+            {userComponents}
+          </Table>
+        </div>
       </Loader>
     );
   }

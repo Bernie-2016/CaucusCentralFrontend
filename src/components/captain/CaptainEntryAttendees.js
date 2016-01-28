@@ -1,4 +1,5 @@
-import React from 'react';
+import React                  from 'react';
+import { Input, ButtonInput } from 'react-bootstrap';
 
 export class CaptainEntryAttendees extends React.Component {
   onUpdate(e) {
@@ -29,11 +30,9 @@ export class CaptainEntryAttendees extends React.Component {
         <p>First, enter the official attendee count once it is announced at the beginning of your caucus.</p>
 
         <form onSubmit={ (e) => this.onSubmit(e) }>
-          <div className="form-group">
-            <label htmlFor="attendees">Total Attendees</label>
-            <input type="number" className="form-control" name="attendees" required={true} value={this.props.attendees} onChange={ (e) => this.onUpdate(e) } />
-          </div>
-          <button type="submit" className="btn btn-primary">Submit Attendees</button>
+          <Input type='number' label='Total attendees' name='attendees' required={true} value={this.props.attendees} onChange={ (e) => this.onUpdate(e) } />
+
+          <ButtonInput type='submit' bsStyle='primary' value='Submit Attendees' />
         </form>
       </div>
     );

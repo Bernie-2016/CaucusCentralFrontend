@@ -1,4 +1,5 @@
-import React from 'react';
+import React        from 'react';
+import { Row, Col } from 'react-bootstrap';
 
 export default class HomeLayout extends React.Component {
   static propTypes = {
@@ -7,11 +8,14 @@ export default class HomeLayout extends React.Component {
 
   render () {
     return (
-      <div className='row'>
-        <div className='col-md-6 col-md-offset-3 col-xs-12'>
+      <Row>
+        <Col md={4} mdOffset={4} sm={6} smOffset={3} xs={12} xsOffset={0}>
+          <Row className='logo-row'>
+            <img src='/images/logo.png' alt='Bernie 2016' />
+          </Row>
           {this.props.children}
-        </div>
-      </div>
+        </Col>
+      </Row>
     );
   }
 }

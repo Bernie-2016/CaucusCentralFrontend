@@ -1,6 +1,7 @@
-import React       from 'react';
-import Loader      from 'react-loader';
-import MaskedInput from 'react-maskedinput';
+import React                  from 'react';
+import Loader                 from 'react-loader';
+import { Input, ButtonInput } from 'react-bootstrap';
+import MaskedInput            from 'components/common/MaskedInput';
 
 export class UserEditForm extends React.Component {
   onUpdate(e) {
@@ -34,51 +35,23 @@ export class UserEditForm extends React.Component {
       let id = this.props.precincts[i].id;
       precincts.push(<option key={id} value={id}>{this.props.precincts[i].name}</option>);
     }
-    let precinctsField = (
-      <div className="form-group">
-        <label htmlFor="precinct">Precinct</label>
-        <select className="form-control" name="precinctId" value={this.props.user.precinctId} onChange={ (e) => this.onUpdate(e) }>
-          {precincts}
-        </select>
-      </div>
-    );
+
     return (
       <Loader loaded={this.props.fetched}>
-        <h1>Edit User</h1>
+        <h3>Edit User</h3>
+        <hr />
         <form onSubmit={ (e) => this.onSubmit(e) }>
-          <div className="form-group">
-            <label htmlFor="firstName">First name</label>
-            <input type="text" className="form-control" name="firstName" required={true} value={this.props.user.firstName} onChange={ (e) => this.onUpdate(e) } />
-          </div>
+          <Input type='text' label='First Name' name='firstName' required={true} value={this.props.user.firstName} onChange={ (e) => this.onUpdate(e) } />
+          <Input type='text' label='Last Name' name='lastName' required={true} value={this.props.user.lastName} onChange={ (e) => this.onUpdate(e) } />
+          <Input type='email' label='Email' name='email' required={true} value={this.props.user.email} onChange={ (e) => this.onUpdate(e) } />
+          <MaskedInput type='text' label='Phone Number' name='phoneNumber' mask='111-111-1111' value={this.props.user.phoneNumber.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3')} onChange={ (e) => this.onUpdate(e) } />
+          <Input type='password' label='New password' name='password' value={this.props.user.password} onChange={ (e) => this.onUpdate(e) } help='Leave blank unless you want to change the current one.' />
+          <Input type='password' label='Confirm new password' name='passwordConfirmation' value={this.props.user.passwordConfirmation} onChange={ (e) => this.onUpdate(e) } />
+          <Input type='select' label='Assigned precinct' name='precinctId' value={this.props.user.precinctId} onChange={ (e) => this.onUpdate(e) }>
+            {precincts}
+          </Input>
 
-          <div className="form-group">
-            <label htmlFor="lastName">Last name</label>
-            <input type="text" className="form-control" name="lastName" required={true} value={this.props.user.lastName} onChange={ (e) => this.onUpdate(e) } />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input type="email" className="form-control" name="email" required={true} value={this.props.user.email} onChange={ (e) => this.onUpdate(e) } />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="phoneNumber">Phone Number</label>
-            <MaskedInput mask="111-111-1111" className="form-control" name="phoneNumber" value={this.props.user.phoneNumber.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3')} onChange={ (e) => this.onUpdate(e) } />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input type="password" className="form-control" name="password" value={this.props.user.password} onChange={ (e) => this.onUpdate(e) } />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="passwordConfirmation">Confirm password</label>
-            <input type="password" className="form-control" name="passwordConfirmation" value={this.props.user.passwordConfirmation} onChange={ (e) => this.onUpdate(e) } />
-          </div>
-
-          {precinctsField}
-
-          <button type="submit" className="btn btn-primary">Update Profile</button>
+          <ButtonInput type='submit' bsStyle='primary' value='Update User' />
         </form>
       </Loader>
     );

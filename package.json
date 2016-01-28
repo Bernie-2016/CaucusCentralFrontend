@@ -17,9 +17,6 @@
     "deploy": "NODE_ENV=production API_HOST=caucus-central.herokuapp.com npm run compile && gulp s3",
     "validate": "npm ls"
   },
-  "pre-commit": [
-    "lint"
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Bernie-2016/CaucusCentralFrontend.git"
@@ -43,6 +40,7 @@
     "noty": "^2.3.8",
     "papaparse": "^4.1.2",
     "react": "^0.14.0",
+    "react-bootstrap": "^0.28.2",
     "react-dom": "^0.14.0",
     "react-highcharts": "^6.0.0",
     "react-loader": "^2.0.0",
@@ -53,7 +51,7 @@
     "reactable": "^0.12.2",
     "redux": "^3.0.5",
     "redux-api-middleware": "^1.0.0-beta3",
-    "redux-localstorage": "^0.4.0",
+    "redux-localstorage": "0.4.0",
     "redux-simple-router": "^0.0.10",
     "redux-thunk": "^1.0.0",
     "yargs": "^3.18.0"

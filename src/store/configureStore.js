@@ -16,7 +16,7 @@ export default function configureStore (initialState, debug = false) {
   const middleware = compose(
                        applyMiddleware(thunk),
                        applyMiddleware(apiMiddleware),
-                       persistState('session')
+                       persistState('session', { key: 'caucus-central' })
                      );
 
   if (debug) {
