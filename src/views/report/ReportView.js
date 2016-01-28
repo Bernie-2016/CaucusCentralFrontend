@@ -48,6 +48,9 @@ class ReportView extends React.Component {
           this.props.history.pushState(null, '/captain')
         }
       }
+      else {
+        this.props.history.pushState(null, '/');
+      }
       this.props.reportActions.reset();
     }
   }
