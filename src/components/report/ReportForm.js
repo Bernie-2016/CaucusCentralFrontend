@@ -1,7 +1,8 @@
-import React         from 'react';
-import { Link }      from 'react-router';
-import Loader        from 'react-loader';
-import { phaseText } from 'utils/phaseText';
+import React                  from 'react';
+import Loader                 from 'react-loader';
+import { Link }               from 'react-router';
+import { Input, ButtonInput } from 'react-bootstrap';
+import { phaseText }          from 'utils/phaseText';
 
 import './ReportForm.scss';
 
@@ -67,52 +68,29 @@ export class ReportForm extends React.Component {
     return (
       <div>
         <Loader loaded={this.props.fetched}>
+          <h3 className="text-center form-signup-heading">Submit Volunteer Report</h3>
+          <hr />
+
           <form onSubmit={ (e) => this.onSubmit(e) }>
-            <h3 className="text-center form-signup-heading">Submit Volunteer Report</h3>
-            <hr />
-
-            <div className="form-group">
-              <label htmlFor="precinct">Precinct</label>
-              <select className="form-control" name="precinctId" value={this.props.precinctId} onChange={ (e) => this.onUpdate(e) }>
-                {precincts}
-              </select>
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="phase">Caucus Phase</label>
-              <select className="form-control" name="phase" value={this.props.phase} onChange={ (e) => this.onUpdate(e) } >
-                <option value="viability" key="viability">{phaseText('viability')}</option>
-                <option value="not_viable" key="not_viable">{phaseText('not_viable')}</option>
-                <option value="apportionment" key="apportionment">{phaseText('apportionment')}</option>
-                <option value="apportioned" key="apportioned">{phaseText('apportioned')}</option>
-              </select>
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="attendees">Total Attendees</label>
-              <input type="number" className="form-control" name="attendees" required={true} value={this.props.attendees} onChange={ (e) => this.onUpdate(e) } />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="sandersSupporters">Bernie Sanders Supporters</label>
-              <input type="number" className="form-control" name="sandersSupporters" required={true} value={this.props.supporters.sanders} onChange={ (e) => this.onUpdate(e) } />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="clintonSupporters">Hillary Clinton Supporters</label>
-              <input type="number" className="form-control" name="clintonSupporters" required={true} value={this.props.supporters.clinton} onChange={ (e) => this.onUpdate(e) } />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="omalleySupporters">Martin O'Malley Supporters</label>
-              <input type="number" className="form-control" name="omalleySupporters" required={true} value={this.props.supporters.omalley} onChange={ (e) => this.onUpdate(e) } />
-            </div>
+            <Input type='select' label='Precinct' name='precinctId' value={this.props.precinctId} onChange={ (e) => this.onUpdate(e) }>
+              {precincts}
+            </Input>
+            <Input type='select' label='Caucus phase' name='phase' value={this.props.phase} onChange={ (e) => this.onUpdate(e) }>
+              <option value='viability' key='viability'>{phaseText('viability')}</option>
+              <option value='not_viable' key='not_viable'>{phaseText('not_viable')}</option>
+              <option value='apportionment' key='apportionment'>{phaseText('apportionment')}</option>
+              <option value='apportioned' key='apportioned'>{phaseText('apportioned')}</option>
+            </Input>
+            <Input type='number' label='Total attendees' name='attendees' required={true} value={this.props.attendees} onChange={ (e) => this.onUpdate(e) } />
+            <Input type='number' label='Bernie Sanders supporters' name='sandersSupporters' required={true} value={this.props.supporters.sanders} onChange={ (e) => this.onUpdate(e) } />
+            <Input type='number' label='Hillary Clinton supporters' name='clintonSupporters' required={true} value={this.props.supporters.clinton} onChange={ (e) => this.onUpdate(e) } />
+            <Input type='number' label="Martin O'Malley supporters" name='omalleySupporters' required={true} value={this.props.supporters.omalley} onChange={ (e) => this.onUpdate(e) } />
 
             <p>
               If you found anything abnormal at your caucus, please call our help line number at <Link to='tel:+15152776073'>(515) 277-6073</Link> or let us know at <Link to='mailto:iowa-help@berniesanders.com'>iowa-help@berniesanders.com</Link>.
             </p>
 
-            <button className="btn btn-primary btn-lg btn-block" type="submit">Submit Report</button>
+            <ButtonInput type='submit' bsStyle='primary' value='Submit Report' />
           </form>
         </Loader>
       </div>

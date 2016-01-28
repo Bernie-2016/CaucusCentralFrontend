@@ -1,4 +1,5 @@
 import React              from 'react';
+import { Input }          from 'react-bootstrap';
 import { Link }           from 'react-router';
 import { formatEndpoint } from 'utils/api';
 
@@ -63,24 +64,20 @@ export class PrecinctsSummary extends React.Component {
           <p className='back-link'>
             <Link to='/admin'>&laquo; All states</Link>
           </p>
-          <h1 className='text-center'>{this.props.state.name}</h1>
 
+          <h1 className='text-center'>{this.props.state.name}</h1>
           <hr />
 
-          <h3 className='text-center'>Data source</h3>
+          <h3 className='text-center'>Summary</h3>
 
-          <div className="form-group">
-            <select className="form-control" name="dataSource" value={this.props.dataSource} onChange={ (e) => this.onUpdate(e) } >
+          <div className='data-source pull-right text-center'>
+            <Input type='select' label='Data Source' name='dataSource' value={this.props.dataSource} onChange={ (e) => this.onUpdate(e) }>
               <option value="best" key="best">Best Available</option>
               <option value="microsoft" key="microsoft">Microsoft</option>
               <option value="captain" key="captain">Captain Reports</option>
               <option value="crowd" key="crowd">Crowdsourced</option>
-            </select>
+            </Input>
           </div>
-
-          <hr />
-
-          <h3 className='text-center'>Summary</h3>
 
           <table className="table">
             <tbody>

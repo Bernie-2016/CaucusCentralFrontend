@@ -80,9 +80,11 @@ export class Precinct extends React.Component {
         <h3 className='text-center'>Submit new reports</h3>
         <p className='text-center'>
           Reports send data back to HQ. Submit them here, or have other volunteers submit them from
-          the <Link to='http://caucuscentral.berniesanders.com/'>home page.</Link>
+          the <Link to='/'>home page.</Link>
         </p>
-        <Link to={this.props.location.pathname + '/report'} className='btn btn-primary btn-lg btn-block'>Add new report</Link>
+        <p className='text-center'>
+          <Link to={this.props.location.pathname + '/report'} className='btn btn-primary'>Add new report</Link>
+        </p>
 
         <hr />
 

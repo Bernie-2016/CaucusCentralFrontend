@@ -1,6 +1,7 @@
 import React                     from 'react';
 import { bindActionCreators }    from 'redux';
 import { connect }               from 'react-redux';
+import { Row, Col }              from 'react-bootstrap';
 import reactMixin                from 'react-mixin';
 import profileActions            from 'actions/profile';
 import sessionActions            from 'actions/session';
@@ -51,7 +52,11 @@ export class ProfileEditView extends React.Component {
 
   render() {
     return (
-      <ProfileForm {...this.props} />
+      <Row>
+        <Col md={6} mdOffset={3} sm={8} smOffset={2} xs={12} xsOffset={0}>
+          <ProfileForm {...this.props} />
+        </Col>
+      </Row>
     );
   }
 };

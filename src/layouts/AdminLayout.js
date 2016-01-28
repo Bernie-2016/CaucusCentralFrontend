@@ -1,6 +1,7 @@
 import React                  from 'react';
 import { bindActionCreators } from 'redux';
 import { connect }            from 'react-redux';
+import { Row, Col }           from 'react-bootstrap';
 import * as sessionActions    from 'actions/session';
 import AdminNav               from 'components/nav/AdminNav';
 
@@ -36,11 +37,11 @@ export class AdminLayout extends React.Component {
     return (
       <div>
         <AdminNav signOut={ (e) => this.signOut(e) } {...this.props} />
-        <div className='row'>
-          <div className='col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2'>
+        <Row className='content'>
+          <Col md={12} mdOffset={0} sm={8} smOffset={2}>
             {this.props.children}
-          </div>
-        </div>
+          </Col>
+        </Row>
       </div>
     );
   }

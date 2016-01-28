@@ -1,6 +1,7 @@
-import React from 'react';
-import _     from 'lodash';
-import Papa  from 'papaparse';
+import React                  from 'react';
+import { Input, ButtonInput } from 'react-bootstrap';
+import _                      from 'lodash';
+import Papa                   from 'papaparse';
 
 export class UsersImportForm extends React.Component {
   onSelect(e) {
@@ -39,14 +40,13 @@ export class UsersImportForm extends React.Component {
 
     return (
       <div>
+        <h3 className='text-center'>Bulk import users</h3>
+        <hr />
         <p>Upload a CSV with 4 columns and no headers: <br /><strong>State (short code e.g. IA), County Name, Precinct Name, Email</strong></p>
         <form onSubmit={ (e) => this.onSubmit(e) }>
-          <div className="form-group">
-            <label htmlFor="file">Users CSV</label>
-            <input type="file" className="form-control" name="file" required={true} onChange={ (e) => this.onSelect(e) } />
-          </div>
+          <Input type='file' label='Users CSV' name='file' required={true} onChange={ (e) => this.onSelect(e) } />
           {message}
-          <button type="submit" className="btn btn-primary" disabled={this.props.usersToImport.length === 0}>Import Users</button>
+          <ButtonInput type='submit' bsStyle='primary' value='Import Users' disabled={this.props.usersToImport.length === 0} />
         </form>
       </div>
     );

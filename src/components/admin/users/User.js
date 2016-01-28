@@ -51,10 +51,10 @@ export class User extends React.Component {
           </p>
           {precinctLink}
           <p>
-            <Link to={this.props.location.pathname + '/edit'} className='btn btn-lg btn-block btn-primary'>Edit</Link>
+            <Link to={this.props.location.pathname + '/edit'} className='btn btn-primary'>Edit</Link>
           </p>
           <p>
-            <Link to='#' className='btn btn-lg btn-block btn-danger' onClick={ (e) => this.removeUser(e) }>Remove User</Link>
+            <Link to='#' className='btn btn-danger' onClick={ (e) => this.removeUser(e) }>Remove User</Link>
           </p>
         </div>
       </Loader>

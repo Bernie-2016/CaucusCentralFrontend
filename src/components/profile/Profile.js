@@ -20,7 +20,7 @@ export class Profile extends React.Component {
           </p>
           <hr />
           <p>
-            <Link to={this.props.location.pathname + '/edit'} className='btn btn-primary btn-lg btn-block'>Edit profile</Link>
+            <Link to={this.props.location.pathname + '/edit'} className='btn btn-primary'>Edit profile</Link>
           </p>
         </div>
       </Loader>
