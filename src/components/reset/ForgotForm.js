@@ -1,5 +1,5 @@
-import React from 'react';
-import './ResetForm.scss';
+import React                  from 'react';
+import { Input, ButtonInput } from 'react-bootstrap';
 
 export class ForgotForm extends React.Component {
   onUpdate(e) {
@@ -19,12 +19,13 @@ export class ForgotForm extends React.Component {
 
   render () {
     return (
-      <div className="reset">
-        <form className="form-reset" onSubmit={ (e) => this.onSubmit(e) }>
-          <h2 className="form-reset-heading">Reset password</h2>
-          <label htmlFor="email" className="sr-only">Email</label>
-          <input type="email" name="email" className="form-control" placeholder="Email" value={this.props.email} onChange={ (e) => this.onUpdate(e) } required />
-          <button className="btn btn-lg btn-primary btn-block" type="submit">Reset password</button>
+      <div>
+        <h3>Reset Password</h3>
+        <hr />
+        <form onSubmit={ (e) => this.onSubmit(e) }>
+          <Input type='email' label='Email' name='email' required={true} value={this.props.email} onChange={ (e) => this.onUpdate(e) } />
+          
+          <ButtonInput type='submit' bsStyle='primary' value='Reset Password' />
         </form>
       </div>
     );

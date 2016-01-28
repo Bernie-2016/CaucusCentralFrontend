@@ -1,7 +1,6 @@
-import React       from 'react';
-import { Link }    from 'react-router';
-
-import './SignInForm.scss';
+import React                  from 'react';
+import { Link }               from 'react-router';
+import { Input, ButtonInput } from 'react-bootstrap';
 
 export class SignInForm extends React.Component {
   onUpdate(e) {
@@ -21,25 +20,18 @@ export class SignInForm extends React.Component {
 
   render () {
     return (
-      <div className="signin">
-        <form className="form-signin" onSubmit={ (e) => this.onSubmit(e) }>
-          <h2 className="form-signin-heading">Sign in</h2>
+      <div>
+        <h3 className='text-center'>Sign In</h3>
+        <hr />
+        <form onSubmit={ (e) => this.onSubmit(e) }>
+          <Input type='email' label='Email' name='email' required={true} value={this.props.email} onChange={ (e) => this.onUpdate(e) } autofocus />
+          <Input type='password' label='Password' name='password' required={true} value={this.props.password} onChange={ (e) => this.onUpdate(e) } />
 
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input type="email" name="email" className="form-control" placeholder="Email" value={this.props.email} onChange={ (e) => this.onUpdate(e) } required autofocus />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input type="password" name="password" className="form-control" placeholder="Password" value={this.props.password} onChange={ (e) => this.onUpdate(e) } required />
-          </div>
-          
-          <div className="form-group">
-            <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+          <div className='text-center'>
+            <ButtonInput type='submit' bsStyle='primary' value='Sign In' />
           </div>
         </form>
-        <div className="forgot-link">
+        <div className='forgot-link text-center'>
           <Link to='/forgot'>Forgot Password?</Link>
         </div>
       </div>

@@ -4,8 +4,6 @@ import { Link }               from 'react-router';
 import { Input, ButtonInput } from 'react-bootstrap';
 import { phaseText }          from 'utils/phaseText';
 
-import './ReportForm.scss';
-
 export class ReportForm extends React.Component {
   onUpdate(e) {
     this.props.reportActions.setAttr({

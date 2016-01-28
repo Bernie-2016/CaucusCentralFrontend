@@ -1,5 +1,5 @@
-import React from 'react';
-import './ResetForm.scss';
+import React                  from 'react';
+import { Input, ButtonInput } from 'react-bootstrap';
 
 export class ResetForm extends React.Component {
   onUpdate(e) {
@@ -26,14 +26,14 @@ export class ResetForm extends React.Component {
 
   render () {
     return (
-      <div className="reset">
-        <form className="form-reset" onSubmit={ (e) => this.onSubmit(e) }>
-          <h2 className="form-reset-heading">Reset password</h2>
-          <label htmlFor="password" className="sr-only">Password</label>
-          <input type="password" name="password" className="form-control" placeholder="Password" value={this.props.password} onChange={ (e) => this.onUpdate(e) } required />
-          <label htmlFor="passwordConfirmation" className="sr-only">Password</label>
-          <input type="password" name="passwordConfirmation" className="form-control" placeholder="Confirm password" value={this.props.passwordConfirmation} onChange={ (e) => this.onUpdate(e) } required />
-          <button className="btn btn-lg btn-primary btn-block" type="submit">Reset password</button>
+      <div>
+        <h3>Reset Password</h3>
+        <hr />
+        <form onSubmit={ (e) => this.onSubmit(e) }>
+          <Input type='password' label='Password' name='password' required={true} value={this.props.password} onChange={ (e) => this.onUpdate(e) } />
+          <Input type='password' label='Confirm password' name='passwordConfirmation' require={true} value={this.props.passwordConfirmation} onChange={ (e) => this.onUpdate(e) } />
+
+          <ButtonInput type='submit' bsStyle='primary' value='Reset Password' />
         </form>
       </div>
     );

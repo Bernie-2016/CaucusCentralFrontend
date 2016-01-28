@@ -2,8 +2,6 @@ import React                    from 'react';
 import { Link }                 from 'react-router';
 import { Nav, Navbar, NavItem } from 'react-bootstrap';
 
-import './CaptainNav.scss';
-
 export default class CaptainNav extends React.Component {
   render() {
     return (
