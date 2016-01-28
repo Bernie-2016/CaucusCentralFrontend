@@ -60,7 +60,7 @@ export class ReportEditForm extends React.Component {
       <Loader loaded={this.props.fetched}>
         <form onSubmit={ (e) => this.onSubmit(e) }>
           <p className='back-link'>
-            <Link to='#' onClick={ (e) => window.history.back() }>&laquo; Back</Link>
+            <Link to='#' onClick={this.props.history.goBack}>&laquo; Back</Link>
           </p>
           <h3 className='text-center'>Edit existing report</h3>
           <hr />

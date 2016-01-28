@@ -28,7 +28,7 @@ export class PrecinctEditForm extends React.Component {
     return (
       <Loader loaded={this.props.fetched}>
         <p className='back-link'>
-          <Link to='#' onClick={ (e) => window.history.back() }>&laquo; Back</Link>
+          <Link to='#' onClick={this.props.history.goBack}>&laquo; Back</Link>
         </p>
         <form onSubmit={ (e) => this.onSubmit(e) } >
           <h3 className='text-center'>Edit {this.props.precinct.name}</h3>

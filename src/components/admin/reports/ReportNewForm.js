@@ -57,7 +57,7 @@ export class ReportNewForm extends React.Component {
     return (
       <form onSubmit={ (e) => this.onSubmit(e) }>
         <p className='back-link'>
-          <Link to='#' onClick={ (e) => window.history.back() }>&laquo; Back</Link>
+          <Link to='#' onClick={this.props.history.goBack}>&laquo; Back</Link>
         </p>
         <h3 className='text-center'>New Report</h3>
         <hr />
