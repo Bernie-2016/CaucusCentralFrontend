@@ -77,18 +77,7 @@ export class Precinct extends React.Component {
         <hr />
         {captain}
 
-        <h3 className='text-center'>Submit new reports</h3>
-        <p className='text-center'>
-          Reports send data back to HQ. Submit them here, or have other volunteers submit them from
-          the <Link to='/'>home page.</Link>
-        </p>
-        <p className='text-center'>
-          <Link to={this.props.location.pathname + '/report'} className='btn btn-primary'>Add new report</Link>
-        </p>
-
-        <hr />
-
-        <h3 className='text-center'>Existing reports</h3>
+        <h3 className='text-center'>Reports</h3>
         <div className='table-responsive'>
           <Table className="table table-striped" itemsPerPage={50}>
             <Thead>
@@ -122,6 +111,8 @@ export class Precinct extends React.Component {
             </Thead>
             {reportComponents}
           </Table>
+
+          <Link to={this.props.location.pathname + '/report'} className='btn btn-primary'>Add new report</Link>
         </div>
       </Loader>
     );
