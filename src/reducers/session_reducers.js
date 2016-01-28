@@ -63,10 +63,6 @@ const set = (state, payload) => {
   return reduceState(state, newState);
 };
 
-const reset = (state) => {
-  return reduceState(state, initialState);
-};
-
 export default createReducer(initialState, {
   [c.SIGN_IN_REQUEST]  : sign.in.request,
   [c.SIGN_IN_SUCCESS]  : sign.in.success,
@@ -74,6 +70,5 @@ export default createReducer(initialState, {
   [c.SIGN_OUT_REQUEST] : sign.out.request,
   [c.SIGN_OUT_SUCCESS] : sign.out.success,
   [c.SIGN_OUT_FAILURE] : sign.out.failure,
-  [c.SET_ATTR]         : set,
-  [c.RESET]            : reset
+  [c.SET_ATTR]         : set
 });
