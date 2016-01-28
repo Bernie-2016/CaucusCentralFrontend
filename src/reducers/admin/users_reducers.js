@@ -21,7 +21,7 @@ const users = {
       return reduceState(state, {error: false, fetched: false, imported: false});
     },
     success: (state, response) => {
-      return reduceState(state, {error: false, fetched: true, users: response.users});
+      return reduceState(state, {fetched: true, users: response.users});
     },
     error: (state, error) => {
       return reduceState(state, {error: error, fetched: false});
@@ -36,7 +36,7 @@ const users = {
     },
     success: (state, response) => {
       notifySuccess('Users imported!');
-      return reduceState(state, {error: false, importingUsers: false, imported: true, importedCount: response.importedCount, failedUsers: response.failedUsers});
+      return reduceState(state, {importingUsers: false, imported: true, importedCount: response.importedCount, failedUsers: response.failedUsers});
     },
     error: (state, error) => {
       notifyError('User import error.')

@@ -2,6 +2,7 @@ import { createReducer, reduceState } from 'utils';
 import * as c from 'constants/admin';
 
 const initialState = {
+  error: false,
   fetched: false,
   error: false,
   states: []
@@ -13,7 +14,7 @@ const states = {
       return reduceState(state, { error: false, fetched: false });
     },
     success: (state, response) => {
-      return reduceState(state, { error: false, fetched: true, states: response.states });
+      return reduceState(state, { fetched: true, states: response.states });
     },
     failure: (state, error) => {
       return reduceState(state, { error: error, fetched: true });
