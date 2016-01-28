@@ -64,7 +64,6 @@ export class ReportNewForm extends React.Component {
         <div className="form-group">
           <label htmlFor="phase">Caucus Phase</label>
           <select className="form-control" name="phase" value={this.props.phase} onChange={ (e) => this.onUpdate(e) } >
-            <option value="start" key="start">{phaseText('start')}</option>
             <option value="viability" key="viability">{phaseText('viability')}</option>
             <option value="not_viable" key="not_viable">{phaseText('not_viable')}</option>
             <option value="apportionment" key="apportionment">{phaseText('apportionment')}</option>
