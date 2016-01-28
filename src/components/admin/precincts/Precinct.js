@@ -63,55 +63,64 @@ export class Precinct extends React.Component {
 
     return (
       <Loader loaded={this.props.fetched}>
-        <Link to={'/admin/states/' + this.props.state}>Back to {this.props.state}</Link>
-        <h1>{this.props.name}</h1>
-        <p key="county">
-          County: <strong>{this.props.county}</strong>
+        <p className='back-link'>
+          <Link to={'/admin/states/' + this.props.state}>&laquo; Back</Link>
         </p>
-        <p key="delegates">
-          Total delegates: <strong>{this.props.delegates}</strong>
+        <h3 className='text-center'>{this.props.name}</h3>
+        <p className='text-center'>
+          Precinct in {this.props.county}, {this.props.state}.
+          <br />
+          {this.props.delegates} delegates.
+          <br />
+          <Link to={'/admin/states/' + this.props.state + '/precincts/' + this.props.params.id + '/edit'}>Change precinct details.</Link>
         </p>
+        <hr />
         {captain}
-        <p key="edit-link">
-          <Link to={'/admin/states/' + this.props.state + '/precincts/' + this.props.params.id + '/edit'} className='btn btn-primary'>Edit</Link>
+
+        <h3 className='text-center'>Submit new reports</h3>
+        <p className='text-center'>
+          Reports send data back to HQ. Submit them here, or have other volunteers submit them from
+          the <Link to='http://caucuscentral.berniesanders.com/'>home page.</Link>
         </p>
+        <Link to={this.props.location.pathname + '/report'} className='btn btn-primary btn-lg btn-block'>Add new report</Link>
 
-        <h2>Reports</h2>
+        <hr />
 
-        <Table className="table table-striped" itemsPerPage={50}>
-          <Thead>
-            <Th column="source">
-              <strong>Source</strong>
-            </Th>
-            <Th column="phase">
-              <strong>Phase</strong>
-            </Th>
-            <Th column="attendees">
-              <strong>Attendees</strong>
-            </Th>
-            <Th column="sandersSupporters">
-              <strong>Sanders Supporters</strong>
-            </Th>
-            <Th column="clintonSupporters">
-              <strong>Clinton Supporters</strong>
-            </Th>
-            <Th column="omalleySupporters">
-              <strong>O'Malley Supporters</strong>
-            </Th>
-            <Th column="delegatesWon">
-              <strong>Delegates Won</strong>
-            </Th>
-            <Th column="edit">
-              <strong>Edit</strong>
-            </Th>
-            <Th column="remove">
-              <strong>Remove</strong>
-            </Th>
-          </Thead>
-          {reportComponents}
-        </Table>
-
-        <Link to={this.props.location.pathname + '/report'} className='btn btn-primary'>New Report</Link>
+        <h3 className='text-center'>Existing reports</h3>
+        <div className='table-responsive'>
+          <Table className="table table-striped" itemsPerPage={50}>
+            <Thead>
+              <Th column="source">
+                <strong>Source</strong>
+              </Th>
+              <Th column="phase">
+                <strong>Phase</strong>
+              </Th>
+              <Th column="attendees">
+                <strong>Attendees</strong>
+              </Th>
+              <Th column="sandersSupporters">
+                <strong>Sanders Supporters</strong>
+              </Th>
+              <Th column="clintonSupporters">
+                <strong>Clinton Supporters</strong>
+              </Th>
+              <Th column="omalleySupporters">
+                <strong>O'Malley Supporters</strong>
+              </Th>
+              <Th column="delegatesWon">
+                <strong>Delegates Won</strong>
+              </Th>
+              <Th column="edit">
+                <strong>Edit</strong>
+              </Th>
+              <Th column="remove">
+                <strong>Remove</strong>
+              </Th>
+            </Thead>
+            {reportComponents}
+          </Table>
+        </div>
       </Loader>
     );
   }

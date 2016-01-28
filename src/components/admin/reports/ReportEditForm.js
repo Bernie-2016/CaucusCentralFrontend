@@ -1,5 +1,6 @@
 import React         from 'react';
 import Loader        from 'react-loader';
+import { Link }      from 'react-router';
 import { phaseText } from 'utils/phaseText';
 
 export class ReportEditForm extends React.Component {
@@ -58,9 +59,13 @@ export class ReportEditForm extends React.Component {
     return (
       <Loader loaded={this.props.fetched}>
         <form onSubmit={ (e) => this.onSubmit(e) }>
-          <h1>Edit Report</h1>
+          <p className='back-link'>
+            <Link to='#' onClick={ (e) => window.history.back() }>&laquo; Back</Link>
+          </p>
+          <h3 className='text-center'>Edit existing report</h3>
+          <hr />
           <div className="form-group">
-            <label htmlFor="phase">Caucus Phase</label>
+            <label htmlFor="phase">Caucus phase</label>
             <select className="form-control" name="phase" value={this.props.phase} onChange={ (e) => this.onUpdate(e) } >
               <option value="start" key="start">{phaseText('start')}</option>
               <option value="viability" key="viability">{phaseText('viability')}</option>
@@ -71,26 +76,26 @@ export class ReportEditForm extends React.Component {
           </div>
 
           <div className="form-group">
-            <label htmlFor="attendees">Total Attendees</label>
+            <label htmlFor="attendees">Total attendees</label>
             <input type="number" className="form-control" name="attendees" required={true} value={this.props.attendees} onChange={ (e) => this.onUpdate(e) } />
           </div>
 
           <div className="form-group">
-            <label htmlFor="sandersSupporters">Bernie Sanders Supporters</label>
+            <label htmlFor="sandersSupporters">Bernie Sanders supporters</label>
             <input type="number" className="form-control" name="sandersSupporters" required={true} value={this.props.supporters.sanders} onChange={ (e) => this.onUpdate(e) } />
           </div>
 
           <div className="form-group">
-            <label htmlFor="clintonSupporters">Hillary Clinton Supporters</label>
+            <label htmlFor="clintonSupporters">Hillary Clinton supporters</label>
             <input type="number" className="form-control" name="clintonSupporters" required={true} value={this.props.supporters.clinton} onChange={ (e) => this.onUpdate(e) } />
           </div>
 
           <div className="form-group">
-            <label htmlFor="omalleySupporters">Martin O'Malley Supporters</label>
+            <label htmlFor="omalleySupporters">Martin O'Malley supporters</label>
             <input type="number" className="form-control" name="omalleySupporters" required={true} value={this.props.supporters.omalley} onChange={ (e) => this.onUpdate(e) } />
           </div>
 
-          <button type="submit" className="btn btn-primary">Update Report</button>
+          <button type="submit" className="btn btn-primary btn-lg btn-block">Confirm update</button>
         </form>
       </Loader>
     );

@@ -1,6 +1,7 @@
 import React       from 'react';
 import Loader      from 'react-loader';
 import MaskedInput from 'react-maskedinput';
+import { Link }    from 'react-router';
 
 export class ProfileForm extends React.Component {
   onUpdate(e) {
@@ -26,7 +27,11 @@ export class ProfileForm extends React.Component {
   render() {
     return (
       <Loader loaded={this.props.fetched}>
-        <h1>Edit Profile</h1>
+        <p className='back-link'>
+          <Link to='/admin/profile'>&laquo; Back</Link>
+        </p>
+        <h3 className='text-center'>Edit profile</h3>
+        <hr />
         <form onSubmit={ (e) => this.onSubmit(e) }>
           <div className="form-group">
             <label htmlFor="firstName">First name</label>
@@ -49,16 +54,17 @@ export class ProfileForm extends React.Component {
           </div>
 
           <div className="form-group">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">New password</label>
             <input type="password" className="form-control" name="password" value={this.props.profile.password} onChange={ (e) => this.onUpdate(e) } />
+            <small className='help-block'>Leave blank unless you want to change your current one.</small>
           </div>
 
           <div className="form-group">
-            <label htmlFor="passwordConfirmation">Confirm password</label>
+            <label htmlFor="passwordConfirmation">Confirm new password</label>
             <input type="password" className="form-control" name="passwordConfirmation" value={this.props.profile.passwordConfirmation} onChange={ (e) => this.onUpdate(e) } />
           </div>
 
-          <button type="submit" className="btn btn-primary">Update Profile</button>
+          <button type="submit" className="btn btn-primary btn-block btn-lg">Update Profile</button>
         </form>
       </Loader>
     );

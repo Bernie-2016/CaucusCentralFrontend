@@ -60,14 +60,21 @@ export class PrecinctsSummary extends React.Component {
     if(this.props.fetched) {
       return (
         <div>
+          <p className='back-link'>
+            <Link to='/admin'>&laquo; All states</Link>
+          </p>
           <h1 className='text-center'>{this.props.state.name}</h1>
+
+          <hr />
+
+          <h3 className='text-center'>Data source</h3>
 
           <div className="form-group">
             <select className="form-control" name="dataSource" value={this.props.dataSource} onChange={ (e) => this.onUpdate(e) } >
-              <option value="best" key="best">Data Source: Best Available</option>
-              <option value="microsoft" key="microsoft">Data Source: Microsoft</option>
-              <option value="captain" key="captain">Data Source: Captain Reports</option>
-              <option value="crowd" key="crowd">Data Source: Crowdsourced</option>
+              <option value="best" key="best">Best Available</option>
+              <option value="microsoft" key="microsoft">Microsoft</option>
+              <option value="captain" key="captain">Captain Reports</option>
+              <option value="crowd" key="crowd">Crowdsourced</option>
             </select>
           </div>
 
@@ -100,6 +107,7 @@ export class PrecinctsSummary extends React.Component {
               Download Full Results CSV
             </a>
           </p>
+          <hr />
         </div>
       );
     } else {

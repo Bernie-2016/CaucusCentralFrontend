@@ -6,6 +6,7 @@ import adminActions               from 'actions/admin';
 import sessionActions             from 'actions/session';
 import LogoutIfUnauthorizedMixin  from 'components/mixins/LogoutIfUnauthorizedMixin';
 import StatesTable                from 'components/admin/states/StatesTable';
+import { Link }                   from 'react-router';
 
 const mapStateToProps = (state) => ({
   fetched:      state.adminStates.fetched,
@@ -27,7 +28,10 @@ export class StatesView extends React.Component {
   render () {
     return (
       <div>
-        <h3 className='text-center'>All states</h3>
+        <p className='back-link'>
+          <Link to='/'>&laquo; Home</Link>
+        </p>
+        <h1 className='text-center'>All states</h1>
         <hr />
         <StatesTable {...this.props}/>
       </div>

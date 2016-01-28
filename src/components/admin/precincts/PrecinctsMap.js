@@ -174,6 +174,7 @@ export class PrecinctsMap extends React.Component {
           <div>
             <h3 className='text-center'>Map</h3>
             <ReactHighmap config={config} />
+            <hr />
           </div>
           );
     } else {

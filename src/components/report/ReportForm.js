@@ -65,9 +65,9 @@ export class ReportForm extends React.Component {
     }
 
     return (
-      <div className="report">
+      <div>
         <Loader loaded={this.props.fetched}>
-          <form className="form-signup" onSubmit={ (e) => this.onSubmit(e) }>
+          <form onSubmit={ (e) => this.onSubmit(e) }>
             <h3 className="text-center form-signup-heading">Submit Volunteer Report</h3>
             <hr />
 

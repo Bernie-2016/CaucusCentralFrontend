@@ -1,5 +1,6 @@
 import React         from 'react';
 import Loader        from 'react-loader';
+import { Link }      from 'react-router';
 
 export class PrecinctEditForm extends React.Component {
   onUpdate(e) {
@@ -26,8 +27,13 @@ export class PrecinctEditForm extends React.Component {
   render() {
     return (
       <Loader loaded={this.props.fetched}>
+        <p className='back-link'>
+          <Link to='#' onClick={ (e) => window.history.back() }>&laquo; Back</Link>
+        </p>
         <form onSubmit={ (e) => this.onSubmit(e) } >
-          <h1>Edit Precinct</h1>
+          <h3 className='text-center'>Edit {this.props.precinct.name}</h3>
+          <p  className='text-center'>Precinct in county {this.props.precinct.county}.</p>
+          <hr />
           <div className="form-group">
             <label htmlFor="name">Precinct name</label>
             <input type="text" className="form-control" name="name" value={this.props.precinct.name} onChange={ (e) => this.onUpdate(e) }  />
@@ -43,7 +49,7 @@ export class PrecinctEditForm extends React.Component {
             <input type="number" className="form-control" name="delegates" value={this.props.precinct.delegates} onChange={ (e) => this.onUpdate(e) }  />
           </div>
 
-          <button type="submit" className="btn btn-primary">Update Precinct</button>
+          <button type="submit" className="btn btn-primary btn-lg btn-block">Update Precinct</button>
         </form>
       </Loader>
     );

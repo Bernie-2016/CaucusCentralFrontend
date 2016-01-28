@@ -1,5 +1,6 @@
 import React         from 'react';
 import { phaseText } from 'utils/phaseText';
+import { Link }      from 'react-router';
 
 export class ReportNewForm extends React.Component {
   onUpdate(e) {
@@ -55,7 +56,11 @@ export class ReportNewForm extends React.Component {
   render() {
     return (
       <form onSubmit={ (e) => this.onSubmit(e) }>
-        <h1>New Report</h1>
+        <p className='back-link'>
+          <Link to='#' onClick={ (e) => window.history.back() }>&laquo; Back</Link>
+        </p>
+        <h3 className='text-center'>New Report</h3>
+        <hr />
         <div className="form-group">
           <label htmlFor="phase">Caucus Phase</label>
           <select className="form-control" name="phase" value={this.props.phase} onChange={ (e) => this.onUpdate(e) } >
@@ -87,7 +92,7 @@ export class ReportNewForm extends React.Component {
           <input type="number" className="form-control" name="omalleySupporters" required={true} value={this.props.supporters.omalley} onChange={ (e) => this.onUpdate(e) } />
         </div>
 
-        <button type="submit" className="btn btn-primary">Add Report</button>
+        <button type="submit" className="btn btn-primary btn-lg btn-block">Add Report</button>
       </form>
     );
   }

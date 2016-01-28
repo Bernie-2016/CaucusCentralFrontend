@@ -15,7 +15,7 @@ const mapStateToProps = (state) => ({
   precinct: {
     name:           state.adminPrecinct.name,
     county:         state.adminPrecinct.county,
-    delegates:      state.adminPrecinct.delegates
+    delegates:      state.adminPrecinct.delegates,
   }
 });
 
