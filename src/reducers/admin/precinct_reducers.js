@@ -22,7 +22,6 @@ const precinct = {
     },
     success: (state, response) => {
       return reduceState(state, {
-        error: false, 
         fetched: true, 
         state: response.precinct.state,
         name: response.precinct.name,

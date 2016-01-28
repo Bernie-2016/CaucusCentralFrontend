@@ -1,35 +1,29 @@
-import React                  from 'react';
-import { Link }               from 'react-router';
+import React                    from 'react';
+import { Link }                 from 'react-router';
+import { Nav, Navbar, NavItem } from 'react-bootstrap';
 
 export class AdminNav extends React.Component {
   render () {
     return (
       <div className='row'>
-        <nav className="navbar navbar-default">
-          <div className="container-fluid">
-            <div className="navbar-header">
-              <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span className="sr-only">Toggle navigation</span>
-                <span className="icon-bar"></span>
-                <span className="icon-bar"></span>
-                <span className="icon-bar"></span>
-              </button>
-              <Link to='/admin' className='navbar-brand'>Caucus Central</Link>
-            </div>
-
-            <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul className="nav navbar-nav">
-                <li><Link to='/admin'>States</Link></li>
-                <li><Link to='/admin/users'>Captains &amp; Organizers</Link></li>
-              </ul>
-
-              <ul className="nav navbar-nav navbar-right">
-                <li><Link to='/admin/profile'>Profile</Link></li>
-                <li><Link to='#' onClick={this.props.signOut}>Sign Out</Link></li>
-              </ul>
-            </div>
-          </div>
-        </nav>
+        <Navbar>
+          <Navbar.Header>
+            <Navbar.Brand>
+              <Link to='/admin'>Caucus Central</Link>
+            </Navbar.Brand>
+            <Navbar.Toggle />
+          </Navbar.Header>
+          <Navbar.Collapse>
+            <Nav>
+              <NavItem eventKey={1} href='/admin'>States</NavItem>
+              <NavItem eventKey={2} href='/admin/users'>Captains &amp; Organizers</NavItem>
+            </Nav>
+            <Nav pullRight>
+              <NavItem eventKey={3} href='/admin/profile'>Profile</NavItem>
+              <NavItem eventKey={4} onClick={this.props.signOut} href='#'>Sign Out</NavItem>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
       </div>
     );
   }

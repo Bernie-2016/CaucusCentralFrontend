@@ -1,36 +1,27 @@
-import React from 'react';
-import { Link } from 'react-router';
+import React                    from 'react';
+import { Link }                 from 'react-router';
+import { Nav, Navbar, NavItem } from 'react-bootstrap';
 
 import './CaptainNav.scss';
 
 export default class CaptainNav extends React.Component {
   render() {
     return (
-      <div className='row'>
-        <div className='col-md-6 col-md-offset-3 col-xs-12'>
-          <nav className="navbar navbar-default">
-            <div className="container-fluid">
-              <div className="navbar-header">
-                <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                  <span className="sr-only">Toggle navigation</span>
-                  <span className="icon-bar"></span>
-                  <span className="icon-bar"></span>
-                  <span className="icon-bar"></span>
-                </button>
-                <Link to='/captain' className='navbar-brand'>Caucus Central</Link>
-              </div>
-
-              <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul className="nav navbar-nav navbar-right">
-                  <li><Link to='/captain/help'>Help</Link></li>
-                  <li><Link to='/captain/profile'>Profile</Link></li>
-                  <li><Link to='#' onClick={this.props.signOut}>Sign Out</Link></li>
-                </ul>
-              </div>
-            </div>
-          </nav>
-        </div>
-      </div>
+      <Navbar>
+        <Navbar.Header>
+          <Navbar.Brand>
+            <Link to='/captain'>Caucus Central</Link>
+          </Navbar.Brand>
+          <Navbar.Toggle />
+        </Navbar.Header>
+        <Navbar.Collapse>
+          <Nav pullRight>
+            <NavItem eventKey={1} href='/captain/help'>Help</NavItem>
+            <NavItem eventKey={2} href='/captain/profile'>Profile</NavItem>
+            <NavItem eventKey={3} onClick={this.props.signOut} href='#'>Sign Out</NavItem>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
     );
   }
 }

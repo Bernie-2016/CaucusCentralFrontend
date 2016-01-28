@@ -3,6 +3,7 @@ import { notifySuccess, notifyError } from 'utils/notifications';
 import * as c from 'constants/session';
 
 const initialState = {
+  error: false,
   id: undefined,
   firstName: undefined,
   lastName: undefined,
@@ -19,6 +20,7 @@ const sign = {
   in: {
     request: function (state, payload) {
       return reduceState(state, {
+        error: false,
         fetching: true,
         email: payload.email
       });
@@ -43,7 +45,7 @@ const sign = {
   },
   out: {
     request: function (state) {
-      return reduceState(state, { destroying: true });
+      return reduceState(state, { eror: false, destroying: true });
     },
     success: function (state) {
       notifySuccess('Logged out!');

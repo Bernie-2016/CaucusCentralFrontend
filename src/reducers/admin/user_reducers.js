@@ -52,7 +52,7 @@ const user = {
     },
     success: (state, response) => {
       notifySuccess('User invited!')
-      return reduceState(state, { error: false, created: true });
+      return reduceState(state, { created: true });
     },
     error: (state, error) => {
       notifyError('User invite error.')
@@ -61,7 +61,7 @@ const user = {
   },
   update: {
     request: (state) => {
-      return reduceState(state, { updated: false });
+      return reduceState(state, { error: false, updated: false });
     },
     success: (state, response) => {
       notifySuccess('User updated!')
@@ -80,7 +80,7 @@ const user = {
   },
   remove: {
     request: (state) => {
-      return reduceState(state, { removed: false });
+      return reduceState(state, { error: false, removed: false });
     },
     success: (state, response) => {
       notifySuccess('User removed!')
