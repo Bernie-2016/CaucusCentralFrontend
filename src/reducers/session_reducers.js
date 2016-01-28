@@ -27,7 +27,6 @@ const sign = {
     },
     success: function (state, response) {
       notifySuccess('Logged in!');
-      console.log(response.user.token);
       const session = {
         id: response.user.id,
         firstName: response.user.first_name,
