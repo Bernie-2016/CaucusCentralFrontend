@@ -38,7 +38,11 @@ const precinct = {
           sandersSupporters: (_.find(report.delegate_counts || [], {key: 'sanders'}) || {}).supporters || 0,
           clintonSupporters: (_.find(report.delegate_counts || [], {key: 'clinton'}) || {}).supporters || 0,
           omalleySupporters: (_.find(report.delegate_counts || [], {key: 'omalley'}) || {}).supporters || 0,
-          delegatesWon: (_.find(report.delegate_counts || [], {key: 'sanders'}) || {}).delegates_won || 0
+          uncommittedSupporters: (_.find(report.delegate_counts || [], {key: 'uncommitted'}) || {}).supporters || 0,
+          sandersDelegates: (_.find(report.delegate_counts || [], {key: 'sanders'}) || {}).delegates_won || 'N/A',
+          clintonDelegates: (_.find(report.delegate_counts || [], {key: 'clinton'}) || {}).delegates_won || 'N/A',
+          omalleyDelegates: (_.find(report.delegate_counts || [], {key: 'omalley'}) || {}).delegates_won || 'N/A',
+          uncommittedDelegates: (_.find(report.delegate_counts || [], {key: 'uncommitted'}) || {}).delegates_won || 'N/A'
         }))
       });
     },
@@ -74,6 +78,11 @@ const precinct = {
           sandersSupporters: (_.find(report.delegate_counts || [], {key: 'sanders'}) || {}).supporters || 0,
           clintonSupporters: (_.find(report.delegate_counts || [], {key: 'clinton'}) || {}).supporters || 0,
           omalleySupporters: (_.find(report.delegate_counts || [], {key: 'omalley'}) || {}).supporters || 0,
+          uncommittedSupporters: (_.find(report.delegate_counts || [], {key: 'uncommitted'}) || {}).supporters || 0,
+          sandersDelegates: (_.find(report.delegate_counts || [], {key: 'sanders'}) || {}).delegates_won || 0,
+          clintonDelegates: (_.find(report.delegate_counts || [], {key: 'clinton'}) || {}).delegates_won || 0,
+          omalleyDelegates: (_.find(report.delegate_counts || [], {key: 'omalley'}) || {}).delegates_won || 0,
+          uncommittedDelegates: (_.find(report.delegate_counts || [], {key: 'uncommitted'}) || {}).delegates_won || 0
         }))
       });
     },

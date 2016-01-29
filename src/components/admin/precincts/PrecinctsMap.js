@@ -37,7 +37,8 @@ export class PrecinctsMap extends React.Component {
       let won = {
         sanders: 0,
         clinton: 0,
-        omalley: 0
+        omalley: 0,
+        uncommitted: 0
       };
       for(let i = 0; i < candidates.length; i++) {
         const candidate = candidates[i];
@@ -67,6 +68,7 @@ export class PrecinctsMap extends React.Component {
         sandersDelegates: 0,
         clintonDelegates: 0,
         omalleyDelegates: 0,
+        uncommittedDelegates: 0,
         value: 0
       }
 
@@ -89,18 +91,24 @@ export class PrecinctsMap extends React.Component {
             countySet.sandersDelegates += won.sanders;
             countySet.clintonDelegates += won.clinton;
             countySet.omalleyDelegates += won.omalley;
+            countySet.uncommittedDelegates += won.uncommitted;
 
-            if(countySet.sandersDelegates >= countySet.clintonDelegates && countySet.sandersDelegates >= countySet.omalleyDelegates) {
-              countySet.value = 1;
-            }
-            else if(countySet.clintonDelegates >= countySet.sandersDelegates && countySet.clintonDelegates >= countySet.omalleyDelegates) {
-              countySet.value = 2;
-            }
-            else if(countySet.omalleyDelegates >= countySet.sandersDelegates && countySet.omalleyDelegates >= countySet.clintonDelegates) {
-              countySet.value = 3;
-            }
-            else {
-              countySet.value = 0;
+            switch(_.max([countySet.sandersDelegates, countySet.clintonDelegates, countySet.omalleyDelegates, countySet.uncommittedDelegates])) {
+              case countySet.sandersDelegates:
+                countySet.value = 1;
+                break;
+              case countySet.clintonDelegates:
+                countySet.value = 2;
+                break;
+              case countySet.omalleyDelegates:
+                countySet.value = 3;
+                break;
+              case countySet.uncommittedDelegates:
+                countySet.value = 4;
+                break;
+              default:
+                countySet.value = 0;
+                break;
             }
           }     
         }
@@ -122,6 +130,9 @@ export class PrecinctsMap extends React.Component {
           break;
         case 3:
           countySet.nameValue = 'O\'Malley';
+          break;
+        case 3:
+          countySet.nameValue = 'Uncommitted';
           break;
       }
       return countySet;
@@ -147,6 +158,10 @@ export class PrecinctsMap extends React.Component {
             from: 3,
             name: 'O\'Malley Counties',
             color: '#00e500'
+          }, {
+            from: 4,
+            name: 'Uncommitted Counties',
+            color: '#840000'
           }
         ]
       },
@@ -161,7 +176,7 @@ export class PrecinctsMap extends React.Component {
           }
         },
         tooltip: {
-          pointFormat: '{point.name} County<br />Winner: {point.nameValue}<br />Sanders: {point.sandersDelegates}<br />Clinton: {point.clintonDelegates}<br />O\'Malley: {point.omalleyDelegates}'
+          pointFormat: '{point.name} County<br />Winner: {point.nameValue}<br />Sanders: {point.sandersDelegates}<br />Clinton: {point.clintonDelegates}<br />O\'Malley: {point.omalleyDelegates}<br />Uncommitted: {point.uncommittedDelegates}'
         }
       }],
       title: {

@@ -48,8 +48,20 @@ export class Precinct extends React.Component {
           <Td column="omalleySupporters">
             {report.omalleySupporters}
           </Td>
-          <Td column="delegatesWon">
-            {report.delegatesWon}
+          <Td column="uncommittedSupporters">
+            {report.uncommittedSupporters}
+          </Td>
+          <Td column="sandersDelegates">
+            {report.sandersDelegates}
+          </Td>
+          <Td column="clintonDelegates">
+            {report.clintonDelegates}
+          </Td>
+          <Td column="omalleyDelegates">
+            {report.omalleyDelegates}
+          </Td>
+          <Td column="uncommittedDelegates">
+            {report.uncommittedDelegates}
           </Td>
           <Td column="edit">
             <Link to={`${this.props.location.pathname}/reports/${report.id}`}>Edit</Link>
@@ -79,7 +91,7 @@ export class Precinct extends React.Component {
 
         <h3 className='text-center'>Reports</h3>
         <div className='table-responsive'>
-          <Table className="table table-striped" itemsPerPage={50}>
+          <Table className="table table-striped" itemsPerPage={50} noDataText='No reports found.'>
             <Thead>
               <Th column="source">
                 <strong>Source</strong>
@@ -91,16 +103,28 @@ export class Precinct extends React.Component {
                 <strong>Attendees</strong>
               </Th>
               <Th column="sandersSupporters">
-                <strong>Sanders Supporters</strong>
+                <strong>Sanders Supp.</strong>
               </Th>
               <Th column="clintonSupporters">
-                <strong>Clinton Supporters</strong>
+                <strong>Clinton Supp.</strong>
               </Th>
               <Th column="omalleySupporters">
-                <strong>O'Malley Supporters</strong>
+                <strong>O'Malley Supp.</strong>
               </Th>
-              <Th column="delegatesWon">
-                <strong>Delegates Won</strong>
+              <Th column="uncommittedSupporters">
+                <strong>Uncommitted Supp.</strong>
+              </Th>
+              <Th column="sandersDelegates">
+                <strong>Sanders Del.</strong>
+              </Th>
+              <Th column="clintonDelegates">
+                <strong>Clinton Del.</strong>
+              </Th>
+              <Th column="omalleyDelegates">
+                <strong>O'Malley Del.</strong>
+              </Th>
+              <Th column="uncommittedDelegates">
+                <strong>Uncommitted Del.</strong>
               </Th>
               <Th column="edit">
                 <strong>Edit</strong>

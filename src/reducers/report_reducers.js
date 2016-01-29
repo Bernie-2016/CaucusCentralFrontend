@@ -10,6 +10,7 @@ const initialState = {
   sandersSupporters: 0,
   clintonSupporters: 0,
   omalleySupporters: 0,
+  uncommittedSupporters: 0,
   error: false,
   fetched: false,
   created: false,
@@ -30,7 +31,8 @@ const report = {
         phase: response.report.phase,
         sandersSupporters: (_.find(response.report.delegate_counts || [], {key: 'sanders'}) || {}).supporters || 0,
         clintonSupporters: (_.find(response.report.delegate_counts || [], {key: 'clinton'}) || {}).supporters || 0,
-        omalleySupporters: (_.find(response.report.delegate_counts || [], {key: 'omalley'}) || {}).supporters || 0
+        omalleySupporters: (_.find(response.report.delegate_counts || [], {key: 'omalley'}) || {}).supporters || 0,
+        uncommittedSupporters: (_.find(response.report.delegate_counts || [], {key: 'uncommitted'}) || {}).supporters || 0
       });
     },
     failure: (state, error) => {
@@ -50,7 +52,8 @@ const report = {
         phase: response.report.phase,
         sandersSupporters: (_.find(response.report.delegate_counts || [], {key: 'sanders'}) || {}).supporters || 0,
         clintonSupporters: (_.find(response.report.delegate_counts || [], {key: 'clinton'}) || {}).supporters || 0,
-        omalleySupporters: (_.find(response.report.delegate_counts || [], {key: 'omalley'}) || {}).supporters || 0
+        omalleySupporters: (_.find(response.report.delegate_counts || [], {key: 'omalley'}) || {}).supporters || 0,
+        uncommittedSupporters: (_.find(response.report.delegate_counts || [], {key: 'uncommitted'}) || {}).supporters || 0
       });
     },
     failure: function (state, error) {
@@ -71,7 +74,8 @@ const report = {
         phase: response.report.phase,
         sandersSupporters: (_.find(response.report.delegate_counts || [], {key: 'sanders'}) || {}).supporters || 0,
         clintonSupporters: (_.find(response.report.delegate_counts || [], {key: 'clinton'}) || {}).supporters || 0,
-        omalleySupporters: (_.find(response.report.delegate_counts || [], {key: 'omalley'}) || {}).supporters || 0
+        omalleySupporters: (_.find(response.report.delegate_counts || [], {key: 'omalley'}) || {}).supporters || 0,
+        uncommittedSupporters: (_.find(response.report.delegate_counts || [], {key: 'uncommitted'}) || {}).supporters || 0
       });
     },
     failure: function (state, error) {

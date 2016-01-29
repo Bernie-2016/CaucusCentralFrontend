@@ -2,7 +2,12 @@ import React from 'react';
 
 export class CaptainEntryCompleted extends React.Component {
   candidateDelegates(candidate) {
-    return Math.round(this.props.supporters[candidate] / this.props.attendees * this.props.delegates) || 0;
+    if(this.props.viable[candidate]) {
+      return Math.round(this.props.supporters[candidate] / this.props.attendees * this.props.delegates) || 0;
+    }
+    else {
+      return 'Not Viable';
+    }
   }
 
   render() {
@@ -18,6 +23,7 @@ export class CaptainEntryCompleted extends React.Component {
               <th>Bernie Sanders</th>
               <th>Hillary Clinton</th>
               <th>Martin O'Malley</th>
+              <th>Uncommitted</th>
             </tr>
           </thead>
           <tbody>
@@ -25,6 +31,7 @@ export class CaptainEntryCompleted extends React.Component {
               <td>{ this.candidateDelegates('sanders') }</td>
               <td>{ this.candidateDelegates('clinton') }</td>
               <td>{ this.candidateDelegates('omalley') }</td>
+              <td>{ this.candidateDelegates('uncommitted') }</td>
             </tr>
           </tbody>
         </table>

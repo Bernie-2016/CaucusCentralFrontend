@@ -30,7 +30,7 @@ export class CaptainEntryViability extends React.Component {
         valid = false;
       }
 
-      total += supporters;
+      total += parseInt(supporters);
       if(total > this.props.attendees) {
         msg = 'Supporter counts cannot total more than ' + this.props.attendees + ' (the total number of attendees).';
         valid = false;
@@ -81,6 +81,7 @@ export class CaptainEntryViability extends React.Component {
           <Input type='number' label='Bernie Sanders supporters' name='sandersSupporters' required={true} value={this.props.supporters.sanders} onChange={ (e) => this.onUpdate(e) } />
           <Input type='number' label='Hillary Clinton supporters' name='clintonSupporters' required={true} value={this.props.supporters.clinton} onChange={ (e) => this.onUpdate(e) } />
           <Input type='number' label="Martin O'Malley supporters" name='omalleySupporters' required={true} value={this.props.supporters.omalley} onChange={ (e) => this.onUpdate(e) } />
+          <Input type='number' label="Uncommitted supporters" name='uncommittedSupporters' required={true} value={this.props.supporters.uncommitted} onChange={ (e) => this.onUpdate(e) } />
 
           <ButtonInput type='submit' bsStyle='primary' value='Submit First Count' />
         </form>

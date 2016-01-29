@@ -97,6 +97,10 @@ export class PrecinctsSummary extends React.Component {
                 <td>Martin O'Malley</td>
                 <td>{this.getTotalCountsFor('omalley')}</td>
               </tr>
+              <tr>
+                <td>Uncommitted</td>
+                <td>{this.getTotalCountsFor('uncommitted')}</td>
+              </tr>
             </tbody>
           </table>
           <p>

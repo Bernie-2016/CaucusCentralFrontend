@@ -13,9 +13,11 @@ const initialState = {
   sandersViable: false,
   clintonViable: false,
   omalleyViable: false,
+  uncommittedViable: false,
   sandersSupporters: 0,
   clintonSupporters: 0,
   omalleySupporters: 0,
+  uncommittedSupporters: 0,
   delegatesWon: 0
 };
 
@@ -38,9 +40,11 @@ const precinct = {
         sandersViable: (_.find(report.delegate_counts || [], {key: 'sanders'}) || {}).viable || false,
         clintonViable: (_.find(report.delegate_counts || [], {key: 'clinton'}) || {}).viable || false,
         omalleyViable: (_.find(report.delegate_counts || [], {key: 'omalley'}) || {}).viable || false,
+        uncommittedViable: (_.find(report.delegate_counts || [], {key: 'uncommitted'}) || {}).viable || false,
         sandersSupporters: (_.find(report.delegate_counts || [], {key: 'sanders'}) || {}).supporters || 0,
         clintonSupporters: (_.find(report.delegate_counts || [], {key: 'clinton'}) || {}).supporters || 0,
         omalleySupporters: (_.find(report.delegate_counts || [], {key: 'omalley'}) || {}).supporters || 0,
+        uncommittedSupporters: (_.find(report.delegate_counts || [], {key: 'uncommitted'}) || {}).supporters || 0,
         delegatesWon: report.delegates_won || 0
       });
     },
@@ -69,9 +73,14 @@ const precinct = {
         phase: report.phase,
         attendees: report.total_attendees || 0,
         threshold: report.threshold || 0,
+        sandersViable: (_.find(report.delegate_counts || [], {key: 'sanders'}) || {}).viable || false,
+        clintonViable: (_.find(report.delegate_counts || [], {key: 'clinton'}) || {}).viable || false,
+        omalleyViable: (_.find(report.delegate_counts || [], {key: 'omalley'}) || {}).viable || false,
+        uncommittedViable: (_.find(report.delegate_counts || [], {key: 'uncommitted'}) || {}).viable || false,
         sandersSupporters: (_.find(report.delegate_counts || [], {key: 'sanders'}) || {}).supporters || 0,
         clintonSupporters: (_.find(report.delegate_counts || [], {key: 'clinton'}) || {}).supporters || 0,
         omalleySupporters: (_.find(report.delegate_counts || [], {key: 'omalley'}) || {}).supporters || 0,
+        uncommittedSupporters: (_.find(report.delegate_counts || [], {key: 'uncommitted'}) || {}).supporters || 0,
         delegatesWon: report.delegates_won || 0
       });
     },

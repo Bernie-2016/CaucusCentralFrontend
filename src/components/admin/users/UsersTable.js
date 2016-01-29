@@ -56,7 +56,7 @@ export class UsersTable extends React.Component {
     return (
       <Loader loaded={this.props.fetched}>
         <div className="table-responsive">
-          <Table className="table table-striped" itemsPerPage={50} filterable={['firstName', 'lastName', 'email']}>
+          <Table className="table table-striped" itemsPerPage={50} filterable={['firstName', 'lastName', 'email']} noDataText='No users found.'>
             <Thead>
               <Th column="lastName">
                 <strong>Last</strong>

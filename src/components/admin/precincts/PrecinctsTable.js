@@ -57,7 +57,7 @@ export class PrecinctsTable extends React.Component {
       <Loader loaded={this.props.fetched}>
         <h3 className='text-center'>Precincts</h3>
         <div className="table-responsive">
-          <Table className="table table-striped" itemsPerPage={50} filterable={['county', 'precinct']}>
+          <Table className="table table-striped" itemsPerPage={50} filterable={['county', 'precinct']} noDataText='No precincts found.'>
             <Thead>
               <Th column="county">
                 <strong>County</strong>

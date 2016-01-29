@@ -39,7 +39,7 @@ export class CaptainEntryApportionment extends React.Component {
         valid = false;
       }
 
-      total += supporters;
+      total += parseInt(supporters);
       if(total > this.props.attendees) {
         msg = 'Supporter counts cannot total more than ' + this.props.attendees + ' (the total number of attendees).';
         valid = false;
@@ -68,7 +68,7 @@ export class CaptainEntryApportionment extends React.Component {
   }
 
   render() {
-    let sandersInput = null, clintonInput = null, omalleyInput = null;
+    let sandersInput = null, clintonInput = null, omalleyInput = null, uncommittedInput = null;
     if(this.props.viable.sanders) {
       sandersInput = <Input type='number' label='Bernie Sanders supporters' name='sandersSupporters' required={true} value={this.props.supporters.sanders} onChange={ (e) => this.onUpdate(e) } />;
     }
@@ -77,6 +77,9 @@ export class CaptainEntryApportionment extends React.Component {
     }
     if(this.props.viable.omalley) {
       omalleyInput = <Input type='number' label="Martin O'Malley supporters" name='omalleySupporters' required={true} value={this.props.supporters.omalley} onChange={ (e) => this.onUpdate(e) } />;
+    }
+    if(this.props.viable.uncommitted) {
+      uncommittedInput = <Input type='number' label="Uncommitted supporters" name='uncommittedSupporters' required={true} value={this.props.supporters.uncommitted} onChange={ (e) => this.onUpdate(e) } />;
     }
     
     return (
@@ -92,6 +95,7 @@ export class CaptainEntryApportionment extends React.Component {
               <th>Bernie Sanders</th>
               <th>Hillary Clinton</th>
               <th>Martin O'Malley</th>
+              <th>Uncommitted</th>
             </tr>
           </thead>
           <tbody>
@@ -99,6 +103,7 @@ export class CaptainEntryApportionment extends React.Component {
               <td>{ this.candidateDelegates('sanders') }</td>
               <td>{ this.candidateDelegates('clinton') }</td>
               <td>{ this.candidateDelegates('omalley') }</td>
+              <td>{ this.candidateDelegates('uncommitted') }</td>
             </tr>
           </tbody>
         </table>
@@ -107,6 +112,7 @@ export class CaptainEntryApportionment extends React.Component {
           {sandersInput}
           {clintonInput}
           {omalleyInput}
+          {uncommittedInput}
 
           <ButtonInput type='submit' bsStyle='primary' value='Submit Final Count' />
         </form>
