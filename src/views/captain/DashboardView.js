@@ -20,6 +20,11 @@ const mapStateToProps = (state) => ({
   threshold:    state.captainPrecinct.threshold,
   delegatesWon: state.captainPrecinct.delegatesWon,
   error:        state.captainPrecinct.error,
+  viable: {
+    sanders: state.captainPrecinct.sandersViable,
+    clinton: state.captainPrecinct.clintonViable,
+    omalley: state.captainPrecinct.omalleyViable
+  },
   supporters: {
     sanders: state.captainPrecinct.sandersSupporters,
     clinton: state.captainPrecinct.clintonSupporters,
