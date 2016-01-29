@@ -1,4 +1,5 @@
 import React                                from 'react';
+import Loader                               from 'react-loader';
 import { FormControls, Input, ButtonInput } from 'react-bootstrap';
 
 export class UserNewForm extends React.Component {
@@ -29,7 +30,7 @@ export class UserNewForm extends React.Component {
     }
 
     return (
-      <div>
+      <Loader loaded={this.props.fetched}>
         <h3 className='text-center'>Invite a new user</h3>
         <hr />
         <form onSubmit={ (e) => this.onSubmit(e) }>
@@ -44,7 +45,7 @@ export class UserNewForm extends React.Component {
 
           <ButtonInput type='submit' bsStyle='primary' value='Invite User' />
         </form>
-      </div>
+      </Loader>
     );
   }
 }
