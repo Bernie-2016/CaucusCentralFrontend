@@ -31,7 +31,7 @@ export default class Root extends React.Component {
     return (
       <Provider store={this.props.store}>
         <div>
-          <Router history={this.props.history}>
+          <Router history={this.props.history} onUpdate={ () => window.scrollTo(0, 0) }>
             {routes}
           </Router>
           {this.renderDevTools()}
