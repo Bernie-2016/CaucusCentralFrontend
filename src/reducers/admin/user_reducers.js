@@ -46,19 +46,6 @@ const user = {
     newState[payload.key] = payload.value;
     return reduceState(state, newState);
   },
-  add: {
-    request: (state) => {
-      return reduceState(state, { error: false, created: false });
-    },
-    success: (state, response) => {
-      notifySuccess('User invited!')
-      return reduceState(state, { created: true });
-    },
-    error: (state, error) => {
-      notifyError('User invite error.')
-      return reduceState(state, { error: error });
-    }
-  },
   update: {
     request: (state) => {
       return reduceState(state, { error: false, updated: false });
@@ -100,9 +87,6 @@ export default createReducer(initialState, {
   [c.GET_USER_REQUEST]    : user.get.request,
   [c.GET_USER_SUCCESS]    : user.get.success,
   [c.GET_USER_FAILURE]    : user.get.error,
-  [c.CREATE_USER_REQUEST] : user.add.request,
-  [c.CREATE_USER_SUCCESS] : user.add.success,
-  [c.CREATE_USER_FAILURE] : user.add.error,
   [c.UPDATE_USER_REQUEST] : user.update.request,
   [c.UPDATE_USER_SUCCESS] : user.update.success,
   [c.UPDATE_USER_FAILURE] : user.update.error,

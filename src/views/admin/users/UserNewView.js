@@ -10,14 +10,14 @@ import UserNewForm               from 'components/admin/users/UserNewForm';
 
 const mapStateToProps = (state) => ({
   fetched:      state.adminPrecincts.fetched,
-  created:      state.adminUser.created,
-  error:        state.adminUser.error,
+  created:      state.adminInvitation.created,
+  error:        state.adminInvitation.error,
   sessionToken: state.session.token,
   precincts:    state.adminPrecincts.precincts,
   user: {
-    email:      state.adminUser.newEmail,
-    privilege:  state.adminUser.privilege,
-    precinctId: state.adminUser.precinctId
+    email:      state.adminInvitation.newEmail,
+    privilege:  state.adminInvitation.privilege,
+    precinctId: state.adminInvitation.precinctId
   }
 });
 
@@ -41,7 +41,7 @@ export class UserNewView extends React.Component {
 
   redirectToUsersIfCreated () {
     if (this.props.created) {
-      this.props.adminActions.resetUser();
+      this.props.adminActions.resetInvitation();
       this.props.history.pushState(null, '/admin/users');
     }
   }

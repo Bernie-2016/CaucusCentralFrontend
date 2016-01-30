@@ -27,6 +27,18 @@ export default {
       }
     }
   }),
+  getAllInvitations: (payload) => ({
+    [CALL_API]: {
+      types: [c.GET_INVITATIONS_REQUEST,
+              c.GET_INVITATIONS_SUCCESS,
+              c.GET_INVITATIONS_FAILURE],
+      endpoint: formatEndpoint(`/invitations`),
+      method: 'GET',
+      headers: {
+        'Authorization': payload.token
+      }
+    }
+  }),
   setPrecinctsAttr: (payload) => ({
     type: c.SET_PRECINCTS_ATTR,
     payload
@@ -43,10 +55,6 @@ export default {
       }
     }
   }),
-  setUsersAttr: (payload) => ({
-    type: c.SET_USERS_ATTR,
-    payload
-  }),
   getState: (payload) => ({
     [CALL_API]: {
       types: [c.GET_STATE_REQUEST,
@@ -58,6 +66,10 @@ export default {
         'Authorization': payload.token
       }
     }
+  }),
+  setInvitationAttr: (payload) => ({
+    type: c.SET_INVITATION_ATTR,
+    payload
   }),
   getPrecinct: (payload) => ({
     [CALL_API]: {
@@ -89,9 +101,9 @@ export default {
     });
     return {
       [CALL_API]: {
-        types: [c.CREATE_USER_REQUEST,
-                c.CREATE_USER_SUCCESS,
-                c.CREATE_USER_FAILURE],
+        types: [c.CREATE_INVITATION_REQUEST,
+                c.CREATE_INVITATION_SUCCESS,
+                c.CREATE_INVITATION_FAILURE],
         endpoint: formatEndpoint(`/invitations`),
         method: 'POST',
         body,
@@ -102,6 +114,21 @@ export default {
       }
     };
   },
+  resendInvitation: (payload) => ({
+    [CALL_API]: {
+      types: [c.RESEND_INVITATION_REQUEST,
+              c.RESEND_INVITATION_SUCCESS,
+              c.RESEND_INVITATION_FAILURE],
+      endpoint: formatEndpoint(`/invitations/${payload.id}/resend`),
+      method: 'POST',
+      headers: {
+        'Authorization': payload.token
+      }
+    }
+  }),
+  resetInvitation: () => ({
+    type: c.RESET_INVITATION
+  }),
   setUserAttr: (payload) => ({
     type: c.SET_USER_ATTR,
     payload

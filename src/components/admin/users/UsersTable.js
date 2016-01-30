@@ -20,13 +20,6 @@ export class UsersTable extends React.Component {
     }
   }
 
-  onUpdate(e) {
-    this.props.adminActions.setUsersAttr({
-      key: e.target.name,
-      value: e.target.value
-    });
-  }
-
   render() {
     let userComponents = [];
     _.each(this.props.users, (user) => {

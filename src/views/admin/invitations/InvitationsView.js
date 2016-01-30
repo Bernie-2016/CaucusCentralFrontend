@@ -6,12 +6,12 @@ import reactMixin                from 'react-mixin';
 import adminActions              from 'actions/admin';
 import sessionActions            from 'actions/session';
 import LogoutIfUnauthorizedMixin from 'components/mixins/LogoutIfUnauthorizedMixin';
-import UsersTable                from 'components/admin/users/UsersTable';
+import InvitationsTable          from 'components/admin/invitations/InvitationsTable';
 
 const mapStateToProps = (state) => ({
-  fetched:      state.adminUsers.fetched,
-  users:        state.adminUsers.users,
-  error:        state.adminUsers.error,
+  fetched:      state.adminInvitation.fetched,
+  invitations:  state.adminInvitation.invitations,
+  error:        state.adminInvitation.error,
   sessionToken: state.session.token
 });
 
@@ -20,16 +20,16 @@ const mapDispatchToProps = (dispatch) => ({
   sessionActions: bindActionCreators(sessionActions, dispatch)
 });
 
-export class UsersView extends React.Component {
+export class InvitationsView extends React.Component {
   componentDidMount() {
-    this.props.adminActions.getAllUsers({token: this.props.sessionToken});
+    this.props.adminActions.getAllInvitations({token: this.props.sessionToken});
   }
 
   render () {
     return (
       <div>
         <div className='text-center'>
-          <h3> Captains &amp; Organizers</h3>
+          <h3>Invitations</h3>
           <p>
             <Link to='/admin/invitations'>Invitations</Link>
             &nbsp;/&nbsp;
@@ -38,12 +38,12 @@ export class UsersView extends React.Component {
             <Link to='/admin/users/import'>Bulk import</Link>
           </p>
         </div>
-        <UsersTable {...this.props} />
+        <InvitationsTable {...this.props} />
       </div>
     );
   }
 }
 
-reactMixin(UsersView.prototype, LogoutIfUnauthorizedMixin);
+reactMixin(InvitationsView.prototype, LogoutIfUnauthorizedMixin);
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersView);
+export default connect(mapStateToProps, mapDispatchToProps)(InvitationsView);

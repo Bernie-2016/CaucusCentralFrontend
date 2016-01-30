@@ -24,6 +24,7 @@ import UserNewView           from 'views/admin/users/UserNewView';
 import UsersImportView       from 'views/admin/users/UsersImportView';
 import UserView              from 'views/admin/users/UserView';
 import UserEditView          from 'views/admin/users/UserEditView';
+import InvitationsView       from 'views/admin/invitations/InvitationsView';
 import DashboardView         from 'views/captain/DashboardView';
 import HelpView              from 'views/captain/HelpView';
 import ProfileView           from 'views/profile/ProfileView';
@@ -58,6 +59,7 @@ export default (
       <Route component={UsersImportView} path='/admin/users/import' />
       <Route component={UserView} path='/admin/users/:id' />
       <Route component={UserEditView} path='/admin/users/:id/edit' />
+      <Route component={InvitationsView} path='/admin/invitations' />
       <Route component={ProfileView} path='/admin/profile' />
       <Route component={ProfileEditView} path='/admin/profile/edit' />
     </Route>

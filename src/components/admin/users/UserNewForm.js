@@ -4,7 +4,7 @@ import { FormControls, Input, ButtonInput } from 'react-bootstrap';
 
 export class UserNewForm extends React.Component {
   onUpdate(e) {
-    this.props.adminActions.setUserAttr({
+    this.props.adminActions.setInvitationAttr({
       key: e.target.name,
       value: e.target.value
     });
@@ -35,10 +35,10 @@ export class UserNewForm extends React.Component {
         <hr />
         <form onSubmit={ (e) => this.onSubmit(e) }>
           <Input type='email' label='Email' name='newEmail' required={true} value={this.props.user.email} onChange={ (e) => this.onUpdate(e) } />
-          <FormControls.Static label='Privilege'>
-            <Input type='radio' label='Captain' name='privilege' value='captain' checked={this.props.user.privilege == "captain"} onChange={ (e) => this.onUpdate(e) } />
-            <Input type='radio' label='Organizer' name='privilege' value='organizer' checked={this.props.user.privilege == "organizer"} onChange={ (e) => this.onUpdate(e) } />
-          </FormControls.Static>
+          
+          <Input type='radio' label='Captain' name='privilege' value='captain' checked={this.props.user.privilege == "captain"} onChange={ (e) => this.onUpdate(e) } />
+          <Input type='radio' label='Organizer' name='privilege' value='organizer' checked={this.props.user.privilege == "organizer"} onChange={ (e) => this.onUpdate(e) } />
+          
           <Input type='select' label='Assigned precinct' name='precinctId' value={this.props.user.precinctId} onChange={ (e) => this.onUpdate(e) }>
             {precincts}
           </Input>

@@ -57,6 +57,5 @@ export default createReducer(initialState, {
   [c.IMPORT_USERS_REQUEST] : users.import.request,
   [c.IMPORT_USERS_SUCCESS] : users.import.success,
   [c.IMPORT_USERS_FAILURE] : users.import.error,
-  [c.SET_IMPORT_USERS]     : users.import.set,
-  [c.SET_USERS_ATTR]       : users.set
+  [c.SET_IMPORT_USERS]     : users.import.set
 });

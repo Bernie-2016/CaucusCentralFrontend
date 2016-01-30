@@ -21,13 +21,6 @@ export class PrecinctsTable extends React.Component {
     }
   }
 
-  onUpdate(e) {
-    this.props.adminActions.setPrecinctsAttr({
-      key: e.target.name,
-      value: e.target.value
-    });
-  }
-
   render () {
     const { code } = this.props.params;
 
