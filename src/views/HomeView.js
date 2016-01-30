@@ -7,7 +7,7 @@ export default class HomeView extends React.Component {
       <div className='text-center'>
         <h1>Caucus Central</h1>
         <p>
-          The official app to collect live data from caucus precincts.
+          The official Bernie 2016 app to collect live data from caucus precincts.
         </p>
         <hr />
         <p>

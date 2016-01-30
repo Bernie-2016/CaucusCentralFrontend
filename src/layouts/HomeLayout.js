@@ -9,7 +9,7 @@ export default class HomeLayout extends React.Component {
   render () {
     return (
       <Row>
-        <Col md={4} mdOffset={4} sm={6} smOffset={3} xs={12} xsOffset={0}>
+        <Col md={6} mdOffset={3} sm={12} smOffset={0}>
           <Row className='logo-row'>
             <img src='/images/logo.png' alt='Bernie 2016' />
           </Row>

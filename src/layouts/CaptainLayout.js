@@ -42,7 +42,7 @@ export class CaptainLayout extends React.Component {
         <div>
           <CaptainNav signOut={ (e) => this.signOut(e) } {...this.props} />
           <Row className='content'>
-            <Col md={6} mdOffset={3} xs={12} xsOffset={0}>
+            <Col md={6} mdOffset={3} sm={12} smOffset={0}>
               { this.props.children }
             </Col>
           </Row>
