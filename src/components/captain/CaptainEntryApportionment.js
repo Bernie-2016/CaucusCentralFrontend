@@ -67,6 +67,10 @@ export class CaptainEntryApportionment extends React.Component {
     });
   }
 
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+
   render() {
     let sandersInput = null, clintonInput = null, omalleyInput = null, uncommittedInput = null;
     if(this.props.viable.sanders) {
