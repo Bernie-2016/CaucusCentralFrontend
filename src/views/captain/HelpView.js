@@ -5,7 +5,7 @@ export class HelpView extends React.Component {
   render() {
     return (
       <div>
-        <h1>Help</h1>
+        <h1 className='text-center'>Help</h1>
         <p>
           If you need help with anything, please use the hotline to let us know.
         </p>
