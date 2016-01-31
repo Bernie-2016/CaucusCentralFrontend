@@ -18,11 +18,15 @@ const mapDispatchToProps = (dispatch) => ({
 
 class SignInView extends React.Component {
   componentWillMount () {
-    this.redirectToDashboardIfLoggedIn();
+    setTimeout(() => {
+      this.redirectToDashboardIfLoggedIn();
+    });
   }
 
   componentDidUpdate () {
-    this.redirectToDashboardIfLoggedIn();
+    setTimeout(() => {
+      this.redirectToDashboardIfLoggedIn();
+    });
   }
 
   redirectToDashboardIfLoggedIn () {
