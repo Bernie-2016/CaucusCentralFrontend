@@ -1,8 +1,21 @@
-import React from 'react';
+import React    from 'react';
+import { Link } from 'react-router';
 
 export class CaptainEntryCompleted extends React.Component {
   componentDidMount() {
     window.scrollTo(0, 0);
+  }
+
+  thirdCount(e) {
+    e.preventDefault();
+    this.props.captainActions.setAttr({
+      key: 'extra', 
+      value: true
+    });
+    this.props.captainActions.setAttr({
+      key: 'phase', 
+      value: 'apportionment'
+    });
   }
 
   render() {
@@ -30,6 +43,9 @@ export class CaptainEntryCompleted extends React.Component {
             </tr>
           </tbody>
         </table>
+        <p>
+          Was there an extra alignment? You can report it <Link to='#' onClick={ (e) => this.thirdCount(e) }>here</Link>.
+        </p>
       </div>
     );
   }

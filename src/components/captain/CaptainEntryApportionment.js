@@ -63,9 +63,14 @@ export class CaptainEntryApportionment extends React.Component {
   }
 
   render() {
+    let countTitle = 'SECOND';
+    if(this.props.extra) {
+      countTitle = 'EXTRA';
+    }
+
     return (
       <div>
-        <h4>SECOND COUNT (determining delegates won)</h4>
+        <h4>{countTitle} COUNT (determining delegates won)</h4>
         <p><strong>After realignment is over</strong>, enter the final number of supporters for each candidate. When you're done, click submit.</p>
 
         <p>Based on current data, this is how delegates will be assigned:</p>

@@ -18,7 +18,8 @@ const initialState = {
   clintonSupporters: 0,
   omalleySupporters: 0,
   uncommittedSupporters: 0,
-  delegatesWon: 0
+  delegatesWon: 0,
+  extra: false
 };
 
 const precinct = {

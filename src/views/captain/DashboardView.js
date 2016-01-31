@@ -69,7 +69,8 @@ const mapStateToProps = (state) => {
     error:          state.captainPrecinct.error,
     viable:         viable,
     supporters:     supporters,
-    delegateCounts: delegateCounts
+    delegateCounts: delegateCounts,
+    extra:          state.captainPrecinct.extra
   };
 };
 
