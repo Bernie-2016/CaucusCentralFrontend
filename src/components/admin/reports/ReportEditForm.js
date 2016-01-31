@@ -67,7 +67,6 @@ export class ReportEditForm extends React.Component {
         <form onSubmit={ (e) => this.onSubmit(e) }>
           <Input type='select' label='Caucus phase' name='phase' value={this.props.phase} onChange={ (e) => this.onUpdate(e) }>
             <option value='viability' key='viability'>{phaseText('viability')}</option>
-            <option value='not_viable' key='not_viable'>{phaseText('not_viable')}</option>
             <option value='apportionment' key='apportionment'>{phaseText('apportionment')}</option>
             <option value='apportioned' key='apportioned'>{phaseText('apportioned')}</option>
           </Input>

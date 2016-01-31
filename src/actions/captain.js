@@ -84,5 +84,27 @@ export default {
         }
       }
     };
+  },
+  updateFlipWinner: (payload) => {
+    const body = JSON.stringify({
+      precinct: {
+        flip_winner: payload.flipWinner
+      }
+    });
+
+    return {
+      [CALL_API]: {
+        types: [c.UPDATE_FLIP_WINNER_REQUEST,
+                c.UPDATE_FLIP_WINNER_SUCCESS,
+                c.UPDATE_FLIP_WINNER_FAILURE],
+        endpoint: formatEndpoint(`/precincts/${payload.id}/flip`),
+        method: 'POST',
+        body,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': payload.token
+        }
+      }
+    };
   }
 };

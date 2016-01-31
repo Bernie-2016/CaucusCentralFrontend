@@ -24,6 +24,12 @@ const mapStateToProps = (state) => {
     omalley: state.captainPrecinct.omalleySupporters,
     uncommitted: state.captainPrecinct.uncommittedSupporters
   };
+  const delegateReports = {
+    sanders: state.captainPrecinct.sandersDelegates,
+    clinton: state.captainPrecinct.clintonDelegates,
+    omalley: state.captainPrecinct.omalleyDelegates,
+    uncommitted: state.captainPrecinct.uncommittedDelegates
+  };
 
   const keys = ['sanders', 'clinton', 'omalley', 'uncommitted'];
   let delegateCounts = {};
@@ -43,6 +49,9 @@ const mapStateToProps = (state) => {
     }
     else if(supporters[key] < threshold) {
       delegateCounts[key] = 'Not Viable';
+    }
+    else if(delegateReports[key] !== null) {
+      delegateCounts[key] = delegateReports[key];
     }
     else {
       let calculatedTotal = Math.round(supporters[key] / attendees * delegates);
@@ -70,7 +79,8 @@ const mapStateToProps = (state) => {
     viable:         viable,
     supporters:     supporters,
     delegateCounts: delegateCounts,
-    extra:          state.captainPrecinct.extra
+    extra:          state.captainPrecinct.extra,
+    flipWinner:     state.captainPrecinct.flipWinner
   };
 };
 

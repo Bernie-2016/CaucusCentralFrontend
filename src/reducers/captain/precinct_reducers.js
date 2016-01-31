@@ -18,8 +18,13 @@ const initialState = {
   clintonSupporters: 0,
   omalleySupporters: 0,
   uncommittedSupporters: 0,
+  sandersDelegates: 0,
+  clintonDelegates: 0,
+  omalleyDelegates: 0,
+  uncommittedDelegates: 0,
   delegatesWon: 0,
-  extra: false
+  extra: false,
+  flipWinner: ''
 };
 
 const precinct = {
@@ -46,6 +51,10 @@ const precinct = {
         clintonSupporters: (_.find(report.delegate_counts || [], {key: 'clinton'}) || {}).supporters || 0,
         omalleySupporters: (_.find(report.delegate_counts || [], {key: 'omalley'}) || {}).supporters || 0,
         uncommittedSupporters: (_.find(report.delegate_counts || [], {key: 'uncommitted'}) || {}).supporters || 0,
+        sandersDelegates: (_.find(report.delegate_counts || [], {key: 'sanders'}) || {}).delegates_won || null,
+        clintonDelegates: (_.find(report.delegate_counts || [], {key: 'clinton'}) || {}).delegates_won || null,
+        omalleyDelegates: (_.find(report.delegate_counts || [], {key: 'omalley'}) || {}).delegates_won || null,
+        uncommittedDelegates: (_.find(report.delegate_counts || [], {key: 'uncommitted'}) || {}).delegates_won || null,
         delegatesWon: report.delegates_won || 0
       });
     },
@@ -82,6 +91,10 @@ const precinct = {
         clintonSupporters: (_.find(report.delegate_counts || [], {key: 'clinton'}) || {}).supporters || 0,
         omalleySupporters: (_.find(report.delegate_counts || [], {key: 'omalley'}) || {}).supporters || 0,
         uncommittedSupporters: (_.find(report.delegate_counts || [], {key: 'uncommitted'}) || {}).supporters || 0,
+        sandersDelegates: (_.find(report.delegate_counts || [], {key: 'sanders'}) || {}).delegates_won || null,
+        clintonDelegates: (_.find(report.delegate_counts || [], {key: 'clinton'}) || {}).delegates_won || null,
+        omalleyDelegates: (_.find(report.delegate_counts || [], {key: 'omalley'}) || {}).delegates_won || null,
+        uncommittedDelegates: (_.find(report.delegate_counts || [], {key: 'uncommitted'}) || {}).delegates_won || null,
         delegatesWon: report.delegates_won || 0
       });
     },
@@ -105,5 +118,8 @@ export default createReducer(initialState, {
   [c.UPDATE_APPORTIONMENT_COUNTS_REQUEST] : precinct.update.request,
   [c.UPDATE_APPORTIONMENT_COUNTS_SUCCESS] : precinct.update.success,
   [c.UPDATE_APPORTIONMENT_COUNTS_FAILURE]  : precinct.update.failure,
+  [c.UPDATE_FLIP_WINNER_REQUEST] : precinct.update.request,
+  [c.UPDATE_FLIP_WINNER_SUCCESS] : precinct.update.success,
+  [c.UPDATE_FLIP_WINNER_FAILURE]  : precinct.update.failure,
   [c.SET_ATTR] : precinct.set,
 });

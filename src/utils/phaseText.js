@@ -7,11 +7,11 @@ export function phaseText (phase) {
   case 'viability':
     text = 'Viability Phase';
     break;
-  case 'not_viable':
-    text = 'Not Viable';
-    break;
   case 'apportionment':
     text = 'Apportionment Phase';
+    break;
+  case 'coin_flip':
+    text = 'Coin Flip';
     break;
   case 'apportioned':
     text = 'Caucus completed';
