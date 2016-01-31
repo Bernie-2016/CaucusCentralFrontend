@@ -2,15 +2,6 @@ import React                  from 'react';
 import { Input, ButtonInput } from 'react-bootstrap';
 
 export class CaptainEntryApportionment extends React.Component {
-  candidateDelegates(candidate) {
-    if(this.props.viable[candidate]) {
-      return Math.round(this.props.supporters[candidate] / this.props.attendees * this.props.delegates) || 0;
-    }
-    else {
-      return 'Not Viable';
-    }
-  }
-
   onUpdate(e) {
     let val = e.target.value;
     if(val === '') {
@@ -104,10 +95,10 @@ export class CaptainEntryApportionment extends React.Component {
           </thead>
           <tbody>
             <tr>
-              <td>{ this.candidateDelegates('sanders') }</td>
-              <td>{ this.candidateDelegates('clinton') }</td>
-              <td>{ this.candidateDelegates('omalley') }</td>
-              <td>{ this.candidateDelegates('uncommitted') }</td>
+              <td>{ this.props.delegateCounts.sanders }</td>
+              <td>{ this.props.delegateCounts.clinton }</td>
+              <td>{ this.props.delegateCounts.omalley }</td>
+              <td>{ this.props.delegateCounts.uncommitted }</td>
             </tr>
           </tbody>
         </table>

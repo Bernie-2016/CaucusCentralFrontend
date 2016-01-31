@@ -1,15 +1,6 @@
 import React from 'react';
 
 export class CaptainEntryCompleted extends React.Component {
-  candidateDelegates(candidate) {
-    if(this.props.viable[candidate]) {
-      return Math.round(this.props.supporters[candidate] / this.props.attendees * this.props.delegates) || 0;
-    }
-    else {
-      return 'Not Viable';
-    }
-  }
-
   componentDidMount() {
     window.scrollTo(0, 0);
   }
@@ -32,10 +23,10 @@ export class CaptainEntryCompleted extends React.Component {
           </thead>
           <tbody>
             <tr>
-              <td>{ this.candidateDelegates('sanders') }</td>
-              <td>{ this.candidateDelegates('clinton') }</td>
-              <td>{ this.candidateDelegates('omalley') }</td>
-              <td>{ this.candidateDelegates('uncommitted') }</td>
+              <td>{ this.props.delegateCounts.sanders }</td>
+              <td>{ this.props.delegateCounts.clinton }</td>
+              <td>{ this.props.delegateCounts.omalley }</td>
+              <td>{ this.props.delegateCounts.uncommitted }</td>
             </tr>
           </tbody>
         </table>

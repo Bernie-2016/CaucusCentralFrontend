@@ -8,31 +8,70 @@ import captainActions            from 'actions/captain';
 import sessionActions            from 'actions/session';
 import CaptainEntry              from 'components/captain/CaptainEntry';
 
-const mapStateToProps = (state) => ({
-  precinctId:   state.session.precinctId,
-  sessionToken: state.session.token,
-  fetched:      state.captainPrecinct.fetched,
-  name:         state.captainPrecinct.name,
-  county:       state.captainPrecinct.county,
-  phase:        state.captainPrecinct.phase,
-  delegates:    state.captainPrecinct.delegates,
-  attendees:    state.captainPrecinct.attendees,
-  threshold:    state.captainPrecinct.threshold,
-  delegatesWon: state.captainPrecinct.delegatesWon,
-  error:        state.captainPrecinct.error,
-  viable: {
+const mapStateToProps = (state) => {
+  const attendees = state.captainPrecinct.attendees;
+  const threshold = state.captainPrecinct.threshold;
+  const delegates = state.captainPrecinct.delegates;
+  const viable = {
     sanders: state.captainPrecinct.sandersViable,
     clinton: state.captainPrecinct.clintonViable,
     omalley: state.captainPrecinct.omalleyViable,
     uncommitted: state.captainPrecinct.uncommittedViable
-  },
-  supporters: {
+  };
+  const supporters = {
     sanders: state.captainPrecinct.sandersSupporters,
     clinton: state.captainPrecinct.clintonSupporters,
     omalley: state.captainPrecinct.omalleySupporters,
     uncommitted: state.captainPrecinct.uncommittedSupporters
-  }
-});
+  };
+
+  const keys = ['sanders', 'clinton', 'omalley', 'uncommitted'];
+  let delegateCounts = {};
+
+  const adjustKeys = _.compact(_.map(keys, (key) => {
+    if(viable[key] && supporters[key] < threshold) {
+      return key;
+    }
+    else {
+      return false;
+    }
+  }));
+
+  _.each(keys, (key) => {
+    if(!viable[key]) {
+      delegateCounts[key] = 'Not Viable';
+    }
+    else if(viable[key] && supporters[key] < threshold) {
+      delegateCounts[key] = 1;
+    }
+    else {
+      let calculatedTotal = Math.round(supporters[key] / attendees * delegates);
+      if(!_.isEmpty(adjustKeys)) {
+        if(_.last(_.sortBy(_.filter(keys, (key) => supporters[key] > threshold), (key) => supporters[key])) === key) {
+          calculatedTotal -= adjustKeys.length;
+        }
+      }
+      delegateCounts[key] = calculatedTotal;
+    }
+  });
+
+  return {
+    precinctId:     state.session.precinctId,
+    sessionToken:   state.session.token,
+    fetched:        state.captainPrecinct.fetched,
+    name:           state.captainPrecinct.name,
+    county:         state.captainPrecinct.county,
+    phase:          state.captainPrecinct.phase,
+    delegates:      delegates,
+    attendees:      attendees,
+    threshold:      threshold,
+    delegatesWon:   state.captainPrecinct.delegatesWon,
+    error:          state.captainPrecinct.error,
+    viable:         viable,
+    supporters:     supporters,
+    delegateCounts: delegateCounts
+  };
+};
 
 const mapDispatchToProps = (dispatch) => ({
   captainActions: bindActionCreators(captainActions, dispatch),
