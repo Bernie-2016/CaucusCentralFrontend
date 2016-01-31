@@ -1,6 +1,7 @@
 import React                  from 'react';
 import { bindActionCreators } from 'redux';
 import { connect }            from 'react-redux';
+import _                      from 'lodash';
 import adminActions           from 'actions/admin';
 import reportActions          from 'actions/report';
 import ReportForm             from 'components/report/ReportForm';
@@ -8,11 +9,13 @@ import ReportForm             from 'components/report/ReportForm';
 const mapStateToProps = (state) => ({
   created:      state.report.created,
   precinctId:   state.report.precinctId,
+  county:       state.report.county,
   phase:        state.report.phase,
   attendees:    state.report.attendees,
   sessionToken: state.session.token,
   privilege:    state.session.privilege,
   fetched:      state.adminPrecincts.fetched,
+  counties:     _.uniq(_.map(state.adminPrecincts.precincts, 'county')),
   precincts:    state.adminPrecincts.precincts,
   supporters: {
     sanders: state.report.sandersSupporters,
@@ -41,7 +44,7 @@ class ReportView extends React.Component {
   }
 
   resetIfCreated () {
-    if (this.props.created) {
+    if (this.props.created && this.props.phase === 'apportioned') {
       if(this.props.sessionToken !== undefined) {
         if(this.props.privilege === 'organizer') {
           this.props.history.pushState(null, '/admin');
@@ -53,6 +56,16 @@ class ReportView extends React.Component {
         this.props.history.pushState(null, '/');
       }
       this.props.reportActions.reset();
+    }
+    else if(this.props.created) {
+      if(this.props.phase === 'viability') {
+        this.props.reportActions.setAttr({key: 'created', value: false});
+        this.props.reportActions.setAttr({key: 'phase', value: 'apportionment'});
+      }
+      else if(this.props.phase === 'apportionment') {
+        this.props.reportActions.setAttr({key: 'created', value: false});
+        this.props.reportActions.setAttr({key: 'phase', value: 'apportioned'});
+      }
     }
   }
 

@@ -4,7 +4,8 @@ import { notifySuccess, notifyError } from 'utils/notifications';
 import * as c from 'constants/report';
 
 const initialState = {
-  precinctId: null,
+  county: '',
+  precinctId: '',
   attendees: 0,
   phase: '',
   sandersSupporters: 0,
