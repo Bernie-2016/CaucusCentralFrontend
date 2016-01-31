@@ -4,7 +4,6 @@ import * as c from 'constants/admin';
 const initialState = {
   error: false,
   fetched: false,
-  error: false,
   states: []
 };
 
