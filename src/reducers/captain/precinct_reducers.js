@@ -2,16 +2,6 @@ import { createReducer, reduceState } from 'utils';
 import { notifySuccess, notifyError } from 'utils/notifications';
 import * as c from 'constants/captain';
 
-const delegateCount = (counts, key, threshold) => {
-  const supporters = (_.find(counts || [], {key: key}) || {}).supporters || 0;
-  if(supporters < threshold) {
-    return 0;
-  }
-  else {
-    return supporters;
-  }
-};
-
 const initialState = {
   fetched: false,
   error: false,
@@ -51,10 +41,10 @@ const precinct = {
         clintonViable: (_.find(report.delegate_counts || [], {key: 'clinton'}) || {}).viable || false,
         omalleyViable: (_.find(report.delegate_counts || [], {key: 'omalley'}) || {}).viable || false,
         uncommittedViable: (_.find(report.delegate_counts || [], {key: 'uncommitted'}) || {}).viable || false,
-        sandersSupporters: delegateCount(report.delegate_counts, 'sanders', report.threshold),
-        clintonSupporters: delegateCount(report.delegate_counts, 'clinton', report.threshold),
-        omalleySupporters: delegateCount(report.delegate_counts, 'omalley', report.threshold),
-        uncommittedSupporters: delegateCount(report.delegate_counts, 'uncommitted', report.threshold),
+        sandersSupporters: (_.find(report.delegate_counts || [], {key: 'sanders'}) || {}).supporters || 0,
+        clintonSupporters: (_.find(report.delegate_counts || [], {key: 'clinton'}) || {}).supporters || 0,
+        omalleySupporters: (_.find(report.delegate_counts || [], {key: 'omalley'}) || {}).supporters || 0,
+        uncommittedSupporters: (_.find(report.delegate_counts || [], {key: 'uncommitted'}) || {}).supporters || 0,
         delegatesWon: report.delegates_won || 0
       });
     },
@@ -87,10 +77,10 @@ const precinct = {
         clintonViable: (_.find(report.delegate_counts || [], {key: 'clinton'}) || {}).viable || false,
         omalleyViable: (_.find(report.delegate_counts || [], {key: 'omalley'}) || {}).viable || false,
         uncommittedViable: (_.find(report.delegate_counts || [], {key: 'uncommitted'}) || {}).viable || false,
-        sandersSupporters: delegateCount(report.delegate_counts, 'sanders', report.threshold),
-        clintonSupporters: delegateCount(report.delegate_counts, 'clinton', report.threshold),
-        omalleySupporters: delegateCount(report.delegate_counts, 'omalley', report.threshold),
-        uncommittedSupporters: delegateCount(report.delegate_counts, 'uncommitted', report.threshold),
+        sandersSupporters: (_.find(report.delegate_counts || [], {key: 'sanders'}) || {}).supporters || 0,
+        clintonSupporters: (_.find(report.delegate_counts || [], {key: 'clinton'}) || {}).supporters || 0,
+        omalleySupporters: (_.find(report.delegate_counts || [], {key: 'omalley'}) || {}).supporters || 0,
+        uncommittedSupporters: (_.find(report.delegate_counts || [], {key: 'uncommitted'}) || {}).supporters || 0,
         delegatesWon: report.delegates_won || 0
       });
     },

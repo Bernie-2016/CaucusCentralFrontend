@@ -63,20 +63,6 @@ export class CaptainEntryApportionment extends React.Component {
   }
 
   render() {
-    let sandersInput = null, clintonInput = null, omalleyInput = null, uncommittedInput = null;
-    if(this.props.viable.sanders) {
-      sandersInput = <Input type='number' label='Bernie Sanders supporters' name='sandersSupporters' required={true} value={this.props.supporters.sanders} onChange={ (e) => this.onUpdate(e) } />;
-    }
-    if(this.props.viable.clinton) {
-      clintonInput = <Input type='number' label='Hillary Clinton supporters' name='clintonSupporters' required={true} value={this.props.supporters.clinton} onChange={ (e) => this.onUpdate(e) } />;
-    }
-    if(this.props.viable.omalley) {
-      omalleyInput = <Input type='number' label="Martin O'Malley supporters" name='omalleySupporters' required={true} value={this.props.supporters.omalley} onChange={ (e) => this.onUpdate(e) } />;
-    }
-    if(this.props.viable.uncommitted) {
-      uncommittedInput = <Input type='number' label="Uncommitted supporters" name='uncommittedSupporters' required={true} value={this.props.supporters.uncommitted} onChange={ (e) => this.onUpdate(e) } />;
-    }
-    
     return (
       <div>
         <h4>SECOND COUNT (determining delegates won)</h4>
@@ -104,10 +90,10 @@ export class CaptainEntryApportionment extends React.Component {
         </table>
 
         <form onSubmit={ (e) => this.onSubmit(e) }>
-          {sandersInput}
-          {clintonInput}
-          {omalleyInput}
-          {uncommittedInput}
+          <Input type='number' label='Bernie Sanders supporters' name='sandersSupporters' required={true} value={this.props.supporters.sanders} onChange={ (e) => this.onUpdate(e) } />
+          <Input type='number' label='Hillary Clinton supporters' name='clintonSupporters' required={true} value={this.props.supporters.clinton} onChange={ (e) => this.onUpdate(e) } />
+          <Input type='number' label="Martin O'Malley supporters" name='omalleySupporters' required={true} value={this.props.supporters.omalley} onChange={ (e) => this.onUpdate(e) } />
+          <Input type='number' label="Uncommitted supporters" name='uncommittedSupporters' required={true} value={this.props.supporters.uncommitted} onChange={ (e) => this.onUpdate(e) } />
 
           <ButtonInput type='submit' bsStyle='primary' value='Submit Final Count' />
         </form>

@@ -38,11 +38,11 @@ const mapStateToProps = (state) => {
   }));
 
   _.each(keys, (key) => {
-    if(!viable[key]) {
-      delegateCounts[key] = 'Not Viable';
-    }
-    else if(viable[key] && supporters[key] < threshold) {
+    if(viable[key] && supporters[key] < threshold) {
       delegateCounts[key] = 1;
+    }
+    else if(supporters[key] < threshold) {
+      delegateCounts[key] = 'Not Viable';
     }
     else {
       let calculatedTotal = Math.round(supporters[key] / attendees * delegates);
