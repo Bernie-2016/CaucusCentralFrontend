@@ -15,7 +15,6 @@ const mapStateToProps = (state) => ({
   state:        state.adminState.state,
   precincts:    state.adminState.state.precincts,
   dataSource:   state.adminPrecincts.dataSource,
-  error:        state.adminState.error,
   sessionToken: state.session.token
 });
 
