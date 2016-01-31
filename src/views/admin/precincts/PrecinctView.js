@@ -21,7 +21,6 @@ const mapStateToProps = (state) => ({
   captainId:      state.adminPrecinct.captainId,
   captainName:    state.adminPrecinct.captainName,
   reports:        state.adminPrecinct.reports,
-  error:          state.adminPrecinct.error,
   sessionToken:   state.session.token
 });
 
