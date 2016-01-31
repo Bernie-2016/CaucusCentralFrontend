@@ -21,6 +21,9 @@ export class HowToView extends React.Component {
           </li>
         </ul>
         <p>
+          In very rare cases, caucuses may have more than two counts/alignments. If this happens in your precinct, you can use the "Second Count" report type to report any subseqent counts as well.
+        </p>
+        <p>
           You are encouraged to submit multiple reports! Please submit one report of each type as the caucus progresses from attendee count to first count to final count - this lets us track how the caucus is progressing.
         </p>
         <p>
