@@ -44,7 +44,7 @@ export class CaptainEntryCompleted extends React.Component {
           </tbody>
         </table>
         <p>
-          If these counts differ from the final delegate counts announced at the caucus, please simply contact our help line or email address and we will verify/take care of it:
+          If these counts differ from the final delegate counts announced at the caucus, please simply contact our help line or email address and we will verify/take care of it. Make sure to mention your precinct name as listed above.
         </p>
         <p>
           <Link to='tel:+15152776073'>(515) 277-6073</Link>
