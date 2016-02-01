@@ -39,12 +39,22 @@ export class ReportNewForm extends React.Component {
       if(delegateCounts.length === Object.keys(this.props.supporters).length) {
         if(valid) {
           let { id } = this.props.params;
+          let resultsCounts = [];
+          if(this.props.delegates.sanders !== 0 || this.props.delegates.clinton !== 0 || this.props.delegates.omalley !== 0 || this.props.delegates.uncommitted !== 0) {
+            _.forOwn(this.props.delegates, (delegates, candidate) => {
+              resultsCounts.push({
+                key: candidate,
+                delegates: delegates
+              });
+            });
+          }
           this.props.reportActions.create({
             token: this.props.sessionToken,
             precinctId: id,
             attendees: this.props.attendees,
             phase: this.props.phase,
-            delegateCounts: delegateCounts
+            delegateCounts: delegateCounts,
+            resultsCounts: resultsCounts
           });
         }
         else {
@@ -73,6 +83,13 @@ export class ReportNewForm extends React.Component {
           <Input type='number' label='Hillary Clinton supporters' name='clintonSupporters' required={true} value={this.props.supporters.clinton} onChange={ (e) => this.onUpdate(e) } />
           <Input type='number' label="Martin O'Malley supporters" name='omalleySupporters' required={true} value={this.props.supporters.omalley} onChange={ (e) => this.onUpdate(e) } />
           <Input type='number' label="Uncommitted supporters" name='uncommittedSupporters' required={true} value={this.props.supporters.uncommitted} onChange={ (e) => this.onUpdate(e) } />
+          <p>
+            Leave all the delegate totals at 0 unless you need to override the totals calculated from supporter counts.
+          </p>
+          <Input type='number' label='Bernie Sanders delegates' name='sandersDelegates' required={true} value={this.props.delegates.sanders} onChange={ (e) => this.onUpdate(e) } />
+          <Input type='number' label='Hillary Clinton delegates' name='clintonDelegates' required={true} value={this.props.delegates.clinton} onChange={ (e) => this.onUpdate(e) } />
+          <Input type='number' label="Martin O'Malley delegates" name='omalleyDelegates' required={true} value={this.props.delegates.omalley} onChange={ (e) => this.onUpdate(e) } />
+          <Input type='number' label="Uncommitted delegates" name='uncommittedDelegates' required={true} value={this.props.delegates.uncommitted} onChange={ (e) => this.onUpdate(e) } />
 
           <ButtonInput type='submit' bsStyle='primary' value='Create Report' />
         </form>

@@ -20,6 +20,12 @@ const mapStateToProps = (state) => ({
     clinton: state.report.clintonSupporters,
     omalley: state.report.omalleySupporters,
     uncommitted: state.report.uncommittedSupporters
+  },
+  delegates: {
+    sanders: state.report.sandersDelegates,
+    clinton: state.report.clintonDelegates,
+    omalley: state.report.omalleyDelegates,
+    uncommitted: state.report.uncommittedDelegates
   }
 });
 

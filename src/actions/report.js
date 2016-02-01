@@ -24,7 +24,8 @@ export default {
       report: {
         total_attendees: payload.attendees,
         phase: payload.phase,
-        delegate_counts: payload.delegateCounts
+        delegate_counts: payload.delegateCounts,
+        results_counts: payload.resultsCounts
       }
     });
     return {
@@ -47,7 +48,8 @@ export default {
       report: {
         total_attendees: payload.attendees,
         phase: payload.phase,
-        delegate_counts: payload.delegateCounts
+        delegate_counts: payload.delegateCounts,
+        results_counts: payload.resultsCounts
       }
     });
     return {
