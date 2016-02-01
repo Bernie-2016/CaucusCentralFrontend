@@ -73,27 +73,6 @@ export class CaptainEntryApportionment extends React.Component {
         <h4>{countTitle} COUNT (determining delegates won)</h4>
         <p><strong>After realignment is over</strong>, enter the final number of supporters for each candidate. When you're done, click submit.</p>
 
-        <p>Based on current data, this is how delegates will be assigned:</p>
-
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Bernie Sanders</th>
-              <th>Hillary Clinton</th>
-              <th>Martin O'Malley</th>
-              <th>Uncommitted</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{ this.props.delegateCounts.sanders }</td>
-              <td>{ this.props.delegateCounts.clinton }</td>
-              <td>{ this.props.delegateCounts.omalley }</td>
-              <td>{ this.props.delegateCounts.uncommitted }</td>
-            </tr>
-          </tbody>
-        </table>
-
         <form onSubmit={ (e) => this.onSubmit(e) }>
           <Input type='number' label='Bernie Sanders supporters' name='sandersSupporters' required={true} value={this.props.supporters.sanders} onChange={ (e) => this.onUpdate(e) } />
           <Input type='number' label='Hillary Clinton supporters' name='clintonSupporters' required={true} value={this.props.supporters.clinton} onChange={ (e) => this.onUpdate(e) } />

@@ -36,13 +36,22 @@ export class CaptainEntryCompleted extends React.Component {
           </thead>
           <tbody>
             <tr>
-              <td>{ this.props.delegateCounts.sanders }</td>
-              <td>{ this.props.delegateCounts.clinton }</td>
-              <td>{ this.props.delegateCounts.omalley }</td>
-              <td>{ this.props.delegateCounts.uncommitted }</td>
+              <td>{ this.props.delegateCounts.sanders || 'Not Viable' }</td>
+              <td>{ this.props.delegateCounts.clinton || 'Not Viable' }</td>
+              <td>{ this.props.delegateCounts.omalley || 'Not Viable' }</td>
+              <td>{ this.props.delegateCounts.uncommitted || 'Not Viable' }</td>
             </tr>
           </tbody>
         </table>
+        <p>
+          If these counts differ from the final delegate counts announced at the caucus, please simply contact our help line or email address and we will verify/take care of it:
+        </p>
+        <p>
+          <Link to='tel:+15152776073'>(515) 277-6073</Link>
+        </p>
+        <p>
+          <Link to='mailto:iowa-help@berniesanders.com'>iowa-help@berniesanders.com</Link>
+        </p>
         <p>
           Was there an extra alignment? You can report it <Link to='#' onClick={ (e) => this.thirdCount(e) }>here</Link>.
         </p>
