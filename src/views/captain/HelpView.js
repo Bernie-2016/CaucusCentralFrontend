@@ -10,12 +10,13 @@ export class HelpView extends React.Component {
           If you need help with anything, please use the hotline to let us know.
         </p>
         <p>
-          On mobile, just click to dial: <Link to='tel:+15152776073'>(515) 277-6073</Link>
+          Official Troubleshooting and Legal hotline: <Link to='tel:+7029638333'>(702) 963-8333</Link>
         </p>
         <p>
-          If you accidentally confirmed an incorrect attendee or supporter count, please 
-          email <Link to='mailto:iowa-help@berniesanders.com'>iowa-help@berniesanders.com</Link> with 
-          your precinct name and the correct values.
+          Reporting hotline (if you reported incorrect results or are having issues with the app): <Link to='tel:+7027787414'>(702) 778-7414</Link>
+        </p>
+        <p>
+          Reporting email: <Link to='mailto:Nevada-Reports@berniesanders.com'>Nevada-Reports@berniesanders.com</Link>
         </p>
       </div>
     );

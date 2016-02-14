@@ -47,10 +47,10 @@ export class CaptainEntryCompleted extends React.Component {
           If these counts differ from the final delegate counts announced at the caucus, please simply contact our help line or email address and we will verify/take care of it. Make sure to mention your precinct name as listed above.
         </p>
         <p>
-          <Link to='tel:+15152776073'>(515) 277-6073</Link>
+          Reporting hotline (if you reported incorrect results or are having issues with the app): <Link to='tel:+7027787414'>(702) 778-7414</Link>
         </p>
         <p>
-          <Link to='mailto:iowa-help@berniesanders.com'>iowa-help@berniesanders.com</Link>
+          Reporting email: <Link to='mailto:Nevada-Reports@berniesanders.com'>Nevada-Reports@berniesanders.com</Link>
         </p>
         <p>
           Was there an extra alignment? You can report it <Link to='#' onClick={ (e) => this.thirdCount(e) }>here</Link>.

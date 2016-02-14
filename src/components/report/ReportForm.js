@@ -115,7 +115,7 @@ export class ReportForm extends React.Component {
                   </div>
 
                   <p>
-                    If you found anything abnormal at your caucus, please call our help line number at <Link to='tel:+15152776073'>(515) 277-6073</Link> or let us know at <Link to='mailto:iowa-help@berniesanders.com'>iowa-help@berniesanders.com</Link>.
+                    If you found anything abnormal at your caucus, please call our help line number at <Link to='tel:+7029638333'>(702) 963-8333</Link>.
                   </p>
 
                   <ButtonInput type='submit' bsStyle='primary' value='Submit Report' />
