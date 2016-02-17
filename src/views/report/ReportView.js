@@ -22,6 +22,12 @@ const mapStateToProps = (state) => ({
     clinton: state.report.clintonSupporters,
     omalley: state.report.omalleySupporters,
     uncommitted: state.report.uncommittedSupporters
+  },
+  wonCounts: {
+    sanders: state.report.sandersWon,
+    clinton: state.report.clintonWon,
+    omalley: state.report.omalleyWon,
+    uncommitted: state.report.uncommittedWon
   }
 });
 
@@ -44,7 +50,7 @@ class ReportView extends React.Component {
   }
 
   resetIfCreated () {
-    if (this.props.created && this.props.phase === 'apportioned') {
+    if (this.props.created && this.props.phase === 'completed') {
       if(this.props.sessionToken !== undefined) {
         if(this.props.privilege === 'organizer') {
           this.props.history.pushState(null, '/admin');
@@ -65,6 +71,10 @@ class ReportView extends React.Component {
       else if(this.props.phase === 'apportionment') {
         this.props.reportActions.setAttr({key: 'created', value: false});
         this.props.reportActions.setAttr({key: 'phase', value: 'apportioned'});
+      }
+      else if(this.props.phase === 'apportioned') {
+        this.props.reportActions.setAttr({key: 'created', value: false});
+        this.props.reportActions.setAttr({key: 'phase', value: 'completed'});
       }
     }
   }

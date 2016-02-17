@@ -48,6 +48,28 @@ export class ReportForm extends React.Component {
         supporters: supporters
       });
 
+      let resultsCounts = null;
+      if(this.props.phase === 'completed') {
+        resultsCounts = [
+          {
+            key: 'sanders',
+            delegates: this.props.wonCounts.sanders
+          },
+          {
+            key: 'clinton',
+            delegates: this.props.wonCounts.clinton
+          },
+          {
+            key: 'omalley',
+            delegates: this.props.wonCounts.omalley
+          },
+          {
+            key: 'uncommitted',
+            delegates: this.props.wonCounts.uncommitted
+          }
+        ]
+      }
+
       if(delegateCounts.length === Object.keys(this.props.supporters).length) {
         if(valid) {
           if(confirm('Are you sure you want to finalize this report? This action cannot be undone.')) {
@@ -56,7 +78,8 @@ export class ReportForm extends React.Component {
               precinctId: this.props.precinctId,
               attendees: this.props.attendees,
               phase: this.props.phase,
-              delegateCounts: delegateCounts
+              delegateCounts: delegateCounts,
+              resultsCounts: resultsCounts
             });
           }
         }
@@ -101,6 +124,7 @@ export class ReportForm extends React.Component {
                   <option value='viability' key='viability'>Total Attendees</option>
                   <option value='apportionment' key='apportionment'>First Count (Viability)</option>
                   <option value='apportioned' key='apportioned'>Second Count (Realignment)</option>
+                  <option value='completed' key='completed'>Final Awarded Delegates</option>
                 </Input>
                 <span className='help-block'>
                   Not sure? Read this: <Link to='/report/how' target='_blank'>How to Report</Link>
@@ -112,6 +136,12 @@ export class ReportForm extends React.Component {
                     <Input type='number' label='Hillary Clinton supporters' name='clintonSupporters' required={true} value={this.props.supporters.clinton} onChange={ (e) => this.onUpdate(e) } />
                     <Input type='number' label="Martin O'Malley supporters" name='omalleySupporters' required={true} value={this.props.supporters.omalley} onChange={ (e) => this.onUpdate(e) } />
                     <Input type='number' label="Uncommitted supporters" name='uncommittedSupporters' required={true} value={this.props.supporters.uncommitted} onChange={ (e) => this.onUpdate(e) } />
+                  </div>
+                  <div hidden={this.props.phase !== 'completed'}>
+                    <Input type='number' label='Bernie Sanders delegates awarded' name='sandersWon' required={true} value={this.props.wonCounts.sanders} onChange={ (e) => this.onUpdate(e) } />
+                    <Input type='number' label='Hillary Clinton delegates awarded' name='clintonWon' required={true} value={this.props.wonCounts.clinton} onChange={ (e) => this.onUpdate(e) } />
+                    <Input type='number' label="Martin O'Malley delegates awarded" name='omalleyWon' required={true} value={this.props.wonCounts.omalley} onChange={ (e) => this.onUpdate(e) } />
+                    <Input type='number' label="Uncommitted delegates awarded" name='uncommittedWon' required={true} value={this.props.wonCounts.uncommitted} onChange={ (e) => this.onUpdate(e) } />
                   </div>
 
                   <p>
