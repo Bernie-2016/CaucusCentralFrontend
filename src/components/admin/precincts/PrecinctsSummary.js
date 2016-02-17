@@ -7,7 +7,7 @@ export class PrecinctsSummary extends React.Component {
   getTotalCountsFor(candidate) {
     let count = 0;
     for(let i = 0; i < this.props.precincts.length; i++) {
-      const reports = _.filter(this.props.precincts[i].reports, { phase: 'apportioned' });
+      const reports = _.filter(this.props.precincts[i].reports, { phase: 'completed' });
       let report = null;
 
       switch(this.props.dataSource) {
