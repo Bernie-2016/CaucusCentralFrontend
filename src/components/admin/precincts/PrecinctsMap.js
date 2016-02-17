@@ -5,7 +5,7 @@ import _               from 'lodash';
 
 export class PrecinctsMap extends React.Component {
   getDelegateCounts(precinct) {
-    const reports = _.filter(precinct.reports, { phase: 'apportioned' });
+    const reports = _.filter(precinct.reports, { phase: 'completed' });
     let report = null;
 
     switch(this.props.dataSource) {
