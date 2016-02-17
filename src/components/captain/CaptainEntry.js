@@ -7,6 +7,7 @@ import CaptainEntryApportionment from './CaptainEntryApportionment';
 import CaptainEntryAttendees     from './CaptainEntryAttendees';
 import CaptainEntryCompleted     from './CaptainEntryCompleted';
 import CaptainEntryMessage       from './CaptainEntryMessage';
+import CaptainEntryTotal         from './CaptainEntryTotal';
 import CaptainEntryViability     from './CaptainEntryViability';
 import captainActions            from 'actions/captain/';
 import sessionActions            from 'actions/session/';
@@ -27,6 +28,9 @@ export class CaptainEntry extends React.Component {
         {...this.props} />;
       break;
     case 'apportioned':
+      phase = <CaptainEntryTotal {...this.props} />;
+      break;
+    case 'completed':
       phase = <CaptainEntryCompleted {...this.props} />;
       break;
     default:

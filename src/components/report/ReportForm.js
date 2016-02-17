@@ -100,7 +100,7 @@ export class ReportForm extends React.Component {
                   <option value='none' key='none'>Select a Type...</option>
                   <option value='viability' key='viability'>Total Attendees</option>
                   <option value='apportionment' key='apportionment'>First Count (Viability)</option>
-                  <option value='apportioned' key='apportioned'>Second County (Realignment)</option>
+                  <option value='apportioned' key='apportioned'>Second Count (Realignment)</option>
                 </Input>
                 <span className='help-block'>
                   Not sure? Read this: <Link to='/report/how' target='_blank'>How to Report</Link>
@@ -115,7 +115,7 @@ export class ReportForm extends React.Component {
                   </div>
 
                   <p>
-                    If you found anything abnormal at your caucus, please call our help line number at <Link to='tel:+7029638333'>(702) 963-8333</Link>.
+                    If you found anything abnormal at your caucus, please call our help line number at <a href='tel:+7029638333'>(702) 963-8333</a>.
                   </p>
 
                   <ButtonInput type='submit' bsStyle='primary' value='Submit Report' />

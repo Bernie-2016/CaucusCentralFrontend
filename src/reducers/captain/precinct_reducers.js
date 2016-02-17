@@ -22,6 +22,10 @@ const initialState = {
   clintonDelegates: 0,
   omalleyDelegates: 0,
   uncommittedDelegates: 0,
+  sandersWon: 0,
+  clintonWon: 0,
+  omalleyWon: 0,
+  uncommittedWon: 0,
   delegatesWon: 0,
   extra: false
 };
@@ -117,5 +121,8 @@ export default createReducer(initialState, {
   [c.UPDATE_APPORTIONMENT_COUNTS_REQUEST] : precinct.update.request,
   [c.UPDATE_APPORTIONMENT_COUNTS_SUCCESS] : precinct.update.success,
   [c.UPDATE_APPORTIONMENT_COUNTS_FAILURE]  : precinct.update.failure,
+  [c.UPDATE_FINAL_COUNTS_REQUEST] : precinct.update.request,
+  [c.UPDATE_FINAL_COUNTS_SUCCESS] : precinct.update.success,
+  [c.UPDATE_FINAL_COUNTS_FAILURE]  : precinct.update.failure,
   [c.SET_ATTR] : precinct.set,
 });

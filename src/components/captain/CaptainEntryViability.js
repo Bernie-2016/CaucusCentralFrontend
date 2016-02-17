@@ -1,5 +1,6 @@
 import React                  from 'react';
 import { Input, ButtonInput } from 'react-bootstrap';
+import _                      from 'lodash';
 
 export class CaptainEntryViability extends React.Component {
   onUpdate(e) {

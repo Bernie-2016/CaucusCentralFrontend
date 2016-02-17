@@ -1,5 +1,4 @@
-import React    from 'react';
-import { Link } from 'react-router';
+import React from 'react';
 
 export class HelpView extends React.Component {
   render() {
@@ -10,13 +9,13 @@ export class HelpView extends React.Component {
           If you need help with anything, please use the hotline to let us know.
         </p>
         <p>
-          Official Troubleshooting and Legal hotline: <Link to='tel:+7029638333'>(702) 963-8333</Link>
+          Official Troubleshooting and Legal hotline: <a href='tel:+7029638333'>(702) 963-8333</a>
         </p>
         <p>
-          Reporting hotline (if you reported incorrect results or are having issues with the app): <Link to='tel:+7027787414'>(702) 778-7414</Link>
+          Reporting hotline (if you reported incorrect results or are having issues with the app): <a href='tel:+7027787414'>(702) 778-7414</a>
         </p>
         <p>
-          Reporting email: <Link to='mailto:Nevada-Reports@berniesanders.com'>Nevada-Reports@berniesanders.com</Link>
+          Reporting email: <a href='mailto:Nevada-Reports@berniesanders.com'>Nevada-Reports@berniesanders.com</a>
         </p>
       </div>
     );

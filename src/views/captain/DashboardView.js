@@ -38,6 +38,12 @@ const mapStateToProps = (state) => ({
                     omalley: state.captainPrecinct.omalleyDelegates,
                     uncommitted: state.captainPrecinct.uncommittedDelegates
                   },
+  wonCounts:      {
+                    sanders: state.captainPrecinct.sandersWon,
+                    clinton: state.captainPrecinct.clintonWon,
+                    omalley: state.captainPrecinct.omalleyWon,
+                    uncommitted: state.captainPrecinct.uncommittedWon
+                  },
   extra:          state.captainPrecinct.extra
 });
 

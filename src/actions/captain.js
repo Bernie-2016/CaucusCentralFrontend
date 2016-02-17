@@ -84,5 +84,27 @@ export default {
         }
       }
     };
+  },
+  updateFinalCounts: (payload) => {
+    const body = JSON.stringify({
+      precinct: {
+        results_counts: payload.results_counts
+      }
+    });
+
+    return {
+      [CALL_API]: {
+        types: [c.UPDATE_FINAL_COUNTS_REQUEST,
+                c.UPDATE_FINAL_COUNTS_SUCCESS,
+                c.UPDATE_FINAL_COUNTS_FAILURE],
+        endpoint: formatEndpoint(`/precincts/${payload.id}/completed`),
+        method: 'POST',
+        body,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': payload.token
+        }
+      }
+    };
   }
 };

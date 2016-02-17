@@ -11,6 +11,9 @@ export function phaseText (phase) {
     text = 'Apportionment Phase';
     break;
   case 'apportioned':
+    text = 'Final Counts';
+    break;
+  case 'completed':
     text = 'Caucus completed';
     break;
   default:
