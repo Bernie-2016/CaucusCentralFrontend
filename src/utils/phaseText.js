@@ -10,9 +10,6 @@ export function phaseText (phase) {
   case 'apportionment':
     text = 'Apportionment Phase';
     break;
-  case 'coin_flip':
-    text = 'Coin Flip';
-    break;
   case 'apportioned':
     text = 'Caucus completed';
     break;

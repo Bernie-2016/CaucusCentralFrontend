@@ -6,7 +6,6 @@ import { connect }               from 'react-redux';
 import CaptainEntryApportionment from './CaptainEntryApportionment';
 import CaptainEntryAttendees     from './CaptainEntryAttendees';
 import CaptainEntryCompleted     from './CaptainEntryCompleted';
-import CaptainEntryFlip          from './CaptainEntryFlip';
 import CaptainEntryMessage       from './CaptainEntryMessage';
 import CaptainEntryViability     from './CaptainEntryViability';
 import captainActions            from 'actions/captain/';
@@ -25,10 +24,6 @@ export class CaptainEntry extends React.Component {
       break;
     case 'apportionment':
       phase = <CaptainEntryApportionment {...this.props} 
-        {...this.props} />;
-      break;
-    case 'coin_flip':
-      phase = <CaptainEntryFlip {...this.props} 
         {...this.props} />;
       break;
     case 'apportioned':

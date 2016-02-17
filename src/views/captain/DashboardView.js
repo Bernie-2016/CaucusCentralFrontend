@@ -38,8 +38,7 @@ const mapStateToProps = (state) => ({
                     omalley: state.captainPrecinct.omalleyDelegates,
                     uncommitted: state.captainPrecinct.uncommittedDelegates
                   },
-  extra:          state.captainPrecinct.extra,
-  flipWinner:     state.captainPrecinct.flipWinner
+  extra:          state.captainPrecinct.extra
 });
 
 const mapDispatchToProps = (dispatch) => ({

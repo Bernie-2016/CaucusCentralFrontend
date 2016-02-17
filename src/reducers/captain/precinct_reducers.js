@@ -23,8 +23,7 @@ const initialState = {
   omalleyDelegates: 0,
   uncommittedDelegates: 0,
   delegatesWon: 0,
-  extra: false,
-  flipWinner: ''
+  extra: false
 };
 
 const precinct = {
@@ -118,8 +117,5 @@ export default createReducer(initialState, {
   [c.UPDATE_APPORTIONMENT_COUNTS_REQUEST] : precinct.update.request,
   [c.UPDATE_APPORTIONMENT_COUNTS_SUCCESS] : precinct.update.success,
   [c.UPDATE_APPORTIONMENT_COUNTS_FAILURE]  : precinct.update.failure,
-  [c.UPDATE_FLIP_WINNER_REQUEST] : precinct.update.request,
-  [c.UPDATE_FLIP_WINNER_SUCCESS] : precinct.update.success,
-  [c.UPDATE_FLIP_WINNER_FAILURE]  : precinct.update.failure,
   [c.SET_ATTR] : precinct.set,
 });
