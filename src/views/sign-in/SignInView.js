@@ -31,7 +31,7 @@ class SignInView extends React.Component {
 
   redirectToDashboardIfLoggedIn () {
     if (this.props.id !== undefined) {
-      if (this.props.privilege === 'organizer') {
+      if (this.props.privilege === 'admin' || this.props.privilege === 'organizer') {
         this.props.history.pushState(null, '/admin');
       } else if (this.props.privilege === 'captain') {
         this.props.history.pushState(null, '/captain')
