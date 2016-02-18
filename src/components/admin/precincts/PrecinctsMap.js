@@ -78,39 +78,34 @@ export class PrecinctsMap extends React.Component {
       });
 
       _.each(precincts, (precinct) => {
-        if(incomplete) {
-          return;
+        const won = this.getDelegateCounts(precinct);
+
+        if(won === null) {
+          incomplete = true;
         }
         else {
-          const won = this.getDelegateCounts(precinct);
+          countySet.sandersDelegates += won.sanders;
+          countySet.clintonDelegates += won.clinton;
+          countySet.omalleyDelegates += won.omalley;
+          countySet.uncommittedDelegates += won.uncommitted;
 
-          if(won === null) {
-            incomplete = true;
-          }
-          else {
-            countySet.sandersDelegates += won.sanders;
-            countySet.clintonDelegates += won.clinton;
-            countySet.omalleyDelegates += won.omalley;
-            countySet.uncommittedDelegates += won.uncommitted;
-
-            switch(_.max([countySet.sandersDelegates, countySet.clintonDelegates, countySet.omalleyDelegates, countySet.uncommittedDelegates])) {
-              case countySet.sandersDelegates:
-                countySet.value = 1;
-                break;
-              case countySet.clintonDelegates:
-                countySet.value = 2;
-                break;
-              case countySet.omalleyDelegates:
-                countySet.value = 3;
-                break;
-              case countySet.uncommittedDelegates:
-                countySet.value = 4;
-                break;
-              default:
-                countySet.value = 0;
-                break;
-            }
-          }     
+          switch(_.max([countySet.sandersDelegates, countySet.clintonDelegates, countySet.omalleyDelegates, countySet.uncommittedDelegates])) {
+            case countySet.sandersDelegates:
+              countySet.value = 1;
+              break;
+            case countySet.clintonDelegates:
+              countySet.value = 2;
+              break;
+            case countySet.omalleyDelegates:
+              countySet.value = 3;
+              break;
+            case countySet.uncommittedDelegates:
+              countySet.value = 4;
+              break;
+            default:
+              countySet.value = 0;
+              break;
+          }  
         }
       });
 
