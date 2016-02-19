@@ -39,6 +39,18 @@ export default {
       }
     }
   }),
+  getAllAudits: (payload) => ({
+    [CALL_API]: {
+      types: [c.GET_AUDITS_REQUEST,
+              c.GET_AUDITS_SUCCESS,
+              c.GET_AUDITS_FAILURE],
+      endpoint: formatEndpoint(`/audits`),
+      method: 'GET',
+      headers: {
+        'Authorization': payload.token
+      }
+    }
+  }),
   setPrecinctsAttr: (payload) => ({
     type: c.SET_PRECINCTS_ATTR,
     payload
@@ -217,5 +229,24 @@ export default {
         }
       }
     };
-  }
+  },
+  updateAudit: (payload) => {
+    const body = JSON.stringify({
+      audit: payload.audit
+    });
+    return {
+      [CALL_API]: {
+        types: [c.UPDATE_AUDIT_REQUEST,
+                c.UPDATE_AUDIT_SUCCESS,
+                c.UPDATE_AUDIT_FAILURE],
+        endpoint: formatEndpoint(`/audits/${payload.id}`),
+        method: 'PATCH',
+        body,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': payload.token
+        }
+      }
+    };
+  },
 };
