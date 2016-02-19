@@ -5,8 +5,9 @@ import { connect }               from 'react-redux';
 import reactMixin                from 'react-mixin';
 import adminActions              from 'actions/admin';
 import sessionActions            from 'actions/session';
+import { formatEndpoint }        from 'utils/api';
 import LogoutIfUnauthorizedMixin from 'components/mixins/LogoutIfUnauthorizedMixin';
-import AuditsTable                from 'components/admin/audits/AuditsTable';
+import AuditsTable               from 'components/admin/audits/AuditsTable';
 
 const mapStateToProps = (state) => ({
   fetched:      state.adminAudits.fetched,
@@ -32,6 +33,11 @@ export class AuditsView extends React.Component {
           <h3>Audits</h3>
           <p>
             BS = Bernie Sanders, HC = Hillary Clinton, MOM = Martin O'Malley, U = Uncommitted
+          </p>
+          <p>
+            <a href={formatEndpoint('/audits/csv?token=' + this.props.sessionToken)} target='_blank'>
+              Download Full Audits CSV
+            </a>
           </p>
         </div>
         <AuditsTable {...this.props} />
