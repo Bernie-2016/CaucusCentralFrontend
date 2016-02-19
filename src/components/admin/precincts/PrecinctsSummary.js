@@ -73,7 +73,7 @@ export class PrecinctsSummary extends React.Component {
           <div className='data-source pull-right text-center'>
             <Input type='select' label='Data Source' name='dataSource' value={this.props.dataSource} onChange={ (e) => this.onUpdate(e) }>
               <option value="best" key="best">Best Available</option>
-              <option value="microsoft" key="microsoft">Microsoft</option>
+              <option value="microsoft" key="microsoft">Official</option>
               <option value="captain" key="captain">Captain Reports</option>
               <option value="crowd" key="crowd">Crowdsourced</option>
             </Input>
