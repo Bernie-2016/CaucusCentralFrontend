@@ -51,6 +51,9 @@ export class AuditsTable extends React.Component {
 
       auditComponents.push(
         <Tr key={audit.id}>
+          <Td column="county">
+            {audit.precinct_county}
+          </Td>
           <Td column="precinct">
             {this.auditPrecinctLink(audit)}
           </Td>
@@ -88,6 +91,9 @@ export class AuditsTable extends React.Component {
         <div className="table-responsive">
           <Table className="table table-striped" itemsPerPage={50} noDataText='No audits found.'>
             <Thead>
+              <Th column="county">
+                <strong>County</strong>
+              </Th>
               <Th column="precinct">
                 <strong>Precinct</strong>
               </Th>
