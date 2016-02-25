@@ -3,6 +3,7 @@ import { Link }                     from 'react-router';
 import Loader                       from 'react-loader';
 import { Table, Thead, Th, Tr, Td } from 'reactable';
 import _                            from 'lodash';
+import Clipboard                    from 'clipboard'
 
 export class InvitationsTable extends React.Component {
   invitationPrecinctLink(invitation) {
@@ -31,6 +32,15 @@ export class InvitationsTable extends React.Component {
     }
   }
 
+  copyLink(e) {
+    e.preventDefault();
+    e.target.innerHTML = 'Copied!'
+  }
+
+  componentDidMount() {
+    new Clipboard('.clip');
+  }
+
   render() {
     let invitationComponents = [];
     _.each(this.props.invitations, (invitation) => {
@@ -47,6 +57,9 @@ export class InvitationsTable extends React.Component {
           </Td>
           <Td column="resend">
             <Link to='#' data-id={invitation.id} onClick={ (e) => this.resend(e) }>Resend</Link>
+          </Td>
+          <Td column="copy">
+            <a href='#' className='clip' data-clipboard-text={`https://caucuscentral.berniesanders.com/signup/${invitation.token}`} onClick={ (e) => this.copyLink(e) }>Copy Invite Link</a>
           </Td>
         </Tr>
       );
@@ -68,6 +81,9 @@ export class InvitationsTable extends React.Component {
               </Th>
               <Th column="resend">
                 <strong>Resend</strong>
+              </Th>
+              <Th column="copy">
+                <strong>Copy Link</strong>
               </Th>
             </Thead>
             {invitationComponents}

@@ -31,6 +31,7 @@
     "babel": "^5.8.23",
     "bootstrap": "^3.3.6",
     "chalk": "^1.1.1",
+    "clipboard": "^1.5.8",
     "cssnano": "^3.3.2",
     "dotenv": "^1.2.0",
     "highcharts-release": "^4.2.1",
